@@ -1,0 +1,19 @@
+<%- include('partials/header'); %>
+<section>
+    <div>
+        <div>
+            <img src="<%= pokemons[0].image %>" alt="">
+            <a href="/"><%= pokemons[0].id %></a> 
+            <a href="/"><%= pokemons[0].name %></a> 
+            <a href="/"><%= pokemons[0].maxHP %></a>
+        </div>
+        <div>
+            <img src="<%= pokemons[1].image %>" alt="">
+            <a href="/"><%= pokemons[1].id %></a> 
+            <a href="/"><%= pokemons[1].name %></a> 
+            <a href="/"><%= pokemons[1].maxHP %></a>
+        </div>
+    </div>
+    <button type="submit"> Vergelijken </button>
+</section>
+<%- include('partials/footer'); %>

@@ -1,0 +1,16 @@
+<%- include('partials/header'); %>
+<section>
+    <div>
+        <img src="<%= pokemonFind.image %>" alt="">
+        <a href="/"><%= pokemonFind.id %></a>
+        <a href="/"><%= pokemonFind.name %></a>
+        <a href="/"><%= pokemonFind.height %></a>
+        <a href="/"><%= pokemonFind.weight %></a>
+        <a href="/"><%= pokemonFind.types %></a>
+        <a href="/"><%= pokemonFind.maxHP %></a>
+        <a href="/">
+            <button type="submit">Vangen</button>
+        </a>
+    </div>
+</section>
+<%- include('partials/footer'); %>

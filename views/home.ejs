@@ -1,0 +1,14 @@
+<%- include('partials/header'); %>
+<section>
+    <div class="flex-container">
+        <% for(let pokemon of pokemons) { %>
+            <div>
+                <img src="<%= pokemon.image %>" alt="">
+                <a href="/pokemon/info/<%= pokemon.id %>">
+                    <button type="submit">INFO</button>
+                </a>
+            </div>
+        <% } %>
+    </div>
+</section>
+<%- include('partials/footer'); %>
