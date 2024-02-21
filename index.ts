@@ -94,17 +94,20 @@ app.get("/pokemon/info/:pokeId", async (req, res) => {
 });
 
 app.post("/catch", async (req, res) => {
-  const targetPokemon = req.body.pokemon as DetailedPokemon;
-  const currentPokemon = {} as DetailedPokemon;
+  const targetPokemon = pokemons.find(({id}) => id = req.body.pokemon) as DetailedPokemon;
+  const currentPokemon = {attack: 10} as DetailedPokemon;
+
 
   for (let i = 0; i < 3; i++) {
     let caught = catchPokemon(targetPokemon, currentPokemon);
 
     if (caught) {
-        playerPokemons.push(targetPokemon)
-        break
+      playerPokemons.push(targetPokemon);
+      break;
     }
   }
+
+  res.redirect("/");
 });
 
 app.listen(app.get("port"), async () => {

@@ -16,7 +16,7 @@
       <a href="/"><%= pokemonFind.types %></a>
       <a href="/"><%= pokemonFind.maxHP %></a>
       <form action="/catch" method="post">
-        <input type="hidden" value="<%= pokemonFind %>" name="pokemon" />
+        <input type="hidden" value="<%= pokemonFind.id %>" name="pokemon" />
         <button type="submit">Vangen</button>
       </form>
     </section>
