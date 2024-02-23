@@ -1,5 +1,103 @@
+@font-face {
+  font-family: pokemon;
+  src: url("/fonts/Pokemon_Solid.ttf");
+}
+
 .flex-container {
   display: flex;
   flex-direction: row;
   flex-flow: row wrap;
+}
+
+.footer-logo {
+  width: 100px;
+}
+
+nav a {
+  font-family: pokemon;
+  text-decoration: none;
+  color: #3b4cca;
+  font-size: 1rem;
+  padding: 8px;
+}
+html,
+body {
+  margin: 0;
+  height: 100vh;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+body {
+  display: grid;
+  grid-template-areas:
+    "nav nav nav"
+    "main main main"
+    "main main main"
+    "footer1 footer1 footer1"
+    "footer2 footer2 footer2";
+  grid-template-rows: auto 1fr 1fr auto auto;
+}
+
+.current-pokemon {
+  background-color: rgba(59, 76, 202, 0.75);
+  border-radius: 50%;
+  margin-left: auto;
+}
+
+.pfp-nav {
+  border-radius: 50%;
+  width: 50px;
+  border: 1px solid black;
+}
+
+nav ul {
+  list-style: none;
+}
+
+nav {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  grid-area: nav;
+  background-color: #ffde00;
+  padding: 8px;
+  margin: 0;
+  height: 120px;
+  border-radius: 3px;
+}
+nav img {
+  width: 100px;
+}
+
+.footer-1 {
+  margin-top: 1rem;
+  grid-area: footer1;
+}
+.footer-2 {
+  border-top: 1px solid gray;
+  font-size: 0.5rem;
+  height: 1.25rem;
+  grid-area: footer2;
+  justify-content: center;
+}
+
+footer {
+  font-family: pokemon;
+  font-size: 0.75rem;
+  height: 120px;
+  background-color: #ffde00;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.footer-icon {
+  height: 1rem;
+}
+
+footer article {
+  padding: 8px;
+}
+
+@media screen and (max-width: 768px) {
 }

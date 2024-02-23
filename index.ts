@@ -28,11 +28,12 @@ interface DetailedPokemon {
 let pokemons: DetailedPokemon[] = [];
 let playerPokemons: DetailedPokemon[] = [];
 
-function randomIntFromInterval(min: number, max: number) {
+function randomIntFromInterval(min: number, max: number) { //functie voor een random getal met 2 parameters
   return Math.floor(Math.random() * (max - min + 1) + min);
 }
 
-function catchPokemon(
+function catchPokemon( //functie om een pokemon te vangen
+
   targetPokemon: DetailedPokemon,
   currentPokemon: DetailedPokemon
 ): boolean {

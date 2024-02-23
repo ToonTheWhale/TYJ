@@ -1,20 +1,29 @@
 <%- include('partials/header'); %>
 <section>
-  <div >
-    <h2>Login </h2><br>
+  <div>
+    <h2>Login</h2>
+    <br />
     <form action="/login" method="POST">
       <label for="username:"> Username </label>
-      <input type="text" id="username" name="username" value="user_1" required/>
+      <input
+        type="text"
+        id="username"
+        name="username"
+        value="user_1"
+        required
+      />
       <label for="password"> Password </label>
-      <input type="password" id="password" name="password" value="123456789" required/>
+      <input
+        type="password"
+        id="password"
+        name="password"
+        value="123456789"
+        required
+      />
       <input type="submit" />
     </form>
-    <br>
-    <div >
-      <a href="/signup">
-        <button type="submit">Don't have an account? Sign Up</button>
-      </a>
-    </div>
+    <br />
+    <div>Don't have an account? <a href="/signup">Sign Up </a></div>
   </div>
 </section>
 <%- include('partials/footer'); %>
