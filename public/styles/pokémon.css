@@ -9,6 +9,10 @@
   flex-flow: row wrap;
 }
 
+.footer-logo {
+  width: 100px;
+}
+
 nav a {
   font-family: pokemon;
   text-decoration: none;
@@ -29,8 +33,9 @@ body {
     "nav nav nav"
     "main main main"
     "main main main"
-    "footer footer footer";
-  grid-template-rows: auto 1fr 1fr auto;
+    "footer1 footer1 footer1"
+    "footer2 footer2 footer2";
+  grid-template-rows: auto 1fr 1fr auto auto;
 }
 
 .current-pokemon {
@@ -64,11 +69,21 @@ nav img {
   width: 100px;
 }
 
-footer {
+.footer-1 {
   margin-top: 1rem;
+  grid-area: footer1;
+}
+.footer-2 {
+  border-top: 1px solid gray;
+  font-size: 0.5rem;
+  height: 1.25rem;
+  grid-area: footer2;
+  justify-content: center;
+}
+
+footer {
   font-family: pokemon;
   font-size: 0.75rem;
-  grid-area: footer;
   height: 120px;
   background-color: #ffde00;
   display: flex;
