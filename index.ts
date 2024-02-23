@@ -8,10 +8,9 @@ app.use(express.urlencoded({ extended: true }));
 app.set("view engine", "ejs");
 app.set("port", 3000);
 
-
 interface NonDetailedPokemon {
-    name: string,
-    url: string,
+  name: string;
+  url: string;
 }
 
 interface DetailedPokemon {
@@ -34,6 +33,7 @@ function randomIntFromInterval(min: number, max: number) { //functie voor een ra
 }
 
 function catchPokemon( //functie om een pokemon te vangen
+
   targetPokemon: DetailedPokemon,
   currentPokemon: DetailedPokemon
 ): boolean {
@@ -54,29 +54,38 @@ app.get("/getDataAPI", (req, res) => {
   res.json(pokemons);
 });
 
-app.get('/', async (req,res)=>{
-    res.render("home",{pokemons})
+app.get("/", async (req, res) => {
+  res.render("home", { pokemons });
 });
 
 app.get("/login", async (req, res) => {
-    res.render("login");
+  res.render("login");
 });
 
 app.get("/signup", async (req, res) => {
-    res.render("signup");
+  res.render("signup");
 });
 
 app.get("/vergelijken", async (req, res) => {
-    res.render("vergelijken",{pokemons});
+  res.render("vergelijken", { pokemons });
 });
 
 app.get("/vechten", async (req, res) => {
-    res.render("vechten",{pokemons});
+  res.render("vechten", { pokemons });
 });
 
 app.get("/mypokemons", async (req, res) => {
-    let playerPokemons : DetailedPokemon[] = [pokemons[1],pokemons[2],pokemons[3],pokemons[4],pokemons[5],pokemons[6],pokemons[7],pokemons[8]]
-    res.render("myPokemons",{playerPokemons});
+  playerPokemons = [
+    pokemons[1],
+    pokemons[2],
+    pokemons[3],
+    pokemons[4],
+    pokemons[5],
+    pokemons[6],
+    pokemons[7],
+    pokemons[8],
+  ];
+  res.render("myPokemons", { playerPokemons });
 });
 
 app.get("/pokemon/info/:pokeId", async (req, res) => {
