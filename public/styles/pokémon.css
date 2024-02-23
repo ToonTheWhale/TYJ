@@ -65,6 +65,9 @@ nav img {
 }
 
 footer {
+  margin-top: 1rem;
+  font-family: pokemon;
+  font-size: 0.75rem;
   grid-area: footer;
   height: 120px;
   background-color: #ffde00;
