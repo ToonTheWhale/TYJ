@@ -82,6 +82,7 @@ nav img {
 }
 
 footer {
+  color: #3b4cca;
   font-family: pokemon;
   font-size: 0.75rem;
   height: 120px;
@@ -89,6 +90,10 @@ footer {
   display: flex;
   align-items: center;
   justify-content: space-between;
+}
+
+footer a{
+  color: #3b4cca;
 }
 
 .footer-icon {
