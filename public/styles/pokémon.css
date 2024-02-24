@@ -47,6 +47,12 @@ main  {
   border-color: #3B4CCA;
 }
 
+.pokemon p{
+  font-family:'Courier New', Courier, monospace;
+  font-weight: bolder;
+  text-transform: uppercase;
+}
+
 .footer-logo {
   width: 100px;
 }

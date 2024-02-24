@@ -3,6 +3,7 @@
   <section class="flex-container">
     <% for(let pokemon of pokemons) { %>
     <article class="pokemon">
+      <p> <%= pokemon.name %> </p>
       <img src="<%= pokemon.image %>" alt="img" />
       <a href="/pokemon/info/<%= pokemon.id %>">
         <button type="submit">INFO</button>
