@@ -3,10 +3,48 @@
   src: url("/fonts/Pokemon_Solid.ttf");
 }
 
+main  {
+  grid-area: main;
+}
+
 .flex-container {
   display: flex;
   flex-direction: row;
   flex-flow: row wrap;
+  width: 90%;
+  margin: auto;
+}
+
+.pokemon {
+  display: flex;
+  flex-direction: column;
+  flex-basis: 10%;
+  margin: auto;
+  align-items: center;
+  margin-top: 25px;
+  border-radius: 10px;
+  background-color: #c1cad3;
+  border: 3px solid #3B4CCA;
+  justify-content: space-between;
+
+}
+
+.pokemon button {
+  padding: 5px 10px;
+  font-size: 16px;
+  border: 2px solid #3B4CCA;
+  color: #ffffff;
+  background-color: #3B4CCA;
+  text-align: center;
+  text-decoration: none;
+  border-radius: 5px;
+  transition: all 0.3s ease;
+  margin: 7.5px;
+}
+
+.pokemon button:hover {
+  background-color: #FF0000;
+  border-color: #3B4CCA;
 }
 
 .footer-logo {
@@ -17,13 +55,15 @@ nav a {
   font-family: pokemon;
   text-decoration: none;
   color: #3b4cca;
-  font-size: 1rem;
+  font-size: 2rem;
   padding: 8px;
 }
 html,
 body {
   margin: 0;
-  height: 100vh;
+  /* het is hier het beste als we met (min-height)  werken voor toekomstige veranderingen */
+  /* height: 100vh; */
+  min-height: 100vh;
   font-family: Arial, Helvetica, sans-serif;
 }
 
