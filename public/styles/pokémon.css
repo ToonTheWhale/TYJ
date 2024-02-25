@@ -3,7 +3,7 @@
   src: url("/fonts/Pokemon_Solid.ttf");
 }
 
-main  {
+main {
   grid-area: main;
 }
 
@@ -24,17 +24,16 @@ main  {
   margin-top: 25px;
   border-radius: 10px;
   background-color: #c1cad3;
-  border: 3px solid #3B4CCA;
+  border: 3px solid #3b4cca;
   justify-content: space-between;
-
 }
 
 .pokemon button {
   padding: 5px 10px;
   font-size: 16px;
-  border: 2px solid #3B4CCA;
+  border: 2px solid #3b4cca;
   color: #ffffff;
-  background-color: #3B4CCA;
+  background-color: #3b4cca;
   text-align: center;
   text-decoration: none;
   border-radius: 5px;
@@ -43,12 +42,12 @@ main  {
 }
 
 .pokemon button:hover {
-  background-color: #FF0000;
-  border-color: #3B4CCA;
+  background-color: #ff0000;
+  border-color: #3b4cca;
 }
 
-.pokemon p{
-  font-family:'Courier New', Courier, monospace;
+.pokemon p {
+  font-family: "Courier New", Courier, monospace;
   font-weight: bolder;
   text-transform: uppercase;
 }
@@ -64,6 +63,7 @@ nav a {
   font-size: 2rem;
   padding: 8px;
 }
+
 html,
 body {
   margin: 0;
@@ -88,12 +88,15 @@ body {
   background-color: rgba(59, 76, 202, 0.75);
   border-radius: 50%;
   margin-left: auto;
+  width: 75px;
 }
 
 .pfp-nav {
   border-radius: 50%;
   width: 50px;
+  height: 50px;
   border: 1px solid black;
+  margin-left: 1rem
 }
 
 nav ul {
@@ -103,14 +106,20 @@ nav ul {
 nav {
   display: flex;
   align-items: center;
-  justify-content: flex-start;
   grid-area: nav;
   background-color: #ffde00;
   padding: 8px;
   margin: 0;
-  height: 120px;
   border-radius: 3px;
 }
+
+.dropdown {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+
 nav img {
   width: 100px;
 }
@@ -138,7 +147,7 @@ footer {
   justify-content: space-between;
 }
 
-footer a{
+footer a {
   color: #3b4cca;
 }
 
@@ -150,5 +159,107 @@ footer article {
   padding: 8px;
 }
 
+.main-landing section {
+  display: flex;
+  justify-content: space-evenly;
+  flex-wrap: wrap;
+}
+
+.main-landing {
+  display: flex;
+  justify-content: center;
+}
+
+.main-landing a {
+  text-decoration: none;
+  color: #3b4cca;
+  font-family: pokemon;
+  border-radius: 20px;
+  max-width: 200px;
+  height: 200px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 5px solid #3b4cca;
+  flex: 1 0 30%;
+  margin: 2rem;
+}
+
+.hamburger {
+  display: none;
+}
+
+.login{
+  display: flex;
+  align-items: center;
+}
+
 @media screen and (max-width: 768px) {
+  html,
+  body {
+    max-width: 100%;
+  }
+
+  nav{
+    width: 100%;
+  }
+
+  .nav-section{
+    width: 100%;
+  }
+
+  .dropdown {
+    display: none;
+  }
+  .dropdown.open {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .hamburger {
+    display: flex;
+    margin-right: auto;
+    padding: 0;
+    background-color: transparent;
+    border: none;
+  }
+
+  .hamburger-icon {
+    width: 32px;
+    height: 32px;
+  }
+
+  .main-landing section {
+    display: flex;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
+  }
+
+  .main-landing {
+    display: flex;
+    justify-content: center;
+  }
+
+  .main-landing a {
+    text-decoration: none;
+    color: #3b4cca;
+    font-family: pokemon;
+    border-radius: 20px;
+    max-width: 300px;
+    height: 200px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 5px solid #3b4cca;
+    flex: 1 0 100%;
+    margin: 2rem;
+  }
+
+  nav {
+    max-height: fit-content;
+  }
+
+  .current-pokemon {
+    margin-left: 0;
+  }
 }

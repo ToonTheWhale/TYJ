@@ -1,5 +1,7 @@
 import express from "express";
 
+// alle foto's van pokémon zijn afkomstig van de pokéapi: https://pokeapi.co
+
 const app = express();
 
 app.use(express.static("public"));
@@ -55,6 +57,10 @@ app.get("/getDataAPI", (req, res) => {
 });
 
 app.get("/", async (req, res) => {
+  res.render("landingPage", { pokemons });
+});
+
+app.get("/home", async (req, res) => {
   res.render("home", { pokemons });
 });
 
