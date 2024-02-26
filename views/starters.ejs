@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>TYJ</title>
+  </head>
+  <body>
+    <%- include('partials/header'); %>
+    <main class="main-starters">
+      <section class="flex-container">
+        <% for(let pokemon of pokemons) { %> <% if(pokemon.id === 1 || pokemon.id === 4 || pokemon.id === 7){ %>
+        <article class="pokemon-starters">
+          <p><%= pokemon.name %></p>
+          <img src="<%= pokemon.image %>" alt="img" />
+          <form action="/catch" method="post">
+            <input type="hidden" name="pokemon" value="<%= pokemon.id %>" />
+            <button type="submit">Vang</button>
+          </form>
+        </article>
+        <% } %> <% } %>
+      </section>
+    </main>
+    <%- include('partials/footer'); %>
+  </body>
+</html>

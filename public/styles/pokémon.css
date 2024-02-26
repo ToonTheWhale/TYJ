@@ -28,6 +28,19 @@ main {
   justify-content: space-between;
 }
 
+.pokemon-starters {
+  display: flex;
+  flex-direction: column;
+  flex-basis: 275px;
+  margin: auto;
+  align-items: center;
+  margin-top: 25px;
+  border-radius: 10px;
+  background-color: #c1cad3;
+  border: 3px solid #3b4cca;
+  justify-content: space-between;
+}
+
 .pokemon button {
   padding: 5px 10px;
   font-size: 16px;
@@ -41,12 +54,38 @@ main {
   margin: 7.5px;
 }
 
+.pokemon-starters button {
+  padding: 5px 10px;
+  font-size: 16px;
+  border: 2px solid #3b4cca;
+  color: #ffffff;
+  background-color: #3b4cca;
+  text-align: center;
+  text-decoration: none;
+  border-radius: 5px;
+  transition: all 0.3s ease;
+  margin: 7.5px;
+}
+
 .pokemon button:hover {
+  cursor: pointer;
+  background-color: #ff0000;
+  border-color: #3b4cca;
+}
+
+.pokemon-starters button:hover {
+  cursor: pointer;
   background-color: #ff0000;
   border-color: #3b4cca;
 }
 
 .pokemon p {
+  font-family: "Courier New", Courier, monospace;
+  font-weight: bolder;
+  text-transform: uppercase;
+}
+
+.pokemon-starters p {
   font-family: "Courier New", Courier, monospace;
   font-weight: bolder;
   text-transform: uppercase;
@@ -184,10 +223,10 @@ footer article {
   border: 5px solid #3b4cca;
   flex: 1 0 30%;
   margin: 2rem;
-  transition: background-color 0.3s ease
+  transition: background-color 0.3s ease;
 }
 
-.main-landing a:hover{
+.main-landing a:hover {
   background-color: #ffde00;
 }
 
@@ -242,7 +281,7 @@ footer article {
       "main"
       "footer1"
       "footer2";
-      grid-template-rows: auto 1fr auto auto auto;
+    grid-template-rows: auto 1fr auto auto auto;
   }
 
   .nav-section {
@@ -308,7 +347,7 @@ footer article {
     font-size: 100px;
   }
 
-  .pokeball-404{
+  .pokeball-404 {
     height: 100px;
   }
 }

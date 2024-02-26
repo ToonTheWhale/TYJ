@@ -1,6 +1,6 @@
 import express from "express";
 
-// alle foto's van pokémon zijn afkomstig van de pokéapi: https://pokeapi.co
+// alle foto's van pokémon zijn afkomstig van de pokéapi: https://pokeapi.co tenzij anders vermeldt
 
 const app = express();
 
@@ -60,12 +60,16 @@ app.get("/", async (req, res) => {
   res.render("landingPage");
 });
 
+app.get("/starters", async (req, res) => {
+  res.render("starters", { pokemons });
+});
+
 app.get("/home", async (req, res) => {
   res.render("home", { pokemons });
 });
 
 app.get("/noaccess", async (req, res) => {
-  res.render("noAccess")
+  res.render("noAccess");
 });
 
 app.get("/login", async (req, res) => {
@@ -108,18 +112,17 @@ app.post("/catch", async (req, res) => {
   const targetPokemon = pokemons.find(
     ({ id }) => (id = req.body.pokemon)
   ) as DetailedPokemon;
-  const currentPokemon = { attack: 10 } as DetailedPokemon;
+  const currentPokemon = { attack: 0 } as DetailedPokemon;
 
   for (let i = 0; i < 3; i++) {
     let caught = catchPokemon(targetPokemon, currentPokemon);
 
     if (caught) {
       playerPokemons.push(targetPokemon);
-      break;
+      return res.redirect("/mypokemons");
     }
   }
-
-  res.redirect("/");
+  res.redirect("back");
 });
 
 app.listen(app.get("port"), async () => {
