@@ -76,12 +76,12 @@ body {
 body {
   display: grid;
   grid-template-areas:
-    "nav nav nav"
+    "header header header"
     "main main main"
     "main main main"
     "footer1 footer1 footer1"
     "footer2 footer2 footer2";
-  grid-template-rows: auto 1fr 1fr auto auto;
+  grid-template-rows: auto 1fr auto auto auto;
 }
 
 .current-pokemon {
@@ -96,7 +96,7 @@ body {
   width: 50px;
   height: 50px;
   border: 1px solid black;
-  margin-left: 1rem
+  margin-left: 1rem;
 }
 
 nav ul {
@@ -106,7 +106,7 @@ nav ul {
 nav {
   display: flex;
   align-items: center;
-  grid-area: nav;
+  grid-area: header;
   background-color: #ffde00;
   padding: 8px;
   margin: 0;
@@ -184,15 +184,49 @@ footer article {
   border: 5px solid #3b4cca;
   flex: 1 0 30%;
   margin: 2rem;
+  transition: background-color 0.3s ease
+}
+
+.main-landing a:hover{
+  background-color: #ffde00;
 }
 
 .hamburger {
   display: none;
 }
 
-.login{
+.login {
   display: flex;
   align-items: center;
+}
+
+.nav-section {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+.pokeball-404 {
+  height: 250px;
+}
+
+.main-404 h1 {
+  font-family: Arial, Helvetica, sans-serif;
+  color: black;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 250px;
+  margin: 1rem 0;
+}
+
+.main-404 {
+  font-family: pokemon;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: #3b4cca;
 }
 
 @media screen and (max-width: 768px) {
@@ -201,12 +235,18 @@ footer article {
     max-width: 100%;
   }
 
-  nav{
-    width: 100%;
+  body {
+    grid-template-areas:
+      "header"
+      "main"
+      "main"
+      "footer1"
+      "footer2";
+      grid-template-rows: auto 1fr auto auto auto;
   }
 
-  .nav-section{
-    width: 100%;
+  .nav-section {
+    align-items: flex-start;
   }
 
   .dropdown {
@@ -262,5 +302,13 @@ footer article {
 
   .current-pokemon {
     margin-left: 0;
+  }
+
+  .main-404 h1 {
+    font-size: 100px;
+  }
+
+  .pokeball-404{
+    height: 100px;
   }
 }

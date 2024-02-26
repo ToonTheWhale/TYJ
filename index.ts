@@ -30,12 +30,12 @@ interface DetailedPokemon {
 let pokemons: DetailedPokemon[] = [];
 let playerPokemons: DetailedPokemon[] = [];
 
-function randomIntFromInterval(min: number, max: number) { //functie voor een random getal met 2 parameters
+function randomIntFromInterval(min: number, max: number) {
+  //functie voor een random getal met 2 parameters
   return Math.floor(Math.random() * (max - min + 1) + min);
 }
 
 function catchPokemon( //functie om een pokemon te vangen
-
   targetPokemon: DetailedPokemon,
   currentPokemon: DetailedPokemon
 ): boolean {
@@ -57,11 +57,15 @@ app.get("/getDataAPI", (req, res) => {
 });
 
 app.get("/", async (req, res) => {
-  res.render("landingPage", { pokemons });
+  res.render("landingPage");
 });
 
 app.get("/home", async (req, res) => {
   res.render("home", { pokemons });
+});
+
+app.get("/noaccess", async (req, res) => {
+  res.render("noAccess")
 });
 
 app.get("/login", async (req, res) => {
@@ -101,9 +105,10 @@ app.get("/pokemon/info/:pokeId", async (req, res) => {
 });
 
 app.post("/catch", async (req, res) => {
-  const targetPokemon = pokemons.find(({id}) => id = req.body.pokemon) as DetailedPokemon;
-  const currentPokemon = {attack: 10} as DetailedPokemon;
-
+  const targetPokemon = pokemons.find(
+    ({ id }) => (id = req.body.pokemon)
+  ) as DetailedPokemon;
+  const currentPokemon = { attack: 10 } as DetailedPokemon;
 
   for (let i = 0; i < 3; i++) {
     let caught = catchPokemon(targetPokemon, currentPokemon);
@@ -143,4 +148,9 @@ app.listen(app.get("port"), async () => {
     };
   });
   console.log("[server] http://localhost:" + app.get("port"));
+});
+
+app.use((req, res) => {
+  res.status(404);
+  res.render("404");
 });
