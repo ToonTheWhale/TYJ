@@ -172,6 +172,7 @@ footer article {
 
 .main-landing a {
   text-decoration: none;
+  background-color: #c1cad3;
   color: #3b4cca;
   font-family: pokemon;
   border-radius: 20px;
