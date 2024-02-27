@@ -1,4 +1,5 @@
 import express from "express";
+import { cwd } from "process";
 
 const app = express();
 
@@ -75,7 +76,7 @@ app.get("/vechten", async (req, res) => {
 });
 
 app.get("/mypokemons", async (req, res) => {
-  playerPokemons = [
+  /*playerPokemons = [
     pokemons[1],
     pokemons[2],
     pokemons[3],
@@ -84,31 +85,39 @@ app.get("/mypokemons", async (req, res) => {
     pokemons[6],
     pokemons[7],
     pokemons[8],
-  ];
+  ];*/
   res.render("myPokemons", { playerPokemons });
 });
 
 app.get("/pokemon/info/:pokeId", async (req, res) => {
   const pokemonId = parseInt(req.params.pokeId);
   const pokemonFind = pokemons.find(({ id }) => pokemonId === id);
-  res.render("pokemoninfo", { pokemonFind });
+  res.render("pokemoninfo", { pokemonFind, message:false });
 });
 
 app.post("/catch", async (req, res) => {
-  const targetPokemon = pokemons.find(({id}) => id = req.body.pokemon) as DetailedPokemon;
+  const targetPokemon = pokemons.find(
+    (x) => x.id == req.body.pokemon
+  ) as DetailedPokemon;
+  console.log(targetPokemon);  
+  // # wordt later gewijzigd 
   const currentPokemon = {attack: 10} as DetailedPokemon;
-
-
+  let caught = false;
   for (let i = 0; i < 3; i++) {
-    let caught = catchPokemon(targetPokemon, currentPokemon);
+    caught = catchPokemon(targetPokemon, currentPokemon);
 
-    if (caught) {
+    if (caught && !playerPokemons.includes(targetPokemon)) {
       playerPokemons.push(targetPokemon);
+      break;
+    }else if (caught){
       break;
     }
   }
-
-  res.redirect("/");
+  if (caught) {
+    res.render("myPokemons", { playerPokemons });
+  } else {
+    res.render("pokemoninfo", { pokemonFind: targetPokemon, playerPokemons, message:true });
+  }
 });
 
 app.listen(app.get("port"), async () => {

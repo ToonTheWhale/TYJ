@@ -7,6 +7,11 @@
   </head>
   <body>
     <%- include('partials/header'); %>
+    <% if (message) { %>
+      <div class="message">
+        <p>Je hebt X kansen om een pokemon te vangen</p>
+      </div>
+    <% } %>
     <section>
       <img src="<%= pokemonFind.image %>" alt="" />
       <a href="/"><%= pokemonFind.id %></a>
