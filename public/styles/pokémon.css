@@ -159,6 +159,11 @@ footer article {
   padding: 8px;
 }
 
+.green-ball,
+.red-ball {
+  height: 32px;
+}
+
 .main-landing section {
   display: flex;
   justify-content: space-evenly;
@@ -184,10 +189,40 @@ footer article {
   border: 5px solid #3b4cca;
   flex: 1 0 30%;
   margin: 2rem;
-  transition: background-color 0.3s ease
+  transition: background-color 0.3s ease;
 }
 
-.main-landing a:hover{
+.fifa {
+  background-image: url("/images/football-stadium-night-generative-ai_260559-480.avif"); /*bron: https://commons.wikimedia.org/wiki/File:Thimiane.jpg*/
+  background-size: cover;
+}
+
+.lotr {
+  background-image: url("/images/den7ba0-d24fac90-f6a6-44b9-b020-f0f15e8272c4.png"); /*bron: https://www.deviantart.com/thedemonicmaster/art/The-One-Ring-885498840*/
+  background-size: contain;
+}
+
+.fortnite {
+  background-image: url("/images/Fortnite_F_lettermark_logo.png"); /*bron: https://commons.wikimedia.org/wiki/File:Fortnite_F_lettermark_logo.png*/
+  background-size: contain;
+}
+
+.pokemon-landing {
+  background-image: url("/images/dexythf-a001be4d-d27b-47e8-b296-7b03bc9add93.png"); /*bron: https://www.deviantart.com/invisibleinkdoodles/art/Pikachu-903578307*/
+  background-size: contain;
+}
+
+.lm {
+  background-image: url("/images/3005-brick-1x1-rood.png"); /*bron: https://haanderik.nl/wp-content/uploads/2020/06/3005-brick-1x1-rood.png*/
+  background-size: contain;
+}
+
+.mtg {
+  background-image: url("/images/images.png"); /*bron: https://www.goodfon.com/games/wallpaper-hugh-pindur-magic-the-gathering-krylia-peria-sirena.html*/
+  background-size: contain;
+}
+
+.main-landing a:hover {
   background-color: #ffde00;
 }
 
@@ -242,7 +277,7 @@ footer article {
       "main"
       "footer1"
       "footer2";
-      grid-template-rows: auto 1fr auto auto auto;
+    grid-template-rows: auto 1fr auto auto auto;
   }
 
   .nav-section {
@@ -308,7 +343,7 @@ footer article {
     font-size: 100px;
   }
 
-  .pokeball-404{
+  .pokeball-404 {
     height: 100px;
   }
 }

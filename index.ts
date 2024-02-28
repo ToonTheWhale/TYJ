@@ -77,7 +77,7 @@ app.get("/signup", async (req, res) => {
 });
 
 app.get("/vergelijken", async (req, res) => {
-  res.render("vergelijken", { pokemons });
+  res.render("compareSelect", { pokemons });
 });
 
 app.get("/vechten", async (req, res) => {
