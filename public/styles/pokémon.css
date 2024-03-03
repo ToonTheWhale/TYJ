@@ -35,6 +35,7 @@ nav {
   margin: 0;
   height: 120px;
   border-radius: 3px;
+  margin-bottom: 1rem;
 }
 nav img {
   width: 100px;
@@ -62,11 +63,11 @@ nav ul {
 
 /* Main content area */
 
-main  {
+main {
   grid-area: main;
 }
 
-/* Flex container for Pokemons */
+/* Flex container voor Pokemons */
 
 .flex-container {
   display: flex;
@@ -76,7 +77,7 @@ main  {
   margin: auto;
 }
 
-/* Styling for individual Pokemon */
+/* Styling voor individual Pokemon */
 
 .pokemon {
   display: flex;
@@ -87,17 +88,16 @@ main  {
   margin-top: 25px;
   border-radius: 10px;
   background-color: #c1cad3;
-  border: 3px solid #3B4CCA;
+  border: 3px solid #3b4cca;
   justify-content: space-between;
-
 }
 
 .pokemon button {
   padding: 5px 10px;
   font-size: 16px;
-  border: 2px solid #3B4CCA;
+  border: 2px solid #3b4cca;
   color: #ffffff;
-  background-color: #3B4CCA;
+  background-color: #3b4cca;
   text-align: center;
   text-decoration: none;
   border-radius: 5px;
@@ -106,14 +106,134 @@ main  {
 }
 
 .pokemon button:hover {
-  background-color: #FF0000;
-  border-color: #3B4CCA;
+  background-color: #ff0000;
+  border-color: #3b4cca;
 }
 
-.pokemon p{
-  font-family:'Courier New', Courier, monospace;
+.pokemon p {
+  font-family: "Courier New", Courier, monospace;
   font-weight: bolder;
   text-transform: uppercase;
+}
+
+/* Styling voor vergelijken */
+
+.compare {
+  display: flex;
+  width: 80%;
+  margin: auto;
+  text-align: center;
+  justify-content: center;
+  align-items: center;
+  height: auto;
+}
+.compare-item {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  flex-basis: 27%;
+  align-items: center;
+  border-radius: 10px;
+  background-color: #c1cad3;
+  border: 3px solid #3b4cca;
+  justify-content: space-between;
+  margin: auto;
+  margin-top: 5rem;
+  margin-bottom: 5rem;
+}
+.compare-item a {
+  display: flex;
+}
+.compare-item img {
+  background-color: #f0f0f0;
+  border: 1.5px solid #343434;
+  border-radius: 5px;
+}
+.compare button, #button {
+  padding: 10px 15px;
+  font-size: 16px;
+  border: 2px solid #3b4cca;
+  color: #ffffff;
+  background-color: #3b4cca;
+  text-align: center;
+  text-decoration: none;
+  border-radius: 5px;
+  transition: all 0.3s ease;
+  margin: 7.5px;
+}
+.compare button:hover {
+  background-color: #ff0000;
+  border-color: #3b4cca;
+}
+.layer {
+  display: flex;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.7);
+  border-radius: 7.5px;
+  z-index: 1; /* laag bovenop de inhoud */
+  text-align: center;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Style voor de (popup) */
+
+.popup {
+  display: none;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: white;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 15px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  z-index: 1000;
+}
+
+/* Overlay style (popup) */
+
+.overlay {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 999;
+
+}
+
+/* Style voor images (popup) */
+.popup
+.image-container {
+  display: flex;
+  flex-wrap: wrap;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  margin: 4px, 4px;
+  padding: 4px;
+  width: 600px;
+  height: 400px;
+  overflow-x: hidden;
+  overflow-y: auto;
+  text-align: justify;
+  margin: auto;
+}
+.image-container img {
+  height: auto;
+  cursor: pointer;
+  margin-right: 5px;
+}
+.image-container p {
+  text-align: center;
+  font-weight: bolder;
 }
 
 /* Footer styling */
@@ -142,7 +262,7 @@ footer {
   grid-area: footer2;
   justify-content: center;
 }
-footer a{
+footer a {
   color: #3b4cca;
 }
 .footer-icon {

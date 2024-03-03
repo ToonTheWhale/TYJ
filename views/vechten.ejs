@@ -1,25 +1,35 @@
 <%- include('partials/header'); %>
-<section class="flex-container">
+<main>
+  <section class="compare">
     <article class="compare-item">
       <figure>
-        <img src="<%= pokemons[0].image %>" alt="" />
+        <img src="<%= pokemons[100].image %>" width="200" height="200" />
         <figcaption>
-          <a href="/"><%= pokemons[0].id %></a>
-          <a href="/"><%= pokemons[0].name %></a>
-          <a href="/"><%= pokemons[0].maxHP %></a>
+          <h2><%= pokemons[100].name %></h2>
+          <p>ID: <%= pokemons[0].id %></p>
+          <p>Height: <%= pokemons[100].height %></p>
+          <p>Weight: <%= pokemons[100].weight %></p>
+          <p>Types: <%= pokemons[100].types.join(', ') %></p>
+          <p>Max HP: <%= pokemons[100].maxHP %></p>
         </figcaption>
       </figure>
     </article>
+    <article class="compare-item-VS">
+      <button type="submit">Vergelijken</button>
+    </article>
     <article class="compare-item">
       <figure>
-        <img src="<%= pokemons[1].image %>" alt="" />
+        <img src="<%= pokemons[101].image %>" width="200" height="200" />
         <figcaption>
-          <a href="/"><%= pokemons[1].id %></a>
-          <a href="/"><%= pokemons[1].name %></a>
-          <a href="/"><%= pokemons[1].maxHP %></a>
+          <h2><%= pokemons[101].name %></h2>
+          <p>ID: <%= pokemons[101].id %></p>
+          <p>Height: <%= pokemons[101].height %></p>
+          <p>Weight: <%= pokemons[101].weight %></p>
+          <p>Types: <%= pokemons[101].types.join(', ') %></p>
+          <p>Max HP: <%= pokemons[101].maxHP %></p>
         </figcaption>
       </figure>
     </article>
-    <button type="submit">Vergelijken</button>
   </section>
+  </main>
 <%- include('partials/footer'); %>
