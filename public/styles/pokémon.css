@@ -1,6 +1,6 @@
 @font-face {
   font-family: pokemon;
-  src: url("/fonts/Pokemon_Solid.ttf");
+  src: url("/fonts/pokemon-puzzle-challenge-gb.ttf");
 }
 
 main {
@@ -42,7 +42,7 @@ main {
 }
 
 .pokemon button:hover {
-  background-color: #ff0000;
+  background-color: #e60005;
   border-color: #3b4cca;
 }
 
@@ -60,7 +60,7 @@ nav a {
   font-family: pokemon;
   text-decoration: none;
   color: #3b4cca;
-  font-size: 2rem;
+  font-size: 1.5rem;
   padding: 8px;
 }
 
@@ -113,6 +113,11 @@ nav {
   border-radius: 3px;
 }
 
+.nav-landing {
+  background-color: #e60005;
+  color: #ffffff;
+}
+
 .dropdown {
   width: 100%;
   display: flex;
@@ -124,11 +129,13 @@ nav img {
   width: 100px;
 }
 
-.footer-1 {
+.footer-1,
+.footer-1-landing {
   margin-top: 1rem;
   grid-area: footer1;
 }
-.footer-2 {
+.footer-2,
+.footer-2-landing {
   border-top: 1px solid gray;
   font-size: 0.5rem;
   height: 1.25rem;
@@ -149,6 +156,16 @@ footer {
 
 footer a {
   color: #3b4cca;
+}
+
+.footer-1-landing,
+.footer-2-landing {
+  background-color: #e60005;
+  color: #ffffff;
+}
+
+.footer-1-landing a{
+  color: #ffffff;
 }
 
 .footer-icon {
@@ -186,8 +203,8 @@ footer article {
   display: flex;
   align-items: center;
   justify-content: center;
-  border: 5px solid #3b4cca;
-  flex: 1 0 30%;
+  border: 5px solid #e60005;
+  flex-basis: 33%;
   margin: 2rem;
   transition: background-color 0.3s ease;
 }
@@ -235,6 +252,13 @@ footer article {
   align-items: center;
 }
 
+.login-landing {
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  margin-left: auto;
+}
+
 .nav-section {
   width: 100%;
   display: flex;
@@ -244,6 +268,13 @@ footer article {
 
 .pokeball-404 {
   height: 250px;
+}
+
+h3 {
+  background-color: #e60005;
+  color: #ffffff;
+  padding: 5px 8px;
+  border-radius: 5px;
 }
 
 .main-404 h1 {
@@ -278,6 +309,10 @@ footer article {
       "footer1"
       "footer2";
     grid-template-rows: auto 1fr auto auto auto;
+  }
+
+  .login-landing {
+    margin-left: 0;
   }
 
   .nav-section {
@@ -326,8 +361,8 @@ footer article {
     display: flex;
     align-items: center;
     justify-content: center;
-    border: 5px solid #3b4cca;
-    flex: 1 0 100%;
+    border: 5px solid #e60005;
+    flex: 1 0 75%;
     margin: 2rem;
   }
 
