@@ -1,15 +1,15 @@
 <%- include('partials/header'); %>
-<section>
+<section class="main_login">
   <div class="form-post">
     <h2>Sign Up</h2><br>
-    <form action="/newuser" method="POST">
+    <form action="/newuser" method="POST" class="login">
       <label for="username:"> Username </label>
-      <input type="text" id="username" name="username" value="user_example" required/>
+      <input class="input" type="text" id="username" name="username" value="user_example" required/><br>
       <label for="emailAddress"> EmailAddress </label>
-      <input type="text" id="emailAddress" name="emailAddress" value="user@example.com" required/>
+      <input class="input" type="text" id="emailAddress" name="emailAddress" value="user@example.com" required/><br>
       <label for="password"> Password </label>
-      <input type="password" id="password" name="password" value="123456789" required/>
-      <input type="submit"/>
+      <input class="input" type="password" id="password" name="password" value="123456789" required/><br>
+      <input class="submit" type="submit"/>
     </form>
   </div>
 </section>
