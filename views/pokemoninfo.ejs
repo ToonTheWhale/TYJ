@@ -22,10 +22,20 @@
       <a href="/"><%= pokemonFind.maxHP %></a>
       <form action="/catch" method="post">
         <input type="hidden" value="<%= pokemonFind.id %>" name="pokemon" />
-        <button type="submit">Vangen</button>
+        <button type="submit">
+          <img
+            src="/images/green_ball_by_ace_zeroartic_df6cd1c-414w-2x.png"
+            alt="bron: https://www.deviantart.com/ace-zeroartic/art/Green-Ball-917647104"
+            class="green-ball"
+          />
+          <img
+            src="/images/poke_ball_by_ace_zeroartic_df3b4ya-414w-2x.png"
+            alt="bron: https://www.deviantart.com/ace-zeroartic/art/Poke-Ball-912551122"
+            class="red-ball"
+          />
+        </button>
       </form>
     </section>
+    <%- include('partials/footer'); %>
   </body>
 </html>
-
-<%- include('partials/footer'); %>

@@ -1,5 +1,4 @@
 import express from "express";
-import { cwd } from "process";
 
 const app = express();
 
@@ -29,12 +28,12 @@ interface DetailedPokemon {
 let pokemons: DetailedPokemon[] = [];
 let playerPokemons: DetailedPokemon[] = [];
 
-function randomIntFromInterval(min: number, max: number) { //functie voor een random getal met 2 parameters
+function randomIntFromInterval(min: number, max: number) {
+  //functie voor een random getal met 2 parameters
   return Math.floor(Math.random() * (max - min + 1) + min);
 }
 
 function catchPokemon( //functie om een pokemon te vangen
-
   targetPokemon: DetailedPokemon,
   currentPokemon: DetailedPokemon
 ): boolean {
@@ -56,7 +55,15 @@ app.get("/getDataAPI", (req, res) => {
 });
 
 app.get("/", async (req, res) => {
+  res.render("landingPage");
+});
+
+app.get("/home", async (req, res) => {
   res.render("home", { pokemons });
+});
+
+app.get("/noaccess", async (req, res) => {
+  res.render("noAccess")
 });
 
 app.get("/login", async (req, res) => {
@@ -67,7 +74,7 @@ app.get("/signup", async (req, res) => {
   res.render("signup");
 });
 
-app.get("/vergelijken", (req, res) => {
+app.get("/vergelijken", async (req, res) => {
   res.render("vergelijken", { pokemons });
 });
 
@@ -146,4 +153,9 @@ app.listen(app.get("port"), async () => {
     };
   });
   console.log("[server] http://localhost:" + app.get("port"));
+});
+
+app.use((req, res) => {
+  res.status(404);
+  res.render("404");
 });
