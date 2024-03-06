@@ -64,6 +64,10 @@ nav a {
   padding: 8px;
 }
 
+.nav-landing a {
+  font-family: Arial, Helvetica, sans-serif;
+}
+
 html,
 body {
   margin: 0;
@@ -162,9 +166,10 @@ footer a {
 .footer-2-landing {
   background-color: #e60005;
   color: #ffffff;
+  font-family: Arial, Helvetica, sans-serif;
 }
 
-.footer-1-landing a{
+.footer-1-landing a {
   color: #ffffff;
 }
 
@@ -196,7 +201,7 @@ footer article {
   text-decoration: none;
   background-color: #c1cad3;
   color: #3b4cca;
-  font-family: pokemon;
+  font-family: Arial, Helvetica, sans-serif;
   border-radius: 20px;
   max-width: 200px;
   height: 200px;
@@ -356,7 +361,7 @@ h3 {
     color: #3b4cca;
     font-family: pokemon;
     border-radius: 20px;
-    max-width: 300px;
+    max-width: 200px;
     height: 200px;
     display: flex;
     align-items: center;
