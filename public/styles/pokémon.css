@@ -213,9 +213,8 @@ main {
 
 
 .login{
-  width: 100%;
   display: flex;
-  flex-direction: column;
+  align-items: center;
 }
 
 
@@ -318,11 +317,13 @@ footer {
 .footer-logo {
   width: 100px;
 }
-.footer-1 {
+.footer-1,
+.footer-1-landing {
   margin-top: 1rem;
   grid-area: footer1;
 }
-.footer-2 {
+.footer-2,
+.footer-2-landing {
   border-top: 1px solid gray;
   font-size: 0.5rem;
   height: 1.25rem;
