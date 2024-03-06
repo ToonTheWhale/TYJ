@@ -67,7 +67,7 @@ app.get("/signup", async (req, res) => {
   res.render("signup");
 });
 
-app.get("/vergelijken", async (req, res) => {
+app.get("/vergelijken", (req, res) => {
   res.render("vergelijken", { pokemons });
 });
 
