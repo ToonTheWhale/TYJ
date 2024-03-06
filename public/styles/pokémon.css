@@ -1,9 +1,9 @@
 @font-face {
   font-family: pokemon;
-  src: url("/fonts/Pokemon_Solid.ttf");
+  src: url("/fonts/pokemon-puzzle-challenge-gb.ttf");
 }
 
-main  {
+main {
   grid-area: main;
   display: flex;
   align-items: center;
@@ -27,17 +27,16 @@ main  {
   margin-top: 25px;
   border-radius: 10px;
   background-color: #c1cad3;
-  border: 3px solid #3B4CCA;
+  border: 3px solid #3b4cca;
   justify-content: space-between;
-
 }
 
 .pokemon button {
   padding: 5px 10px;
   font-size: 16px;
-  border: 2px solid #3B4CCA;
+  border: 2px solid #3b4cca;
   color: #ffffff;
-  background-color: #3B4CCA;
+  background-color: #3b4cca;
   text-align: center;
   text-decoration: none;
   border-radius: 5px;
@@ -46,12 +45,12 @@ main  {
 }
 
 .pokemon button:hover {
-  background-color: #FF0000;
-  border-color: #3B4CCA;
-} 
+  background-color: #e60005;
+  border-color: #3b4cca;
+}
 
-.pokemon p{
-  font-family:'Courier New', Courier, monospace;
+.pokemon p {
+  font-family: "Courier New", Courier, monospace;
   font-weight: bolder;
   text-transform: uppercase;
 }
@@ -64,9 +63,10 @@ nav a {
   font-family: pokemon;
   text-decoration: none;
   color: #3b4cca;
-  font-size: 2rem;
+  font-size: 1.5rem;
   padding: 8px;
 }
+
 html,
 body {
   margin: 0;
@@ -79,42 +79,41 @@ body {
 body {
   display: grid;
   grid-template-areas:
-    "nav nav nav"
+    "header header header"
     "main main main"
     "main main main"
     "footer1 footer1 footer1"
     "footer2 footer2 footer2";
-  grid-template-rows: auto 1fr 1fr auto auto;
+  grid-template-rows: auto 1fr auto auto auto;
 }
 
 .current-pokemon {
   background-color: rgba(59, 76, 202, 0.75);
   border-radius: 50%;
   margin-left: auto;
+  width: 75px;
 }
 
-.login{
+.login {
   width: 100%;
   display: flex;
   flex-direction: column;
 }
 
-
-
-.main_login{
+.main_login {
   margin-left: auto;
   margin-right: auto;
-    margin-top: 1rem;
-    height: 100%;
+  margin-top: 1rem;
+  height: 100%;
 }
 
-.submit{
+.submit {
   width: 280px;
   padding: 5px 10px;
   font-size: 16px;
-  border: 2px solid #3B4CCA;
+  border: 2px solid #3b4cca;
   color: #ffffff;
-  background-color: #3B4CCA;
+  background-color: #3b4cca;
   text-align: center;
   text-decoration: none;
   border-radius: 5px;
@@ -123,7 +122,7 @@ body {
   font-family: pokemon;
 }
 
-.input{
+.input {
   display: flex;
   flex-direction: column;
   flex-basis: 10%;
@@ -132,18 +131,20 @@ body {
   margin-left: 10px;
   border-radius: 5px;
   background-color: #c1cad3;
-  border: 3px solid #3B4CCA;
+  border: 3px solid #3b4cca;
   justify-content: space-between;
 }
 
-.body_login{
+.body_login {
   align-content: center;
 }
 
 .pfp-nav {
   border-radius: 50%;
   width: 50px;
+  height: 50px;
   border: 1px solid black;
+  margin-left: 1rem;
 }
 
 nav ul {
@@ -153,15 +154,26 @@ nav ul {
 nav {
   display: flex;
   align-items: center;
-  justify-content: flex-start;
-  grid-area: nav;
+  grid-area: header;
   background-color: #ffde00;
   padding: 8px;
   margin: 0;
-  height: 120px;
   border-radius: 3px;
   margin-bottom: 1rem;
 }
+
+.nav-landing {
+  background-color: #e60005;
+  color: #ffffff;
+}
+
+.dropdown {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+
 nav img {
   width: 100px;
 }
@@ -248,6 +260,19 @@ main {
   width: 80%;
   margin: auto;
   text-align: center;
+}
+
+.footer-1,
+.footer-1-landing {
+  margin-top: 1rem;
+  grid-area: footer1;
+}
+.footer-2,
+.footer-2-landing {
+  border-top: 1px solid gray;
+  font-size: 0.5rem;
+  height: 1.25rem;
+  grid-area: footer2;
   justify-content: center;
   align-items: center;
   height: auto;
@@ -274,7 +299,8 @@ main {
   border: 1.5px solid #343434;
   border-radius: 5px;
 }
-.compare button, #button {
+.compare button,
+#button {
   padding: 10px 15px;
   font-size: 16px;
   border: 2px solid #3b4cca;
@@ -309,28 +335,27 @@ main {
 
 .layer-close-button {
   position: absolute;
-  top: 0; 
+  top: 0;
   right: 0;
   z-index: 1; /* laag bovenop de inhoud */
 }
-.layer-close-button button{
+.layer-close-button button {
   color: #343434;
   font-size: 18px;
   background-color: transparent;
-  border: 2px solid #3b4cca;;
+  border: 2px solid #3b4cca;
   padding: 5px 10px;
   background-color: #3b4cca;
   border-radius: 50%;
   font-weight: bolder;
 }
-.layer-close-button button:hover{
+.layer-close-button button:hover {
   color: #343434;
   font-size: 18px;
   background-color: transparent;
-  border: 2px solid #3b4cca;;
+  border: 2px solid #3b4cca;
   background-color: #ff0000;
   border-radius: 50%;
-  
 }
 
 /* Style voor de (popup) */
@@ -360,12 +385,10 @@ main {
   height: 100%;
   background-color: rgba(0, 0, 0, 0.5);
   z-index: 999;
-
 }
 
 /* Style voor images (popup) */
-.popup
-.image-container {
+.popup .image-container {
   display: flex;
   flex-wrap: wrap;
   margin-top: 10px;
@@ -401,23 +424,21 @@ footer {
   align-items: center;
   justify-content: space-between;
 }
-.footer-logo {
-  width: 100px;
-}
-.footer-1 {
-  margin-top: 1rem;
-  grid-area: footer1;
-}
-.footer-2 {
-  border-top: 1px solid gray;
-  font-size: 0.5rem;
-  height: 1.25rem;
-  grid-area: footer2;
-  justify-content: center;
-}
+
 footer a {
   color: #3b4cca;
 }
+
+.footer-1-landing,
+.footer-2-landing {
+  background-color: #e60005;
+  color: #ffffff;
+}
+
+.footer-1-landing a {
+  color: #ffffff;
+}
+
 .footer-icon {
   height: 1rem;
 }
@@ -425,7 +446,209 @@ footer article {
   padding: 8px;
 }
 
-/* media queries for smaller screens */
+.green-ball,
+.red-ball {
+  height: 32px;
+}
+
+.main-landing section {
+  display: flex;
+  justify-content: space-evenly;
+  flex-wrap: wrap;
+}
+
+.main-landing {
+  display: flex;
+  justify-content: center;
+}
+
+.main-landing a {
+  text-decoration: none;
+  background-color: #c1cad3;
+  color: #3b4cca;
+  font-family: pokemon;
+  border-radius: 20px;
+  max-width: 200px;
+  height: 200px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 5px solid #e60005;
+  flex-basis: 33%;
+  margin: 2rem;
+  transition: background-color 0.3s ease;
+}
+
+.fifa {
+  background-image: url("/images/football-stadium-night-generative-ai_260559-480.avif"); /*bron: https://commons.wikimedia.org/wiki/File:Thimiane.jpg*/
+  background-size: cover;
+}
+
+.lotr {
+  background-image: url("/images/den7ba0-d24fac90-f6a6-44b9-b020-f0f15e8272c4.png"); /*bron: https://www.deviantart.com/thedemonicmaster/art/The-One-Ring-885498840*/
+  background-size: contain;
+}
+
+.fortnite {
+  background-image: url("/images/Fortnite_F_lettermark_logo.png"); /*bron: https://commons.wikimedia.org/wiki/File:Fortnite_F_lettermark_logo.png*/
+  background-size: contain;
+}
+
+.pokemon-landing {
+  background-image: url("/images/dexythf-a001be4d-d27b-47e8-b296-7b03bc9add93.png"); /*bron: https://www.deviantart.com/invisibleinkdoodles/art/Pikachu-903578307*/
+  background-size: contain;
+}
+
+.lm {
+  background-image: url("/images/3005-brick-1x1-rood.png"); /*bron: https://haanderik.nl/wp-content/uploads/2020/06/3005-brick-1x1-rood.png*/
+  background-size: contain;
+}
+
+.mtg {
+  background-image: url("/images/images.png"); /*bron: https://www.goodfon.com/games/wallpaper-hugh-pindur-magic-the-gathering-krylia-peria-sirena.html*/
+  background-size: contain;
+}
+
+.main-landing a:hover {
+  background-color: #ffde00;
+}
+
+.hamburger {
+  display: none;
+}
+
+.login {
+  display: flex;
+  align-items: center;
+}
+
+.login-landing {
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  margin-left: auto;
+}
+
+.nav-section {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+.pokeball-404 {
+  height: 250px;
+}
+
+h3 {
+  background-color: #e60005;
+  color: #ffffff;
+  padding: 5px 8px;
+  border-radius: 5px;
+}
+
+.main-404 h1 {
+  font-family: Arial, Helvetica, sans-serif;
+  color: black;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 250px;
+  margin: 1rem 0;
+}
+
+.main-404 {
+  font-family: pokemon;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: #3b4cca;
+}
 
 @media screen and (max-width: 768px) {
+  html,
+  body {
+    max-width: 100%;
+  }
+
+  body {
+    grid-template-areas:
+      "header"
+      "main"
+      "main"
+      "footer1"
+      "footer2";
+    grid-template-rows: auto 1fr auto auto auto;
+  }
+
+  .login-landing {
+    margin-left: 0;
+  }
+
+  .nav-section {
+    align-items: flex-start;
+  }
+
+  .dropdown {
+    display: none;
+  }
+  .dropdown.open {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .hamburger {
+    display: flex;
+    margin-right: auto;
+    padding: 0;
+    background-color: transparent;
+    border: none;
+  }
+
+  .hamburger-icon {
+    width: 32px;
+    height: 32px;
+  }
+
+  .main-landing section {
+    display: flex;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
+  }
+
+  .main-landing {
+    display: flex;
+    justify-content: center;
+  }
+
+  .main-landing a {
+    text-decoration: none;
+    color: #3b4cca;
+    font-family: pokemon;
+    border-radius: 20px;
+    max-width: 300px;
+    height: 200px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 5px solid #e60005;
+    flex: 1 0 33%;
+    margin: 2rem;
+  }
+
+  nav {
+    max-height: fit-content;
+  }
+
+  .current-pokemon {
+    margin-left: 0;
+  }
+
+  .main-404 h1 {
+    font-size: 100px;
+  }
+
+  .pokeball-404 {
+    height: 100px;
+  }
 }
