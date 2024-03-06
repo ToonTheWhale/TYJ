@@ -190,9 +190,9 @@ main {
 }
 .layer-close-button button{
   color: #343434;
-  font-size: 20px;
+  font-size: 18px;
   background-color: transparent;
-  border: none;
+  border: 2px solid #3b4cca;;
   padding: 5px 10px;
   background-color: #3b4cca;
   border-radius: 50%;
@@ -200,12 +200,12 @@ main {
 }
 .layer-close-button button:hover{
   color: #343434;
-  font-size: 20px;
+  font-size: 18px;
   background-color: transparent;
-  border: none;
-  /* margin: 0; */
+  border: 2px solid #3b4cca;;
   background-color: #ff0000;
   border-radius: 50%;
+  
 }
 
 /* Style voor de (popup) */
