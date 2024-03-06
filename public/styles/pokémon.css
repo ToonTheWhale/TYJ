@@ -3,70 +3,6 @@
   src: url("/fonts/Pokemon_Solid.ttf");
 }
 
-main  {
-  grid-area: main;
-  display: flex;
-  align-items: center;
-  align-content: center;
-}
-
-.flex-container {
-  display: flex;
-  flex-direction: row;
-  flex-flow: row wrap;
-  width: 90%;
-  margin: auto;
-}
-
-.pokemon {
-  display: flex;
-  flex-direction: column;
-  flex-basis: 10%;
-  margin: auto;
-  align-items: center;
-  margin-top: 25px;
-  border-radius: 10px;
-  background-color: #c1cad3;
-  border: 3px solid #3B4CCA;
-  justify-content: space-between;
-
-}
-
-.pokemon button {
-  padding: 5px 10px;
-  font-size: 16px;
-  border: 2px solid #3B4CCA;
-  color: #ffffff;
-  background-color: #3B4CCA;
-  text-align: center;
-  text-decoration: none;
-  border-radius: 5px;
-  transition: all 0.3s ease;
-  margin: 7.5px;
-}
-
-.pokemon button:hover {
-  background-color: #FF0000;
-  border-color: #3B4CCA;
-} 
-
-.pokemon p{
-  font-family:'Courier New', Courier, monospace;
-  font-weight: bolder;
-  text-transform: uppercase;
-}
-
-.footer-logo {
-  width: 100px;
-}
-
-nav a {
-  font-family: pokemon;
-  text-decoration: none;
-  color: #3b4cca;
-  font-size: 2rem;
-  padding: 8px;
-}
 html,
 body {
   margin: 0;
@@ -87,11 +23,183 @@ body {
   grid-template-rows: auto 1fr 1fr auto auto;
 }
 
+/* Navigation styling */
+
+nav {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  grid-area: nav;
+  background-color: #ffde00;
+  padding: 8px;
+  margin: 0;
+  height: 120px;
+  border-radius: 3px;
+  margin-bottom: 1rem;
+}
+nav img {
+  width: 100px;
+}
+nav a {
+  font-family: pokemon;
+  text-decoration: none;
+  color: #3b4cca;
+  font-size: 2rem;
+  padding: 8px;
+}
+.pfp-nav {
+  border-radius: 50%;
+  width: 50px;
+  border: 1px solid black;
+}
+nav ul {
+  list-style: none;
+}
 .current-pokemon {
   background-color: rgba(59, 76, 202, 0.75);
   border-radius: 50%;
   margin-left: auto;
 }
+
+/* Main content area */
+
+main {
+  grid-area: main;
+  display: flex;
+  align-items: center;
+  align-content: center;
+}
+
+/* Flex container voor Pokemons */
+
+.flex-container {
+  display: flex;
+  flex-direction: row;
+  flex-flow: row wrap;
+  width: 90%;
+  margin: auto;
+}
+
+/* Styling voor individual Pokemon */
+
+.pokemon {
+  display: flex;
+  flex-direction: column;
+  flex-basis: 10%;
+  margin: auto;
+  align-items: center;
+  margin-top: 25px;
+  border-radius: 10px;
+  background-color: #c1cad3;
+  border: 3px solid #3b4cca;
+  justify-content: space-between;
+}
+
+.pokemon button {
+  padding: 5px 10px;
+  font-size: 16px;
+  border: 2px solid #3b4cca;
+  color: #ffffff;
+  background-color: #3b4cca;
+  text-align: center;
+  text-decoration: none;
+  border-radius: 5px;
+  transition: all 0.3s ease;
+  margin: 7.5px;
+}
+
+.pokemon button:hover {
+  background-color: #FF0000;
+  border-color: #3B4CCA;
+} 
+
+
+.pokemon p {
+  font-family: "Courier New", Courier, monospace;
+  font-weight: bolder;
+  text-transform: uppercase;
+}
+
+/* Styling voor vergelijken */
+
+.compare {
+  display: flex;
+  width: 80%;
+  margin: auto;
+  text-align: center;
+  justify-content: center;
+  align-items: center;
+  height: auto;
+}
+.compare-item {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  flex-basis: 27%;
+  align-items: center;
+  border-radius: 10px;
+  background-color: #c1cad3;
+  border: 3px solid #3b4cca;
+  justify-content: space-between;
+  margin: auto;
+  margin-top: 5rem;
+  margin-bottom: 5rem;
+}
+.compare-item a {
+  display: flex;
+}
+.compare-item img {
+  background-color: #f0f0f0;
+  border: 1.5px solid #343434;
+  border-radius: 5px;
+}
+.compare button, #button {
+  padding: 10px 15px;
+  font-size: 16px;
+  border: 2px solid #3b4cca;
+  color: #ffffff;
+  background-color: #3b4cca;
+  text-align: center;
+  text-decoration: none;
+  border-radius: 5px;
+  transition: all 0.3s ease;
+  margin: 7.5px;
+}
+.compare button:hover {
+  background-color: #ff0000;
+  border-color: #3b4cca;
+}
+.layer {
+  display: flex;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.7);
+  border-radius: 7.5px;
+  z-index: 1; /* laag bovenop de inhoud */
+  text-align: center;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Style voor de (popup) */
+
+.popup {
+  display: none;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: white;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 15px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  z-index: 1000;
+}
+
 
 .login{
   width: 100%;
@@ -145,37 +253,46 @@ body {
   width: 50px;
   border: 1px solid black;
 }
+/* Overlay style (popup) */
 
-nav ul {
-  list-style: none;
+.overlay {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 999;
 }
 
-nav {
+/* Style voor images (popup) */
+.popup
+.image-container {
   display: flex;
-  align-items: center;
-  justify-content: flex-start;
-  grid-area: nav;
-  background-color: #ffde00;
-  padding: 8px;
-  margin: 0;
-  height: 120px;
-  border-radius: 3px;
+  flex-wrap: wrap;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  margin: 4px, 4px;
+  padding: 4px;
+  width: 600px;
+  height: 400px;
+  overflow-x: hidden;
+  overflow-y: auto;
+  text-align: justify;
+  margin: auto;
 }
-nav img {
-  width: 100px;
+.image-container img {
+  height: auto;
+  cursor: pointer;
+  margin-right: 5px;
+}
+.image-container p {
+  text-align: center;
+  font-weight: bolder;
 }
 
-.footer-1 {
-  margin-top: 1rem;
-  grid-area: footer1;
-}
-.footer-2 {
-  border-top: 1px solid gray;
-  font-size: 0.5rem;
-  height: 1.25rem;
-  grid-area: footer2;
-  justify-content: center;
-}
+/* Footer styling */
 
 footer {
   color: #3b4cca;
@@ -187,18 +304,31 @@ footer {
   align-items: center;
   justify-content: space-between;
 }
-
-footer a{
+.footer-logo {
+  width: 100px;
+}
+.footer-1 {
+  margin-top: 1rem;
+  grid-area: footer1;
+}
+.footer-2 {
+  border-top: 1px solid gray;
+  font-size: 0.5rem;
+  height: 1.25rem;
+  grid-area: footer2;
+  justify-content: center;
+}
+footer a {
   color: #3b4cca;
 }
-
 .footer-icon {
   height: 1rem;
 }
-
 footer article {
   padding: 8px;
 }
+
+/* media queries for smaller screens */
 
 @media screen and (max-width: 768px) {
 }
