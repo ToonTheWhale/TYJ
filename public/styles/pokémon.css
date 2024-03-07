@@ -176,6 +176,34 @@ main {
   transition: all 0.3s ease;
   margin: 7.5px;
 }
+
+.nav-landing a {
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+html,
+body {
+  margin: 0;
+  /* het is hier het beste als we met (min-height)  werken voor toekomstige veranderingen */
+  /* height: 100vh; */
+  min-height: 100vh;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+body {
+  display: grid;
+  grid-template-areas:
+    "header header header"
+    "main main main"
+    "main main main"
+    "footer1 footer1 footer1"
+    "footer2 footer2 footer2";
+  grid-template-rows: auto 1fr auto auto auto;
+}
+
+.current-pokemon {
+  background-color: rgba(59, 76, 202, 0.75);
+  border-radius: 50%;
 .compare button:hover {
   background-color: #ff0000;
   border-color: #3b4cca;
@@ -342,9 +370,10 @@ footer a {
 .footer-2-landing {
   background-color: #e60005;
   color: #ffffff;
+  font-family: Arial, Helvetica, sans-serif;
 }
 
-.footer-1-landing a{
+.footer-1-landing a {
   color: #ffffff;
 }
 
@@ -375,7 +404,7 @@ footer article {
   text-decoration: none;
   background-color: #c1cad3;
   color: #3b4cca;
-  font-family: pokemon;
+  font-family: Arial, Helvetica, sans-serif;
   border-radius: 20px;
   max-width: 200px;
   height: 200px;
@@ -535,7 +564,7 @@ h3 {
     color: #3b4cca;
     font-family: pokemon;
     border-radius: 20px;
-    max-width: 300px;
+    max-width: 200px;
     height: 200px;
     display: flex;
     align-items: center;
