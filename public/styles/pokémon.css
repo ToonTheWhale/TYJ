@@ -204,6 +204,7 @@ body {
 .current-pokemon {
   background-color: rgba(59, 76, 202, 0.75);
   border-radius: 50%;
+}
 .compare button:hover {
   background-color: #ff0000;
   border-color: #3b4cca;
