@@ -67,9 +67,11 @@ nav ul {
   list-style: none;
 }
 .current-pokemon {
-  background-color: rgba(59, 76, 202, 0.75);
+  background-color: #c1cad3;
+  border: 3px solid #3b4cca;
   border-radius: 50%;
   margin-left: auto;
+  width: 75px;
 }
 
 /* Main content area */
@@ -181,29 +183,6 @@ main {
   font-family: Arial, Helvetica, sans-serif;
 }
 
-html,
-body {
-  margin: 0;
-  /* het is hier het beste als we met (min-height)  werken voor toekomstige veranderingen */
-  /* height: 100vh; */
-  min-height: 100vh;
-  font-family: Arial, Helvetica, sans-serif;
-}
-
-body {
-  display: grid;
-  grid-template-areas:
-    "header header header"
-    "main main main"
-    "main main main"
-    "footer1 footer1 footer1"
-    "footer2 footer2 footer2";
-  grid-template-rows: auto 1fr auto auto auto;
-}
-
-.current-pokemon {
-  background-color: rgba(59, 76, 202, 0.75);
-  border-radius: 50%;
 .compare button:hover {
   background-color: #ff0000;
   border-color: #3b4cca;
@@ -223,29 +202,10 @@ body {
   align-items: center;
 }
 
-/* Style voor de (popup) */
-
-.popup {
-  display: none;
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  background-color: white;
-  padding: 20px;
-  border: 1px solid #ccc;
-  border-radius: 15px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-  z-index: 1000;
-}
-
-
 .login{
   display: flex;
   align-items: center;
 }
-
-
 
 .main_login{
   margin-left: auto;
@@ -286,11 +246,22 @@ body {
   align-content: center;
 }
 
-.pfp-nav {
-  border-radius: 50%;
-  width: 50px;
-  border: 1px solid black;
+/* Style voor de (popup) */
+
+.popup {
+  display: none;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: white;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 15px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  z-index: 1000;
 }
+
 /* Overlay style (popup) */
 
 .overlay {
@@ -496,6 +467,7 @@ h3 {
 }
 
 .main-404 {
+  margin: auto;
   font-family: pokemon;
   display: flex;
   flex-direction: column;
@@ -517,6 +489,10 @@ h3 {
       "footer1"
       "footer2";
     grid-template-rows: auto 1fr auto auto auto;
+  }
+
+  .pokemon{
+    flex-basis: 44%;
   }
 
   .login-landing {
