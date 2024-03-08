@@ -127,8 +127,16 @@
           <p>Types: ${pokemon.types} </p>
           <p>Max HP: ${pokemon.maxHP} </p>
         </figcaption>
+        <aside class="layer-close-button">
+        <button onclick="openPopup()" type="submit">X</button>
+        </aside>
         </figure>`;
-        defaultElement.replaceWith(article)
+        if (defaultElement) {
+          defaultElement.replaceWith(article) 
+        } else {
+          const defaultElement = document.getElementsByClassName("compare-item")[0]
+          defaultElement.replaceWith(article)
+        }
     }
 
     // Functie om een Pokemon op naam te filteren

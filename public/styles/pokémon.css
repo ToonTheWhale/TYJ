@@ -246,6 +246,34 @@ main {
   align-content: center;
 }
 
+/* Styling voor vergelijken close-button */
+
+.layer-close-button {
+  position: absolute;
+  top: 0; 
+  right: 0;
+  z-index: 1; /* laag bovenop de inhoud */
+}
+.layer-close-button button{
+  color: #343434;
+  font-size: 18px;
+  background-color: transparent;
+  border: 2px solid #3b4cca;;
+  padding: 5px 10px;
+  background-color: #3b4cca;
+  border-radius: 50%;
+  font-weight: bolder;
+}
+.layer-close-button button:hover{
+  color: #343434;
+  font-size: 18px;
+  background-color: transparent;
+  border: 2px solid #3b4cca;;
+  background-color: #ff0000;
+  border-radius: 50%;
+  
+}
+
 /* Style voor de (popup) */
 
 .popup {
