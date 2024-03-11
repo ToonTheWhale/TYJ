@@ -1,17 +1,27 @@
-<%- include('partials/header'); %>
-<main>
-  <section class="flex-container">
-    <% for(let pokemon of pokemons) { %>
-    <article class="pokemon">
-      <p><%= pokemon.name %></p>
-      <section>
-        <img src="<%= pokemon.image %>" alt="img" />
-      </section>
-      <a href="/pokemon/info/<%= pokemon.id %>">
-        <button type="submit">INFO</button>
-      </a>
-    </article>
-    <% } %>
-  </section>
-</main>
-<%- include('partials/footer'); %>
+<body>
+  <%- include('partials/header'); %>
+  <main class="home_page">
+    <section>
+      <a href="/vechten"
+        class="home"><h2>vechten</h2></a
+      >
+      <a href="/vergelijken"
+        class="home"><h2>vergelijken</h2></a
+      >
+      <a href="/pokedex"
+        class="home"><h2>pokedex</h2></a
+      >
+      <a href="/whothatpokemon"
+        class="home"><h2>who's that pokemon</h2></a
+      >
+      <a href="/catchpokemon"
+        class="home"><h2>pokemon vangen</h2></a
+      >
+      <a href="/noaccess"
+        class="home"><h2>...</h2></a
+      >
+    </section>
+  </main>
+  <%- include('partials/footer'); %>
+</body>
+

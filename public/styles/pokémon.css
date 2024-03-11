@@ -9,7 +9,7 @@ body {
   /* het is hier het beste als we met (min-height)  werken voor toekomstige veranderingen */
   /* height: 100vh; */
   min-height: 100vh;
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: Arial, Helvetica, sans-serif; main-landing
 }
 
 body {
@@ -501,6 +501,22 @@ h3 {
   flex-direction: column;
   align-items: center;
   color: #3b4cca;
+}
+
+.home{
+  width: 10rem;
+  border: 3px solid #3B4CCA;
+}
+
+.home_page{
+  display: flex;
+  justify-content: center;
+  height: 100%;
+}
+
+.home_page section{
+  display: flex;
+  flex-wrap: wrap;
 }
 
 @media screen and (max-width: 768px) {
