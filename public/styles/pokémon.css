@@ -538,13 +538,13 @@ h3 {
   text-decoration: none;
   color: #3b4cca;
   font-family: pokemon;
-  height: 100px;
+  height: 50px;
   display: flex;
   align-items: center;
   justify-content: center;
   flex-basis: 33%;
   margin: 2rem;
-  padding: 1rem;
+  border: 0px;
 }
 
 @media screen and (max-width: 768px) {

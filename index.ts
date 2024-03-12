@@ -58,8 +58,12 @@ app.get("/", async (req, res) => {
   res.render("landingPage");
 });
 
+app.get("/pokedex", async (req, res) => {
+  res.render("pokedex", { pokemons });
+});
+
 app.get("/home", async (req, res) => {
-  res.render("home", { pokemons });
+  res.render("home");
 });
 
 app.get("/noaccess", async (req, res) => {
