@@ -9,7 +9,7 @@ body {
   /* het is hier het beste als we met (min-height)  werken voor toekomstige veranderingen */
   /* height: 100vh; */
   min-height: 100vh;
-  font-family: Arial, Helvetica, sans-serif; main-landing
+  font-family: Arial, Helvetica, sans-serif; 
 }
 
 body {
@@ -516,7 +516,25 @@ h3 {
 
 .home_page section{
   display: flex;
+  justify-content: space-evenly;
   flex-wrap: wrap;
+  max-width: 1000px;
+}
+
+.home_page article{
+  text-decoration: none;
+  background-color: #c1cad3;
+  color: #3b4cca;
+  font-family: pokemon;
+  border-radius: 20px;
+  max-width: 200px;
+  height: 100px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-basis: 33%;
+  margin: 2rem;
+  transition: background-color 0.3s ease;
 }
 
 @media screen and (max-width: 768px) {
