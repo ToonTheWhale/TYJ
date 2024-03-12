@@ -6,7 +6,7 @@ app.use(express.static("public"));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.set("view engine", "ejs");
-app.set("port", 3000);
+app.set("port", 3001);
 
 interface NonDetailedPokemon {
   name: string;

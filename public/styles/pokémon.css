@@ -523,10 +523,8 @@ h3 {
 
 .home_page article{
   text-decoration: none;
-  background-color: #c1cad3;
   color: #3b4cca;
   font-family: pokemon;
-  border-radius: 20px;
   max-width: 200px;
   height: 100px;
   display: flex;
@@ -534,7 +532,19 @@ h3 {
   justify-content: center;
   flex-basis: 33%;
   margin: 2rem;
-  transition: background-color 0.3s ease;
+}
+
+.home_page article a{
+  text-decoration: none;
+  color: #3b4cca;
+  font-family: pokemon;
+  height: 100px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-basis: 33%;
+  margin: 2rem;
+  padding: 1rem;
 }
 
 @media screen and (max-width: 768px) {
