@@ -9,26 +9,32 @@
     <%- include('partials/headerLanding'); %>
     <main class="main-landing">
       <section>
-        <a href="/login"
-          class="pokemon-landing"><article><h3>Pokémon</h3></article></a
+        <a href="/login" class="pokemon-landing"
+          ><article><h3>Pokémon</h3></article></a
         >
-        <a href="/noaccess"
-          class="fifa"><article><h3>FIFA</h3></article></a
+        <a href="#" onclick="alertFunction()" class="fifa">
+          <article><h3>FIFA</h3></article>
+        </a>
+        <a href="#" onclick="alertFunction()" class="fortnite"
+          ><article><h3>Fortnite</h3></article></a
         >
-        <a href="/noaccess"
-          class="fortnite"><article><h3>Fortnite</h3></article></a
+        <a href="#" onclick="alertFunction()" class="lotr"
+          ><article><h3>LOTR</h3></article></a
         >
-        <a href="/noaccess"
-          class="lotr"><article><h3>LOTR</h3></article></a
+        <a href="#" onclick="alertFunction()" class="lm"
+          ><article><h3>Lego Masters</h3></article></a  
         >
-        <a href="/noaccess"
-          class="lm"><article><h3>Lego Masters</h3></article></a
-        >
-        <a href="/noaccess"
-          class="mtg"><article><h3>MTG</h3></article></a
+        <a href="#" onclick="alertFunction()" class="mtg"
+          ><article><h3>MTG</h3></article></a
         >
       </section>
     </main>
     <%- include('partials/footerLanding'); %>
   </body>
 </html>
+
+<script>
+  function alertFunction(){
+    alert(`Je hebt geen toegang tot deze project pagina`)
+  }
+</script>

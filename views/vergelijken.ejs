@@ -1,167 +1,167 @@
-<%- include('partials/header'); %>
-<main>
-  <section class="compare">
-    <article class="compare-item" id="compare-item-1">
-      <% let pokemonToCompereID %>
-      <figure>
-        <img
-          src="/images/Question-mark.png"
-          width="200"
-          height="200"
-        />
-        <figcaption>
-          <h2>?????</h2>
-          <p>ID: ?</p>
-          <p>Height: ?</p>
-          <p>Weight: ?</p>
-          <p>Types: ?</p>
-          <p>Max HP: ?</p>
-        </figcaption>
-      </figure>
-      <aside class="layer">
-        <button onclick="openPopup()" type="submit">kiezen</button>
-      </aside>
-    </article>
-    <article class="compare-item-centr">
-      <!-- <button type="submit">Vergelijken</button> -->
-      <img src="https://uxwing.com/wp-content/themes/uxwing/download/arrow-direction/compare-icon.png" style="height: 50%; width: 50%;">
-    </article>
-    <article class="compare-item">
-      <figure>
-        <img src="<%= pokemons[1].image %>" width="200" height="200" />
-        <figcaption>
-          <h2><%= pokemons[1].name %></h2>
-          <p>ID: <%= pokemons[1].id %></p>
-          <p>Height: <%= pokemons[1].height %></p>
-          <p>Weight: <%= pokemons[1].weight %></p>
-          <p>Types: <%= pokemons[1].types.join(', ') %></p>
-          <p>Max HP: <%= pokemons[1].maxHP %></p>
-        </figcaption>
-      </figure>
-    </article>
-  </section>
-
-  <!-- popup code  -->
-
-  <dialog id="popup" class="popup">
-    <h2>Selecteer een Pokémon</h2>
-    <input
-      type="text"
-      id="myInput"
-      onkeyup="filterPokemonByName()"
-      placeholder="Pokemon zoeken ..."
-    />
-    <section class="image-container">
-      <% for(let pokemon of pokemons) { %>
-      <article>
+  <%- include('partials/header'); %>
+  <main>
+    <section class="compare">
+      <article class="compare-item" id="compare-item-1">
+        <% let pokemonToCompereID %>
         <figure>
           <img
-            src="<%= pokemon.image %>"
-            onclick="selectPokemon('<%= pokemon.name %>')"
+            src="/images/Question-mark.png"
+            width="200"
+            height="200"
           />
           <figcaption>
-            <p><%= pokemon.name %></p>
+            <h2>?????</h2>
+            <p>ID: ?</p>
+            <p>Height: ?</p>
+            <p>Weight: ?</p>
+            <p>Types: ?</p>
+            <p>Max HP: ?</p>
+          </figcaption>
+        </figure>
+        <aside class="layer">
+          <button onclick="openPopup()" type="submit">kiezen</button>
+        </aside>
+      </article>
+      <article class="compare-item-centr">
+        <!-- <button type="submit">Vergelijken</button> -->
+        <img src="https://uxwing.com/wp-content/themes/uxwing/download/arrow-direction/compare-icon.png" style="height: 50%; width: 50%;">
+      </article>
+      <article class="compare-item">
+        <figure>
+          <img src="<%= pokemons[1].image %>" width="200" height="200" />
+          <figcaption>
+            <h2><%= pokemons[1].name %></h2>
+            <p>ID: <%= pokemons[1].id %></p>
+            <p>Height: <%= pokemons[1].height %></p>
+            <p>Weight: <%= pokemons[1].weight %></p>
+            <p>Types: <%= pokemons[1].types.join(', ') %></p>
+            <p>Max HP: <%= pokemons[1].maxHP %></p>
           </figcaption>
         </figure>
       </article>
-      <% } %>
     </section>
-    <button onclick="closePopup()" id="button">Close</button>
-  </dialog>
 
-  <div id="overlay" class="overlay"></div>
+    <!-- popup code  -->
 
-  <!-- eind popup code  -->
-  
-  <script>
+    <dialog id="popup" class="popup">
+      <h2>Selecteer een Pokémon</h2>
+      <input
+        type="text"
+        id="myInput"
+        onkeyup="filterPokemonByName()"
+        placeholder="Pokemon zoeken ..."
+      />
+      <section class="image-container">
+        <% for(let pokemon of pokemons) { %>
+        <article>
+          <figure>
+            <img
+              src="<%= pokemon.image %>"
+              onclick="selectPokemon('<%= pokemon.name %>')"
+            />
+            <figcaption>
+              <p><%= pokemon.name %></p>
+            </figcaption>
+          </figure>
+        </article>
+        <% } %>
+      </section>
+      <button onclick="closePopup()" id="button">Close</button>
+    </dialog>
 
-    async function fetchAndProcessSinglePokemonData(pokemonID) {
-        const response = await fetch(`https://pokeapi.co/api/v2/pokemon/${pokemonID}/#`);
-        const singlePokemon = await response.json();
-        const pokemonData = {
-        id: singlePokemon.id,
-        name: singlePokemon.name,
-        types: singlePokemon.types.map(type => type.type.name),
-        image: singlePokemon.sprites.front_default,
-        height: singlePokemon.height,
-        weight: singlePokemon.weight,
-        maxHP: singlePokemon.stats[0].base_stat,
-        defense: singlePokemon.stats[2].base_stat,
-        attack: singlePokemon.stats[1].base_stat,
-        };
-        return pokemonData;
-    }
+    <div id="overlay" class="overlay"></div>
 
-    // Functie om de pop-up te openen
-    function openPopup() {
-      document.getElementById("popup").style.display = "block";
-      document.getElementById("overlay").style.display = "block";
-    }
+    <!-- eind popup code  -->
+    
+    <script>
 
-    // Functie om de pop-up te sluiten
-    function closePopup() {
-      document.getElementById("popup").style.display = "none";
-      document.getElementById("overlay").style.display = "none";
-    }
+      async function fetchAndProcessSinglePokemonData(pokemonID) {
+          const response = await fetch(`https://pokeapi.co/api/v2/pokemon/${pokemonID}/#`);
+          const singlePokemon = await response.json();
+          const pokemonData = {
+          id: singlePokemon.id,
+          name: singlePokemon.name,
+          types: singlePokemon.types.map(type => type.type.name),
+          image: singlePokemon.sprites.front_default,
+          height: singlePokemon.height,
+          weight: singlePokemon.weight,
+          maxHP: singlePokemon.stats[0].base_stat,
+          defense: singlePokemon.stats[2].base_stat,
+          attack: singlePokemon.stats[1].base_stat,
+          };
+          return pokemonData;
+      }
 
-    // Functie om een pokemon te selecteren
-    function selectPokemon(pokemonName) {
-      alert(`Jij hebt ${pokemonName} geselecteerd`);
-      closePopup();
-      fetchAndProcessSinglePokemonData(pokemonName)
-      .then(pokemon => { switchToSelectedPokemon(pokemon); })
-    }
+      // Functie om de pop-up te openen
+      function openPopup() {
+        document.getElementById("popup").style.display = "block";
+        document.getElementById("overlay").style.display = "block";
+      }
 
-    // Functie om een pokemon te selecteren
-    function switchToSelectedPokemon(pokemon) {
-      const defaultElement = document.getElementById("compare-item-1");
-      const article = document.createElement("article");
-      article.className = "compare-item"
-      article.innerHTML = 
-        `<figure>
-        <img src="${pokemon.image}" width="200" height="200" />
-        <figcaption>
-          <h2> ${pokemon.name} </h2>
-          <p>ID: ${pokemon.id} </p>
-          <p>Height: ${pokemon.height} </p>
-          <p>Weight: ${pokemon.weight} </p>
-          <p>Types: ${pokemon.types} </p>
-          <p>Max HP: ${pokemon.maxHP} </p>
-        </figcaption>
-        <aside class="layer-close-button">
-        <button onclick="openPopup()" type="submit">X</button>
-        </aside>
-        </figure>`;
-        if (defaultElement) {
-          defaultElement.replaceWith(article) 
-        } else {
-          const defaultElement = document.getElementsByClassName("compare-item")[0]
-          defaultElement.replaceWith(article)
-        }
-    }
+      // Functie om de pop-up te sluiten
+      function closePopup() {
+        document.getElementById("popup").style.display = "none";
+        document.getElementById("overlay").style.display = "none";
+      }
 
-    // Functie om een Pokemon op naam te filteren
-    function filterPokemonByName() {
-      var input,filter,imageContainer,articles,figure,figcaption,p,i,txtValue;
-      
-      input = document.getElementById("myInput");
-      filter = input.value.toUpperCase();
-      imageContainer = document.querySelector(".image-container");
-      articles = imageContainer.getElementsByTagName("article");
+      // Functie om een pokemon te selecteren
+      function selectPokemon(pokemonName) {
+        alert(`Jij hebt ${pokemonName} geselecteerd`);
+        closePopup();
+        fetchAndProcessSinglePokemonData(pokemonName)
+        .then(pokemon => { switchToSelectedPokemon(pokemon); })
+      }
 
-      for (i = 0; i < articles.length; i++) {
-        figure = articles[i].getElementsByTagName("figure")[0];
-        p = figure.getElementsByTagName("p")[0];
-        txtValue = p.textContent || p.innerText;
+      // Functie om een pokemon te selecteren
+      function switchToSelectedPokemon(pokemon) {
+        const defaultElement = document.getElementById("compare-item-1");
+        const article = document.createElement("article");
+        article.className = "compare-item"
+        article.innerHTML = 
+          `<figure>
+          <img src="${pokemon.image}" width="200" height="200" />
+          <figcaption>
+            <h2> ${pokemon.name} </h2>
+            <p>ID: ${pokemon.id} </p>
+            <p>Height: ${pokemon.height} </p>
+            <p>Weight: ${pokemon.weight} </p>
+            <p>Types: ${pokemon.types} </p>
+            <p>Max HP: ${pokemon.maxHP} </p>
+          </figcaption>
+          <aside class="layer-close-button">
+          <button onclick="openPopup()" type="submit">X</button>
+          </aside>
+          </figure>`;
+          if (defaultElement) {
+            defaultElement.replaceWith(article) 
+          } else {
+            const defaultElement = document.getElementsByClassName("compare-item")[0]
+            defaultElement.replaceWith(article)
+          }
+      }
 
-        if (txtValue.toUpperCase().indexOf(filter) > -1) {
-          articles[i].style.display = "";
-        } else {
-          articles[i].style.display = "none";
+      // Functie om een Pokemon op naam te filteren
+      function filterPokemonByName() {
+        var input,filter,imageContainer,articles,figure,figcaption,p,i,txtValue;
+        
+        input = document.getElementById("myInput");
+        filter = input.value.toUpperCase();
+        imageContainer = document.querySelector(".image-container");
+        articles = imageContainer.getElementsByTagName("article");
+
+        for (i = 0; i < articles.length; i++) {
+          figure = articles[i].getElementsByTagName("figure")[0];
+          p = figure.getElementsByTagName("p")[0];
+          txtValue = p.textContent || p.innerText;
+
+          if (txtValue.toUpperCase().indexOf(filter) > -1) {
+            articles[i].style.display = "";
+          } else {
+            articles[i].style.display = "none";
+          }
         }
       }
-    }
 
-  </script>
-</main>
-<%- include('partials/footer'); %>
+    </script>
+  </main>
+  <%- include('partials/footer'); %>
