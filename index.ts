@@ -82,12 +82,12 @@ app.get("/starterPokemon", async (req, res) => {
   res.render("starterPokemon", { pokemons });
 });
 
-app.get("/vergelijken", async (req, res) => {
-  res.render("vergelijken", { pokemons });
+app.get("/compare", async (req, res) => {
+  res.render("compare", { pokemons });
 });
 
-app.get("/vechten", async (req, res) => {
-  res.render("vechten", { pokemons });
+app.get("/fight", async (req, res) => {
+  res.render("fight", { pokemons });
 });
 
 app.get("/mypokemons", async (req, res) => {

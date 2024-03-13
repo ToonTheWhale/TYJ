@@ -30,10 +30,11 @@ nav {
   align-items: center;
   grid-area: header;
   /* background-color: #ffde00; */
-  padding: 8px;
   margin: 0;
   border-radius: 3px;
   margin-bottom: 1rem;
+  padding-left: 5px;
+  padding-right: 5px;
 }
 
 .nav-landing {
@@ -56,11 +57,10 @@ nav a {
   text-decoration: none;
   color: #3b4cca;
   font-size: 2rem;
-  padding: 8px;
 }
 .pfp-nav {
   border-radius: 50%;
-  width: 50px;
+  width: 50px; 
   border: 1px solid black;
 }
 nav ul {
@@ -453,6 +453,34 @@ button {
   
 }
 
+.arrows{
+  font-size: 8rem;
+  text-decoration: none; 
+  color: #3B4CCA;
+}
+ 
+.arrows:hover{
+  font-size: 9rem; 
+}
+
+.compare-item-centr p{
+  font-size: 2rem;
+  color: #3B4CCA;
+}
+
+.compare-item-VS p{
+  font-size: 2rem;
+  color: #3B4CCA;
+}
+
+.compare-item-VS a{
+  text-decoration: none;
+}
+
+.compare-item-VS:hover{
+  font-size: 3rem;
+}
+
 /* Style voor de (popup) */
 
 .popup {
@@ -507,6 +535,8 @@ button {
   text-align: center;
   font-weight: bolder;
 }
+
+
 
 /* Footer styling */
 
