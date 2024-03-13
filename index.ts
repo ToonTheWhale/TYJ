@@ -55,23 +55,31 @@ app.get("/getDataAPI", (req, res) => {
 });
 
 app.get("/", async (req, res) => {
-  res.render("landingPage");
+  res.render("landingPage", { pokemons });
 });
 
 app.get("/home", async (req, res) => {
   res.render("home", { pokemons });
 });
 
+app.get("/pokedex", async (req, res) => {
+  res.render("pokedex", { pokemons });
+});
+
 app.get("/noaccess", async (req, res) => {
-  res.render("noAccess")
+  res.render("noAccess", { pokemons })
 });
 
 app.get("/login", async (req, res) => {
-  res.render("login");
+  res.render("login", { pokemons });
 });
 
 app.get("/signup", async (req, res) => {
-  res.render("signup");
+  res.render("signup", { pokemons });
+});
+
+app.get("/starterPokemon", async (req, res) => {
+  res.render("starterPokemon", { pokemons });
 });
 
 app.get("/vergelijken", async (req, res) => {
@@ -93,13 +101,17 @@ app.get("/mypokemons", async (req, res) => {
     pokemons[7],
     pokemons[8],
   ];*/
-  res.render("myPokemons", { playerPokemons });
+  res.render("myPokemons", { playerPokemons,pokemons });
 });
 
 app.get("/pokemon/info/:pokeId", async (req, res) => {
   const pokemonId = parseInt(req.params.pokeId);
   const pokemonFind = pokemons.find(({ id }) => pokemonId === id);
-  res.render("pokemoninfo", { pokemonFind, message:false });
+  res.render("pokemoninfo", { pokemonFind, pokemons, message:false });
+});
+
+app.get("/catchPokemon", async (req, res) => {
+  res.render("catchPokemon", { pokemons });
 });
 
 app.post("/catch", async (req, res) => {
@@ -121,15 +133,20 @@ app.post("/catch", async (req, res) => {
     }
   }
   if (caught) {
-    res.render("myPokemons", { playerPokemons });
+    res.render("myPokemons", { playerPokemons, pokemons });
   } else {
-    res.render("pokemoninfo", { pokemonFind: targetPokemon, playerPokemons, message:true });
+    res.render("pokemoninfo", { pokemonFind: targetPokemon, playerPokemons, message:true,pokemons });
   }
+});
+
+app.get("/guessPokemon", async (req, res) => {
+  let randomNumber = randomIntFromInterval(1,153)
+  res.render("guessPokemon", { pokemons,randomNumber });
 });
 
 app.listen(app.get("port"), async () => {
   const apiResult = await (
-    await fetch("https://pokeapi.co/api/v2/pokemon?limit=151")
+    await fetch("https://pokeapi.co/api/v2/pokemon?limit=153")
   ).json();
   const promisePerPokemon: Promise<Response>[] = (
     apiResult.results as NonDetailedPokemon[]
@@ -157,5 +174,5 @@ app.listen(app.get("port"), async () => {
 
 app.use((req, res) => {
   res.status(404);
-  res.render("404");
+  res.render("404",{ pokemons });
 });

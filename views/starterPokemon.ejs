@@ -1,0 +1,66 @@
+<%- include('partials/header'); %>
+<main>
+  <button
+    type="submit"
+    onclick="closePokeball()"
+    class="pokeball"
+    id="pokeball"
+  ></button>
+  <section class="choose-starter-pokemon" id="choose-starter-pokemon">
+    <h1>Selecteer een Pokemon om te starten</h1>
+    <section class="flex-container-Starter">
+      <article class="Starter-Pokemon">
+        <a href="/home">
+          <figure>
+            <img
+              src="/images/Starter - Bulbasaur.png"
+              width="4000"
+              height="2666"
+            />
+            <figcaption>
+              <h2>Bulbasaur</h2>
+            </figcaption>
+          </figure>
+        </a>
+      </article>
+      <article class="Starter-Pokemon">
+        <a href="/home">
+          <figure>
+            <img
+              src="/images/Starter - Squirtle.png"
+              width="4000"
+              height="2666"
+            />
+            <figcaption>
+                <h2>Squirtle</h2>
+              </figcaption>
+          </figure>
+        </a>
+      </article>
+      <article class="Starter-Pokemon">
+        <a href="/home">
+          <figure>
+            <img
+              src="/images/Starter - Charmander.png"
+              width="4000"
+              height="2666"
+            />
+            <figcaption>
+                <h2>Charmander</h2>
+              </figcaption>
+          </figure>
+        </a>
+      </article>
+    </section>
+  </section>
+  <div id="overlay" class="overlay" style="display: block"></div>
+</main>
+
+<script>
+  function closePokeball() {
+    document.getElementById("overlay").style.display = "none";
+    document.getElementById("pokeball").style.display = "none";
+    document.getElementById("choose-starter-pokemon").style.display = "flex";
+  }
+</script>
+<%- include('partials/footer'); %>
