@@ -107,7 +107,7 @@ app.get("/mypokemons", async (req, res) => {
 app.get("/pokemon/info/:pokeId", async (req, res) => {
   const pokemonId = parseInt(req.params.pokeId);
   const pokemonFind = pokemons.find(({ id }) => pokemonId === id);
-  res.render("pokemoninfo", { pokemonFind, message:false });
+  res.render("pokemoninfo", { pokemonFind, pokemons, message:false });
 });
 
 app.get("/catchPokemon", async (req, res) => {
@@ -133,10 +133,15 @@ app.post("/catch", async (req, res) => {
     }
   }
   if (caught) {
-    res.render("myPokemons", { playerPokemons });
+    res.render("myPokemons", { playerPokemons, pokemons });
   } else {
-    res.render("pokemoninfo", { pokemonFind: targetPokemon, playerPokemons, message:true });
+    res.render("pokemoninfo", { pokemonFind: targetPokemon, playerPokemons, message:true,pokemons });
   }
+});
+
+app.get("/guessPokemon", async (req, res) => {
+  let randomNumber = randomIntFromInterval(1,153)
+  res.render("guessPokemon", { pokemons,randomNumber });
 });
 
 app.listen(app.get("port"), async () => {
