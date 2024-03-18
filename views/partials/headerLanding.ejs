@@ -8,31 +8,20 @@
   </head>
   <body>
     <nav class="nav-landing">
-      <section class="nav-section">
-        <button class="hamburger" id="hamburger">
-          <img
-            src="/images/icons8-hamburger-menu-50.png"
-            alt=""
-            class="hamburger-icon"
-          />
-        </button>
-        <section class="dropdown" id="dropdown">
-          <a href="/"><img src="/images/LogoAP.png" alt="" /></a>
-          <a href="/login" class="login-landing"
-            >
-            <img src="/images/Default_pfp.svg.png" alt="PFP" class="pfp-nav"
-          /></a>
-        </section>
-      </section>
+      <a href="/"><img src="/images/LogoAP.png" alt="" /></a>
+      <a href="/login" class="login-landing"
+        >
+        <img src="/images/Default_pfp.svg.png" alt="PFP" class="pfp-nav"
+      /></a>
     </nav>
   </body>
   <script>
     // script dient voor de dropdown nav
-    const hamburger = document.querySelector(".hamburger");
-    const dropdown = document.querySelector(".dropdown");
+    // const hamburger = document.querySelector(".hamburger");
+    // const dropdown = document.querySelector(".dropdown");
 
-    hamburger.addEventListener("click", () => {
-      dropdown.classList.toggle("open");
-    });
+    // hamburger.addEventListener("click", () => {
+    //   dropdown.classList.toggle("open");
+    // });
   </script>
 </html>

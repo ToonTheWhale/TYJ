@@ -1,6 +1,6 @@
     <!-- popup code header  -->
 
-    <dialog id="popup" class="popup">
+    <dialog id="popup-CurrentPokemon" class="popup">
       <h2>Selecteer een Pokémon</h2>
       <input
         type="text"
@@ -23,9 +23,9 @@
         </article>
         <% } %>
       </section>
-      <button onclick="closePopup()" id="button">Close</button>
+      <button onclick="closePopupCurrentPokemon()" id="button">Close</button>
     </dialog>
-    <div id="overlay" class="overlay"></div>
+    <div id="overlay-CurrentPokemon" class="overlay"></div>
 
 <footer class="footer-1">
   <article>
@@ -68,20 +68,20 @@
   }
 
   // Functie om de pop-up te openen
-  function openPopup() {
-    document.getElementById("popup").style.display = "block";
-    document.getElementById("overlay").style.display = "block";
+  function openPopupCurrentPokemon() {
+    document.getElementById("popup-CurrentPokemon").style.display = "block";
+    document.getElementById("overlay-CurrentPokemon").style.display = "block";
   }
 
   // Functie om de pop-up te sluiten
-  function closePopup() {
-    document.getElementById("popup").style.display = "none";
-    document.getElementById("overlay").style.display = "none";
+  function closePopupCurrentPokemon() {
+    document.getElementById("popup-CurrentPokemon").style.display = "none";
+    document.getElementById("overlay-CurrentPokemon").style.display = "none";
   }
 
   function selectCurrentPokemon(pokemonName) {
     alert(`Jij hebt ${pokemonName} geselecteerd`);
-    closePopup();
+    closePopupCurrentPokemon();
     fetchAndProcessSinglePokemonData(pokemonName).then((pokemon) => {
       switchToSelectedCurrentPokemon(pokemon);
     });
