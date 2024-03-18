@@ -1,41 +1,57 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>TYJ</title>
-  </head>
-  <body>
-    <%- include('partials/header'); %>
-    <% if (message) { %>
-      <div class="message">
-        <p>Je hebt X kansen om een pokemon te vangen</p>
-      </div>
-    <% } %>
-    <section>
-      <img src="<%= pokemonFind.image %>" alt="" />
-      <a href="/"><%= pokemonFind.id %></a>
-      <a href="/"><%= pokemonFind.name %></a>
-      <a href="/"><%= pokemonFind.height %></a>
-      <a href="/"><%= pokemonFind.weight %></a>
-      <a href="/"><%= pokemonFind.types %></a>
-      <a href="/"><%= pokemonFind.maxHP %></a>
-      <form action="/catch" method="post">
-        <input type="hidden" value="<%= pokemonFind.id %>" name="pokemon" />
-        <button type="submit">
-          <img
-            src="/images/green_ball_by_ace_zeroartic_df6cd1c-414w-2x.png"
-            alt="bron: https://www.deviantart.com/ace-zeroartic/art/Green-Ball-917647104"
-            class="green-ball"
-          />
-          <img
-            src="/images/poke_ball_by_ace_zeroartic_df3b4ya-414w-2x.png"
-            alt="bron: https://www.deviantart.com/ace-zeroartic/art/Poke-Ball-912551122"
-            class="red-ball"
-          />
-        </button>
-      </form>
-    </section>
-    <%- include('partials/footer'); %>
-  </body>
-</html>
+<%- include('partials/header'); %>
+<main style="margin-bottom: 25px; display: flex; flex-direction: column">
+  <section class="flex-container-pokemon-info">
+    <article
+      style="display: flex; flex-direction: column;"
+    >
+      <h2 style="color: #3b4cca"><%= pokemonFind.name.toUpperCase() %></h2>
+      <img style="width: 250px; height: 250px" src="<%= pokemonFind.image%>" />
+    </article>
+    <article  style="display: flex; flex-direction: column;">
+      <h2 style="color: #3b4cca">Pokemon Stats</h2>
+      <p>ID: <%= pokemonFind.id %></p>
+      <p>Hoogte: <%= pokemonFind.height %></p>
+      <p>Gewicht: <%= pokemonFind.weight %></p>
+      <p>Types: <%= pokemonFind.types.join(', ') %></p>
+      <p>Max HP: <%= pokemonFind.maxHP %></p>
+    </article>
+  </section>
+  <section class="flex-container-pokemon-info">
+    <article style="margin-top: 25px">
+      <h2 style="color: #3b4cca; margin-bottom: 0;">Evolutiepad</h2>
+      <section style="display: flex;justify-content: center;  align-items: center;" >
+        <img
+          style="width: 175px; height: 175px"
+          src="<%= pokemons[0].image%>"
+        />
+        <i
+          style="font-size: 50px; color: #3b4cca"
+          class="fa fa-arrow-right"
+          aria-hidden="true"
+        ></i>
+        <i
+        style="font-size: 50px; color: #3b4cca"
+        class="fa fa-arrow-down"
+        aria-hidden="true"
+      ></i>
+        <img
+          style="width: 175px; height: 175px"
+          src="<%= pokemons[1].image%>"
+        />
+        <i
+          style="font-size: 50px; color: #3b4cca"
+          class="fa fa-arrow-right"
+          x
+          aria-hidden="true"
+        ></i>
+        <i
+        style="font-size: 50px; color: #3b4cca"
+        class="fa fa-arrow-down"
+        aria-hidden="true"
+      ></i>
+        <img style="width: 175px; height: 175px" src="<%= pokemons[2].image%>" />
+      </section>
+    </article>
+  </section>
+</main>
+<%- include('partials/footer'); %>
