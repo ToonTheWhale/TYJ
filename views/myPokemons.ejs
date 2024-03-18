@@ -1,14 +1,29 @@
 <%- include('partials/header'); %>
-<section>
-    <div class="flex-container">
-        <% for(let pokemon of playerPokemons) { %>
-            <div>
-                <img src="<%= pokemon.image %>" alt="">
-                <a href="/"><%= pokemon.id %></a> 
-                <a href="/"><%= pokemon.name %></a> 
-                <a href="/"><%= pokemon.maxHP %></a>
-            </div>
-        <% } %>
-    </div>
-</section>
+<main class="main-mypokemon">
+  <h1>Jouw pokemon</h1>
+  <section class="section-mypokemon">
+    <% for(let i = 0; i < 6; i++) { %>
+    <article class="pokemon-mypokemon">
+      <p><strong><%= pokemons[i].name %></strong></p>
+      <img src="<%= pokemons[i].image %>" alt="img" />
+      <% for (let type of pokemons[i].types){ %>
+      <p><%= type %></p>
+      <% } %>
+
+      <p><%= pokemons[i].maxHP %> <strong>HP</strong></p>
+      <button
+        class="button-mypokemon"
+        formmethod="post"
+        formaction="/player/pokemon/delete/<%=pokemons[i].teamId%>"
+      >
+        <img
+          src="/images/green_ball_by_ace_zeroartic_df6cd1c-414w-2x.png"
+          alt=""
+          class="green-ball"
+        />
+      </button>
+    </article>
+    <% } %>
+  </section>
+</main>
 <%- include('partials/footer'); %>
