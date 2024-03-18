@@ -1,0 +1,500 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/public/styles/pokémon.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
+    <title>Document</title>
+  </head>
+  <body>
+    <nav>
+      <a href="/"><img src="/public/images/Logo.png" alt="" /></a>
+      <button onclick="openMenu()" class="menu-hamburger">
+        <i class="fa fa-bars" style="font-size: 40px"></i>
+      </button>
+      <section id="overlay-Menu" class="overlay-Menu">
+        <ul class="menu" style="padding: 0">
+          <li style="margin: 0; border: none">
+            <button class="layer-close-button" onclick="closeMenu()">
+              <i class="fa fa-times" aria-hidden="true"></i>
+            </button>
+          </li>
+          <li><a href="/5.home.html">Home</a></li>
+          <li><a href="/6.pokedex.html">PokéDex</a></li>
+          <li><a href="/7.myPokemons.html">Mijn Pokemons</a></li>
+          <li><a href="/11.vechten.html">Pokemon Battler</a></li>
+          <li><a href="/9.catchPokemon.html">Pokemon vangen</a></li>
+          <li><a href="/10.vergelijken.html">Pokemon vergelijken</a></li>
+          <li><a href="/12.guessPokemon.html">Who’s that pokemon</a></li>
+          <li>
+            <p
+              style="
+                margin: auto;
+                font-size: 25px;
+                font-weight: 900;
+                margin-right: 10px;
+              "
+            >
+              Huidige Pokémon :
+            </p>
+            <img
+              onclick="openPopupCurrentPokemon()"
+              src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/101.png"
+              id="current-pokemon"
+              class="current-pokemon"
+            />
+          </li>
+        </ul>
+      </section>
+      <div id="overlay" class="overlay"></div>
+    </nav>
+  </body>
+  <script>
+    // script dient voor de sidepdown nav
+    function openMenu() {
+      document.getElementById("overlay-Menu").style.display = "block";
+      document.getElementById("overlay").style.display = "block";
+    }
+    function closeMenu() {
+      document.getElementById("overlay-Menu").style.display = "none";
+      document.getElementById("overlay").style.display = "none";
+    }
+  </script>
+  <main style="display: flex; flex-direction: column">
+    <section class="compare">
+      <article class="compare-item" id="compare-item-1">
+        <figure>
+          <img
+            src="/public/images/Question-mark.png"
+            width="200"
+            height="200"
+          />
+          <figcaption>
+            <h2>?????</h2>
+            <p>ID: ?</p>
+            <p>Defense: ?</p>
+            <p>Attack: ?</p>
+            <p>Types: ?</p>
+            <p>Max HP: ?</p>
+          </figcaption>
+        </figure>
+        <aside class="layer">
+          <button onclick="openPopup()" type="submit">kiezen</button>
+        </aside>
+      </article>
+      <article class="compare-item-centr">
+        <button onclick="compareStart()" style="background: none; border: none">
+          <img
+            src="https://uxwing.com/wp-content/themes/uxwing/download/arrow-direction/compare-icon.png"
+            style="height: 50%; width: 50%"
+          />
+        </button>
+        <!-- <img
+      src="https://uxwing.com/wp-content/themes/uxwing/download/arrow-direction/compare-icon.png"
+      style="height: 50%; width: 50%"
+    /> -->
+      </article>
+      <article class="compare-item">
+        <figure>
+          <img
+            src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/1.png"
+            width="200"
+            height="200"
+          />
+          <figcaption>
+            <h2>bulbasaur</h2>
+            <p id="pokemon_2">ID: 1</p>
+            <p>Defense: 49</p>
+            <p>Attack: 49</p>
+            <p>Types: grass,poison</p>
+            <p>Max HP: 45</p>
+          </figcaption>
+        </figure>
+      </article>
+    </section>
+  </main>
+
+  <dialog
+    class="popup"
+    style="text-align: center"
+    id="popup-compare-result"
+  ></dialog>
+
+  <!-- popup code header  -->
+
+  <dialog id="popup-CurrentPokemon" class="popup">
+    <h2>Selecteer een Pokémon</h2>
+    <input
+      type="text"
+      id="myInputHeader"
+      onkeyup="filterPokemonByNameHeader()"
+      placeholder="Pokemon zoeken ..."
+    />
+    <section class="image-container" id="image-container-header"></section>
+    <button onclick="closePopupCurrentPokemon()" id="button">Close</button>
+  </dialog>
+  <div id="overlay-CurrentPokemon" class="overlay"></div>
+
+  <!-- popup code  -->
+
+  <dialog id="popup" class="popup">
+    <h2>Selecteer een Pokémon</h2>
+    <input
+      type="text"
+      id="myInput"
+      onkeyup="filterPokemonByName()"
+      placeholder="Pokemon zoeken ..."
+    />
+    <section class="image-container" id="image-container"></section>
+    <button onclick="closePopup()" id="button">Close</button>
+  </dialog>
+  <div id="overlay" class="overlay"></div>
+
+  <footer class="footer-1">
+    <article>
+      <p>
+        <img src="/public/images/Logo.png" alt="" class="footer-logo" />
+      </p>
+    </article>
+    <article>
+      <p>
+        <img
+          src="/public/images/icons8-location-50.png"
+          alt=""
+          class="footer-icon"
+        />Ellermanstraat 33, 2060 Antwerpen<br />
+        <img
+          src="/public/images/icons8-phone-50.png"
+          alt=""
+          class="footer-icon"
+        />
+        +324 12 34 56 78
+      </p>
+    </article>
+    <article>
+      <p>
+        Authors: TYJ <br />
+        <a href="">info@TYJ-Pokémons.com</a>
+      </p>
+    </article>
+  </footer>
+  <footer class="footer-2">
+    <p>&copy;TYJ 2024</p>
+  </footer>
+
+  <script>
+    async function fetchAndProcessSinglePokemonData(pokemonID) {
+      const response = await fetch(
+        `https://pokeapi.co/api/v2/pokemon/${pokemonID}/#`
+      );
+      const singlePokemon = await response.json();
+      const pokemonData = {
+        id: singlePokemon.id,
+        name: singlePokemon.name,
+        types: singlePokemon.types.map((type) => type.type.name),
+        image: singlePokemon.sprites.front_default,
+        height: singlePokemon.height,
+        weight: singlePokemon.weight,
+        maxHP: singlePokemon.stats[0].base_stat,
+        defense: singlePokemon.stats[2].base_stat,
+        attack: singlePokemon.stats[1].base_stat,
+      };
+      return pokemonData;
+    }
+
+    // Functie om de pop-up te openen
+    function openPopup() {
+      document.getElementById("popup").style.display = "block";
+      document.getElementById("overlay").style.display = "block";
+    }
+
+    // Functie om de pop-up te sluiten
+    function closePopup() {
+      document.getElementById("popup").style.display = "none";
+      document.getElementById("overlay").style.display = "none";
+    }
+
+    // Functie om een pokemon te selecteren
+    function selectPokemon(pokemonName) {
+      alert(`Jij hebt ${pokemonName} geselecteerd`);
+      closePopup();
+      fetchAndProcessSinglePokemonData(pokemonName).then((pokemon) => {
+        switchToSelectedPokemon(pokemon);
+      });
+    }
+
+    // Functie om een pokemon te selecteren
+    function switchToSelectedPokemon(pokemon) {
+      const defaultElement = document.getElementById("compare-item-1");
+      const article = document.createElement("article");
+      article.className = "compare-item";
+      article.innerHTML = `<figure>
+        <img src="${pokemon.image}" width="200" height="200" />
+        <figcaption>
+          <h2> ${pokemon.name} </h2>
+          <p id = "pokemon_1" >ID: ${pokemon.id} </p>
+          <p>Defense: ${pokemon.defense} </p>
+          <p>Attack: ${pokemon.attack} </p>
+          <p>Types: ${pokemon.types} </p>
+          <p>Max HP: ${pokemon.maxHP} </p>
+        </figcaption>
+        <aside class="layer-close-button">
+        <button onclick="openPopup()" type="submit">X</button>
+        </aside>
+        </figure>`;
+      if (defaultElement) {
+        defaultElement.replaceWith(article);
+      } else {
+        const defaultElement =
+          document.getElementsByClassName("compare-item")[0];
+        defaultElement.replaceWith(article);
+      }
+    }
+
+    function RandomNumber() {
+      return Math.floor(Math.random() * 151);
+    }
+
+    function selectRandomPokemon() {
+      selectPokemon(RandomNumber());
+    }
+
+    // Functie om de pop-up te openen
+    function openPopupCurrentPokemon() {
+      document.getElementById("popup-CurrentPokemon").style.display = "block";
+      document.getElementById("overlay-CurrentPokemon").style.display = "block";
+    }
+
+    // Functie om de pop-up te sluiten
+    function closePopupCurrentPokemon() {
+      document.getElementById("popup-CurrentPokemon").style.display = "none";
+      document.getElementById("overlay-CurrentPokemon").style.display = "none";
+    }
+
+    function selectCurrentPokemon(pokemonName) {
+      alert(`Jij hebt ${pokemonName} geselecteerd`);
+      closePopupCurrentPokemon();
+      fetchAndProcessSinglePokemonData(pokemonName).then((pokemon) => {
+        switchToSelectedCurrentPokemon(pokemon);
+      });
+    }
+
+    // Functie om een pokemon te selecteren
+    function switchToSelectedCurrentPokemon(pokemon) {
+      var defaultElement = document.getElementById("current-pokemon");
+      defaultElement.src = pokemon.image;
+    }
+
+    // Functie om een Pokemon op naam te filteren
+    function filterPokemonByName() {
+      var input,
+        filter,
+        imageContainer,
+        articles,
+        figure,
+        figcaption,
+        p,
+        i,
+        txtValue;
+
+      input = document.getElementById("myInput");
+      filter = input.value.toUpperCase();
+      imageContainer = document.getElementById("image-container");
+      articles = imageContainer.getElementsByTagName("article");
+
+      for (i = 0; i < articles.length; i++) {
+        figure = articles[i].getElementsByTagName("figure")[0];
+        p = figure.getElementsByTagName("p")[0];
+        txtValue = p.textContent || p.innerText;
+
+        if (txtValue.toUpperCase().indexOf(filter) > -1) {
+          articles[i].style.display = "";
+        } else {
+          articles[i].style.display = "none";
+        }
+      }
+    }
+
+    // Functie om een Pokemon op naam te filteren
+    function filterPokemonByNameHeader() {
+      var input,
+        filter,
+        imageContainer,
+        articles,
+        figure,
+        figcaption,
+        p,
+        i,
+        txtValue;
+
+      input = document.getElementById("myInputHeader");
+      filter = input.value.toUpperCase();
+      imageContainer = document.getElementById("image-container-header");
+      articles = imageContainer.getElementsByTagName("article");
+
+      for (i = 0; i < articles.length; i++) {
+        figure = articles[i].getElementsByTagName("figure")[0];
+        p = figure.getElementsByTagName("p")[0];
+        txtValue = p.textContent || p.innerText;
+
+        if (txtValue.toUpperCase().indexOf(filter) > -1) {
+          articles[i].style.display = "";
+        } else {
+          articles[i].style.display = "none";
+        }
+      }
+    }
+
+    // Functie om een Pokemon op naam te filteren (tijdelijk)
+    function displayPokemonsIMGheader() {
+      const defaultElement = document.getElementById("image-container-header");
+      for (let i = 1; i <= 153; i++) {
+        fetch(`https://pokeapi.co/api/v2/pokemon/${i}`)
+          .then((response) => response.json())
+          .then((pokemon) => {
+            const pokemonName = pokemon.name;
+            const pokemonImage = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${i}.png`;
+
+            const pokemonHTML = `
+              <article>
+                <figure>
+                  <img
+                    src="${pokemonImage}"
+                    onclick="selectCurrentPokemon('${pokemonName}')"
+                  />
+                  <figcaption>
+                    <p>${pokemonName}</p>
+                  </figcaption>
+                </figure>
+              </article>
+            `;
+            defaultElement.innerHTML += pokemonHTML;
+          });
+      }
+    }
+    displayPokemonsIMGheader();
+    // Functie om een Pokemon op naam te filteren (tijdelijk)
+    function displayPokemonsIMG() {
+      const defaultElement = document.getElementById("image-container");
+      for (let i = 1; i <= 153; i++) {
+        fetch(`https://pokeapi.co/api/v2/pokemon/${i}`)
+          .then((response) => response.json())
+          .then((pokemon) => {
+            const pokemonName = pokemon.name;
+            const pokemonImage = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${i}.png`;
+
+            const pokemonHTML = `
+              <article>
+                <figure>
+                  <img
+                    src="${pokemonImage}"
+                    onclick="selectPokemon('${pokemonName}')"
+                  />
+                  <figcaption>
+                    <p>${pokemonName}</p>
+                  </figcaption>
+                </figure>
+              </article>
+            `;
+            defaultElement.innerHTML += pokemonHTML;
+          });
+      }
+    }
+    displayPokemonsIMG();
+
+    // Functie om twee Pokemons te vechten
+    function battleStart() {
+      // const pokemon_1_ID = document.getElementById("pokemon_1");
+      // const pokemon_2_ID = document.getElementById("pokemon_2");
+      // fetchAndProcessSinglePokemonData(pokemon_1_ID).then((pokemon) => {
+      //   switchToSelectedPokemon(pokemon);
+      // });
+      battleResult();
+    }
+    function battleResult() {
+      const defaultElement = document.getElementById("popup-battle-result");
+      defaultElement.innerHTML = `<h2 style = "  text-align: center;   text-transform: uppercase;
+      ">charmeleon wint</h2>
+      <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/2.png" width="200" height="200" /> <br>
+      <button onclick="battleEnd()" id="button">Pokémon Vangen</button> <br>
+      `;
+
+      // defaultElement.replaceWith(dialog);
+      document.getElementById("popup-battle-result").style.display = "block";
+      document.getElementById("overlay").style.display = "block";
+    }
+    function battleEnd() {
+      location.reload();
+    }
+
+    // Functie om twee Pokemons te vergelijken
+    function compareStart() {
+      // const pokemon_1_ID = document.getElementById("pokemon_1");
+      // const pokemon_2_ID = document.getElementById("pokemon_2");
+      // fetchAndProcessSinglePokemonData(pokemon_1_ID).then((pokemon) => {
+      //   switchToSelectedPokemon(pokemon);
+      // });
+      compareResult();
+    }
+    function compareResult() {
+      const defaultElement = document.getElementById("popup-compare-result");
+      defaultElement.innerHTML = `
+      <button class="close_button" onclick="location.reload()" type="submit">
+        <i class="fa fa-times" aria-hidden="true"></i> </button>
+      <h2>Pokémon Vergelijking: Charmeleon vs Ivysaur</h2>
+      <table>
+          <tr>
+              <th>Statistiek</th>
+              <th>Charmeleon</th>
+              <th>Ivysaur</th>
+              <th>Verschil</th>
+          </tr>
+          <tr>
+              <td>HP</td>
+              <td>58</td>
+              <td>60</td>
+              <td class="negative">-2</td>
+          </tr>
+          <tr>
+              <td>Attack</td>
+              <td>64</td>
+              <td>62</td>
+              <td class="positive">+2</td>
+          </tr>
+          <tr>
+              <td>Defense</td>
+              <td>58</td>
+              <td>63</td>
+              <td class="negative">-5</td>
+          </tr>
+          <tr>
+              <td>Special Attack</td>
+              <td>80</td>
+              <td>80</td>
+              <td>0</td>
+          </tr>
+          <tr>
+              <td>Special Defense</td>
+              <td>65</td>
+              <td>80</td>
+              <td class="negative">-15</td>
+          </tr>
+          <tr>
+              <td>Speed</td>
+              <td>80</td>
+              <td>60</td>
+              <td class="positive">+20</td>
+          </tr>
+      </table>
+      `;
+
+      // defaultElement.replaceWith(dialog);
+      document.getElementById("popup-compare-result").style.display = "block";
+      document.getElementById("overlay").style.display = "block";
+    }
+  </script>
+</html>

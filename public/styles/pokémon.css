@@ -1,7 +1,7 @@
-@font-face {
+/* @font-face {
   font-family: pokemon;
   src: url("/fonts/pokemon-puzzle-challenge-gb.ttf");
-}
+} */
 
 html,
 body {
@@ -229,6 +229,10 @@ main {
 .fa-arrow-down {
   display: none;
 }
+#fa-arrow-down {
+  display: none;
+}
+
 /* Styling voor individual Pokemon */
 
 .pokemon {
@@ -725,32 +729,32 @@ footer article {
 }
 
 .fifa {
-  background-image: url("/images/football-stadium-night-generative-ai_260559-480.avif"); /*bron: https://commons.wikimedia.org/wiki/File:Thimiane.jpg*/
+  background-image: url("/public/images/football-stadium-night-generative-ai_260559-480.avif"); /*bron: https://commons.wikimedia.org/wiki/File:Thimiane.jpg*/
   background-size: cover;
 }
 
 .lotr {
-  background-image: url("/images/den7ba0-d24fac90-f6a6-44b9-b020-f0f15e8272c4.png"); /*bron: https://www.deviantart.com/thedemonicmaster/art/The-One-Ring-885498840*/
+  background-image: url("/public/images/den7ba0-d24fac90-f6a6-44b9-b020-f0f15e8272c4.png"); /*bron: https://www.deviantart.com/thedemonicmaster/art/The-One-Ring-885498840*/
   background-size: contain;
 }
 
 .fortnite {
-  background-image: url("/images/Fortnite_F_lettermark_logo.png"); /*bron: https://commons.wikimedia.org/wiki/File:Fortnite_F_lettermark_logo.png*/
+  background-image: url("/public/images/Fortnite_F_lettermark_logo.png"); /*bron: https://commons.wikimedia.org/wiki/File:Fortnite_F_lettermark_logo.png*/
   background-size: contain;
 }
 
 .pokemon-landing {
-  background-image: url("/images/dexythf-a001be4d-d27b-47e8-b296-7b03bc9add93.png"); /*bron: https://www.deviantart.com/invisibleinkdoodles/art/Pikachu-903578307*/
+  background-image: url("/public/images/dexythf-a001be4d-d27b-47e8-b296-7b03bc9add93.png"); /*bron: https://www.deviantart.com/invisibleinkdoodles/art/Pikachu-903578307*/
   background-size: contain;
 }
 
 .lm {
-  background-image: url("/images/3005-brick-1x1-rood.png"); /*bron: https://haanderik.nl/wp-content/uploads/2020/06/3005-brick-1x1-rood.png*/
+  background-image: url("/public/images/3005-brick-1x1-rood.png"); /*bron: https://haanderik.nl/wp-content/uploads/2020/06/3005-brick-1x1-rood.png*/
   background-size: contain;
 }
 
 .mtg {
-  background-image: url("/images/images.png"); /*bron: https://www.goodfon.com/games/wallpaper-hugh-pindur-magic-the-gathering-krylia-peria-sirena.html*/
+  background-image: url("/public/images/images.png"); /*bron: https://www.goodfon.com/games/wallpaper-hugh-pindur-magic-the-gathering-krylia-peria-sirena.html*/
   background-size: contain;
 }
 
@@ -972,6 +976,13 @@ th {
   .fa-arrow-down {
     display: contents;
   }
+  #fa-arrow-down {
+    display: contents;
+  }
+  #fa-arrow-right {
+    display: none;
+  }
+
 
   .overlay-Menu {
     width: 75%;

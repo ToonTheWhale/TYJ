@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="/public/styles/pokémon.css">
+  <link
+  rel="stylesheet"
+  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"/>
+  <title>Document</title>
+</head>
+<body>
+  <nav>
+    <a href="/"><img src="/public/images/Logo.png" alt="" /></a>
+    <button onclick="openMenu()" class="menu-hamburger">
+      <i class="fa fa-bars" style="font-size: 40px"></i>
+    </button>
+    <section id="overlay-Menu" class="overlay-Menu">
+      <ul class="menu" style="padding: 0">
+        <li style="margin: 0; border: none">
+          <button class="layer-close-button" onclick="closeMenu()">
+            <i class="fa fa-times" aria-hidden="true"></i>
+          </button>
+        </li>
+        <li><a href="/home">Home</a></li>
+        <li><a href="/pokedex">PokéDex</a></li>
+        <li><a href="/myPokemons">Mijn Pokemons</a></li>
+        <li><a href="/vechten">Pokemon Battler</a></li>
+        <li><a href="catchPokemon.html">Pokemon vangen</a></li>
+        <li><a href="/vergelijken">Pokemon vergelijken</a></li>
+        <li><a href="/guessPokemon">Who’s that pokemon</a></li>
+
+        <li>
+          <p
+            style="
+              margin: auto;
+              font-size: 25px;
+              font-weight: 900;
+              margin-right: 10px;
+            "
+          >
+            Huidige Pokémon :
+          </p>
+          <img
+            onclick="openPopupCurrentPokemon()"
+            src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/101.png"
+            id="current-pokemon"
+            class="current-pokemon"
+          />
+        </li>
+      </ul>
+    </section>
+    <div id="overlay" class="overlay"></div>
+  </nav>
+</body>
+<script>
+  // script dient voor de sidepdown nav
+  function openMenu() {
+    document.getElementById("overlay-Menu").style.display = "block";
+    document.getElementById("overlay").style.display = "block";
+  }
+  function closeMenu() {
+    document.getElementById("overlay-Menu").style.display = "none";
+    document.getElementById("overlay").style.display = "none";
+  }
+</script>
+  <main class="main-404">
+      <h2>Sorry</h2>
+      <h1>4<img src="/public/images/Poké_Ball_icon.svg.png" alt="" class="pokeball-404">4</h1>
+      <h2>Pagina niet gevonden</h2>
+  </main>
+      <!-- popup code header  -->
+
+      <dialog id="popup-CurrentPokemon" class="popup">
+        <h2>Selecteer een Pokémon</h2>
+        <input
+          type="text"
+          id="myInput"
+          onkeyup="filterPokemonByName()"
+          placeholder="Pokemon zoeken ..."
+        />
+        <section class="image-container" id="image-container">
+          <!-- <% for(let pokemon of pokemons) { %>
+          <article>
+            <figure>
+              <img
+                src="<%= pokemon.image %>"
+                onclick="selectCurrentPokemon('<%= pokemon.name %>')"
+              />
+              <figcaption>
+                <p><%= pokemon.name %></p>
+              </figcaption>
+            </figure>
+          </article>
+          <% } %> -->
+        </section>
+        <button onclick="closePopupCurrentPokemon()" id="button">Close</button>
+      </dialog>
+      <div id="overlay-CurrentPokemon" class="overlay"></div>
+  
+  <footer class="footer-1">
+    <article>
+      <p>
+        <img src="/public/images/Logo.png" alt="" class="footer-logo">
+      </p>
+    </article>
+    <article>
+      <p><img src="/public/images/icons8-location-50.png" alt="" class="footer-icon">Ellermanstraat 33, 2060 Antwerpen<br>
+        <img src="/public/images/icons8-phone-50.png" alt="" class="footer-icon"> +324 12 34 56 78
+      </p>
+    </article>
+    <article>
+      <p>Authors: TYJ <br>
+        <a href="">info@TYJ-Pokémons.com</a>
+      </p>
+    </article>
+  </footer>
+  <footer class="footer-2">
+    <p>&copy;TYJ 2024</p>
+  </footer>
+  <script>
+    async function fetchAndProcessSinglePokemonData(pokemonID) {
+      const response = await fetch(
+        `https://pokeapi.co/api/v2/pokemon/${pokemonID}/#`
+      );
+      const singlePokemon = await response.json();
+      const pokemonData = {
+        id: singlePokemon.id,
+        name: singlePokemon.name,
+        types: singlePokemon.types.map((type) => type.type.name),
+        image: singlePokemon.sprites.front_default,
+        height: singlePokemon.height,
+        weight: singlePokemon.weight,
+        maxHP: singlePokemon.stats[0].base_stat,
+        defense: singlePokemon.stats[2].base_stat,
+        attack: singlePokemon.stats[1].base_stat,
+      };
+      return pokemonData;
+    }
+  
+    // Functie om de pop-up te openen
+    function openPopupCurrentPokemon() {
+      document.getElementById("popup-CurrentPokemon").style.display = "block";
+      document.getElementById("overlay-CurrentPokemon").style.display = "block";
+    }
+  
+    // Functie om de pop-up te sluiten
+    function closePopupCurrentPokemon() {
+      document.getElementById("popup-CurrentPokemon").style.display = "none";
+      document.getElementById("overlay-CurrentPokemon").style.display = "none";
+    }
+  
+    function selectCurrentPokemon(pokemonName) {
+      alert(`Jij hebt ${pokemonName} geselecteerd`);
+      closePopupCurrentPokemon();
+      fetchAndProcessSinglePokemonData(pokemonName).then((pokemon) => {
+        switchToSelectedCurrentPokemon(pokemon);
+      });
+    }
+  
+    // Functie om een pokemon te selecteren
+    function switchToSelectedCurrentPokemon(pokemon) {
+      var defaultElement = document.getElementById('current-pokemon');
+      defaultElement.src = pokemon.image;
+    }
+  
+    // Functie om een Pokemon op naam te filteren
+    function filterPokemonByName() {
+      var input,
+        filter,
+        imageContainer,
+        articles,
+        figure,
+        figcaption,
+        p,
+        i,
+        txtValue;
+  
+      input = document.getElementById("myInput");
+      filter = input.value.toUpperCase();
+      imageContainer = document.querySelector(".image-container");
+      articles = imageContainer.getElementsByTagName("article");
+  
+      for (i = 0; i < articles.length; i++) {
+        figure = articles[i].getElementsByTagName("figure")[0];
+        p = figure.getElementsByTagName("p")[0];
+        txtValue = p.textContent || p.innerText;
+  
+        if (txtValue.toUpperCase().indexOf(filter) > -1) {
+          articles[i].style.display = "";
+        } else {
+          articles[i].style.display = "none";
+        }
+      }
+    }
+
+    // Functie om een Pokemon op naam te filteren (tijdelijk)
+    function displayPokemonsIMG() {
+      const defaultElement = document.getElementById("image-container");
+      for (let i = 1; i <= 153; i++) { 
+        fetch(`https://pokeapi.co/api/v2/pokemon/${i}`)
+          .then(response => response.json())
+          .then(pokemon => {
+            const pokemonName = pokemon.name;
+            const pokemonImage = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${i}.png`;
+
+            const pokemonHTML = `
+              <article>
+                <figure>
+                  <img
+                    src="${pokemonImage}"
+                    onclick="selectCurrentPokemon('${pokemonName}')"
+                  />
+                  <figcaption>
+                    <p>${pokemonName}</p>
+                  </figcaption>
+                </figure>
+              </article>
+            `;
+            defaultElement.innerHTML += pokemonHTML;
+          })
+      }
+    }displayPokemonsIMG()  
+</script>
+</body>
+</html>
