@@ -836,6 +836,38 @@ th {
   color: red;
 }
 
+.main-mypokemon {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+.section-mypokemon {
+  display: flex;
+  flex-wrap: wrap;
+  width: 100%;
+}
+.pokemon-mypokemon {
+  display: flex;
+  flex-direction: column;
+  flex-basis: 25%;
+  margin: auto;
+  align-items: center;
+  margin-top: 25px;
+  border-radius: 10px;
+  background-color: #c1cad3;
+  border: 3px solid #3b4cca;
+  justify-content: space-between;
+  min-height: 325.33px;
+}
+.button-mypokemon {
+  background-color: transparent;
+  border: none;
+}
+.green-ball,
+.red-ball {
+  height: 32px;
+}
+
 @media screen and (max-width: 768px) {
   html,
   body {
@@ -990,6 +1022,10 @@ th {
 
   nav a {
     font-size: 1.5rem;
+  }
+
+  .pokemon-mypokemon {
+    flex-basis: 100%;
   }
 
   .pokeball-404 {
