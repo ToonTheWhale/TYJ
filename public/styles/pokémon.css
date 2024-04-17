@@ -17,7 +17,7 @@ body {
   grid-template-areas:
     "header header header"
     "main main main"
-    "main main main"
+    "main main main" 
     "footer1 footer1 footer1"
     "footer2 footer2 footer2";
   grid-template-rows: auto 1fr auto auto auto;
@@ -30,10 +30,12 @@ nav {
   align-items: center;
   grid-area: header;
   /* background-color: #ffde00; */
+  width: 98%;
   padding: 8px;
-  margin: 0;
+  margin: auto;
   border-radius: 3px;
   margin-bottom: 1rem;
+  align-content: center;
 }
 
 .nav-landing {
@@ -49,8 +51,15 @@ nav {
   justify-content: flex-start;
 }
 
+
+
 nav img {
   width: 100px;
+
+}
+nav a {
+  width: 100px;
+
 }
 nav a {
   /* font-family: pokemon; */
@@ -90,9 +99,9 @@ nav ul {
   right: 0;
   width: 24%;
   height: 100%;
-  background-color: #3b4cca;
+  background-color: white;
   z-index: 1000;
-  border-left: 3px solid #ffde00;
+  border-left: 3px solid #3b4cca;
 }
 .menu {
   display: flex;
@@ -102,10 +111,9 @@ nav ul {
 .menu li {
   margin: auto;
   margin-top: 10px;
-  border-bottom: 1.5px solid #000000;
 }
 .menu li a {
-  color: #ffffff;
+  color: #3b4cca;
 }
 .menu li a:hover {
   color: #ffde00;
@@ -135,12 +143,11 @@ nav ul {
 }
 
 .current-pokemon {
-  background-color: #c1cad3;
+  background-color: white;
   border: 3px solid #ffde00;
   border-radius: 50%;
   width: 75px;
   height: 75px;
-  margin: auto;
 }
 
 /* Main content area */
@@ -160,7 +167,7 @@ main {
   flex-flow: row wrap;
   width: 90%;
   margin: auto;
-}
+} footer
 
 .flex-container-sengle-item {
   display: flex;
@@ -223,7 +230,7 @@ main {
   align-content: center;
   text-align: center;
   justify-content: center;
-  background-color: #c1cad3;
+  background-color: white;
   font-size: 17.5px;
 }
 .fa-arrow-down {
@@ -239,7 +246,7 @@ main {
   align-items: center;
   margin-top: 25px;
   border-radius: 10px;
-  background-color: #c1cad3;
+  background-color: white;
   border: 3px solid #3b4cca;
   justify-content: space-between;
 }
@@ -314,7 +321,6 @@ main {
   margin-bottom: 30px;
   position: relative;
   overflow: hidden;
-  box-shadow: rgb(38, 57, 77) 0px 20px 30px -10px;
   border: 3px solid #3b4cca;
 }
 .home-page-option img {
@@ -438,7 +444,7 @@ main {
   flex-basis: 27%;
   align-items: center;
   border-radius: 10px;
-  background-color: #c1cad3;
+  background-color: white;
   border: 3px solid #3b4cca;
   justify-content: space-between;
   margin: auto;
@@ -450,8 +456,6 @@ main {
 }
 .compare-item img {
   background-color: #f0f0f0;
-  border: 1.5px solid #343434;
-  border-radius: 5px;
 }
 .compare button,
 #button,
@@ -466,6 +470,15 @@ aside button {
   border-radius: 5px;
   transition: all 0.3s ease;
   margin: 7.5px;
+}
+
+.compare button i{
+  font-size: 7.5rem;
+  color: #bcc6cf;
+}
+
+.compare button i:hover{
+  color: #3b4cca;
 }
 
 .nav-landing a {
@@ -640,7 +653,6 @@ footer {
   font-family: Arial, Helvetica, sans-serif;
   font-size: 1rem;
   height: 120px;
-  background-color: #ffde00;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -659,8 +671,7 @@ footer {
 }
 .footer-2,
 .footer-2-landing {
-  border-top: 2px solid gray;
-  font-size: 0.75rem;
+  font-size: 1rem;
   height: 1.25rem;
   grid-area: footer2;
   justify-content: center;
@@ -850,7 +861,7 @@ th {
   align-items: center;
   margin-top: 25px;
   border-radius: 10px;
-  background-color: #c1cad3;
+  background-color: white;
   border: 3px solid #3b4cca;
   justify-content: space-between;
   min-height: 325.33px;
@@ -997,6 +1008,7 @@ th {
     display: flex;
     flex-direction: column;
     justify-content: center;
+    border: 2px solid #3b4cca;
   }
   .fa-arrow-right {
     display: none;
