@@ -7,7 +7,24 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.set("view engine", "ejs");
 app.set("port", 3000);
+import { MongoClient } from "mongodb";
+import { ObjectId } from "mongodb";
+const url =
+  "mongodb+srv://gilles5ecmt:B4YSEjAIAX3w8rAm@cluster0.q9yuckb.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0";
+  const client = new MongoClient(url);
+async function testMongoDB() {
+  try {
+    await client.connect(); 
+    console.log("connected to MongoDB");
+  } catch (error) {
+    console.error("Error connecting to Mongo DB", error);
+  } finally {
+    await client.close();
+    console.log("Disconnected from MongoDB");
+  }
+}
 
+testMongoDB();
 interface NonDetailedPokemon {
   name: string;
   url: string;
@@ -67,7 +84,7 @@ app.get("/pokedex", async (req, res) => {
 });
 
 app.get("/noaccess", async (req, res) => {
-  res.render("noAccess", { pokemons })
+  res.render("noAccess", { pokemons });
 });
 
 app.get("/login", async (req, res) => {
@@ -101,13 +118,13 @@ app.get("/mypokemons", async (req, res) => {
     pokemons[7],
     pokemons[8],
   ];*/
-  res.render("myPokemons", { playerPokemons,pokemons });
+  res.render("myPokemons", { playerPokemons, pokemons });
 });
 
 app.get("/pokemon/info/:pokeId", async (req, res) => {
   const pokemonId = parseInt(req.params.pokeId);
   const pokemonFind = pokemons.find(({ id }) => pokemonId === id);
-  res.render("pokemoninfo", { pokemonFind, pokemons, message:false });
+  res.render("pokemoninfo", { pokemonFind, pokemons, message: false });
 });
 
 app.get("/catchPokemon", async (req, res) => {
@@ -118,9 +135,9 @@ app.post("/catch", async (req, res) => {
   const targetPokemon = pokemons.find(
     (x) => x.id == req.body.pokemon
   ) as DetailedPokemon;
-  console.log(targetPokemon);  
-  // # wordt later gewijzigd 
-  const currentPokemon = {attack: 10} as DetailedPokemon;
+  console.log(targetPokemon);
+  // # wordt later gewijzigd
+  const currentPokemon = { attack: 10 } as DetailedPokemon;
   let caught = false;
   for (let i = 0; i < 3; i++) {
     caught = catchPokemon(targetPokemon, currentPokemon);
@@ -128,20 +145,25 @@ app.post("/catch", async (req, res) => {
     if (caught && !playerPokemons.includes(targetPokemon)) {
       playerPokemons.push(targetPokemon);
       break;
-    }else if (caught){
+    } else if (caught) {
       break;
     }
   }
   if (caught) {
     res.render("myPokemons", { playerPokemons, pokemons });
   } else {
-    res.render("pokemoninfo", { pokemonFind: targetPokemon, playerPokemons, message:true,pokemons });
+    res.render("pokemoninfo", {
+      pokemonFind: targetPokemon,
+      playerPokemons,
+      message: true,
+      pokemons,
+    });
   }
 });
 
 app.get("/guessPokemon", async (req, res) => {
-  let randomNumber = randomIntFromInterval(1,153)
-  res.render("guessPokemon", { pokemons,randomNumber });
+  let randomNumber = randomIntFromInterval(1, 153);
+  res.render("guessPokemon", { pokemons, randomNumber });
 });
 
 app.listen(app.get("port"), async () => {
@@ -174,5 +196,5 @@ app.listen(app.get("port"), async () => {
 
 app.use((req, res) => {
   res.status(404);
-  res.render("404",{ pokemons });
+  res.render("404", { pokemons });
 });
