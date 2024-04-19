@@ -63,8 +63,18 @@ app.get("/home", async (req, res) => {
 });
 
 app.get("/pokedex", async (req, res) => {
-  res.render("pokedex", { pokemons });
+  const sortField = req.query.sortField || "name";
+  const sortDirection = req.query.sortDirection || "asc";
+
+  let sortedPokemons = [...pokemons]; 
+
+  sortedPokemons.sort((a, b) => {
+    return sortDirection === "asc" ? a.name.localeCompare(b.name) : b.name.localeCompare(a.name);
+  });
+
+  res.render("pokedex", { pokemons: sortedPokemons, sortField, sortDirection }); 
 });
+
 
 app.get("/noaccess", async (req, res) => {
   res.render("noAccess", { pokemons })

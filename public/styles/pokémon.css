@@ -21,6 +21,11 @@ body {
     "footer1 footer1 footer1"
     "footer2 footer2 footer2";
   grid-template-rows: auto 1fr auto auto auto;
+    background-image: url('/images/forest2.jpg');
+    background-size: cover; /* Breedte en hoogte in pixels */
+    background-position: center; /* Hiermee wordt de achtergrondafbeelding in het midden van het element geplaatst */
+  
+
 }
 
 /* Navigation styling */
@@ -79,7 +84,7 @@ nav ul {
 }
 .menu-hamburger {
   border: none;
-  background-color: #fff;
+  background-color: rgba(255, 255, 255, 0.01); 
   color: #3b4cca;
   margin-left: auto;
 }
@@ -159,7 +164,35 @@ main {
   align-content: center;
 }
 
+.pokedex-main{
+  display: flex;
+  flex-direction: column;
+}
+
+/*styling voor sorting*/
+
+.sort-pokemon form select{
+  border: none;
+  font-size: 1.5rem;
+  background-color: rgba(255, 255, 255, 0.01); 
+
+}
+
+.sort-pokemon form button{
+  border: 2px solid #3b4cca;
+  background-color: #3b4cca;
+  color: white;
+  border-radius: 5px;
+  font-size: 1.5rem;
+}
+
 /* Flex container voor Pokemons */
+
+.sort-pokemon{
+  display: flex;
+  margin-left: auto;
+  margin-right: 8rem;
+}
 
 .flex-container {
   display: flex;
@@ -246,7 +279,7 @@ main {
   align-items: center;
   margin-top: 25px;
   border-radius: 10px;
-  background-color: white;
+  background-color: rgba(255, 255, 255, 0.6); /* Meer transparante witte achtergrondkleur */
   border: 3px solid #3b4cca;
   justify-content: space-between;
 }
@@ -444,7 +477,7 @@ main {
   flex-basis: 27%;
   align-items: center;
   border-radius: 10px;
-  background-color: white;
+  background-color: rgba(255, 255, 255, 0.6); /* Meer transparante witte achtergrondkleur */
   border: 3px solid #3b4cca;
   justify-content: space-between;
   margin: auto;
@@ -861,10 +894,11 @@ th {
   align-items: center;
   margin-top: 25px;
   border-radius: 10px;
-  background-color: white;
+  background-color: rgba(255, 255, 255, 0.6); /* Meer transparante witte achtergrondkleur */
   border: 3px solid #3b4cca;
   justify-content: space-between;
   min-height: 325.33px;
+  font-size: 1.5rem;
 }
 .button-mypokemon {
   background-color: transparent;
@@ -982,6 +1016,7 @@ th {
   .flex-container-sengle-item {
     scale: 0.7;
   }
+
   .main-404 h1 {
     font-size: xx-small;
   }

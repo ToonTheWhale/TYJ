@@ -1,5 +1,18 @@
 <%- include('partials/header'); %>
-<main>
+<main class="pokedex-main">
+  <section class="sort-pokemon">
+  <form action="/pokedex" method="get"> <!-- Verander de action naar /pokedex -->
+    <select class="sort-select" name="sortField">
+        <option class="sort-option" value="name" <%= sortField === 'name' ? 'selected' : '' %>>Name</option>
+        <!-- Voeg extra opties toe voor andere sorteerwaarden indien nodig -->
+    </select>
+    <select class="sort-select" name="sortDirection">
+        <option class="sort-option" value="asc" <%= sortDirection === 'asc' ? 'selected' : '' %>>Ascending</option>
+        <option class="sort-option" value="desc" <%= sortDirection === 'desc' ? 'selected' : '' %>>Descending</option>
+    </select>
+    <button type="submit">Sort</button>
+</form>
+</section>
   <section class="flex-container">
     <% for(let pokemon of pokemons) { %>
     <article class="pokemon">
