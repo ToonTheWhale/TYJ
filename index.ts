@@ -32,11 +32,11 @@ let usersCollection = client.db("WPL").collection("Users");
 const userSchema = {
   _id: ObjectId,
   username: { type: "string", required: true, unique: true },
-  email: {type: "string", required: true, unique: true},
-  password: { type: "string", required: true }
+  email: { type: "string", required: true, unique: true },
+  password: { type: "string", required: true },
 };
 
-// test user
+/* test user
 const testUser = async () => {
   try {
     const newUser = {
@@ -49,9 +49,10 @@ const testUser = async () => {
     await usersCollection.insertOne(newUser);
     console.log("User document inserted successfully");
   } catch (e) {
-    console.error("Error bij het toevoegen van de gebruiker", error);
+    console.error("Error bij het toevoegen van de gebruiker", error);s
   }
 };
+/*/
 interface NonDetailedPokemon {
   name: string;
   url: string;
@@ -142,6 +143,19 @@ app.get("/login", async (req, res) => {
 app.get("/signup", async (req, res) => {
   res.render("signup", { pokemons });
 });
+app.post("/signup", async (req, res) => {
+  try {
+    const { username, email, password } = req.body;
+    await usersCollection.insertOne({
+      username,
+      email,
+      password,
+    });
+    res.redirect("/starterPokemon");
+  } catch (error) {
+    console.error("Error registering user: ", error);
+  }
+});
 
 app.get("/starterPokemon", async (req, res) => {
   res.render("starterPokemon", { pokemons });
@@ -204,20 +218,6 @@ app.get("/guessPokemon", async (req, res) => {
   res.render("guessPokemon", { pokemons, randomNumber });
 });
 
-app.post("/signup", async (req, res) => {
-  try{
-    const {username, email, password} = req.body;
-    await usersCollection.insertOne({
-      username,
-      email,
-      password
-    });
-    res.redirect("/starterPokemon")
-  }
-  catch (error){
-    console.error("Error registering user: ", error);
-  }
-})
 app.listen(app.get("port"), async () => {
   insertPokemonData();
   //testUser();
