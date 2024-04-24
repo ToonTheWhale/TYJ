@@ -3,7 +3,11 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"
+    />
+    <!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous"> -->
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
@@ -14,13 +18,13 @@
   <body>
     <nav>
       <img
-      onclick="openPopupCurrentPokemon()"
-      src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/101.png"
-      id="current-pokemon"
-      style=""
-      class="current-pokemon"
-    />
-
+        onclick="openPopupCurrentPokemon()"
+        src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/101.png"
+        id="current-pokemon"
+        class="current-pokemon"
+        style="margin-right: auto;"
+      />
+      <a href="/"><img src="/images/Logo.png" style="scale: 1.5;" /></a>
       <button onclick="openMenu()" class="menu-hamburger">
         <i class="fa fa-bars" style="font-size: 40px"></i>
       </button>
@@ -31,7 +35,6 @@
               <i class="fa fa-times" aria-hidden="true"></i>
             </button>
             <a href="/"><img src="/images/Logo.png" alt="" /></a>
-
           </li>
           <li><a href="/home">Home</a></li>
           <li><a href="/pokedex">PokéDex</a></li>
@@ -41,12 +44,7 @@
           <li><a href="/vergelijken">Pokemon vergelijken</a></li>
           <li><a href="/guessPokemon">Who’s that pokemon</a></li>
         </ul>
-
       </section>
-
-      
-           
-          
     </nav>
   </body>
   <script>

@@ -18,7 +18,7 @@
       </aside>
     </article>
     <article class="compare-item-centr">
-      <button onclick="compareStart()" style="background: none; border: none;" >
+      <button onclick="compareStart()" style="background: none; border: none">
         <i class="bi bi-arrow-left-right"></i>
       </button>
       <!-- <img
@@ -31,16 +31,61 @@
         <img src="<%= pokemons[1].image %>" width="200" height="200" />
         <figcaption>
           <h2><%= pokemons[1].name %></h2>
-          <p id="pokemon_2">ID: <%= pokemons[1].id %></p>
-          <p>Defense: <%= pokemons[1].defense %></p>
-          <p>Attack: <%= pokemons[1].attack %></p>
-          <p>Types: <%= pokemons[1].types.join(', ') %></p>
-          <p>Max HP: <%= pokemons[1].maxHP %></p>
+          <div style="display: flex; justify-content: center; margin: auto">
+            <p style="width: 75%">Defense:</p>
+            <div
+              class="meter orange"
+              style="width: 100%; margin: auto; margin-right: 10px"
+            >
+              <span id="Poke-1-defense" ><%= pokemons[1].defense %></span>
+              <script> 
+                document.getElementById("Poke-1-defense").style.width = "<%= pokemons[1].defense %>%";
+              </script>
+            </div>
+          </div>
+          <div style="display: flex; justify-content: center; margin: auto">
+            <p style="width: 75%">Attack:</p>
+            <div
+              class="meter"
+              style="width: 100%; margin: auto; margin-right: 10px"
+            >
+              <span id="Poke-1-attack" style="width: 100%"> <%= pokemons[1].attack %></span>
+              <script> 
+                document.getElementById("Poke-1-attack").style.width = "<%= pokemons[1].attack %>%";
+              </script>
+            </div>
+          </div>
+          <div style="display: flex; justify-content: center; margin: auto">
+            <p style="width: 75%">Max HP:</p>
+            <div
+              class="meter red"
+              style="width: 100%; margin: auto; margin-right: 10px"
+            >
+              <span id="Poke-1-maxHP" style="width: 100%"> <%= pokemons[1].maxHP %></span>
+              <script> 
+                document.getElementById("Poke-1-maxHP").style.width = "<%= pokemons[1].maxHP %>%" ;
+              </script>
+            </div>
+          </div>
+          <div style="display: flex; justify-content: center; margin: auto">
+            <p style="width: 75%">Types:</p>
+            <div
+              style="width: 100%; margin: auto; margin-right: 10px;"
+            >
+            <% for (let element of pokemons[1].types) { %>
+              <img style="background-color: rgba(255, 255, 255, 0.0);" src="/images/types/<%= element %>.gif" />
+            <% } %>
+            </div>
+          </div>
         </figcaption>
       </figure>
     </article>
   </section>
-  <dialog class="popup" style="text-align: center;" id="popup-compare-result"></dialog>
+  <dialog
+    class="popup"
+    style="text-align: center"
+    id="popup-compare-result"
+  ></dialog>
 
   <!-- popup code  -->
 
@@ -70,6 +115,7 @@
     <button onclick="closePopup()" id="button">Close</button>
   </dialog>
 
+  <div id="overlay" class="overlay"></div>
 
   <!-- eind popup code  -->
 
@@ -170,8 +216,7 @@
           articles[i].style.display = "none";
         }
       }
-    }
-c
+    };
     // Functie om twee Pokemons te vergelijken
     function compareStart() {
       // const pokemon_1_ID = document.getElementById("pokemon_1");
@@ -179,12 +224,11 @@ c
       // fetchAndProcessSinglePokemonData(pokemon_1_ID).then((pokemon) => {
       //   switchToSelectedPokemon(pokemon);
       // });
-      compareResult()
+      compareResult();
     }
     function compareResult() {
       const defaultElement = document.getElementById("popup-compare-result");
-      defaultElement.innerHTML = 
-      `
+      defaultElement.innerHTML = `
       <button class="close_button" onclick="location.reload()" type="submit">
         <i class="fa fa-times" aria-hidden="true"></i> </button>
       <h2>Pokémon Vergelijking: Charmeleon vs Ivysaur</h2>

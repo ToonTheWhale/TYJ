@@ -180,6 +180,7 @@ app.listen(app.get("port"), async () => {
     };
   });
   console.log("[server] http://localhost:" + app.get("port"));
+  console.log(pokemons[1])
 });
 
 app.use((req, res) => {
