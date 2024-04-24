@@ -10,6 +10,7 @@ app.set("port", 3000);
 
 interface NonDetailedPokemon {
   name: string;
+  id: number;
   url: string;
 }
 
@@ -69,8 +70,14 @@ app.get("/pokedex", async (req, res) => {
   let sortedPokemons = [...pokemons]; 
 
   sortedPokemons.sort((a, b) => {
-    return sortDirection === "asc" ? a.name.localeCompare(b.name) : b.name.localeCompare(a.name);
-  });
+        if (sortField == "name") {
+      return sortDirection === "asc" ? a.name.localeCompare(b.name) : b.name.localeCompare(a.name);
+    }else if (sortField == "id") {
+      return sortDirection === "asc" ? a.id - b.id : b.id - a.id;
+    }else {
+      return 0;
+  }  });
+  
 
   res.render("pokedex", { pokemons: sortedPokemons, sortField, sortDirection }); 
 });

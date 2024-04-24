@@ -113,27 +113,34 @@ nav ul {
   flex-direction: column;
   height: 100%;
 }
-.menu li {
+.menu-buttons {
   margin: auto;
   margin-top: 10px;
+  border: 2px solid #3b4cca;
+  border-radius: 5px;
+  background-color: #3b4cca;
+}
+
+.menu-buttons:hover {
+  border: 2px solid #3b4cca;
+  border-radius: 5px;
+  background-color: #e60005;
 }
 .menu li a {
-  color: #3b4cca;
+  color: #f0f0f0;
+  
 }
 .menu li a:hover {
-  color: #ffde00;
+  color: #f0f0f0;
 }
 
 .menu li:last-child {
-  display: flex;
-  flex-direction: row;
   font-size: 25px;
   color: #ffde00;
   border: none;
   /* position: absolute;
   bottom: 10px;
   right: 25px; */
-  height: 100%;
   /* margin-top: 100px; */
 }
 .overlay-Menu button {
@@ -349,29 +356,19 @@ main {
   margin: auto;
 }
 .home-page-option {
-  flex-basis: 27%;
-  border-radius: 10px;
-  margin-bottom: 30px;
-  position: relative;
-  overflow: hidden;
-  border: 3px solid #3b4cca;
+  width: 200px;
+  height: 200px;
 }
 .home-page-option img {
   width: 100%;
   height: 100%;
+  width: 100px;
 }
 .home-page-option figure {
   margin: 0;
 }
 
-.home-page-option button:hover {
-  font-size: 20px;
-  color: #ffde00;
-  border: 3px solid #ffde00;
-}
-.home-page-option:hover {
-  border: 3px solid #ffde00;
-}
+
 
 /* Styling voor starterPokemon */
 
@@ -1026,6 +1023,8 @@ th {
   .home-page-option {
     flex-basis: 100%;
   }
+
+  
 
   .flex-container-pokemon-info {
     width: 75%;
