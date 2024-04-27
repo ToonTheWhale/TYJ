@@ -13,7 +13,11 @@
     <button type="submit">Sort</button>
 </form>
 </section>
-  <section class="flex-container">
+  <section class="flex-container" style="  
+  width: 90%;
+  height: 600px;
+  overflow-x: hidden;
+  overflow-y: auto;">
     <% for(let pokemon of pokemons) { %>
     <article class="pokemon">
       <p><%= pokemon.name %></p>

@@ -1,39 +1,30 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>TYJ</title>
-  </head>
-  <body style="background-image:none;">
-    <%- include('partials/headerLanding'); %>
-    <main class="main-landing">
-      <section>
-        <a href="/login" class="pokemon-landing"
-          ><article><h3>Pokémon</h3></article></a
-        >
-        <a href="/" onclick="alertNoAccess() " class="fifa"
-          ><article><h3>FIFA</h3></article></a
-        >
-        <a href="/" onclick="alertNoAccess() " class="fortnite"
-          ><article><h3>Fortnite</h3></article></a
-        >
-        <a href="/" onclick="alertNoAccess() " class="lotr"
-          ><article><h3>LOTR</h3></article></a
-        >
-        <a href="/" onclick="alertNoAccess() " class="lm"
-          ><article><h3>Lego Masters</h3></article></a
-        >
-        <a href="/" onclick="alertNoAccess() " class="mtg"
-          ><article><h3>MTG</h3></article></a
-        >
-      </section>
-    </main>
-    <%- include('partials/footerLanding'); %>
-  </body>
+<%- include('partials/headerLanding'); %>
+<body style="background-image:none;">
+  <main class="main-landing">
+    <section>
+      <a href="/login" class="pokemon-landing"
+        ><article><h3>Pokémon</h3></article></a
+      >
+      <a href="/" onclick="alertNoAccess() " class="fifa"
+        ><article><h3>FIFA</h3></article></a
+      >
+      <a href="/" onclick="alertNoAccess() " class="fortnite"
+        ><article><h3>Fortnite</h3></article></a
+      >
+      <a href="/" onclick="alertNoAccess() " class="lotr"
+        ><article><h3>LOTR</h3></article></a
+      >
+      <a href="/" onclick="alertNoAccess() " class="lm"
+        ><article><h3>Lego Masters</h3></article></a
+      >
+      <a href="/" onclick="alertNoAccess() " class="mtg"
+        ><article><h3>MTG</h3></article></a
+      >
+    </section>
+  </main>
   <script>
     function alertNoAccess() {
       alert(`U hebt geen toegang tot deze Project`);
     }
   </script>
-</html>
+  <%- include('partials/footerLanding'); %>

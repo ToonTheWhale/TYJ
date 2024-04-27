@@ -125,8 +125,8 @@ nav ul {
 }
 
 .menu li:last-child {
-  display: flex;
-  flex-direction: row;
+  /* display: flex; */
+  /* flex-direction: row; */ 
   font-size: 25px;
   color: #ffde00;
   border: none;
