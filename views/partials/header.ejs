@@ -7,13 +7,14 @@
       rel="stylesheet"
       href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"
     />
-    <!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous"> -->
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
     />
     <link rel="icon" type="image/x-icon" href="/images/Favicon-pikachu.png">
     <link rel="stylesheet" href="/styles/pokémon.css" />
+    <script src="/javascript/footer.js" defer></script>
+    <script src="/javascript/header.js" defer></script>
     <title>TYJ-Pokémons</title>
   </head>
   <body>
@@ -40,23 +41,12 @@
           <li><a href="/home">Home</a></li>
           <li><a href="/pokedex">PokéDex</a></li>
           <li><a href="/myPokemons">Mijn Pokemons</a></li>
-          <li><a href="/vechten">Pokemon Battler</a></li>
+          <li><a href="/pokeBattler">Pokemon Battler</a></li>
           <li><a href="/catchPokemon">Pokemon vangen</a></li>
-          <li><a href="/vergelijken">Pokemon vergelijken</a></li>
+          <li><a href="/compareSelect">Pokemon vergelijken</a></li>
           <li><a href="/guessPokemon">Who’s that pokemon</a></li>
         </ul>
       </section>
     </nav>
   </body>
-  <script>
-    // script dient voor de sidepdown nav
-    function openMenu() {
-      document.getElementById("overlay-Menu").style.display = "block";
-      document.getElementById("overlay").style.display = "block";
-    }
-    function closeMenu() {
-      document.getElementById("overlay-Menu").style.display = "none";
-      document.getElementById("overlay").style.display = "none";
-    }
-  </script>
 </html>

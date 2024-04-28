@@ -1,0 +1,80 @@
+<%- include('partials/header'); %>
+<main>
+  <section class="compare">
+    <article class="compare-item" id="compare-item-1">
+      <figure>
+        <img src="/images/Question-mark.png" width="200" height="200" />
+        <figcaption>
+          <h2 style="color: transparent;">?????</h2>
+          <p>ID: ?</p>
+          <p>Defense: ?</p>
+          <p>Attack: ?</p>
+          <p>Types: ?</p>
+          <p>Max HP: ?</p>
+        </figcaption>
+      </figure>
+      <aside class="layer">
+        <button onclick="openPopupVS(1);" type="submit">kiezen</button>
+      </aside>
+    </article>
+    <article class="compare-item-VS">
+      <button onclick="battleStart()" style="background: none; border: none">
+        <i class="bi bi-arrow-left-right"></i>
+      </button>
+    </article>
+    <article class="compare-item" id="compare-item-2">
+      <figure>
+        <img src="/images/Question-mark.png" width="200" height="200" />
+        <figcaption>
+          <h2 style="color: transparent;">?????</h2>
+          <p>ID: ?</p>
+          <p>Defense: ?</p>
+          <p>Attack: ?</p>
+          <p>Types: ?</p>
+          <p>Max HP: ?</p>
+        </figcaption>
+      </figure>
+      <aside class="layer">
+        <button onclick="openPopupVS(2);" type="submit">kiezen</button>
+      </aside>
+    </article>
+  </section>
+  <dialog
+    class="popup"
+    style="text-align: center"
+    id="popup-battle-result"
+  ></dialog>
+
+  <!-- popup code  -->
+
+  <dialog id="popup" class="popup">
+    <h2>Selecteer een Pokémon</h2>
+    <input
+      type="text"
+      id="myInput"
+      onkeyup="filterPokemonByName()"
+      placeholder="Pokemon zoeken ..."
+    />
+    <section class="image-container">
+      <% for(let pokemon of pokemons) { %>
+      <article>
+        <figure>
+          <img
+            src="<%= pokemon.image %>"
+            onclick="selectPokemon('<%= pokemon.name %>')"
+          />
+          <figcaption>
+            <p><%= pokemon.name %></p>
+          </figcaption>
+        </figure>
+      </article>
+      <% } %>
+    </section>
+    <button onclick="closePopup()" id="button">Close</button>
+  </dialog>
+  <div id="overlay" class="overlay"></div>
+
+  <!-- eind popup code  -->
+</main>
+<script src="/javascript/pokeBattler.js" defer></script>
+<%- include('partials/footer'); %>

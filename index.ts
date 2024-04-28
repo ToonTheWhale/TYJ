@@ -66,18 +66,19 @@ app.get("/pokedex", async (req, res) => {
   const sortField = req.query.sortField || "name";
   const sortDirection = req.query.sortDirection || "asc";
 
-  let sortedPokemons = [...pokemons]; 
+  let sortedPokemons = [...pokemons];
 
   sortedPokemons.sort((a, b) => {
-    return sortDirection === "asc" ? a.name.localeCompare(b.name) : b.name.localeCompare(a.name);
+    return sortDirection === "asc"
+      ? a.name.localeCompare(b.name)
+      : b.name.localeCompare(a.name);
   });
 
-  res.render("pokedex", { pokemons: sortedPokemons, sortField, sortDirection }); 
+  res.render("pokedex", { pokemons: sortedPokemons, sortField, sortDirection });
 });
 
-
 app.get("/noaccess", async (req, res) => {
-  res.render("noAccess", { pokemons })
+  res.render("noAccess", { pokemons });
 });
 
 app.get("/login", async (req, res) => {
@@ -92,12 +93,12 @@ app.get("/starterPokemon", async (req, res) => {
   res.render("starterPokemon", { pokemons });
 });
 
-app.get("/vergelijken", async (req, res) => {
-  res.render("vergelijken", { pokemons });
+app.get("/compareSelect", async (req, res) => {
+  res.render("compareSelect", { pokemons });
 });
 
-app.get("/vechten", async (req, res) => {
-  res.render("vechten", { pokemons });
+app.get("/pokeBattler", async (req, res) => {
+  res.render("pokeBattler", { pokemons });
 });
 
 app.get("/mypokemons", async (req, res) => {
@@ -111,13 +112,13 @@ app.get("/mypokemons", async (req, res) => {
     pokemons[7],
     pokemons[8],
   ];*/
-  res.render("myPokemons", { playerPokemons,pokemons });
+  res.render("myPokemons", { playerPokemons, pokemons });
 });
 
 app.get("/pokemon/info/:pokeId", async (req, res) => {
   const pokemonId = parseInt(req.params.pokeId);
   const pokemonFind = pokemons.find(({ id }) => pokemonId === id);
-  res.render("pokemoninfo", { pokemonFind, pokemons, message:false });
+  res.render("pokemoninfo", { pokemonFind, pokemons, message: false });
 });
 
 app.get("/catchPokemon", async (req, res) => {
@@ -128,9 +129,9 @@ app.post("/catch", async (req, res) => {
   const targetPokemon = pokemons.find(
     (x) => x.id == req.body.pokemon
   ) as DetailedPokemon;
-  console.log(targetPokemon);  
-  // # wordt later gewijzigd 
-  const currentPokemon = {attack: 10} as DetailedPokemon;
+  console.log(targetPokemon);
+  // # wordt later gewijzigd
+  const currentPokemon = { attack: 10 } as DetailedPokemon;
   let caught = false;
   for (let i = 0; i < 3; i++) {
     caught = catchPokemon(targetPokemon, currentPokemon);
@@ -138,20 +139,25 @@ app.post("/catch", async (req, res) => {
     if (caught && !playerPokemons.includes(targetPokemon)) {
       playerPokemons.push(targetPokemon);
       break;
-    }else if (caught){
+    } else if (caught) {
       break;
     }
   }
   if (caught) {
     res.render("myPokemons", { playerPokemons, pokemons });
   } else {
-    res.render("pokemoninfo", { pokemonFind: targetPokemon, playerPokemons, message:true,pokemons });
+    res.render("pokemoninfo", {
+      pokemonFind: targetPokemon,
+      playerPokemons,
+      message: true,
+      pokemons,
+    });
   }
 });
 
 app.get("/guessPokemon", async (req, res) => {
-  let randomNumber = randomIntFromInterval(1,153)
-  res.render("guessPokemon", { pokemons,randomNumber });
+  let randomNumber = randomIntFromInterval(1, 153);
+  res.render("guessPokemon", { pokemons, randomNumber });
 });
 
 app.listen(app.get("port"), async () => {
@@ -180,10 +186,10 @@ app.listen(app.get("port"), async () => {
     };
   });
   console.log("[server] http://localhost:" + app.get("port"));
-  console.log(pokemons[1])
+  console.log(pokemons[1]);
 });
 
 app.use((req, res) => {
   res.status(404);
-  res.render("404",{ pokemons });
+  res.render("404", { pokemons });
 });

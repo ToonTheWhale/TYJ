@@ -1,5 +1,13 @@
 <%- include('partials/headerLanding'); %>
-<body style="background-image:none;">
+<style>
+  /* scrollbar color */
+  ::-webkit-scrollbar-thumb,
+  ::-webkit-scrollbar-thumb:hover {
+    background: #f42323;
+    border-radius: 10px;
+  }
+</style>
+<body style="background-image: none">
   <main class="main-landing">
     <section>
       <a href="/login" class="pokemon-landing"
@@ -28,3 +36,4 @@
     }
   </script>
   <%- include('partials/footerLanding'); %>
+</body>

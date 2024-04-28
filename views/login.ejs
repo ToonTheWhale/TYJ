@@ -1,34 +1,35 @@
 <%- include('partials/header'); %>
 <body>
   <main>
-<section class="main_login">
-    <h2>Login</h2>
-    <br />
-    <form action="/starterPokemon" method="GET" class="login">
-      <label for="username:"> Gebruikersnaam </label>
-      <input
-      class="input"
-        type="text"
-        id="username"
-        name="username"
-        value="user_1"
-        required
-      /> <br>
-      <label for="password"> Wachtwoord </label>
-      <input
-      class="input"
-        type="password"
-        id="password"
-        name="password"
-        value="1"
-        required
-      /> 
-      <br>
-      <input class="submit" type="submit" value="Login"/> 
-    </form>
-    <br />
-    <div>Heeft u geen account?<a href="/signup">Sign Up </a></div>
-</section>
-</main>
+    <section class="main_login">
+      <h2>Login</h2>
+      <br />
+      <form action="/starterPokemon" method="GET" class="login">
+        <label for="username:"> Gebruikersnaam </label>
+        <input
+          class="input"
+          type="text"
+          id="username"
+          name="username"
+          value="user_1"
+          required
+        />
+        <br />
+        <label for="password"> Wachtwoord </label>
+        <input
+          class="input"
+          type="password"
+          id="password"
+          name="password"
+          value="1"
+          required
+        />
+        <br />
+        <input class="submit" type="submit" value="Login" />
+      </form>
+      <br />
+      <div>Heeft u geen account?<a href="/signup">Sign Up </a></div>
+    </section>
+  </main>
 </body>
 <%- include('partials/footer'); %>
