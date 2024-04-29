@@ -27,6 +27,8 @@ interface DetailedPokemon {
 
 let pokemons: DetailedPokemon[] = [];
 let playerPokemons: DetailedPokemon[] = [];
+let currentPokemon: DetailedPokemon ;
+
 
 function randomIntFromInterval(min: number, max: number) {
   //functie voor een random getal met 2 parameters
@@ -55,11 +57,32 @@ app.get("/getDataAPI", (req, res) => {
 });
 
 app.get("/", async (req, res) => {
-  res.render("landingPage", { pokemons });
+  res.render("landingPage");
 });
 
 app.get("/home", async (req, res) => {
-  res.render("home", { pokemons });
+  res.render("home", { pokemons, currentPokemon, playerPokemons });
+  console.log(currentPokemon)
+});
+
+app.post("/setCurrentPokemon", (req, res) => {
+  const setCurrentPokemonID = Number(req.body.setCurrentPokemonID);
+  const selectedPokemon = pokemons.find(
+    (pokemon) => pokemon.id === setCurrentPokemonID
+  );
+  if (selectedPokemon) {
+    currentPokemon = selectedPokemon;
+  }
+
+  // Haal de verwijzende URL op uit de verzoekheaders
+  const referer = req.headers.referer;
+
+  // Redirect terug naar de verwijzende URL
+  if (referer) {
+    res.redirect(referer);
+  } else {
+    res.status(400).send("Referer header missing");
+  }
 });
 
 app.get("/pokedex", async (req, res) => {
@@ -74,7 +97,7 @@ app.get("/pokedex", async (req, res) => {
       : b.name.localeCompare(a.name);
   });
 
-  res.render("pokedex", { pokemons: sortedPokemons, sortField, sortDirection });
+  res.render("pokedex", { pokemons: sortedPokemons, sortField, sortDirection, currentPokemon, playerPokemons });
 });
 
 app.get("/noaccess", async (req, res) => {
@@ -90,39 +113,29 @@ app.get("/signup", async (req, res) => {
 });
 
 app.get("/starterPokemon", async (req, res) => {
-  res.render("starterPokemon", { pokemons });
+  res.render("starterPokemon", { pokemons, currentPokemon, playerPokemons });
 });
 
 app.get("/compareSelect", async (req, res) => {
-  res.render("compareSelect", { pokemons });
+  res.render("compareSelect", { pokemons, currentPokemon, playerPokemons });
 });
 
 app.get("/pokeBattler", async (req, res) => {
-  res.render("pokeBattler", { pokemons });
+  res.render("pokeBattler", { pokemons, currentPokemon, playerPokemons });
 });
 
 app.get("/mypokemons", async (req, res) => {
-  /*playerPokemons = [
-    pokemons[1],
-    pokemons[2],
-    pokemons[3],
-    pokemons[4],
-    pokemons[5],
-    pokemons[6],
-    pokemons[7],
-    pokemons[8],
-  ];*/
-  res.render("myPokemons", { playerPokemons, pokemons });
+  res.render("myPokemons", { playerPokemons, pokemons, currentPokemon });
 });
 
 app.get("/pokemon/info/:pokeId", async (req, res) => {
   const pokemonId = parseInt(req.params.pokeId);
   const pokemonFind = pokemons.find(({ id }) => pokemonId === id);
-  res.render("pokemoninfo", { pokemonFind, pokemons, message: false });
+  res.render("pokemoninfo", { pokemonFind, pokemons, message: false, currentPokemon, playerPokemons });
 });
 
 app.get("/catchPokemon", async (req, res) => {
-  res.render("catchPokemon", { pokemons });
+  res.render("catchPokemon", { pokemons, currentPokemon, playerPokemons });
 });
 
 app.post("/catch", async (req, res) => {
@@ -131,7 +144,7 @@ app.post("/catch", async (req, res) => {
   ) as DetailedPokemon;
   console.log(targetPokemon);
   // # wordt later gewijzigd
-  const currentPokemon = { attack: 10 } as DetailedPokemon;
+  currentPokemon = pokemons[101];
   let caught = false;
   for (let i = 0; i < 3; i++) {
     caught = catchPokemon(targetPokemon, currentPokemon);
@@ -157,7 +170,7 @@ app.post("/catch", async (req, res) => {
 
 app.get("/guessPokemon", async (req, res) => {
   let randomNumber = randomIntFromInterval(1, 153);
-  res.render("guessPokemon", { pokemons, randomNumber });
+  res.render("guessPokemon", { pokemons, randomNumber, currentPokemon, playerPokemons });
 });
 
 app.listen(app.get("port"), async () => {
@@ -185,8 +198,18 @@ app.listen(app.get("port"), async () => {
       attack: singlePokemon.stats[1].base_stat,
     };
   });
+  playerPokemons = [
+    pokemons[0],
+    pokemons[1],
+    pokemons[2],
+    pokemons[3],
+    pokemons[4],
+    pokemons[5],
+    pokemons[6],
+    pokemons[7],
+    pokemons[8],
+  ];
   console.log("[server] http://localhost:" + app.get("port"));
-  console.log(pokemons[1]);
 });
 
 app.use((req, res) => {

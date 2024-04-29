@@ -1,11 +1,11 @@
 <%- include('partials/header'); %>
-<main>
+<main style="display: flex; flex-direction: column">
   <section class="compare">
     <article class="compare-item" id="compare-item-1">
       <figure>
         <img src="/images/Question-mark.png" width="200" height="200" />
         <figcaption>
-          <h2 style="color: transparent;">?????</h2>
+          <h2 style="color: transparent">?????</h2>
           <p>ID: ?</p>
           <p>Defense: ?</p>
           <p>Attack: ?</p>
@@ -14,19 +14,21 @@
         </figcaption>
       </figure>
       <aside class="layer">
-        <button onclick="openPopupVS(1);" type="submit">kiezen</button>
+        <button onclick="openPopupVS(1,1); " type="submit">kiezen</button>
       </aside>
     </article>
-    <article class="compare-item-VS">
-      <button onclick="battleStart()" style="background: none; border: none">
+    <article class="compare-item-centr">
+      <form action="" method="post"></form>
+      <button onclick="compareStart()" style="background: none; border: none">
         <i class="bi bi-arrow-left-right"></i>
       </button>
     </article>
+    <% if (currentPokemon === undefined) { %>
     <article class="compare-item" id="compare-item-2">
       <figure>
         <img src="/images/Question-mark.png" width="200" height="200" />
         <figcaption>
-          <h2 style="color: transparent;">?????</h2>
+          <h2 style="color: transparent">?????</h2>
           <p>ID: ?</p>
           <p>Defense: ?</p>
           <p>Attack: ?</p>
@@ -35,14 +37,85 @@
         </figcaption>
       </figure>
       <aside class="layer">
-        <button onclick="openPopupVS(2);" type="submit">kiezen</button>
+        <button onclick="openPopupVS(2,2);" type="submit">kiezen</button>
       </aside>
     </article>
+    <% } else { %>
+    <article class="compare-item">
+      <figure>
+        <img src="<%= currentPokemon.image %>" width="200" height="200" />
+        <figcaption>
+          <h2><%= currentPokemon.name %></h2>
+          <div style="display: flex; justify-content: center; margin: auto">
+            <p style="width: 75%">Defense:</p>
+            <div
+              class="meter orange"
+              style="width: 100%; margin: auto; margin-right: 10px"
+            >
+              <span id="Poke-1-defense"><%= currentPokemon.defense %></span>
+              <script>
+                document.getElementById("Poke-1-defense").style.width =
+                  "<%= currentPokemon.defense %>%";
+              </script>
+            </div>
+          </div>
+          <div style="display: flex; justify-content: center; margin: auto">
+            <p style="width: 75%">Attack:</p>
+            <div
+              class="meter"
+              style="width: 100%; margin: auto; margin-right: 10px"
+            >
+              <span id="Poke-1-attack" style="width: 100%">
+                <%= currentPokemon.attack %></span
+              >
+              <script>
+                document.getElementById("Poke-1-attack").style.width =
+                  "<%= currentPokemon.attack %>%";
+              </script>
+            </div>
+          </div>
+          <div style="display: flex; justify-content: center; margin: auto">
+            <p style="width: 75%">Max HP:</p>
+            <div
+              class="meter red"
+              style="width: 100%; margin: auto; margin-right: 10px"
+            >
+              <span id="Poke-1-maxHP" style="width: 100%">
+                <%= currentPokemon.maxHP %></span
+              >
+              <script>
+                document.getElementById("Poke-1-maxHP").style.width =
+                  "<%= currentPokemon.maxHP %>%";
+              </script>
+            </div>
+          </div>
+          <div style="display: flex; justify-content: center; margin: auto">
+            <p style="width: 75%">Types:</p>
+            <div
+              style="
+                width: 100%;
+                margin: auto;
+                margin-right: 10px;
+                display: flex;
+                justify-content: space-around;
+              "
+            >
+              <% for (let element of currentPokemon.types) { %>
+              <div class="type-icon type-<%= element %>" href="">
+                <%= element %>
+              </div>
+              <% } %>
+            </div>
+          </div>
+        </figcaption>
+      </figure>
+    </article>
+    <% } %>
   </section>
   <dialog
     class="popup"
     style="text-align: center"
-    id="popup-battle-result"
+    id="popup-compare-result"
   ></dialog>
 
   <!-- popup code  -->
@@ -70,8 +143,35 @@
       </article>
       <% } %>
     </section>
-    <button onclick="closePopup()" id="button">Close</button>
+    <button onclick="closePopup(1)" id="button">Close</button>
   </dialog>
+
+  <dialog id="popupMyPokemons" class="popup">
+    <h2>Selecteer een Pokémon</h2>
+    <input
+      type="text"
+      id="myInput"
+      onkeyup="filterPokemonByName()"
+      placeholder="Pokemon zoeken ..."
+    />
+    <section class="image-container">
+      <% for(let pokemon of playerPokemons) { %>
+      <article>
+        <figure>
+          <img
+            src="<%= pokemon.image %>"
+            onclick="selectPokemon('<%= pokemon.name %>')"
+          />
+          <figcaption>
+            <p><%= pokemon.name %></p>
+          </figcaption>
+        </figure>
+      </article>
+      <% } %>
+    </section>
+    <button onclick="closePopup(2)" id="button">Close</button>
+  </dialog>
+
   <div id="overlay" class="overlay"></div>
 
   <!-- eind popup code  -->

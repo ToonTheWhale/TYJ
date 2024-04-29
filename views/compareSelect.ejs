@@ -1,5 +1,5 @@
 <%- include('partials/header'); %>
-<main style="display: flex; flex-direction: column">
+<main>
   <section class="compare">
     <article class="compare-item" id="compare-item-1">
       <figure>
@@ -14,78 +14,35 @@
         </figcaption>
       </figure>
       <aside class="layer">
-        <button onclick="openPopup()" type="submit">kiezen</button>
+        <button onclick="openPopupVS(1);" type="submit">kiezen</button>
       </aside>
     </article>
-    <article class="compare-item-centr">
-      <button onclick="compareStart()" style="background: none; border: none">
+    <article class="compare-item-VS">
+      <button onclick="battleStart()" style="background: none; border: none">
         <i class="bi bi-arrow-left-right"></i>
       </button>
     </article>
-    <article class="compare-item">
+    <article class="compare-item" id="compare-item-2">
       <figure>
-        <img src="<%= pokemons[1].image %>" width="200" height="200" />
+        <img src="/images/Question-mark.png" width="200" height="200" />
         <figcaption>
-          <h2><%= pokemons[1].name %></h2>
-          <div style="display: flex; justify-content: center; margin: auto">
-            <p style="width: 75%">Defense:</p>
-            <div
-              class="meter orange"
-              style="width: 100%; margin: auto; margin-right: 10px"
-            >
-              <span id="Poke-1-defense"><%= pokemons[1].defense %></span>
-              <script>
-                document.getElementById("Poke-1-defense").style.width =
-                  "<%= pokemons[1].defense %>%";
-              </script>
-            </div>
-          </div>
-          <div style="display: flex; justify-content: center; margin: auto">
-            <p style="width: 75%">Attack:</p>
-            <div
-              class="meter"
-              style="width: 100%; margin: auto; margin-right: 10px"
-            >
-              <span id="Poke-1-attack" style="width: 100%">
-                <%= pokemons[1].attack %></span
-              >
-              <script>
-                document.getElementById("Poke-1-attack").style.width =
-                  "<%= pokemons[1].attack %>%";
-              </script>
-            </div>
-          </div>
-          <div style="display: flex; justify-content: center; margin: auto">
-            <p style="width: 75%">Max HP:</p>
-            <div
-              class="meter red"
-              style="width: 100%; margin: auto; margin-right: 10px"
-            >
-              <span id="Poke-1-maxHP" style="width: 100%">
-                <%= pokemons[1].maxHP %></span
-              >
-              <script>
-                document.getElementById("Poke-1-maxHP").style.width =
-                  "<%= pokemons[1].maxHP %>%";
-              </script>
-            </div>
-          </div>
-          <div style="display: flex; justify-content: center; margin: auto">
-            <p style="width: 75%">Types:</p>
-            <div style="width: 100%; margin: auto; margin-right: 10px; display: flex; justify-content: space-around;">
-              <% for (let element of pokemons[1].types) { %>
-              <div class="type-icon type-<%= element %>" href=""><%= element %></div>
-              <% } %>
-            </div>
-          </div>
+          <h2 style="color: transparent;">?????</h2>
+          <p>ID: ?</p>
+          <p>Defense: ?</p>
+          <p>Attack: ?</p>
+          <p>Types: ?</p>
+          <p>Max HP: ?</p>
         </figcaption>
       </figure>
+      <aside class="layer">
+        <button onclick="openPopupVS(2);" type="submit">kiezen</button>
+      </aside>
     </article>
   </section>
   <dialog
     class="popup"
     style="text-align: center"
-    id="popup-compare-result"
+    id="popup-battle-result"
   ></dialog>
 
   <!-- popup code  -->
@@ -115,11 +72,9 @@
     </section>
     <button onclick="closePopup()" id="button">Close</button>
   </dialog>
-
   <div id="overlay" class="overlay"></div>
 
   <!-- eind popup code  -->
-
 </main>
 <script src="/javascript/compareSelect.js" defer></script>
 <%- include('partials/footer'); %>

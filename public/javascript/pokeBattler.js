@@ -18,62 +18,116 @@ async function fetchAndProcessSinglePokemonData(pokemonID) {
 }
 
 // Functie om de pop-up te openen
-function openPopupVS(compare_item_number) {
-  document.getElementById("popup").style.display = "block";
+function openPopupVS(compare_item_number, pokeGroup) {
+  if (pokeGroup === 1) {
+    document.getElementById("popup").style.display = "block";
+  } else {
+    document.getElementById("popupMyPokemons").style.display = "block";
+  }
   document.getElementById("overlay").style.display = "block";
-  const button = document.getElementById("button")
+  const button = document.getElementById("button");
   button.className = `${compare_item_number}`;
-  console.log(compare_item_number)
-  console.log(button.className)
+  console.log(compare_item_number);
+  console.log(button.className);
 }
 
 // Functie om de pop-up te sluiten
-function closePopup() {
-  document.getElementById("popup").style.display = "none";
+function closePopup(pokeGroup) {
+  if (pokeGroup === 1) {
+    document.getElementById("popup").style.display = "none";
+  } else {
+    document.getElementById("popupMyPokemons").style.display = "none";
+  }
   document.getElementById("overlay").style.display = "none";
 }
 
 // Functie om een pokemon te selecteren
 function selectPokemon(pokemonName) {
   alert(`Jij hebt ${pokemonName} geselecteerd`);
-  closePopup();
+  closePopup(1);
+  closePopup(2);
   const button = document.getElementById("button");
   fetchAndProcessSinglePokemonData(pokemonName).then((pokemon) => {
-    switchToSelectedPokemon(pokemon,button.className);
+    switchToSelectedPokemon(pokemon, button.className);
   });
 }
 
 // Functie om een pokemon te selecteren
-function switchToSelectedPokemon(pokemon,compareItemNumber) {
-  const defaultElement = document.getElementById(`compare-item-${compareItemNumber}`);
+function switchToSelectedPokemon(pokemon, compareItemNumber) {
+  const defaultElement = document.getElementById(
+    `compare-item-${compareItemNumber}`
+  );
   const article = document.createElement("article");
   article.className = "compare-item";
   article.innerHTML = `<figure>
-    <img src="${pokemon.image}" width="200" height="200" />
-    <figcaption>
-      <h2> ${pokemon.name} </h2>
-      <p>ID: ${pokemon.id} </p>
-      <p>Defense: ${pokemon.defense} </p>
-      <p>Attack: ${pokemon.attack} </p>
-      <p>Types: ${pokemon.types} </p>
-      <p>Max HP: ${pokemon.maxHP} </p>
-    </figcaption>
-    <aside class="layer-close-button">
-    <button onclick="openPopupVS(${compareItemNumber})" type="submit">X</button>
-    </aside>
-    </figure>`;
+  <img src="${pokemon.image}" width="200" height="200" />
+  <figcaption>
+    <h2> ${pokemon.name} </h2>
+    <div style="display: flex; justify-content: center; margin: auto">
+    <p style="width: 75%">Defense:</p>
+    <div
+      class="meter orange"
+      style="width: 100%; margin: auto; margin-right: 10px">
+      <span id="Poke-1-defense" style="width: ${pokemon.defense}%">${
+    pokemon.defense
+  }</span>
+    </div>
+  </div>
+  <div style="display: flex; justify-content: center; margin: auto">
+    <p style="width: 75%">Attack:</p>
+    <div
+      class="meter"
+      style="width: 100%; margin: auto; margin-right: 10px">
+      <span id="Poke-1-attack" style="width: ${pokemon.attack}%">${
+    pokemon.attack
+  }</span>
+    </div>
+  </div>
+  <div style="display: flex; justify-content: center; margin: auto">
+    <p style="width: 75%">Max HP:</p>
+    <div
+      class="meter red"
+      style="width: 100%; margin: auto; margin-right: 10px">
+      <span id="Poke-1-maxHP" style="width: ${pokemon.maxHP}%">${
+    pokemon.maxHP
+  }</span>
+    </div>
+  </div>
+  <div style="display: flex; justify-content: center; margin: auto">
+    <p style="width: 75%">Types:</p>
+    <div style="width: 100%; margin: auto; margin-right: 10px; display: flex; justify-content: space-around;">
+    ${pokemon.types
+      .map(
+        (type) => `<div class="type-icon type-${type}" href="">${type}</div>`
+      )
+      .join("")}
+    </div>
+  </div>
+  </figcaption>
+  <aside class="layer-close-button">
+  <button onclick="openPopupVS(${compareItemNumber},${compareItemNumber})" type="submit">X</button>
+  </aside>
+  </figure>`;
   if (defaultElement) {
     defaultElement.replaceWith(article);
   } else {
     const defaultElement =
-      document.getElementsByClassName("compare-item")[compareItemNumber-1];
+      document.getElementsByClassName("compare-item")[compareItemNumber - 1];
     defaultElement.replaceWith(article);
   }
 }
 
 // Functie om een Pokemon op naam te filteren
 function filterPokemonByName() {
-  var input,filter,imageContainer,articles,figure,figcaption,p,i,txtValue;
+  var input,
+    filter,
+    imageContainer,
+    articles,
+    figure,
+    figcaption,
+    p,
+    i,
+    txtValue;
 
   input = document.getElementById("myInput");
   filter = input.value.toUpperCase();
@@ -92,29 +146,68 @@ function filterPokemonByName() {
     }
   }
 }
-
-// Functie om twee Pokemons te vechten
-function battleStart() {
-  // const pokemon_1_ID = document.getElementById("pokemon_1");
-  // const pokemon_2_ID = document.getElementById("pokemon_2");
-  // fetchAndProcessSinglePokemonData(pokemon_1_ID).then((pokemon) => {
-  //   switchToSelectedPokemon(pokemon);
-  // });
-  battleResult()
+// Functie om twee Pokemons te vergelijken
+function compareStart() {
+  const pokemon_1_ID = document.getElementById("pokemon_1");
+  const pokemon_2_ID = document.getElementById("pokemon_2");
+  fetchAndProcessSinglePokemonData(pokemon_1_ID).then((pokemon) => {
+    switchToSelectedPokemon(pokemon);
+  });
+  compareResult();
 }
-function battleResult() {
-  const defaultElement = document.getElementById("popup-battle-result");
-  defaultElement.innerHTML = 
-  `<h2 style = "  text-align: center;   text-transform: uppercase;
-  ">charmeleon wint</h2>
-  <img src="<%= pokemons[1].image %>" width="200" height="200" /> <br>
-  <button onclick="battleEnd()" id="button">Pokémon Vangen</button> <br>
-  `;
+function compareResult() {
+  const defaultElement = document.getElementById("popup-compare-result");
+  defaultElement.innerHTML = `
+    <button class="close_button" onclick="location.reload()" type="submit">
+      <i class="fa fa-times" aria-hidden="true"></i> </button>
+    <h2>Pokémon Vergelijking: Charmeleon vs Ivysaur</h2>
+    <table>
+        <tr>
+            <th>Statistiek</th>
+            <th>Charmeleon</th>
+            <th>Ivysaur</th>
+            <th>Verschil</th>
+        </tr>
+        <tr>
+            <td>HP</td>
+            <td>58</td>
+            <td>60</td>
+            <td class="negative">-2</td>
+        </tr>
+        <tr>
+            <td>Attack</td>
+            <td>64</td>
+            <td>62</td>
+            <td class="positive">+2</td>
+        </tr>
+        <tr>
+            <td>Defense</td>
+            <td>58</td>
+            <td>63</td>
+            <td class="negative">-5</td>
+        </tr>
+        <tr>
+            <td>Special Attack</td>
+            <td>80</td>
+            <td>80</td>
+            <td>0</td>
+        </tr>
+        <tr>
+            <td>Special Defense</td>
+            <td>65</td>
+            <td>80</td>
+            <td class="negative">-15</td>
+        </tr>
+        <tr>
+            <td>Speed</td>
+            <td>80</td>
+            <td>60</td>
+            <td class="positive">+20</td>
+        </tr>
+    </table>
+    `;
 
- // defaultElement.replaceWith(dialog);
-  document.getElementById("popup-battle-result").style.display = "block";
+  // defaultElement.replaceWith(dialog);
+  document.getElementById("popup-compare-result").style.display = "block";
   document.getElementById("overlay").style.display = "block";
-}
-function battleEnd() {
-  location.reload();
 }

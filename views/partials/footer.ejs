@@ -9,19 +9,25 @@
         placeholder="Pokemon zoeken ..."
       />
       <section class="image-container" id="image-container-CurrentPokemon">
-        <% for(let pokemon of pokemons) { %>
-        <article>
-          <figure>
-            <img
-              src="<%= pokemon.image %>"
-              onclick="selectCurrentPokemon('<%= pokemon.name %>')"
-            />
-            <figcaption>
-              <p><%= pokemon.name %></p>
-            </figcaption>
-          </figure>
-        </article>
-        <% } %>
+        <form style="display: flex; flex-wrap: wrap;" action="/setCurrentPokemon" method="post">
+          <% for(let pokemon of playerPokemons) { %>
+            <article>
+              <figure>
+                <button style="border: none; background-color: white;"
+                value="<%= pokemon.id %>"
+                type="submit"
+                name="setCurrentPokemonID">
+                  <img
+                  src="<%= pokemon.image %>"
+                  />
+                </button>
+                <figcaption>
+                  <p><%= pokemon.name %></p>
+                </figcaption>
+              </figure>
+            </article>
+            <% } %>
+        </form>
       </section>
       <button onclick="closePopupCurrentPokemon()" id="button">Close</button>
     </dialog>
