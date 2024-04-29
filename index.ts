@@ -2,6 +2,17 @@ import { error } from "console";
 import express from "express";
 
 const app = express();
+const session = require("express-session");
+app.use(
+  session({
+    secret: "tyj",
+    resave: false,
+    saveUninitialized: true,
+    cookie: { secure: true },
+  })
+);
+const cookieParser = require("cookie-parser");
+app.use(cookieParser());
 
 app.use(express.static("public"));
 app.use(express.json());
@@ -27,13 +38,14 @@ const connectToDatabase = async () => {
 connectToDatabase();
 
 let pokemonCollection = client.db("WPL").collection("Pokemon");
-let usersCollection = client.db("WPL").collection("Users");
+let usersCollection = client.db("WPL").collection<User>("Users");
 
 const userSchema = {
   _id: ObjectId,
   username: { type: "string", required: true, unique: true },
   email: { type: "string", required: true, unique: true },
   password: { type: "string", required: true },
+  team: { type: "number[]", ref: "PokemonTeam" },
 };
 
 /* test user
@@ -70,6 +82,13 @@ interface DetailedPokemon {
   attack: number;
 }
 
+interface User {
+  _id: ObjectId;
+  username: string;
+  email: string;
+  password: string;
+  team: number[];
+}
 let pokemons: DetailedPokemon[] = [];
 let playerPokemons: DetailedPokemon[] = [];
 
@@ -140,16 +159,30 @@ app.get("/login", async (req, res) => {
   res.render("login", { pokemons });
 });
 
+app.post("/login", async (req, res) => {
+  const { username, password } = req.body;
+  const user = await usersCollection.findOne({ username, password });
+  if (user) {
+    req.session.user = user;
+    res.redirect("/home");
+  } else {
+    res.redirect("/login");
+  }
+});
+
 app.get("/signup", async (req, res) => {
   res.render("signup", { pokemons });
 });
 app.post("/signup", async (req, res) => {
   try {
-    const { username, email, password } = req.body;
+    const userId = new ObjectId();
+    const { username, email, password, startingPokemonId } = req.body;
     await usersCollection.insertOne({
+      _id: userId,
       username,
       email,
       password,
+      team: [],
     });
     res.redirect("/starterPokemon");
   } catch (error) {
@@ -161,6 +194,22 @@ app.get("/starterPokemon", async (req, res) => {
   res.render("starterPokemon", { pokemons });
 });
 
+app.get("/addStarterPokemon/:pokeId", async (req, res) => {
+  // PROBLEEM: USER NOT FOUND altijd, checken hoe met cookies en sessions werken
+  const { username } = req.query;
+  const pokemonId = parseInt(req.params.pokeId);
+  const user = await usersCollection.findOne({ username: username });
+  if (!user) {
+    return res.status(404).send("User not found");
+  }
+  user.team.push(pokemonId);
+  await usersCollection.updateOne(
+    { username: username },
+    { $push: { team: pokemonId } }
+  );
+  res.redirect("/home"); // Redirect the user to the home page after adding the starter Pokemon
+});
+
 app.get("/vergelijken", async (req, res) => {
   res.render("vergelijken", { pokemons });
 });
@@ -170,7 +219,16 @@ app.get("/vechten", async (req, res) => {
 });
 
 app.get("/mypokemons", async (req, res) => {
-  res.render("myPokemons", { playerPokemons, pokemons });
+  const user = req.session.user;
+  const userId = user._id;
+  const userDocument = await usersCollection.findOne({ _id: userId });
+  if (userDocument) {
+    const userPokemons = userDocument?.team;
+
+    res.render("myPokemons", { playerPokemons: userPokemons, pokemons });
+  } else {
+    res.status(404).send("User not found");
+  }
 });
 
 app.get("/pokemon/info/:pokeId", async (req, res) => {
