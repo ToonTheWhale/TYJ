@@ -1,13 +1,70 @@
+import { error } from "console";
 import express from "express";
 
 const app = express();
+const session = require("express-session");
+app.use(
+  session({
+    secret: "tyj",
+    resave: false,
+    saveUninitialized: true,
+    cookie: { secure: true },
+  })
+);
+const cookieParser = require("cookie-parser");
+app.use(cookieParser());
 
 app.use(express.static("public"));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.set("view engine", "ejs");
 app.set("port", 3000);
+import { Collection, MongoClient, MongoDBCollectionNamespace } from "mongodb";
+import { ObjectId } from "mongodb";
+const url =
+  "mongodb+srv://gilles5ecmt:B4YSEjAIAX3w8rAm@cluster0.q9yuckb.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0";
+const client = new MongoClient(url);
 
+//functie verbinding met MongoDB database maken
+const connectToDatabase = async () => {
+  try {
+    await client.connect();
+    console.log("Connected to database");
+  } catch (e) {
+    console.log(`An error has occurred: ${e}`);
+  }
+};
+
+connectToDatabase();
+
+let pokemonCollection = client.db("WPL").collection("Pokemon");
+let usersCollection = client.db("WPL").collection<User>("Users");
+
+const userSchema = {
+  _id: ObjectId,
+  username: { type: "string", required: true, unique: true },
+  email: { type: "string", required: true, unique: true },
+  password: { type: "string", required: true },
+  team: { type: "number[]", ref: "PokemonTeam" },
+};
+
+/* test user
+const testUser = async () => {
+  try {
+    const newUser = {
+      _id: new ObjectId,
+      username: "gebruiker",
+      email: "gebruiker@mail.com",
+      password: "paswoord"
+    };
+
+    await usersCollection.insertOne(newUser);
+    console.log("User document inserted successfully");
+  } catch (e) {
+    console.error("Error bij het toevoegen van de gebruiker", error);s
+  }
+};
+/*/
 interface NonDetailedPokemon {
   name: string;
   url: string;
@@ -25,8 +82,35 @@ interface DetailedPokemon {
   attack: number;
 }
 
+interface User {
+  _id: ObjectId;
+  username: string;
+  email: string;
+  password: string;
+  team: number[];
+}
 let pokemons: DetailedPokemon[] = [];
 let playerPokemons: DetailedPokemon[] = [];
+
+const insertPokemonData = async () => {
+  try {
+    // checken of er al pokemon in de mongoDB collection zitten
+    const existingPokemonCount = await pokemonCollection.countDocuments();
+
+    if (existingPokemonCount === 0) {
+      // als het leeg is, pokemon toevoegen
+      await pokemonCollection.insertMany(pokemons);
+      console.log("Pokemon data inserted into MongoDB");
+    } else {
+      // als er pokemon in zitten, toevoeging skippen
+      console.log(
+        "Pokemon data already exists in MongoDB. Skipping insertion."
+      );
+    }
+  } catch (error) {
+    console.log("Error inserting pokemon into database", error);
+  }
+};
 
 function randomIntFromInterval(min: number, max: number) {
   //functie voor een random getal met 2 parameters
@@ -63,23 +147,67 @@ app.get("/home", async (req, res) => {
 });
 
 app.get("/pokedex", async (req, res) => {
-  res.render("pokedex", { pokemons });
+  const sortedPokemons = pokemons.sort((a, b) => a.id - b.id); // Sort by ID
+  res.render("pokedex", { pokemons: sortedPokemons });
 });
 
 app.get("/noaccess", async (req, res) => {
-  res.render("noAccess", { pokemons })
+  res.render("noAccess", { pokemons });
 });
 
 app.get("/login", async (req, res) => {
   res.render("login", { pokemons });
 });
 
+app.post("/login", async (req, res) => {
+  const { username, password } = req.body;
+  const user = await usersCollection.findOne({ username, password });
+  if (user) {
+    req.session.user = user;
+    res.redirect("/home");
+  } else {
+    res.redirect("/login");
+  }
+});
+
 app.get("/signup", async (req, res) => {
   res.render("signup", { pokemons });
+});
+app.post("/signup", async (req, res) => {
+  try {
+    const userId = new ObjectId();
+    const { username, email, password, startingPokemonId } = req.body;
+    await usersCollection.insertOne({
+      _id: userId,
+      username,
+      email,
+      password,
+      team: [],
+    });
+    res.redirect("/starterPokemon");
+  } catch (error) {
+    console.error("Error registering user: ", error);
+  }
 });
 
 app.get("/starterPokemon", async (req, res) => {
   res.render("starterPokemon", { pokemons });
+});
+
+app.get("/addStarterPokemon/:pokeId", async (req, res) => {
+  // PROBLEEM: USER NOT FOUND altijd, checken hoe met cookies en sessions werken
+  const { username } = req.query;
+  const pokemonId = parseInt(req.params.pokeId);
+  const user = await usersCollection.findOne({ username: username });
+  if (!user) {
+    return res.status(404).send("User not found");
+  }
+  user.team.push(pokemonId);
+  await usersCollection.updateOne(
+    { username: username },
+    { $push: { team: pokemonId } }
+  );
+  res.redirect("/home"); // Redirect the user to the home page after adding the starter Pokemon
 });
 
 app.get("/vergelijken", async (req, res) => {
@@ -91,23 +219,22 @@ app.get("/vechten", async (req, res) => {
 });
 
 app.get("/mypokemons", async (req, res) => {
-  /*playerPokemons = [
-    pokemons[1],
-    pokemons[2],
-    pokemons[3],
-    pokemons[4],
-    pokemons[5],
-    pokemons[6],
-    pokemons[7],
-    pokemons[8],
-  ];*/
-  res.render("myPokemons", { playerPokemons,pokemons });
+  const user = req.session.user;
+  const userId = user._id;
+  const userDocument = await usersCollection.findOne({ _id: userId });
+  if (userDocument) {
+    const userPokemons = userDocument?.team;
+
+    res.render("myPokemons", { playerPokemons: userPokemons, pokemons });
+  } else {
+    res.status(404).send("User not found");
+  }
 });
 
 app.get("/pokemon/info/:pokeId", async (req, res) => {
   const pokemonId = parseInt(req.params.pokeId);
   const pokemonFind = pokemons.find(({ id }) => pokemonId === id);
-  res.render("pokemoninfo", { pokemonFind, pokemons, message:false });
+  res.render("pokemoninfo", { pokemonFind, pokemons, message: false });
 });
 
 app.get("/catchPokemon", async (req, res) => {
@@ -118,9 +245,9 @@ app.post("/catch", async (req, res) => {
   const targetPokemon = pokemons.find(
     (x) => x.id == req.body.pokemon
   ) as DetailedPokemon;
-  console.log(targetPokemon);  
-  // # wordt later gewijzigd 
-  const currentPokemon = {attack: 10} as DetailedPokemon;
+  console.log(targetPokemon);
+  // # wordt later gewijzigd
+  const currentPokemon = { attack: 10 } as DetailedPokemon;
   let caught = false;
   for (let i = 0; i < 3; i++) {
     caught = catchPokemon(targetPokemon, currentPokemon);
@@ -128,51 +255,55 @@ app.post("/catch", async (req, res) => {
     if (caught && !playerPokemons.includes(targetPokemon)) {
       playerPokemons.push(targetPokemon);
       break;
-    }else if (caught){
+    } else if (caught) {
       break;
     }
   }
   if (caught) {
     res.render("myPokemons", { playerPokemons, pokemons });
   } else {
-    res.render("pokemoninfo", { pokemonFind: targetPokemon, playerPokemons, message:true,pokemons });
+    res.render("pokemoninfo", {
+      pokemonFind: targetPokemon,
+      playerPokemons,
+      message: true,
+      pokemons,
+    });
   }
 });
 
 app.get("/guessPokemon", async (req, res) => {
-  let randomNumber = randomIntFromInterval(1,153)
-  res.render("guessPokemon", { pokemons,randomNumber });
+  let randomNumber = randomIntFromInterval(1, 153);
+  res.render("guessPokemon", { pokemons, randomNumber });
 });
 
 app.listen(app.get("port"), async () => {
-  const apiResult = await (
-    await fetch("https://pokeapi.co/api/v2/pokemon?limit=153")
-  ).json();
-  const promisePerPokemon: Promise<Response>[] = (
-    apiResult.results as NonDetailedPokemon[]
-  ).map(({ url }) => fetch(url));
-  const jsons = (await Promise.all(promisePerPokemon)).map((response) =>
-    response.json()
-  );
-  pokemons = (await Promise.all(jsons)).map((singlePokemon) => {
-    return {
-      id: singlePokemon.id,
-      name: singlePokemon.name,
-      types: singlePokemon.types.map(
-        (slotAndType: any) => slotAndType.type.name
-      ),
-      image: singlePokemon.sprites.front_default,
-      height: singlePokemon.height,
-      weight: singlePokemon.weight,
-      maxHP: singlePokemon.stats[0].base_stat,
-      defense: singlePokemon.stats[2].base_stat,
-      attack: singlePokemon.stats[1].base_stat,
-    };
-  });
-  console.log("[server] http://localhost:" + app.get("port"));
+  insertPokemonData();
+  //testUser();
+  try {
+    // pokemon data van MongoDB halen
+    const pokemonData = await pokemonCollection.find({}).toArray();
+
+    // Array vullen met MongoDB data
+    pokemons = pokemonData.map((pokemon) => ({
+      id: pokemon.id,
+      name: pokemon.name,
+      types: pokemon.types,
+      image: pokemon.image,
+      height: pokemon.height,
+      weight: pokemon.weight,
+      maxHP: pokemon.maxHP,
+      defense: pokemon.defense,
+      attack: pokemon.attack,
+    }));
+
+    console.log("[server] http://localhost:" + app.get("port"));
+  } catch (error) {
+    console.error("Error fetching Pokémon data from MongoDB:", error);
+    process.exit(1); // Exit the process if there's an error
+  }
 });
 
 app.use((req, res) => {
   res.status(404);
-  res.render("404",{ pokemons });
+  res.render("404", { pokemons });
 });
