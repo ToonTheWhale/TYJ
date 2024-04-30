@@ -146,68 +146,27 @@ function filterPokemonByName() {
     }
   }
 }
-// Functie om twee Pokemons te vergelijken
-function compareStart() {
-  const pokemon_1_ID = document.getElementById("pokemon_1");
-  const pokemon_2_ID = document.getElementById("pokemon_2");
-  fetchAndProcessSinglePokemonData(pokemon_1_ID).then((pokemon) => {
-    switchToSelectedPokemon(pokemon);
-  });
-  compareResult();
-}
-function compareResult() {
-  const defaultElement = document.getElementById("popup-compare-result");
-  defaultElement.innerHTML = `
-    <button class="close_button" onclick="location.reload()" type="submit">
-      <i class="fa fa-times" aria-hidden="true"></i> </button>
-    <h2>Pokémon Vergelijking: Charmeleon vs Ivysaur</h2>
-    <table>
-        <tr>
-            <th>Statistiek</th>
-            <th>Charmeleon</th>
-            <th>Ivysaur</th>
-            <th>Verschil</th>
-        </tr>
-        <tr>
-            <td>HP</td>
-            <td>58</td>
-            <td>60</td>
-            <td class="negative">-2</td>
-        </tr>
-        <tr>
-            <td>Attack</td>
-            <td>64</td>
-            <td>62</td>
-            <td class="positive">+2</td>
-        </tr>
-        <tr>
-            <td>Defense</td>
-            <td>58</td>
-            <td>63</td>
-            <td class="negative">-5</td>
-        </tr>
-        <tr>
-            <td>Special Attack</td>
-            <td>80</td>
-            <td>80</td>
-            <td>0</td>
-        </tr>
-        <tr>
-            <td>Special Defense</td>
-            <td>65</td>
-            <td>80</td>
-            <td class="negative">-15</td>
-        </tr>
-        <tr>
-            <td>Speed</td>
-            <td>80</td>
-            <td>60</td>
-            <td class="positive">+20</td>
-        </tr>
-    </table>
-    `;
 
+// Functie om twee Pokemons te vechten
+function battleStart() {
+  // const pokemon_1_ID = document.getElementById("pokemon_1");
+  // const pokemon_2_ID = document.getElementById("pokemon_2");
+  // fetchAndProcessSinglePokemonData(pokemon_1_ID).then((pokemon) => {
+  //   switchToSelectedPokemon(pokemon);
+  // });
+  battleResult();
+}
+function battleResult() {
+  const defaultElement = document.getElementById("popup-battle-result");
+  defaultElement.innerHTML = `<h2 style = "  text-align: center;   text-transform: uppercase;
+  ">charmeleon wint</h2>
+  <img src="<%= pokemons[10].image %>" width="200" height="200" /> <br>
+  <button onclick="battleEnd()" id="button">Pokémon Vangen</button> <br>
+  `;
   // defaultElement.replaceWith(dialog);
-  document.getElementById("popup-compare-result").style.display = "block";
+  document.getElementById("popup-battle-result").style.display = "block";
   document.getElementById("overlay").style.display = "block";
+}
+function battleEnd() {
+  location.reload();
 }
