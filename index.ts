@@ -163,7 +163,6 @@ app.post("/login", async (req, res) => {
   const { username, password } = req.body;
   const user = await usersCollection.findOne({ username, password });
   if (user) {
-    req.session.user = user;
     res.redirect("/home");
   } else {
     res.redirect("/login");
@@ -219,16 +218,7 @@ app.get("/vechten", async (req, res) => {
 });
 
 app.get("/mypokemons", async (req, res) => {
-  const user = req.session.user;
-  const userId = user._id;
-  const userDocument = await usersCollection.findOne({ _id: userId });
-  if (userDocument) {
-    const userPokemons = userDocument?.team;
-
-    res.render("myPokemons", { playerPokemons: userPokemons, pokemons });
-  } else {
-    res.status(404).send("User not found");
-  }
+  res.render("myPokemons", { pokemons });
 });
 
 app.get("/pokemon/info/:pokeId", async (req, res) => {
