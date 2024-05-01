@@ -13,8 +13,63 @@ async function fetchAndProcessSinglePokemonData(pokemonID) {
     maxHP: singlePokemon.stats[0].base_stat,
     defense: singlePokemon.stats[2].base_stat,
     attack: singlePokemon.stats[1].base_stat,
+    special_attack: singlePokemon.stats[3].base_stat,
+    special_defense: singlePokemon.stats[4].base_stat,
+    speed: singlePokemon.stats[5].base_stat,
   };
   return pokemonData;
+}
+
+async function fetchAndProcessTwoPokemonData(pokemonID1, pokemonID2) {
+  try {
+    // Fetch data for the first Pokemon
+    const response1 = await fetch(
+      `https://pokeapi.co/api/v2/pokemon/${pokemonID1}/`
+    );
+    if (!response1.ok) {
+      throw new Error(`Failed to fetch data for Pokemon ${pokemonID1}`);
+    }
+    const pokemonData1 = await response1.json();
+    if (!pokemonData1) {
+      throw new Error(`No data received for Pokemon ${pokemonID1}`);
+    }
+
+    // Fetch data for the second Pokemon
+    const response2 = await fetch(
+      `https://pokeapi.co/api/v2/pokemon/${pokemonID2}/`
+    );
+    if (!response2.ok) {
+      throw new Error(`Failed to fetch data for Pokemon ${pokemonID2}`);
+    }
+    const pokemonData2 = await response2.json();
+    if (!pokemonData2) {
+      throw new Error(`No data received for Pokemon ${pokemonID2}`);
+    }
+
+    // Process data for both Pokemon
+    const processPokemonData = (pokemon) => ({
+      id: pokemon.id,
+      name: pokemon.name,
+      types: pokemon.types.map((type) => type.type.name),
+      image: pokemon.sprites.front_default,
+      height: pokemon.height,
+      weight: pokemon.weight,
+      maxHP: pokemon.stats[0].base_stat,
+      defense: pokemon.stats[2].base_stat,
+      attack: pokemon.stats[1].base_stat,
+      special_attack: pokemon.stats[3].base_stat,
+      special_defense: pokemon.stats[4].base_stat,
+      speed: pokemon.stats[5].base_stat,
+    });
+
+    const processedPokemonData1 = processPokemonData(pokemonData1);
+    const processedPokemonData2 = processPokemonData(pokemonData2);
+
+    return [processedPokemonData1, processedPokemonData2];
+  } catch (error) {
+    console.error("Error fetching Pokemon data:", error);
+    return null;
+  }
 }
 
 // Functie om de pop-up te openen
@@ -53,7 +108,7 @@ function switchToSelectedPokemon(pokemon, compareItemNumber) {
   article.innerHTML = `<figure>
   <img src="${pokemon.image}" width="200" height="200" />
   <figcaption>
-    <h2> ${pokemon.name} </h2>
+    <h2 id="pokemon_${compareItemNumber}_name"> ${pokemon.name} </h2>
     <div style="display: flex; justify-content: center; margin: auto">
     <p style="width: 75%">Defense:</p>
     <div
@@ -140,60 +195,110 @@ function filterPokemonByName() {
 
 // Functie om twee Pokemons te vergelijken
 function compareStart() {
-  // const pokemon_1_ID = document.getElementById("pokemon_1");
-  // const pokemon_2_ID = document.getElementById("pokemon_2");
-  // fetchAndProcessSinglePokemonData(pokemon_1_ID).then((pokemon) => {
-  //   switchToSelectedPokemon(pokemon);
-  // });
-  compareResult();
+  const pokemon_1_name = document
+    .getElementById("pokemon_1_name")
+    .innerHTML.trim();
+  const pokemon_2_name = document
+    .getElementById("pokemon_2_name")
+    .innerHTML.trim();
+  if (pokemon_1_name && pokemon_2_name) {
+    console.log(pokemon_1_name);
+    console.log(pokemon_2_name);
+    fetchAndProcessTwoPokemonData(pokemon_1_name, pokemon_2_name)
+      .then(([pokemon1, pokemon2]) => {
+        // console.log("Pokemon 1:", pokemon1);
+        // console.log("Pokemon 2:", pokemon2);
+        compareResult(pokemon1, pokemon2);
+      })
+      .catch((error) => {
+        console.error("Error:", error);
+      });
+  } else {
+    alert(`Jij hebt nog geen Pokémons geselecteerd`);
+  }
 }
-function compareResult() {
+function compareResult(pokemon1, pokemon2) {
   const defaultElement = document.getElementById("popup-compare-result");
   defaultElement.innerHTML = `<button class="close_button" onclick="location.reload()" type="submit">
       <i class="fa fa-times" aria-hidden="true"></i> </button>
-    <h2>Pokémon Vergelijking: Charmeleon vs Ivysaur</h2>
+    <h2>Pokémon Vergelijking: ${pokemon1.name} vs ${pokemon2.name}</h2>
     <table>
         <tr>
             <th>Statistiek</th>
-            <th>Charmeleon</th>
-            <th>Ivysaur</th>
+            <th>${pokemon1.name}</th>
+            <th>${pokemon2.name}</th>
             <th>Verschil</th>
         </tr>
         <tr>
             <td>HP</td>
-            <td>58</td>
-            <td>60</td>
-            <td class="negative">-2</td>
-        </tr>
+            <td>${pokemon1.maxHP}</td>
+            <td>${pokemon2.maxHP}</td>
+            <td class="${
+              pokemon1.maxHP > pokemon2.maxHP
+                ? "positive"
+                : pokemon1.maxHP < pokemon2.maxHP
+                ? "negative"
+                : ""
+            }">${pokemon1.maxHP - pokemon2.maxHP}</td>
         <tr>
             <td>Attack</td>
-            <td>64</td>
-            <td>62</td>
-            <td class="positive">+2</td>
+            <td>${pokemon1.attack}</td>
+            <td>${pokemon2.attack}</td>
+            <td class="${
+              pokemon1.attack > pokemon2.attack
+                ? "positive"
+                : pokemon1.attack < pokemon2.attack
+                ? "negative"
+                : ""
+            }">${pokemon1.attack - pokemon2.attack}</td>
         </tr>
         <tr>
             <td>Defense</td>
-            <td>58</td>
-            <td>63</td>
-            <td class="negative">-5</td>
+            <td>${pokemon1.defense}</td>
+            <td>${pokemon2.defense}</td>
+            <td class="${
+              pokemon1.defense > pokemon2.defense
+                ? "positive"
+                : pokemon1.defense < pokemon2.defense
+                ? "negative"
+                : ""
+            }">${pokemon1.defense - pokemon2.defense}</td>
         </tr>
         <tr>
             <td>Special Attack</td>
-            <td>80</td>
-            <td>80</td>
-            <td>0</td>
+            <td>${pokemon1.special_attack}</td>
+            <td>${pokemon2.special_attack}</td>
+            <td class="${
+              pokemon1.special_attack > pokemon2.special_attack
+                ? "positive"
+                : pokemon1.special_attack < pokemon2.special_attack
+                ? "negative"
+                : ""
+            }">${pokemon1.special_attack - pokemon2.special_attack}</td>
         </tr>
         <tr>
             <td>Special Defense</td>
-            <td>65</td>
-            <td>80</td>
-            <td class="negative">-15</td>
+            <td>${pokemon1.special_defense}</td>
+            <td>${pokemon2.special_defense}</td>
+            <td class="${
+              pokemon1.special_defense > pokemon2.special_defense
+                ? "positive"
+                : pokemon1.special_defense < pokemon2.special_defense
+                ? "negative"
+                : ""
+            }">${pokemon1.special_defense - pokemon2.special_defense}</td>
         </tr>
         <tr>
             <td>Speed</td>
-            <td>80</td>
-            <td>60</td>
-            <td class="positive">+20</td>
+            <td>${pokemon1.speed}</td>
+            <td>${pokemon2.speed}</td>
+            <td class="${
+              pokemon1.speed > pokemon2.speed
+                ? "positive"
+                : pokemon1.speed < pokemon2.speed
+                ? "negative"
+                : ""
+            }">${pokemon1.speed - pokemon2.speed}</td>
         </tr>
     </table>
     `;

@@ -23,12 +23,12 @@ interface DetailedPokemon {
   maxHP: number;
   defense: number;
   attack: number;
+  nickname: string;
 }
 
 let pokemons: DetailedPokemon[] = [];
 let playerPokemons: DetailedPokemon[] = [];
-let currentPokemon: DetailedPokemon ;
-
+let currentPokemon: DetailedPokemon;
 
 function randomIntFromInterval(min: number, max: number) {
   //functie voor een random getal met 2 parameters
@@ -42,12 +42,13 @@ function catchPokemon( //functie om een pokemon te vangen
   const catchPercentage = 100 - targetPokemon.defense + currentPokemon.attack;
   let caught = false;
   const random = randomIntFromInterval(1, 100);
-
+  console.log(random, catchPercentage)
   if (random <= catchPercentage) {
     caught = true;
   }
 
   return caught;
+
 }
 
 // # deze handler is enkel om testen
@@ -62,7 +63,7 @@ app.get("/", async (req, res) => {
 
 app.get("/home", async (req, res) => {
   res.render("home", { pokemons, currentPokemon, playerPokemons });
-  console.log(currentPokemon)
+  // console.log(currentPokemon);
 });
 
 app.post("/setCurrentPokemon", (req, res) => {
@@ -74,15 +75,17 @@ app.post("/setCurrentPokemon", (req, res) => {
     currentPokemon = selectedPokemon;
   }
 
-  // Haal de verwijzende URL op uit de verzoekheaders
-  const referer = req.headers.referer;
+  res.redirect("/myPokemons");
 
-  // Redirect terug naar de verwijzende URL
-  if (referer) {
-    res.redirect(referer);
-  } else {
-    res.status(400).send("Referer header missing");
-  }
+  // // Haal de verwijzende URL op uit de verzoekheaders
+  // const referer = req.headers.referer;
+
+  // // Redirect terug naar de verwijzende URL
+  // if (referer) {
+  //   res.redirect(referer);
+  // } else {
+  //   res.status(400).send("Referer header missing");
+  // }
 });
 
 app.get("/pokedex", async (req, res) => {
@@ -97,7 +100,13 @@ app.get("/pokedex", async (req, res) => {
       : b.name.localeCompare(a.name);
   });
 
-  res.render("pokedex", { pokemons: sortedPokemons, sortField, sortDirection, currentPokemon, playerPokemons });
+  res.render("pokedex", {
+    pokemons: sortedPokemons,
+    sortField,
+    sortDirection,
+    currentPokemon,
+    playerPokemons,
+  });
 });
 
 app.get("/noaccess", async (req, res) => {
@@ -131,46 +140,139 @@ app.get("/mypokemons", async (req, res) => {
 app.get("/pokemon/info/:pokeId", async (req, res) => {
   const pokemonId = parseInt(req.params.pokeId);
   const pokemonFind = pokemons.find(({ id }) => pokemonId === id);
-  res.render("pokemoninfo", { pokemonFind, pokemons, message: false, currentPokemon, playerPokemons });
+  res.render("pokemoninfo", {
+    pokemonFind,
+    pokemons,
+    message: false,
+    currentPokemon,
+    playerPokemons,
+  });
 });
 
 app.get("/catchPokemon", async (req, res) => {
-  res.render("catchPokemon", { pokemons, currentPokemon, playerPokemons });
+  res.render("catchPokemon", {
+    pokemons,
+    currentPokemon,
+    playerPokemons,
+    pokemonToCatch: undefined,
+    message: false,
+    pokemonCaught:false
+  });
 });
 
+app.post("/setPokemonToCatch", async (req, res) => {
+  const setPokemonToCatch = Number(req.body.setPokemonToCatch);
+  const selectedPokemon = pokemons.find(
+    (pokemon) => pokemon.id === setPokemonToCatch
+  );
+  if (selectedPokemon) {
+    res.render("catchPokemon", {
+      pokemons,
+      currentPokemon,
+      playerPokemons,
+      pokemonToCatch: selectedPokemon,
+      message: false,
+      pokemonCaught:false
+    });
+  }
+});
+
+let attemptsLeft = 3;
 app.post("/catch", async (req, res) => {
   const targetPokemon = pokemons.find(
-    (x) => x.id == req.body.pokemon
+    (x) => x.id == req.body.targetPokemon
   ) as DetailedPokemon;
-  console.log(targetPokemon);
-  // # wordt later gewijzigd
-  currentPokemon = pokemons[101];
-  let caught = false;
-  for (let i = 0; i < 3; i++) {
-    caught = catchPokemon(targetPokemon, currentPokemon);
-
-    if (caught && !playerPokemons.includes(targetPokemon)) {
+  // console.log(targetPokemon);
+  if (!currentPokemon) {
+    res.render("catchPokemon", {
+      pokemons,
+      currentPokemon,
+      playerPokemons,
+      pokemonToCatch: targetPokemon,
+      message: "Selecteer je huidige Pokémon om te starten",
+      pokemonCaught:false
+    });
+  } else if (
+    playerPokemons.find((pokemon) => pokemon.id === targetPokemon.id)
+  ) {
+    playerPokemons = playerPokemons.filter(
+      (pokemon) => pokemon.id !== targetPokemon.id
+    );
+    res.render("catchPokemon", {
+      pokemons,
+      currentPokemon,
+      playerPokemons,
+      pokemonToCatch: targetPokemon,
+      message: false,
+      pokemonCaught:false
+    });
+  } else {
+    // const catchChance = 100 - targetPokemon.defense + currentPokemon.attack;
+    // const isCaught = Math.random() * 100 < catchChance;
+    if (catchPokemon(targetPokemon,currentPokemon)) {
+      attemptsLeft = 3;
       playerPokemons.push(targetPokemon);
-      break;
-    } else if (caught) {
-      break;
+      res.render("catchPokemon", {
+        pokemons,
+        currentPokemon,
+        playerPokemons,
+        pokemonToCatch: targetPokemon,
+        message: false,
+        pokemonCaught:true
+      });
+    } else {
+      attemptsLeft--;
+      if (attemptsLeft === 0) {
+        res.render("catchPokemon", {
+          pokemons,
+          currentPokemon,
+          playerPokemons,
+          pokemonToCatch: targetPokemon,
+          message: `Je hebt alle pogingen gebruikt. Probeer het opnieuw.`,
+          pokemonCaught:false
+        });
+      } else {
+        res.render("catchPokemon", {
+          pokemons,
+          currentPokemon,
+          playerPokemons,
+          pokemonToCatch: targetPokemon,
+          message: `Je hebt ${targetPokemon.name} niet kunnen vangen. Je hebt nog ${attemptsLeft} pogingen over.`,
+          pokemonCaught:false
+        });
+      }
     }
   }
-  if (caught) {
-    res.render("myPokemons", { playerPokemons, pokemons });
-  } else {
-    res.render("pokemoninfo", {
-      pokemonFind: targetPokemon,
-      playerPokemons,
-      message: true,
-      pokemons,
-    });
+});
+
+
+app.post("/pokemonNickname", async (req, res) => {
+  const setpokemonNickname = Number(req.body.pokemonNicknameID);
+  const selectedPokemon = pokemons.find(
+    (pokemon) => pokemon.id === setpokemonNickname
+  );
+  const nicknamePokemon: string = req.body.pokemonNickname;
+
+  if (selectedPokemon && nicknamePokemon) {
+    let playerPokemon  =  playerPokemons.find(pokemon => pokemon.name === selectedPokemon.name)
+    if (playerPokemon) {
+      playerPokemon.nickname = nicknamePokemon
+    }
+    res.redirect("/myPokemons")
+  }else {
+    res.redirect("/home")
+    console.log(setpokemonNickname, nicknamePokemon)
   }
 });
 
 app.get("/guessPokemon", async (req, res) => {
   let randomNumber = randomIntFromInterval(1, 153);
-  res.render("guessPokemon", { pokemons, randomNumber, currentPokemon, playerPokemons });
+  res.render("guessPokemon", {
+    pokemons,
+    randomNumber,
+    currentPokemon,
+    playerPokemons,
+  });
 });
 
 app.listen(app.get("port"), async () => {
@@ -196,6 +298,7 @@ app.listen(app.get("port"), async () => {
       maxHP: singlePokemon.stats[0].base_stat,
       defense: singlePokemon.stats[2].base_stat,
       attack: singlePokemon.stats[1].base_stat,
+      nickname: ""
     };
   });
   playerPokemons = [
@@ -214,5 +317,5 @@ app.listen(app.get("port"), async () => {
 
 app.use((req, res) => {
   res.status(404);
-  res.render("404", { pokemons });
+  res.render("404", { pokemons, currentPokemon, playerPokemons });
 });

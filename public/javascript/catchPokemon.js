@@ -23,10 +23,25 @@ function openPopup() {
   document.getElementById("overlay").style.display = "block";
 }
 
+function openPopupMessage() {
+  document.getElementById("popup-message").style.display = "block";
+  document.getElementById("overlay-message").style.display = "block";
+}
+
 // Functie om de pop-up te sluiten
 function closePopup() {
   document.getElementById("popup").style.display = "none";
   document.getElementById("overlay").style.display = "none";
+}
+
+function closePopupMessage() {
+  document.getElementById("popup-message").style.display = "none";
+  document.getElementById("overlay-message").style.display = "none";
+}
+
+function closePopupMessageCurrentPokemon() {
+  document.getElementById("popup-message-CurrentPokemon").style.display = "none";
+  document.getElementById("overlay-message-CurrentPokemon").style.display = "none";
 }
 
 // Functie om een pokemon te selecteren
@@ -61,7 +76,6 @@ function switchToSelectedPokemon(pokemon) {
             <aside class="layer-close-button">
             <button style="margin: 15px;" onclick="openPopup()" type="submit"><i class="fa fa-times" aria-hidden="true"></i></button>
             </aside>
-        </a>
             <button
                 type="submit"
                 class="pokeball"
@@ -110,3 +124,5 @@ function filterPokemonByName() {
     }
   }
 }
+
+
