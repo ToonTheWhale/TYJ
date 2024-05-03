@@ -1,157 +1,232 @@
 <%- include('partials/header'); %>
-<main style="margin-bottom: 100px; justify-content: center;"  >
-  <section class="flex-container-sengle-item" id="flex-container-sengle-item" style="position: relative;">
-    <article >
-        <figure >
-          <h2>????????</h2>
-          <img src="/images/Question-mark.png" style="color: brown;" />
-        </figure>
-          <!-- <aside class="layer" id="#button" style="flex-direction: column;">
-              <button onclick="openPopup()" type="submit">kiezen</button>
-              <p style="color: white; font-size: 35px;">of</p>
-              <button onclick="selectRandomPokemon()" type="submit">Random</button>
-          </aside> -->
-      </a>
+<main style="margin-bottom: 100px; justify-content: center">
+  <section
+    class="flex-container-sengle-item"
+    id="flex-container-sengle-item"
+    style="position: relative"
+  >
+    <% if (!pokemonToCatch) { %>
+    <article>
+      <figure>
+        <h2>????????</h2>
+        <img src="/images/Question-mark-yallow.png" />
+      </figure>
+      <aside class="layer" id="#button" style="flex-direction: column">
+        <button onclick="openPopup()" type="submit">kiezen</button>
+        <p style="color: white; font-size: 35px">of</p>
+        <form action="/setRandomPokemonToCatch" method="post">
+          <button type="submit">Random</button>
+        </form>
+      </aside>
       <button
         type="submit"
         class="pokeball"
         id="pokeball"
-        style="animation: none; position: absolute; bottom: -25%; left: 25%; background:linear-gradient(to bottom, rgb(62, 59, 59) 0 80px, black 81px 96px, white 97px 100%) "
+        style="
+          animation: none;
+          position: absolute;
+          bottom: -25%;
+          left: 25%;
+          background: linear-gradient(
+            to bottom,
+            rgb(62, 59, 59) 0 80px,
+            black 81px 96px,
+            white 97px 100%
+          );
+        "
       ></button>
     </article>
+    <% } else { %>
+    <article>
+      <figure>
+        <h2><%= pokemonToCatch.name %></h2>
+        <img src="<%= pokemonToCatch.image %>" />
+      </figure>
+      <aside class="layer-close-button">
+        <button style="margin: 15px" onclick="openPopup()" type="submit">
+          <i class="fa fa-times" aria-hidden="true"></i>
+        </button>
+      </aside>
+      <% if (playerPokemons.find(pokemon => pokemon.id === pokemonToCatch.id)) {
+      %>
+      <button
+        type="submit"
+        class="pokeball"
+        id="pokeball"
+        onclick="openPopupMessage()"
+        style="
+          animation: none;
+          position: absolute;
+          bottom: -25%;
+          left: 25%;
+          background: radial-gradient(
+              white 16px,
+              black 17px 18px,
+              white 19px 24px,
+              black 25px 32px,
+              transparent 33px
+            ),
+            linear-gradient(
+              to bottom,
+              green 0 80px,
+              black 81px 96px,
+              white 97px 100%
+            );
+        "
+      ></button>
+      <form action="/catch" method="post">
+        <div id="overlay-message" class="overlay">
+          <dialog id="popup-message" style="display: block" class="popup">
+            <h2>
+              Weet je zeker dat je de Pokémon: <%= pokemonToCatch.name %> wilt
+              vrij laten ?
+            </h2>
+            <button
+              value="<%= pokemonToCatch.id %>"
+              name="targetPokemon"
+              style="float: right"
+              onclick="closePopup(`message-noPoke`)"
+              id="button"
+            >
+              Bevestig
+            </button>
+          </dialog>
+        </div>
+      </form>
+      <% } else { %>
+      <form action="/catch" method="post">
+        <button
+          type="submit"
+          value="<%= pokemonToCatch.id %>"
+          name="targetPokemon"
+          class="pokeball"
+          id="pokeball"
+          style="
+            animation: none;
+            position: absolute;
+            bottom: -25%;
+            left: 25%;
+            background: radial-gradient(
+                white 16px,
+                black 17px 18px,
+                white 19px 24px,
+                black 25px 32px,
+                transparent 33px
+              ),
+              linear-gradient(
+                to bottom,
+                red 0 80px,
+                black 81px 96px,
+                white 97px 100%
+              );
+          "
+        ></button>
+      </form>
+      <% } %>
+    </article>
+    <% } %>
   </section>
 
-    <!-- popup code  -->
+  <!-- popup code  -->
 
-    <dialog id="popup" class="popup">
-        <h2>Selecteer een Pokémon</h2>
-        <input
-          type="text"
-          id="myInput"
-          onkeyup="filterPokemonByName()"
-          placeholder="Pokemon zoeken ..."
-        />
-        <section class="image-container">
-          <% for(let pokemon of pokemons) { %>
-          <article>
-            <figure>
-              <img
-                src="<%= pokemon.image %>"
-                onclick="selectPokemon('<%= pokemon.name %>')"
-              />
-              <figcaption>
-                <p><%= pokemon.name %></p>
-              </figcaption>
-            </figure>
-          </article>
-          <% } %>
-        </section>
-        <button onclick="closePopup()" id="button">Close</button>
+  <dialog id="popup" class="popup">
+    <h2>Selecteer een Pokémon</h2>
+    <input
+      type="text"
+      id="myInput"
+      onkeyup="filterPokemonByName()"
+      placeholder="Pokemon zoeken ..."
+    />
+    <section class="image-container">
+      <form
+        style="display: flex; flex-wrap: wrap"
+        action="/setPokemonToCatch"
+        method="post"
+      >
+        <% for(let pokemon of pokemons) { %>
+        <article>
+          <figure>
+            <button
+              style="border: none; background-color: white"
+              value="<%= pokemon.id %>"
+              type="submit"
+              name="setPokemonToCatch"
+            >
+              <img src="<%= pokemon.image %>" />
+            </button>
+            <figcaption>
+              <p><%= pokemon.name %></p>
+            </figcaption>
+          </figure>
+        </article>
+        <% } %>
+      </form>
+    </section>
+    <button onclick="closePopup()" id="button">Close</button>
+  </dialog>
+  <div id="overlay" class="overlay"></div>
+
+  <% if (message) { %>
+  <div
+    id="overlay-message-CurrentPokemon"
+    style="display: block"
+    class="overlay"
+  >
+    <dialog
+      id="popup-message-CurrentPokemon"
+      style="display: block"
+      class="popup"
+    >
+      <h2><%= message %></h2>
+      <button
+        style="float: right"
+        onclick="closePopupMessageCurrentPokemon()"
+        id="button"
+      >
+        Close
+      </button>
     </dialog>
-    <div id="overlay" class="overlay"></div>
+  </div>
+  <% } %> 
+  <% if (pokemonCaught) { %>
+  <div
+    id="overlay-message-CurrentPokemon"
+    style="display: block"
+    class="overlay"
+  >
+    <dialog
+      id="popup-message-CurrentPokemon"
+      style="
+        display: block;
+        text-align: center;
+        justify-content: center;
+        align-items: center;
+      "
+      class="popup"
+    >
+      <form action="/pokemonNickname" method="post">
+        <h1>Je hebt <%= pokemonToCatch.name %> gevangen!</h1>
+        <img
+          style="width: 200px; height: 200px"
+          src="<%= pokemonToCatch.image %>"
+          alt=""
+        />
+        <h2>
+          Geef een bijnaam voor je nieuwe pokémon :
+          <input style="width: 200px" type="text" name="pokemonNickname" />
+        </h2>
+        <button
+          style="float: right"
+          onclick="closePopupMessageCurrentPokemon()"
+          id="button"
+          name="pokemonNicknameID"
+          value="<%= pokemonToCatch.id %>"
+        >
+          Bevestig
+        </button>
+      </form>
+    </dialog>
+  </div>
+  <% } %>
 </main>
-<script>
-
-    async function fetchAndProcessSinglePokemonData(pokemonID) {
-        const response = await fetch(`https://pokeapi.co/api/v2/pokemon/${pokemonID}/#`);
-        const singlePokemon = await response.json();
-        const pokemonData = {
-        id: singlePokemon.id,
-        name: singlePokemon.name,
-        types: singlePokemon.types.map(type => type.type.name),
-        image: singlePokemon.sprites.front_default,
-        height: singlePokemon.height,
-        weight: singlePokemon.weight,
-        maxHP: singlePokemon.stats[0].base_stat,
-        defense: singlePokemon.stats[2].base_stat,
-        attack: singlePokemon.stats[1].base_stat,
-        };
-        return pokemonData;
-    }
-
-    // Functie om de pop-up te openen
-    function openPopup() {
-      document.getElementById("popup").style.display = "block";
-      document.getElementById("overlay").style.display = "block";
-    }
-
-    // Functie om de pop-up te sluiten
-    function closePopup() {
-      document.getElementById("popup").style.display = "none";
-      document.getElementById("overlay").style.display = "none";
-    }
-
-    // Functie om een pokemon te selecteren
-    function selectPokemon(pokemonName) {
-      alert(`Jij hebt ${pokemonName} geselecteerd`);
-      closePopup();
-      fetchAndProcessSinglePokemonData(pokemonName)
-      .then(pokemon => { switchToSelectedPokemon(pokemon); })
-    }
-
-    function RandomNumber() {
-        return Math.floor(Math.random() * 151);
-    }
-
-    function selectRandomPokemon() {
-        selectPokemon(RandomNumber())
-    }
-
-    // Functie om een pokemon te selecteren
-    function switchToSelectedPokemon(pokemon) {
-      const defaultElement = document.getElementById("flex-container-sengle-item");
-      const article = document.createElement("article");
-      article.className = "flex-container-sengle-item"
-      article.innerHTML = 
-        `
-        <section style="position: relative;">
-            <article>
-                <figure>
-                <h2> ${pokemon.name} </h2>
-                <img src="${pokemon.image}" />
-                </figure>
-                <aside class="layer-close-button">
-                <button style="margin: 15px;" onclick="openPopup()" type="submit">X</button>
-                </aside>
-            </a>
-                <button
-                    type="submit"
-                    class="pokeball"
-                    id="pokeball"
-                    style="animation: none; position: absolute; bottom: -25%; left: 25%"
-                ></button>
-            </article>
-        </section>
-        `;
-        if (defaultElement) {
-          defaultElement.replaceWith(article) 
-        } else {
-          const defaultElement = document.getElementsByClassName("flex-container-sengle-item")[0]
-          defaultElement.replaceWith(article)
-        }
-    }
-
-    // Functie om een Pokemon op naam te filteren
-    function filterPokemonByName() {
-      var input,filter,imageContainer,articles,figure,figcaption,p,i,txtValue;
-      
-      input = document.getElementById("myInput");
-      filter = input.value.toUpperCase();
-      imageContainer = document.querySelector(".image-container");
-      articles = imageContainer.getElementsByTagName("article");
-
-      for (i = 0; i < articles.length; i++) {
-        figure = articles[i].getElementsByTagName("figure")[0];
-        p = figure.getElementsByTagName("p")[0];
-        txtValue = p.textContent || p.innerText;
-
-        if (txtValue.toUpperCase().indexOf(filter) > -1) {
-          articles[i].style.display = "";
-        } else {
-          articles[i].style.display = "none";
-        }
-      }
-    }
-
-  </script>
-  <%- include('partials/footer'); %>
+<%- include('partials/footer'); %>

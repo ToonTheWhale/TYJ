@@ -1,10 +1,11 @@
 <%- include('partials/header'); %>
-<main>
+<main style="position: fixed; top: 0; left: 0; width: 100%; height: 100%">
   <button
     type="submit"
     onclick="closePokeball()"
     class="pokeball"
     id="pokeball"
+    style="z-index: 1000;"
   ></button>
   <section class="choose-starter-pokemon" id="choose-starter-pokemon">
     <h1>Kies een Pokemon</h1>
@@ -32,8 +33,8 @@
               height="2666"
             />
             <figcaption>
-                <h2>Squirtle</h2>
-              </figcaption>
+              <h2>Squirtle</h2>
+            </figcaption>
           </figure>
         </a>
       </article>
@@ -46,8 +47,8 @@
               height="2666"
             />
             <figcaption>
-                <h2>Charmander</h2>
-              </figcaption>
+              <h2>Charmander</h2>
+            </figcaption>
           </figure>
         </a>
       </article>
@@ -55,7 +56,6 @@
   </section>
   <div id="overlay" class="overlay" style="display: block"></div>
 </main>
-
 <script>
   function closePokeball() {
     document.getElementById("overlay").style.display = "none";

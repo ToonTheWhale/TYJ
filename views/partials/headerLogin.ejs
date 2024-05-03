@@ -13,29 +13,14 @@
     />
     <link rel="icon" type="image/x-icon" href="/images/Favicon-pikachu.png" />
     <link rel="stylesheet" href="/styles/pokémon.css" />
-    <script src="/javascript/main.js" defer></script>
+    <script src="/javascript/footer.js" defer></script>
+    <script src="/javascript/header.js" defer></script>
     <title>TYJ-Pokémons</title>
   </head>
   <body>
     <nav>
-      <% if (currentPokemon === undefined) { %>
-      <img
-        onclick="openPopupCurrentPokemon()"
-        src="/images/Question-mark.png"
-        id="current-pokemon"
-        class="current-pokemon"
-        style="margin-right: auto"
-      />
-      <% } else { %>
-      <img
-        onclick="openPopupCurrentPokemon()"
-        src="<%= currentPokemon.image %>"
-        id="current-pokemon"
-        class="current-pokemon"
-        style="margin-right: auto"
-      />
-      <% } %>
-      <a href="/"><img src="/images/Logo.png" style="scale: 1.5" /></a>
+      <img src="/images/logo-ap.png" style="margin-right: auto; scale: 2; " />
+      <a href="/"><img src="/images/Logo.png" style="scale: 1.5; margin-top: 15px;" /></a>
       <button onclick="openMenu()" class="menu-hamburger">
         <i class="fa fa-bars" style="font-size: 40px"></i>
       </button>
