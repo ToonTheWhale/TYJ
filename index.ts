@@ -191,7 +191,11 @@ app.post("/login", async (req, res) => {
       req.session.user = user;
       loggedInUser = req.session.user;
       req.session.save(() => {
-        res.redirect("/home");
+        if (loggedInUser.team.length === 0) {
+          return res.redirect("/starterPokemon");
+        } else {
+          res.redirect("/home");
+        }
       });
       const userTeam = user.team;
       playerPokemons = pokemons.filter((pokemon) =>
@@ -228,19 +232,15 @@ app.get("/starterPokemon", async (req, res) => {
 });
 
 app.get("/addStarterPokemon/:pokeId", async (req, res) => {
-  // PROBLEEM: USER NOT FOUND altijd, checken hoe met cookies en sessions werken
-  const { username } = req.query;
-  const pokemonId = parseInt(req.params.pokeId);
-  const user = await usersCollection.findOne({ username: username });
-  if (!user) {
-    return res.status(404).send("User not found");
-  }
-  user.team.push(pokemonId);
+  let pokemonId = parseInt(req.params.pokeId);
+  loggedInUser.team.push(pokemonId);
+  res.redirect("/home");
   await usersCollection.updateOne(
-    { username: username },
+    {
+      _id: loggedInUser._id,
+    },
     { $push: { team: pokemonId } }
   );
-  res.redirect("/home"); // Redirect the user to the home page after adding the starter Pokemon
 });
 
 app.get("/vergelijken", async (req, res) => {
