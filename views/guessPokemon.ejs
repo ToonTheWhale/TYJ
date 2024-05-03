@@ -5,23 +5,109 @@
       <figure>
         <h2>????????</h2>
         <img
-          src="<%= pokemons[randomNumber].image %>"
-          style="filter: brightness(0) saturate(100%)"
+          src="<%= randomPokemon.image %>"
+          style="filter: brightness(0) saturate(100%); height: 325px"
         />
       </figure>
     </article>
   </section>
-  <input
-    class="input"
-    placeholder="Guess Pokémon-naam"
-    style="
-      margin-top: 25px;
-      width: 350px;
-      text-align: center;
-      font-size: 25px;
-      height: 30px;
-      border: 3px solid black;
-    "
-  />
+  <form id="myForm" action="/guessPokemonResult" method="post">
+    <input
+      name="myCountry"
+      class="input"
+      placeholder="Guess Pokémon-naam"
+      id="myInput"
+      type="text"
+      style="
+        margin-top: 25px;
+        width: 350px;
+        text-align: center;
+        font-size: 22px;
+        height: 25px;
+        border: 3px solid black;
+      "
+      autocomplete="off"
+    />
+  </form>
+  <% if (message) { %>
+  <div id="overlay" style="display: block" class="overlay">
+    <dialog id="popup" style="display: block" class="popup">
+      <h2><%= message %></h2>
+      <button style="float: right" onclick="closePopup()" id="button">
+        Close
+      </button>
+    </dialog>
+  </div>
+  <% } %> <% if (guessResult) { %>
+  <div id="overlay" style="display: block" class="overlay">
+    <dialog
+      id="popup"
+      style="
+        display: block;
+        text-align: center;
+        justify-content: center;
+        align-items: center;
+      "
+      class="popup"
+    >
+      <form action="/guessPokemon" method="get">
+        <h1>Incorrect antwoord. Probeer het opnieuw</h1>
+        <img
+          style="width: 200px; height: 200px; filter: grayscale(100%)"
+          src="<%= randomPokemon.image %>"
+          alt=""
+        />
+        <h2>Incorrect antwoord. Probeer het opnieuw.</h2>
+        <button style="float: right" id="button">sluiten</button>
+      </form>
+    </dialog>
+  </div>
+  <% } %> <% if (guessResult == randomPokemon) { %>
+  <div id="overlay" style="display: block" class="overlay">
+    <dialog
+      id="popup"
+      style="
+        display: block;
+        text-align: center;
+        justify-content: center;
+        align-items: center;
+      "
+      class="popup"
+    >
+      <form action="/improvePokemon" method="post">
+        <h1>
+          Correct antwoord! Gefeliciteerd, je hebt <%= randomPokemon.name %>
+          geraden.
+        </h1>
+        <img
+          style="width: 200px; height: 200px"
+          src="<%= randomPokemon.image %>"
+          alt=""
+        />
+        <h2>
+          Ik will de
+          <select
+            style="
+              height: 25px;
+              font-size: large;
+              border: 0;
+              color: #3b4cca;
+              font-weight: bolder;
+            "
+            class="sort-select"
+            name="typeOfImprove"
+          >
+            <option class="sort-option" value="defense">Defence</option>
+            <option class="sort-option" value="attack">Attack</option>
+          </select>
+          van je <%= currentPokemon.name %> is met 1 verhoogd!
+        </h2>
+
+        <button style="float: right" id="button">Bevestig</button>
+      </form>
+    </dialog>
+  </div>
+  <% } %>
 </main>
+<script src="/javascript/guessPokemon.js" defer></script>
 <%- include('partials/footer'); %>

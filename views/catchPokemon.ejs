@@ -14,7 +14,9 @@
       <aside class="layer" id="#button" style="flex-direction: column">
         <button onclick="openPopup()" type="submit">kiezen</button>
         <p style="color: white; font-size: 35px">of</p>
-        <button onclick="selectRandomPokemon()" type="submit">Random</button>
+        <form action="/setRandomPokemonToCatch" method="post">
+          <button type="submit">Random</button>
+        </form>
       </aside>
       <button
         type="submit"
@@ -83,7 +85,7 @@
               value="<%= pokemonToCatch.id %>"
               name="targetPokemon"
               style="float: right"
-              onclick="closePopupMessage()"
+              onclick="closePopup(`message-noPoke`)"
               id="button"
             >
               Bevestig
@@ -185,8 +187,9 @@
       </button>
     </dialog>
   </div>
-  <% } %> <% if (pokemonCaught) { %>
-    <div
+  <% } %> 
+  <% if (pokemonCaught) { %>
+  <div
     id="overlay-message-CurrentPokemon"
     style="display: block"
     class="overlay"
@@ -209,7 +212,7 @@
           alt=""
         />
         <h2>
-          Geef een bijnaam voor je niew pokémon :
+          Geef een bijnaam voor je nieuwe pokémon :
           <input style="width: 200px" type="text" name="pokemonNickname" />
         </h2>
         <button
@@ -226,5 +229,4 @@
   </div>
   <% } %>
 </main>
-<script src="/javascript/catchPokemon.js" defer></script>
 <%- include('partials/footer'); %>
