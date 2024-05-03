@@ -7,8 +7,8 @@
         <figcaption>
           <h2>?????</h2>
           <p>ID: ?</p>
-          <p>Defense: ?</p>
-          <p>Attack: ?</p>
+          <p>Verdediging: ?</p>
+          <p>Aanval: ?</p>
           <p>Types: ?</p>
           <p>Max HP: ?</p>
         </figcaption>
@@ -19,10 +19,7 @@
     </article>
     <article class="compare-item-centr">
       <button onclick="compareStart()" style="background: none; border: none;" >
-        <img
-        src="https://uxwing.com/wp-content/themes/uxwing/download/arrow-direction/compare-icon.png"
-        style="height: 50%; width: 50%"
-      />
+        <i class="bi bi-arrow-left-right"></i>
       </button>
       <!-- <img
       src="https://uxwing.com/wp-content/themes/uxwing/download/arrow-direction/compare-icon.png"
@@ -35,8 +32,8 @@
         <figcaption>
           <h2><%= pokemons[1].name %></h2>
           <p id="pokemon_2">ID: <%= pokemons[1].id %></p>
-          <p>Defense: <%= pokemons[1].defense %></p>
-          <p>Attack: <%= pokemons[1].attack %></p>
+          <p>Verdedeging: <%= pokemons[1].defense %></p>
+          <p>Aanval: <%= pokemons[1].attack %></p>
           <p>Types: <%= pokemons[1].types.join(', ') %></p>
           <p>Max HP: <%= pokemons[1].maxHP %></p>
         </figcaption>
@@ -73,7 +70,6 @@
     <button onclick="closePopup()" id="button">Close</button>
   </dialog>
 
-  <div id="overlay" class="overlay"></div>
 
   <!-- eind popup code  -->
 
@@ -206,31 +202,31 @@ c
               <td class="negative">-2</td>
           </tr>
           <tr>
-              <td>Attack</td>
+              <td>Aanval</td>
               <td>64</td>
               <td>62</td>
               <td class="positive">+2</td>
           </tr>
           <tr>
-              <td>Defense</td>
+              <td>Verdediging</td>
               <td>58</td>
               <td>63</td>
               <td class="negative">-5</td>
           </tr>
           <tr>
-              <td>Special Attack</td>
+              <td>Speciale Aanval</td>
               <td>80</td>
               <td>80</td>
               <td>0</td>
           </tr>
           <tr>
-              <td>Special Defense</td>
+              <td>Speciale Verdedegiging</td>
               <td>65</td>
               <td>80</td>
               <td class="negative">-15</td>
           </tr>
           <tr>
-              <td>Speed</td>
+              <td>Snelheid</td>
               <td>80</td>
               <td>60</td>
               <td class="positive">+20</td>

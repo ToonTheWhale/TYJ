@@ -17,10 +17,15 @@ body {
   grid-template-areas:
     "header header header"
     "main main main"
-    "main main main"
+    "main main main" 
     "footer1 footer1 footer1"
     "footer2 footer2 footer2";
   grid-template-rows: auto 1fr auto auto auto;
+    background-image: url('/images/forest2.jpg');
+    background-size: cover; /* Breedte en hoogte in pixels */
+    background-position: center; /* Hiermee wordt de achtergrondafbeelding in het midden van het element geplaatst */
+  
+
 }
 
 /* Navigation styling */
@@ -30,10 +35,12 @@ nav {
   align-items: center;
   grid-area: header;
   /* background-color: #ffde00; */
+  width: 98%;
   padding: 8px;
-  margin: 0;
+  margin: auto;
   border-radius: 3px;
   margin-bottom: 1rem;
+  align-content: center;
 }
 
 .nav-landing {
@@ -49,8 +56,15 @@ nav {
   justify-content: flex-start;
 }
 
+
+
 nav img {
   width: 100px;
+
+}
+nav a {
+  width: 100px;
+
 }
 nav a {
   /* font-family: pokemon; */
@@ -70,7 +84,7 @@ nav ul {
 }
 .menu-hamburger {
   border: none;
-  background-color: #fff;
+  background-color: rgba(255, 255, 255, 0.01); 
   color: #3b4cca;
   margin-left: auto;
 }
@@ -90,37 +104,43 @@ nav ul {
   right: 0;
   width: 24%;
   height: 100%;
-  background-color: #3b4cca;
+  background-color: white;
   z-index: 1000;
-  border-left: 3px solid #ffde00;
+  border-left: 3px solid #3b4cca;
 }
 .menu {
   display: flex;
   flex-direction: column;
   height: 100%;
 }
-.menu li {
+.menu-buttons {
   margin: auto;
   margin-top: 10px;
-  border-bottom: 1.5px solid #000000;
+  border: 2px solid #3b4cca;
+  border-radius: 5px;
+  background-color: #3b4cca;
+}
+
+.menu-buttons:hover {
+  border: 2px solid #3b4cca;
+  border-radius: 5px;
+  background-color: #e60005;
 }
 .menu li a {
-  color: #ffffff;
+  color: #f0f0f0;
+  
 }
 .menu li a:hover {
-  color: #ffde00;
+  color: #f0f0f0;
 }
 
 .menu li:last-child {
-  display: flex;
-  flex-direction: row;
   font-size: 25px;
   color: #ffde00;
   border: none;
   /* position: absolute;
   bottom: 10px;
   right: 25px; */
-  height: 100%;
   /* margin-top: 100px; */
 }
 .overlay-Menu button {
@@ -135,12 +155,11 @@ nav ul {
 }
 
 .current-pokemon {
-  background-color: #c1cad3;
+  background-color: white;
   border: 3px solid #ffde00;
   border-radius: 50%;
   width: 75px;
   height: 75px;
-  margin: auto;
 }
 
 /* Main content area */
@@ -152,7 +171,35 @@ main {
   align-content: center;
 }
 
+.pokedex-main{
+  display: flex;
+  flex-direction: column;
+}
+
+/*styling voor sorting*/
+
+.sort-pokemon form select{
+  border: none;
+  font-size: 1.5rem;
+  background-color: rgba(255, 255, 255, 0.01); 
+
+}
+
+.sort-pokemon form button{
+  border: 2px solid #3b4cca;
+  background-color: #3b4cca;
+  color: white;
+  border-radius: 5px;
+  font-size: 1.5rem;
+}
+
 /* Flex container voor Pokemons */
+
+.sort-pokemon{
+  display: flex;
+  margin-left: auto;
+  margin-right: 8rem;
+}
 
 .flex-container {
   display: flex;
@@ -160,7 +207,7 @@ main {
   flex-flow: row wrap;
   width: 90%;
   margin: auto;
-}
+} footer
 
 .flex-container-sengle-item {
   display: flex;
@@ -223,7 +270,7 @@ main {
   align-content: center;
   text-align: center;
   justify-content: center;
-  background-color: #c1cad3;
+  background-color: white;
   font-size: 17.5px;
 }
 .fa-arrow-down {
@@ -239,7 +286,7 @@ main {
   align-items: center;
   margin-top: 25px;
   border-radius: 10px;
-  background-color: #c1cad3;
+  background-color: rgba(255, 255, 255, 0.6); /* Meer transparante witte achtergrondkleur */
   border: 3px solid #3b4cca;
   justify-content: space-between;
 }
@@ -282,7 +329,7 @@ main {
   width: 100%;
   height: 100%;
   background-color: rgba(0, 0, 0, 1);
-  z-index: 1000; /* laag bovenop de inhoud */
+  z-index: 1000; 
   text-align: center;
   justify-content: center;
   align-items: center;
@@ -307,32 +354,41 @@ main {
   justify-content: space-between;
   width: 90%;
   margin: auto;
+  justify-content: space-between;
 }
 .home-page-option {
-  flex-basis: 27%;
-  border-radius: 10px;
-  margin-bottom: 30px;
-  position: relative;
-  overflow: hidden;
-  box-shadow: rgb(38, 57, 77) 0px 20px 30px -10px;
-  border: 3px solid #3b4cca;
+  width: 400px;
+  height: 400px;
+  display: flex;
+  text-align: center;
+  align-items: center;
 }
+
+.home-page-option:hover img {
+  width: 160px;
+  height: 160px;
+}
+
 .home-page-option img {
-  width: 100%;
-  height: 100%;
+  width: 150px;
+  height: 150px;
 }
+
+.home-page-option a {
+  text-decoration: none;
+  color: #f0f0f0;
+}
+
+.home-page-option a p{
+  font-size: large;
+  font-size: x-large;
+}
+
 .home-page-option figure {
   margin: 0;
 }
 
-.home-page-option button:hover {
-  font-size: 20px;
-  color: #ffde00;
-  border: 3px solid #ffde00;
-}
-.home-page-option:hover {
-  border: 3px solid #ffde00;
-}
+
 
 /* Styling voor starterPokemon */
 
@@ -438,7 +494,7 @@ main {
   flex-basis: 27%;
   align-items: center;
   border-radius: 10px;
-  background-color: #c1cad3;
+  background-color: rgba(255, 255, 255, 0.6); /* Meer transparante witte achtergrondkleur */
   border: 3px solid #3b4cca;
   justify-content: space-between;
   margin: auto;
@@ -450,8 +506,6 @@ main {
 }
 .compare-item img {
   background-color: #f0f0f0;
-  border: 1.5px solid #343434;
-  border-radius: 5px;
 }
 .compare button,
 #button,
@@ -466,6 +520,15 @@ aside button {
   border-radius: 5px;
   transition: all 0.3s ease;
   margin: 7.5px;
+}
+
+.compare button i{
+  font-size: 7.5rem;
+  color: #bcc6cf;
+}
+
+.compare button i:hover{
+  color: #3b4cca;
 }
 
 .nav-landing a {
@@ -640,7 +703,6 @@ footer {
   font-family: Arial, Helvetica, sans-serif;
   font-size: 1rem;
   height: 120px;
-  background-color: #ffde00;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -659,8 +721,7 @@ footer {
 }
 .footer-2,
 .footer-2-landing {
-  border-top: 2px solid gray;
-  font-size: 0.75rem;
+  font-size: 1rem;
   height: 1.25rem;
   grid-area: footer2;
   justify-content: center;
@@ -850,7 +911,7 @@ th {
   align-items: center;
   margin-top: 25px;
   border-radius: 10px;
-  background-color: #c1cad3;
+  background-color: rgba(255, 255, 255, 0.6); /* Meer transparante witte achtergrondkleur */
   border: 3px solid #3b4cca;
   justify-content: space-between;
   min-height: 325.33px;
@@ -971,6 +1032,7 @@ th {
   .flex-container-sengle-item {
     scale: 0.7;
   }
+
   .main-404 h1 {
     font-size: xx-small;
   }
@@ -981,6 +1043,8 @@ th {
   .home-page-option {
     flex-basis: 100%;
   }
+
+  
 
   .flex-container-pokemon-info {
     width: 75%;
@@ -997,6 +1061,7 @@ th {
     display: flex;
     flex-direction: column;
     justify-content: center;
+    border: 2px solid #3b4cca;
   }
   .fa-arrow-right {
     display: none;
