@@ -1,8 +1,10 @@
 import { error } from "console";
 import express from "express";
+import session from "express-session";
+import { exit } from "process";
+import { SessionData } from "express-session";
 
 const app = express();
-const session = require("express-session");
 app.use(
   session({
     secret: "tyj",
@@ -21,9 +23,9 @@ app.set("view engine", "ejs");
 app.set("port", 3000);
 import { Collection, MongoClient, MongoDBCollectionNamespace } from "mongodb";
 import { ObjectId } from "mongodb";
-const url =
+const uri =
   "mongodb+srv://gilles5ecmt:B4YSEjAIAX3w8rAm@cluster0.q9yuckb.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0";
-const client = new MongoClient(url);
+const client = new MongoClient(uri);
 
 //functie verbinding met MongoDB database maken
 const connectToDatabase = async () => {
@@ -48,23 +50,33 @@ const userSchema = {
   team: { type: "number[]", ref: "PokemonTeam" },
 };
 
-/* test user
-const testUser = async () => {
-  try {
-    const newUser = {
-      _id: new ObjectId,
-      username: "gebruiker",
-      email: "gebruiker@mail.com",
-      password: "paswoord"
-    };
+var MongoDBStore = require("connect-mongodb-session")(session);
+const store = new MongoDBStore({
+  uri: `mongodb+srv://gilles5ecmt:B4YSEjAIAX3w8rAm@cluster0.q9yuckb.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0`,
+  collection: "sessions",
+});
 
-    await usersCollection.insertOne(newUser);
-    console.log("User document inserted successfully");
-  } catch (e) {
-    console.error("Error bij het toevoegen van de gebruiker", error);s
-  }
-};
-/*/
+interface UserSessionData extends SessionData {
+  userId?: ObjectId; // Declare the userId property as optional
+}
+
+/* test user
+  const testUser = async () => {
+    try {
+      const newUser = {
+        _id: new ObjectId,
+        username: "gebruiker",
+        email: "gebruiker@mail.com",
+        password: "paswoord"
+      };
+
+      await usersCollection.insertOne(newUser);
+      console.log("User document inserted successfully");
+    } catch (e) {
+      console.error("Error bij het toevoegen van de gebruiker", error);s
+    }
+  };
+  /*/
 interface NonDetailedPokemon {
   name: string;
   url: string;
@@ -89,8 +101,17 @@ interface User {
   password: string;
   team: number[];
 }
+
+let users: User[];
+let loggedInUser: User;
 let pokemons: DetailedPokemon[] = [];
 let playerPokemons: DetailedPokemon[] = [];
+
+declare module "express-session" {
+  export interface SessionData {
+    user: User;
+  }
+}
 
 const insertPokemonData = async () => {
   try {
@@ -160,10 +181,23 @@ app.get("/login", async (req, res) => {
 });
 
 app.post("/login", async (req, res) => {
-  const { username, password } = req.body;
-  const user = await usersCollection.findOne({ username, password });
+  const login_username = req.body.username;
+  const login_password = req.body.password;
+
+  const users = await usersCollection.find().toArray();
+  const user = users.find(({ username }) => login_username === username);
   if (user) {
-    res.redirect("/home");
+    if (user.password === login_password) {
+      req.session.user = user;
+      loggedInUser = req.session.user;
+      req.session.save(() => {
+        res.redirect("/home");
+      });
+      const userTeam = user.team;
+      playerPokemons = pokemons.filter((pokemon) =>
+        userTeam.includes(pokemon.id)
+      );
+    }
   } else {
     res.redirect("/login");
   }
@@ -218,7 +252,15 @@ app.get("/vechten", async (req, res) => {
 });
 
 app.get("/mypokemons", async (req, res) => {
-  res.render("myPokemons", { pokemons });
+  if (!loggedInUser) {
+    return res.redirect("/login");
+  }
+  const userTeam = loggedInUser.team;
+  const userPokemons = pokemons.filter((pokemon) =>
+    userTeam.includes(pokemon.id)
+  );
+
+  res.render("myPokemons", { pokemons: userPokemons });
 });
 
 app.get("/pokemon/info/:pokeId", async (req, res) => {
