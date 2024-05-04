@@ -115,11 +115,15 @@ nav ul {
 }
 
 .menu li {
-  margin: 3rem;
+  margin-top: 2rem;  
+  margin-left: 1.5rem;
 }
 
 .menu li a{
   background-color: #3b4cca;
+  border: 2px solid #3b4cca;
+  border-radius: 5px;
+  color: #f0f0f0;
 }
 
 .menu-buttons {
@@ -130,6 +134,8 @@ nav ul {
   background-color: #3b4cca;
 }
 
+
+
 .menu-buttons:hover {
   border: 2px solid #3b4cca;
   border-radius: 5px;
@@ -139,7 +145,7 @@ nav ul {
 
 
 .menu li a:hover {
-  color: #f0f0f0;
+  color: #ffde00;
 }
 
 .menu li:last-child {
@@ -359,21 +365,22 @@ main {
 }
 
 .home-page {
-  /* margin-top: 5%; */
   display: flex;
-  flex-flow: row wrap;
-  justify-content: space-between;
+  flex-wrap: wrap; /* Veranderd van nowrap naar wrap */
   width: 90%;
   margin: auto;
-  justify-content: space-between;
+  justify-content: space-around;
 }
 .home-page-option {
-  width: 400px;
-  height: 400px;
+  width: 200px;
+  height: 150px; /* Gelijk gemaakt aan de breedte */
   display: flex;
   text-align: center;
   align-items: center;
+  margin: auto;
+  margin-bottom: 100px;
 }
+
 
 .home-page-option:hover img {
   width: 160px;
