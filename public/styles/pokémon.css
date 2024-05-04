@@ -106,12 +106,22 @@ nav ul {
   background-color: white;
   z-index: 1000;
   border-left: 3px solid #3b4cca;
+  color: blue;
 }
 .menu {
   display: flex;
   flex-direction: column;
   height: 100%;
 }
+
+.menu li {
+  margin: 3rem;
+}
+
+.menu li a{
+  background-color: #3b4cca;
+}
+
 .menu-buttons {
   margin: auto;
   margin-top: 10px;
@@ -125,10 +135,9 @@ nav ul {
   border-radius: 5px;
   background-color: #e60005;
 }
-.menu li a {
-  color: #f0f0f0;
-  
-}
+
+
+
 .menu li a:hover {
   color: #f0f0f0;
 }
