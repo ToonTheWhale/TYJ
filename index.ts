@@ -202,18 +202,16 @@ app.post("/login", async (req, res) => {
         userTeam.includes(pokemon.id)
       );
     }
-  } else {
-    res.redirect("/login");
   }
 });
 
 app.get("/signup", async (req, res) => {
   res.render("signup", { pokemons });
 });
-app.post("/signup", async (req, res) => {
+app.post("/signup", async (req, res) => {         // na account maken wordt de user automatisch ingelogd
   try {
     const userId = new ObjectId();
-    const { username, email, password, startingPokemonId } = req.body;
+    const { username, email, password } = req.body;
     await usersCollection.insertOne({
       _id: userId,
       username,
@@ -221,7 +219,18 @@ app.post("/signup", async (req, res) => {
       password,
       team: [],
     });
-    res.redirect("/starterPokemon");
+
+    req.session.user = {
+      _id: userId,
+      username,
+      email,
+      password,
+      team: [],
+    };
+
+    loggedInUser = req.session.user;
+    console.log("User signed up and logged in:", req.session.user); //om te zien of de user succesfol ingelogd is
+    return res.redirect("/starterPokemon");
   } catch (error) {
     console.error("Error registering user: ", error);
   }
