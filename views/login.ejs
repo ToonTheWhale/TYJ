@@ -4,14 +4,14 @@
     <section class="main_login">
       <h2>Login</h2>
       <br />
-      <form action="/starterPokemon" method="GET" class="login">
+      <form action="/login" method="post" class="login">
         <label for="username:"> Gebruikersnaam </label>
         <input
           class="input"
           type="text"
           id="username"
           name="username"
-          value="user_1"
+          value="admin@ap.be"
           required
         />
         <br />
@@ -21,7 +21,7 @@
           type="password"
           id="password"
           name="password"
-          value="1"
+          value="admin"
           required
         />
         <br />
@@ -31,5 +31,27 @@
       <div>Heeft u geen account?<a href="/signup">Sign Up </a></div>
     </section>
   </main>
+  <% if (message) { %>
+    <div
+      id="overlay-message-CurrentPokemon"
+      style="display: block"
+      class="overlay"
+    >
+      <dialog
+        id="popup-message-CurrentPokemon"
+        style="display: block"
+        class="popup"
+      >
+        <h2><%= message %></h2>
+        <button
+          style="float: right"
+          onclick="closePopupMessageCurrentPokemon()"
+          id="button"
+        >
+          Close
+        </button>
+      </dialog>
+    </div>
+    <% } %> 
 </body>
 <%- include('partials/footerLogin'); %>

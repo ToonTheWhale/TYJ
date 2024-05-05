@@ -5,7 +5,7 @@
       <div class="form-post">
         <h2>Sign Up</h2>
         <br />
-        <form action="/starterPokemon" method="get" class="login">
+        <form action="/createPlayer" method="post" class="login">
           <label for="username:"> Username </label>
           <input
             class="input"
@@ -18,9 +18,9 @@
           <label for="emailAddress"> EmailAddress </label>
           <input
             class="input"
-            type="text"
-            id="emailAddress"
-            name="emailAddress"
+            type="email"
+            id="email"
+            name="email"
             value="user@example.com"
             required
           /><br />
@@ -38,5 +38,27 @@
       </div>
     </section>
   </main>
+  <% if (message) { %>
+  <div
+    id="overlay-message-CurrentPokemon"
+    style="display: block"
+    class="overlay"
+  >
+    <dialog
+      id="popup-message-CurrentPokemon"
+      style="display: block"
+      class="popup"
+    >
+      <h2><%= message %></h2>
+      <button
+        style="float: right"
+        onclick="closePopupMessageCurrentPokemon()"
+        id="button"
+      >
+        Close
+      </button>
+    </dialog>
+  </div>
+  <% } %>
 </body>
 <%- include('partials/footerLogin'); %>
