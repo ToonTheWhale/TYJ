@@ -166,3 +166,64 @@ export async function addStarterPokemon(pokemonId: number, user: User) {
     throw new Error("Pokemon not found");
   }
 }
+
+export async function pullPokemon(pokemon: DetailedPokemon, user: User) {
+  if (!pokemon) {
+    throw new Error("pokemon required");
+  }
+  let selectedPokemon: DetailedPokemon = pokemon;
+  if (selectedPokemon) {
+    let updateUserTeam = await userCollection.updateOne(
+      { id: user.id },
+      { $pull: { team: selectedPokemon } }
+    );
+  } else {
+    throw new Error("Pokemon not found");
+  }
+}
+
+export async function pushPokemon(pokemon: DetailedPokemon, user: User) {
+  if (!pokemon) {
+    throw new Error("pokemon required");
+  }
+  let selectedPokemon: DetailedPokemon = pokemon;
+  if (selectedPokemon) {
+    let updateUserTeam = await userCollection.updateOne(
+      { id: user.id },
+      { $push: { team: selectedPokemon } }
+    );
+  } else {
+    throw new Error("Pokemon not found");
+  }
+}
+
+export async function addPokemonNickname(pokemon: DetailedPokemon, user: User, nickname:string) {
+  if (!pokemon) {
+    throw new Error("pokemon required");
+  }
+  let selectedPokemon: DetailedPokemon = pokemon;
+  if (selectedPokemon) {
+    let updateUserTeam = await userCollection.updateOne(
+      { id: user.id },
+      { $set: { nickname: nickname } }
+    );
+  } else {
+    throw new Error("Pokemon not found");
+  }
+}
+
+export async function updatePokemon( user: User) {
+  if (!user) {
+    throw new Error("user required");
+  }
+  if (user) {
+    let selectedTeamUser: DetailedPokemon[] = user.team
+    console.log(selectedTeamUser)
+    await userCollection.updateOne(
+      { id: user.id },
+      { $set: { team: selectedTeamUser } }
+    );
+  } else {
+    throw new Error("Pokemon not found");
+  }
+}

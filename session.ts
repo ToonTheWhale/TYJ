@@ -1,6 +1,6 @@
 import { MONGODB_URI } from "./database";
 import session, { MemoryStore } from "express-session";
-import { DetailedPokemon, User } from "./types";
+import { DetailedPokemon, FlashMessage, User } from "./types";
 import mongoDbSession from "connect-mongodb-session";
 const MongoDBStore = mongoDbSession(session);
 
@@ -13,7 +13,8 @@ const mongoStore = new MongoDBStore({
 declare module 'express-session' {
     export interface SessionData {
         user?: User
-        currentPokemon: DetailedPokemon
+        currentPokemon: number
+        message?: FlashMessage;
     }
 }
 
@@ -23,6 +24,6 @@ export default session({
     resave: true,
     saveUninitialized: true,
     cookie: {
-        maxAge: 1000 * 60 * 60 * 24 * 7, // 1 week
+        maxAge: 365 * 24 * 60 * 60 * 1000,
     }
 });

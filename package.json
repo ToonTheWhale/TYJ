@@ -2,7 +2,7 @@
   "name": "pokemon",
   "version": "1.0.0",
   "description": "### Project voor WPL Project",
-  "main": "index.js",
+  "main": "index.ts",
   "scripts": {
     "start": "nodemon index.ts",
     "test": "echo \"Error: no test specified\" && exit 1"

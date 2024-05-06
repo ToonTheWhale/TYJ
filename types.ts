@@ -28,3 +28,8 @@ export interface DetailedPokemon {
   attack: number;
   nickname: string;
 }
+
+export interface FlashMessage {
+  type: "error" | "success";
+  message: string;
+}
