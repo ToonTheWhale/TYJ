@@ -57,6 +57,7 @@ async function createInitialUser() {
       password: await bcrypt.hash(password, saltRounds),
       team: pokemons,
       role: "ADMIN",
+      currentPokemon: undefined
     });
   } else {
     function delay(ms: number): Promise<void> {
@@ -70,6 +71,7 @@ async function createInitialUser() {
         password: await bcrypt.hash(password, saltRounds),
         team: pokemons,
         role: "ADMIN",
+        currentPokemon: undefined
       });
     });
   }
@@ -120,6 +122,7 @@ export async function signup(
       password: await bcrypt.hash(password, saltRounds),
       team: [],
       role: "USER",
+      currentPokemon: undefined
     };
 
     // Nieuwe gebruiker toevoegen aan array (local)
@@ -133,6 +136,7 @@ export async function signup(
       password: await bcrypt.hash(password, saltRounds),
       team: [],
       role: "USER",
+      currentPokemon: undefined
     });
     return newUser;
   } else {
@@ -222,6 +226,20 @@ export async function updatePokemon( user: User) {
     await userCollection.updateOne(
       { id: user.id },
       { $set: { team: selectedTeamUser } }
+    );
+  } else {
+    throw new Error("Pokemon not found");
+  }
+}
+
+export async function updateCurrentPokemon( user: User, currentPokemon : number) {
+  if (!user) {
+    throw new Error("user required");
+  }
+  if (user) {
+    await userCollection.updateOne(
+      { id: user.id },
+      { $set: { currentPokemon: currentPokemon } }
     );
   } else {
     throw new Error("Pokemon not found");

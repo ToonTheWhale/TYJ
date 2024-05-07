@@ -13,6 +13,7 @@ import {
   pushPokemon,
   addPokemonNickname,
   updatePokemon,
+  updateCurrentPokemon,
 } from "./database";
 import { login, signup } from "./database";
 import session from "./session";
@@ -116,7 +117,7 @@ app.get("/home", secureMiddleware, async (req, res) => {
   if (req.session.user) {
     playerPokemons = req.session.user.team;
     currentPokemon = req.session.user.team.find(
-      (pokemon) => pokemon.id === req.session.currentPokemon
+      (pokemon) => pokemon.id === req.session.user?.currentPokemon
     );
     res.render("home", { pokemons, currentPokemon, playerPokemons });
   } else {
@@ -132,7 +133,8 @@ app.post("/setCurrentPokemon", secureMiddleware, (req, res) => {
   );
   if (selectedPokemon && req.session.user) {
     currentPokemon = selectedPokemon;
-    req.session.currentPokemon = selectedPokemon.id;
+    updateCurrentPokemon(req.session.user,selectedPokemon.id)
+    req.session.user.currentPokemon = selectedPokemon.id;
     console.log(req.session.currentPokemon);
   }
   req.session.save(() => res.redirect("/myPokemons"));

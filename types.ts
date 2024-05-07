@@ -8,6 +8,7 @@ export interface User {
   password?: string;
   team: DetailedPokemon[];
   role: "ADMIN" | "USER";
+  currentPokemon : number | undefined
 }
 
 export interface NonDetailedPokemon {
