@@ -17,15 +17,13 @@ body {
   grid-template-areas:
     "header header header"
     "main main main"
-    "main main main" 
+    "main main main"
     "footer1 footer1 footer1"
     "footer2 footer2 footer2";
   grid-template-rows: auto 1fr auto auto auto;
-    background-image: url('/images/forest2.jpg');
-    background-size: cover; /* Breedte en hoogte in pixels */
-    background-position: center; /* Hiermee wordt de achtergrondafbeelding in het midden van het element geplaatst */
-  
-
+  background-image: url("/images/forest2.jpg");
+  background-size: cover; /* Breedte en hoogte in pixels */
+  background-position: center; /* Hiermee wordt de achtergrondafbeelding in het midden van het element geplaatst */
 }
 
 /* Navigation styling */
@@ -38,7 +36,7 @@ nav {
   width: 100%;
   /* padding: 8px; */
   margin: auto;
-  margin-bottom: 1rem;
+  /* margin-bottom: 1rem; */
   align-content: center;
 }
 
@@ -55,15 +53,11 @@ nav {
   justify-content: flex-start;
 }
 
-
-
 nav img {
   width: 100px;
-
 }
 nav a {
   width: 100px;
-
 }
 nav a {
   /* font-family: pokemon; */
@@ -83,7 +77,7 @@ nav ul {
 }
 .menu-hamburger {
   border: none;
-  background-color: rgba(255, 255, 255, 0.01); 
+  background-color: rgba(255, 255, 255, 0.01);
   color: #3b4cca;
   margin-left: auto;
 }
@@ -142,15 +136,16 @@ nav ul {
   background-color: #e60005;
 }
 
-
-
+.menu li a {
+  color: #f0f0f0;
+}
 .menu li a:hover {
   color: #ffde00;
 }
 
 .menu li:last-child {
   /* display: flex; */
-  /* flex-direction: row; */ 
+  /* flex-direction: row; */
   font-size: 25px;
   color: #ffde00;
   border: none;
@@ -204,21 +199,20 @@ main {
   align-content: center;
 }
 
-.pokedex-main{
+.pokedex-main {
   display: flex;
   flex-direction: column;
 }
 
 /*styling voor sorting*/
 
-.sort-pokemon form select{
+.sort-pokemon form select {
   border: none;
   font-size: 1.5rem;
-  background-color: rgba(255, 255, 255, 0.01); 
-
+  background-color: rgba(255, 255, 255, 0.01);
 }
 
-.sort-pokemon form button{
+.sort-pokemon form button {
   border: 2px solid #3b4cca;
   background-color: #3b4cca;
   color: white;
@@ -228,7 +222,7 @@ main {
 
 /* Flex container voor Pokemons */
 
-.sort-pokemon{
+.sort-pokemon {
   display: flex;
   margin-left: auto;
   margin-right: 8rem;
@@ -240,9 +234,8 @@ main {
   flex-flow: row wrap;
   width: 90%;
   margin: auto;
-} footer
-
-.flex-container-sengle-item {
+}
+footer .flex-container-sengle-item {
   display: flex;
   flex-direction: column;
   margin: auto;
@@ -285,7 +278,7 @@ main {
   align-items: center;
   align-content: center;
   text-align: center;
-  width: 50%;
+  width: 75%;
 }
 .flex-container-pokemon-info-one-article {
   display: flex;
@@ -303,9 +296,14 @@ main {
   align-content: center;
   text-align: center;
   justify-content: center;
-  background-color: white;
+  background-color: rgba(255, 255, 255, 0.6);
   font-size: 17.5px;
 }
+
+.flex-container-pokemon-info p {
+  font-weight: 555;
+}
+
 .fa-arrow-down {
   display: none;
 }
@@ -319,7 +317,12 @@ main {
   align-items: center;
   margin-top: 25px;
   border-radius: 10px;
-  background-color: rgba(255, 255, 255, 0.6); /* Meer transparante witte achtergrondkleur */
+  background-color: rgba(
+    255,
+    255,
+    255,
+    0.6
+  ); /* Meer transparante witte achtergrondkleur */
   border: 3px solid #3b4cca;
   justify-content: space-between;
 }
@@ -362,7 +365,7 @@ main {
   width: 100%;
   height: 100%;
   background-color: rgba(0, 0, 0, 1);
-  z-index: 1000; 
+  z-index: 1000;
   text-align: center;
   justify-content: center;
   align-items: center;
@@ -421,7 +424,7 @@ main {
   color: #f0f0f0;
 }
 
-.home-page-option a p{
+.home-page-option a p {
   font-size: large;
   font-size: x-large;
 }
@@ -429,8 +432,6 @@ main {
 .home-page-option figure {
   margin: 0;
 }
-
-
 
 /* Styling voor starterPokemon */
   
@@ -536,7 +537,12 @@ main {
   flex-basis: 27%;
   align-items: center;
   border-radius: 10px;
-  background-color: rgba(255, 255, 255, 0.6); /* Meer transparante witte achtergrondkleur */
+  background-color: rgba(
+    255,
+    255,
+    255,
+    0.6
+  ); /* Meer transparante witte achtergrondkleur */
   border: 3px solid #3b4cca;
   justify-content: space-between;
   margin: auto;
@@ -550,8 +556,8 @@ main {
   background-color: #ffffff;
   border-radius: 10px;
 }
-.compare-item figure{
-width: 100%;
+.compare-item figure {
+  width: 100%;
 }
 .compare button,
 #button,
@@ -568,12 +574,12 @@ aside button {
   margin: 7.5px;
 }
 
-.compare button i{
+.compare button i {
   font-size: 7.5rem;
   color: #bcc6cf;
 }
 
-.compare button i:hover{
+.compare button i:hover {
   color: #3b4cca;
 }
 
@@ -672,7 +678,7 @@ button {
   padding: auto;
 }
 
-.close_button{
+.close_button {
   float: right;
   color: #3b4cca;
   font-size: 18px;
@@ -680,7 +686,7 @@ button {
   border-radius: 50%;
   background-color: transparent;
 }
-.close_button:hover{
+.close_button:hover {
   color: #000000;
   /* font-size: 20px; */
   border: 2px solid #000000;
@@ -926,7 +932,8 @@ table {
   width: 100%;
   border-collapse: collapse;
 }
-th, td {
+th,
+td {
   padding: 8px;
   text-align: left;
   border-bottom: 1px solid #ddd;
@@ -959,7 +966,12 @@ th {
   align-items: center;
   margin-top: 25px;
   border-radius: 10px;
-  background-color: rgba(255, 255, 255, 0.6); /* Meer transparante witte achtergrondkleur */
+  background-color: rgba(
+    255,
+    255,
+    255,
+    0.6
+  ); /* Meer transparante witte achtergrondkleur */
   border: 3px solid #3b4cca;
   justify-content: space-between;
   min-height: 325.33px;
@@ -1050,6 +1062,21 @@ th {
   background-image: linear-gradient(#f0a3a3, #f42323);
 }
 
+.blue > span {
+  background-image: linear-gradient(#a3a3f0, #2323f4);
+}
+
+.white > span {
+  background-image: linear-gradient(#ffffff, #cccccc);
+}
+
+.yellow > span {
+  background-image: linear-gradient(#ffffa3, #ffff23);
+}
+
+.purple > span {
+  background-image: linear-gradient(#d7a3f0, #7523f4);
+}
 .nostripes > span > span,
 .nostripes > span::after {
   background-image: none;
@@ -1062,19 +1089,19 @@ th {
 
 /* Track */
 ::-webkit-scrollbar-track {
-  box-shadow: inset 0 0 5px grey; 
+  box-shadow: inset 0 0 5px grey;
   border-radius: 10px;
 }
- 
+
 /* Handle */
 ::-webkit-scrollbar-thumb {
-  background: #3b4cca; 
+  background: #3b4cca;
   border-radius: 10px;
 }
 
 /* Handle on hover */
 ::-webkit-scrollbar-thumb:hover {
-  background: #ffde00 ; 
+  background: #ffde00;
 }
 
 .type-icon {
@@ -1084,15 +1111,15 @@ th {
   background: #dbdbdb;
   border: 1px solid #a3a3a3;
   border-radius: 4px;
-  border: 1px solid rgba(0, 0, 0, .2);
+  border: 1px solid rgba(0, 0, 0, 0.2);
   color: #fff;
-  font-size: .75rem;
+  font-size: 0.75rem;
   font-weight: normal;
   line-height: 1.5rem;
   text-align: center;
-  text-shadow: 1px 1px 2px rgba(0, 0, 0, .7);
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.7);
   text-transform: uppercase;
-  transition: opacity .4s;
+  transition: opacity 0.4s;
   text-decoration: none;
   justify-content: center;
 }
@@ -1215,7 +1242,7 @@ type-fairy {
 
   .login-landing {
     margin-left: auto;
-  } 
+  }
 
   .nav-section {
     align-items: flex-start;
@@ -1280,7 +1307,7 @@ type-fairy {
     flex-direction: column;
     flex-basis: 100%;
   }
-  .popup{
+  .popup {
     width: 375px;
   }
   .popup .image-container {
@@ -1307,10 +1334,6 @@ type-fairy {
   .home-page-option {
     flex-basis: 100%;
   }
-
-  
-
-  
 
   .flex-container-pokemon-info {
     width: 75%;
@@ -1347,7 +1370,6 @@ type-fairy {
   .pokemon-mypokemon {
     flex-basis: 100%;
   }
-
 
   .pokeball-404 {
     height: 100px;
