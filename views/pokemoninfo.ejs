@@ -7,10 +7,17 @@
     </article>
     <article style="display: flex; flex-direction: column">
       <h2 style="color: #3b4cca">Pokemon Stats</h2>
-      <p>ID: <%= pokemonFind.id %></p>
-      <p>Hoogte: <%= pokemonFind.height %></p>
-      <p>Gewicht: <%= pokemonFind.weight %></p>
-      <div style="display: flex; justify-content: center; margin: auto">
+      <div><p>ID: <%= pokemonFind.id %></p></div>
+      <div><p>Hoogte: <%= pokemonFind.height %></p></div>
+      <div><p>Gewicht: <%= pokemonFind.weight %></p></div>
+      <div
+        style="
+          display: flex;
+          justify-content: center;
+          margin: auto;
+          width: 100%;
+        "
+      >
         <p style="width: 75%">Types:</p>
         <div
           style="
@@ -30,12 +37,169 @@
       </div>
       <p>Max HP: <%= pokemonFind.maxHP %></p>
     </article>
+    <article style="display: flex; flex-direction: column">
+      <div
+        style="
+          display: flex;
+          justify-content: center;
+          margin: auto;
+          width: 100%;
+        "
+      >
+        <p style="width: 75%">Defense:</p>
+        <div
+          class="meter orange"
+          style="width: 100%; margin: auto; margin-right: 10px"
+        >
+          <span id="Poke-1-defense"><%= pokemonFind.defense %></span>
+          <script>
+            document.getElementById("Poke-1-defense").style.width =
+              "<%= pokemonFind.defense %>%";
+          </script>
+        </div>
+      </div>
+      <div
+        style="
+          display: flex;
+          justify-content: center;
+          margin: auto;
+          width: 100%;
+        "
+      >
+        <p style="width: 75%">Attack:</p>
+        <div
+          class="meter"
+          style="width: 100%; margin: auto; margin-right: 10px"
+        >
+          <span id="Poke-1-attack" style="width: 100%">
+            <%= pokemonFind.attack %></span
+          >
+          <script>
+            document.getElementById("Poke-1-attack").style.width =
+              "<%= pokemonFind.attack %>%";
+          </script>
+        </div>
+      </div>
+      <div
+        style="
+          display: flex;
+          justify-content: center;
+          margin: auto;
+          width: 100%;
+        "
+      >
+        <p style="width: 75%">Max HP:</p>
+        <div
+          class="meter red"
+          style="width: 100%; margin: auto; margin-right: 10px"
+        >
+          <span id="Poke-1-maxHP" style="width: 100%">
+            <%= pokemonFind.maxHP %></span
+          >
+          <script>
+            document.getElementById("Poke-1-maxHP").style.width =
+              "<%= pokemonFind.maxHP %>%";
+          </script>
+        </div>
+      </div>
+      <div
+        style="
+          display: flex;
+          justify-content: center;
+          margin: auto;
+          width: 100%;
+        "
+      >
+        <p style="width: 75%">Special Attack:</p>
+        <div
+          class="meter purple"
+          style="width: 100%; margin: auto; margin-right: 10px"
+        >
+          <span id="Poke-1-special-attack" style="width: 100%">
+            <%= pokemonFind.special_attack %></span
+          >
+          <script>
+            document.getElementById("Poke-1-special-attack").style.width =
+              "<%= pokemonFind.special_attack %>%";
+          </script>
+        </div>
+      </div>
+      <div
+        style="
+          display: flex;
+          justify-content: center;
+          margin: auto;
+          width: 100%;
+        "
+      >
+        <p style="width: 75%">Special Defense:</p>
+        <div
+          class="meter white"
+          style="width: 100%; margin: auto; margin-right: 10px"
+        >
+          <span id="Poke-1-special-defense" style="width: 100%">
+            <%= pokemonFind.special_defense %></span
+          >
+          <script>
+            document.getElementById("Poke-1-special-defense").style.width =
+              "<%= pokemonFind.special_defense %>%";
+          </script>
+        </div>
+      </div>
+      <div
+        style="
+          display: flex;
+          justify-content: center;
+          margin: auto;
+          width: 100%;
+        "
+      >
+        <p style="width: 75%">Speed :</p>
+        <div
+          class="meter blue"
+          style="width: 100%; margin: auto; margin-right: 10px"
+        >
+          <span id="Poke-1-speed" style="width: 100%">
+            <%= pokemonFind.speed %></span
+          >
+          <script>
+            document.getElementById("Poke-1-speed").style.width =
+              "<%= pokemonFind.speed %>%";
+          </script>
+        </div>
+      </div>
+    </article>
   </section>
   <section class="flex-container-pokemon-info">
-    <article style="margin-top: 25px">
+    <article
+      style="
+        display: flex;
+        flex-direction: column;
+        width: 49%;
+        margin-top: 25px;
+        margin-bottom: 0;
+        border: none;
+        background-color: transparent;
+      "
+    >
+      <button
+        type="submit"
+        onclick="closePokeball()"
+        class="pokeball"
+        id="pokeball"
+        style="z-index: 1000;
+        animation: none;"
+      ></button>
+    </article>
+    <article style="margin-top: 25px;">
       <h2 style="color: #3b4cca; margin-bottom: 0">Evolutiepad</h2>
       <section
-        style="display: flex; justify-content: center; align-items: center"
+        style="
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          margin-bottom: 0;
+        "
       >
         <img
           style="width: 175px; height: 175px"
