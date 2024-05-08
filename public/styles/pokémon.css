@@ -111,7 +111,7 @@ nav ul {
 .menu {
   display: flex;
   flex-direction: column;
-  height: 100%;
+  height: 80%;
 }
 
 .menu li {
@@ -177,6 +177,22 @@ nav ul {
   width: 75px;
   height: 75px;
   margin: 8px;
+}
+
+.logout-article{
+  display: flex;
+  flex-direction: row;
+  width: 200px;
+  margin-left: auto;
+  margin-right: 40px;
+}
+
+.logoutbutt{
+  text-decoration: none;
+  bottom: 0;
+  background-color: #3b4cca;
+  border: 2px solid #3b4cca;
+  border-radius: 5px;
 }
 
 /* Main content area */
