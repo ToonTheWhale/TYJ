@@ -381,6 +381,14 @@ main {
   margin-bottom: 100px;
 }
 
+.home-page-option a p{
+  background-color: rgb(255, 255, 255, 0.6);
+  border: 2px solid #ffde00;
+  border-radius: 5px;
+  color: black;
+  width: auto;
+}
+
 
 .home-page-option:hover img {
   width: 160px;
@@ -409,7 +417,7 @@ main {
 
 
 /* Styling voor starterPokemon */
-
+  
 .flex-container-Starter {
   align-items: center;
   display: flex;
@@ -1283,6 +1291,8 @@ type-fairy {
   .home-page-option {
     flex-basis: 100%;
   }
+
+  
 
   
 
