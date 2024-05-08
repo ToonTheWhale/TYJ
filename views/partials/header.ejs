@@ -35,30 +35,44 @@
         style="margin-right: auto"
       />
       <% } %>
-      <a href="/"><img src="/images/Logo.png" style="scale: 1.5" /></a>
+      <a href="/"><img src="/images/Logo.png" style="scale: 1.5;" /></a>
       <button onclick="openMenu()" class="menu-hamburger">
         <i class="fa fa-bars" style="font-size: 40px"></i>
       </button>
       <section id="overlay-Menu" class="overlay-Menu">
+        
+          <button class="layer-close-button" onclick="closeMenu()">
+            <i class="fa fa-times" aria-hidden="true"></i>
+          </button>
+          
+             <% if (currentPokemon === undefined || currentPokemon === null) { %>
+              <img style="background-color: rgb(255, 255, 255, 0); border: none; width: 120px; height: 120px; margin-left: -5px; margin-top: 30px;"
+              onclick="openPopupCurrentPokemon()"
+              src="/images/Question-mark.png"
+              id="current-pokemon"
+              class="current-pokemon"
+              style="margin-right: auto"
+            />
+            <% } else { %>
+              <img style="background-color: rgb(255, 255, 255, 0); border: none; width: 120px; height: 120px; margin-left: 0px; margin-top: 30px;"
+              onclick="openPopupCurrentPokemon()"
+              src="<%= currentPokemon.image %>"
+              id="current-pokemon"
+              class="current-pokemon"
+              style="margin-right: auto"
+            />
+            <% } %>
+          
         <ul class="menu" style="padding: 0">
-          <li style="margin: 0; border: none">
-            <button class="layer-close-button" onclick="closeMenu()">
-              <i class="fa fa-times" aria-hidden="true"></i>
-            </button>
-            <a style="background-color: white; border: white;" href="/"><img src="/images/Logo.png" alt="" /></a>
-          </li>
           <li><a href="/home">Home</a></li>
           <li><a href="/pokedex">PokéDex</a></li>
-          <li><a href="/myPokemons">Mijn Pokemons</a></li>
-          <li><a href="/pokeBattler">Pokemon Battler</a></li>
-          <li><a href="/catchPokemon">Pokemon vangen</a></li>
-          <li><a href="/compareSelect">Pokemon vergelijken</a></li>
-          <li><a href="/guessPokemon">Who’s that pokemon</a></li>
+          <li><a href="/myPokemons">profiel</a></li>
+          <li><a href="/landingpage">land pagina</a></li>
         </ul>
         <article class="logout-article">
         <img src="/images/logout.gif" alt="">
         <!--https://www.deviantart.com/drakesycamore/art/Pikachu-Waving-801906126-->
-        <button class="logoutbutt">uitloggen</button>
+        <a href="/logout"><button class="logoutbutt">uitloggen</button></a>
         </article>
       </section>
     </nav>
