@@ -99,6 +99,7 @@ nav ul {
   width: 24%;
   height: 100%;
   background-image: url("/images/navbackground.jpg");
+   /* https://www.pinterest.com/pin/545357836123522035/*/
   background-size: cover;
   background-position: center;
   z-index: 1000;
