@@ -18,7 +18,7 @@
   </head>
   <body>
     <nav>
-      <% if (currentPokemon === undefined) { %>
+      <% if (currentPokemon === undefined || currentPokemon === null) { %>
       <img
         onclick="openPopupCurrentPokemon()"
         src="/images/Question-mark.png"
