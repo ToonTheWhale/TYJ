@@ -653,8 +653,9 @@ app.post("/improvePokemon", async (req, res) => {
   const getTypeOfImprove: string = req.body.typeOfImprove.toLowerCase();
   // console.log(getTypeOfImprove);
   const selectedPokemon = req.session.user?.team.find(
-    (pokemon) => pokemon.id === req.session.currentPokemon
+    (pokemon) => pokemon.id === currentPokemon?.id
   );
+  console.log(selectedPokemon)
   if (selectedPokemon && getTypeOfImprove === "defense" && req.session.user) {
     selectedPokemon.defense += 1;
     playerPokemons = req.session.user.team;
