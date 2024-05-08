@@ -106,12 +106,26 @@ nav ul {
   background-color: white;
   z-index: 1000;
   border-left: 3px solid #3b4cca;
+  color: blue;
 }
 .menu {
   display: flex;
   flex-direction: column;
-  height: 100%;
+  height: 80%;
 }
+
+.menu li {
+  margin-top: 2rem;  
+  margin-left: 1.5rem;
+}
+
+.menu li a{
+  background-color: #3b4cca;
+  border: 2px solid #3b4cca;
+  border-radius: 5px;
+  color: #f0f0f0;
+}
+
 .menu-buttons {
   margin: auto;
   margin-top: 10px;
@@ -120,17 +134,18 @@ nav ul {
   background-color: #3b4cca;
 }
 
+
+
 .menu-buttons:hover {
   border: 2px solid #3b4cca;
   border-radius: 5px;
   background-color: #e60005;
 }
-.menu li a {
-  color: #f0f0f0;
-  
-}
+
+
+
 .menu li a:hover {
-  color: #f0f0f0;
+  color: #ffde00;
 }
 
 .menu li:last-child {
@@ -162,6 +177,22 @@ nav ul {
   width: 75px;
   height: 75px;
   margin: 8px;
+}
+
+.logout-article{
+  display: flex;
+  flex-direction: row;
+  width: 200px;
+  margin-left: auto;
+  margin-right: 40px;
+}
+
+.logoutbutt{
+  text-decoration: none;
+  bottom: 0;
+  background-color: #3b4cca;
+  border: 2px solid #3b4cca;
+  border-radius: 5px;
 }
 
 /* Main content area */
@@ -350,21 +381,30 @@ main {
 }
 
 .home-page {
-  /* margin-top: 5%; */
   display: flex;
-  flex-flow: row wrap;
-  justify-content: space-between;
+  flex-wrap: wrap; /* Veranderd van nowrap naar wrap */
   width: 90%;
   margin: auto;
-  justify-content: space-between;
+  justify-content: space-around;
 }
 .home-page-option {
-  width: 400px;
-  height: 400px;
+  width: 200px;
+  height: 150px; /* Gelijk gemaakt aan de breedte */
   display: flex;
   text-align: center;
   align-items: center;
+  margin: auto;
+  margin-bottom: 100px;
 }
+
+.home-page-option a p{
+  background-color: rgb(255, 255, 255, 0.6);
+  border: 2px solid #ffde00;
+  border-radius: 5px;
+  color: black;
+  width: auto;
+}
+
 
 .home-page-option:hover img {
   width: 160px;
@@ -393,7 +433,7 @@ main {
 
 
 /* Styling voor starterPokemon */
-
+  
 .flex-container-Starter {
   align-items: center;
   display: flex;
@@ -1267,6 +1307,8 @@ type-fairy {
   .home-page-option {
     flex-basis: 100%;
   }
+
+  
 
   
 
