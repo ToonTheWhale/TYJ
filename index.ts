@@ -668,6 +668,7 @@ app.post("/improvePokemon", async (req, res) => {
   }
   if (selectedPokemon && getTypeOfImprove === "attack" && req.session.user) {
     selectedPokemon.attack += 1;
+    playerPokemons = req.session.user.team;
     updatePokemon(req.session.user);
     req.session.save(() => res.redirect("/myPokemons"));
 
