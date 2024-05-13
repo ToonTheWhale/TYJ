@@ -3,14 +3,14 @@
   <section class="sort-pokemon">
   <form action="/pokedex" method="get"> 
     <select class="sort-select" name="sortField">
-        <option class="sort-option" value="name" <%= sortField === 'name' ? 'selected' : '' %>>Name</option>
+        <option class="sort-option" value="name" <%= sortField === 'name' ? 'selected' : '' %>>Naam</option>
         <option class="sort-option" value="id" <%= sortField === 'id' ? 'selected' : '' %>>id</option>
     </select>
     <select class="sort-select" name="sortDirection">
         <option class="sort-option" value="asc" <%= sortDirection === 'asc' ? 'selected' : '' %>>oplopend</option>
         <option class="sort-option" value="desc" <%= sortDirection === 'desc' ? 'selected' : '' %>>aflopend</option>
     </select>
-    <button type="submit">Sort</button>
+    <button type="submit">Sorteren</button>
 </form>
 </section>
   <section class="flex-container" style="  
