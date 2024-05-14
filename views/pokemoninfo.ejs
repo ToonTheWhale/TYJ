@@ -187,11 +187,10 @@
         onclick="closePokeball()"
         class="pokeball"
         id="pokeball"
-        style="z-index: 1000;
-        animation: none;"
+        style="z-index: 1000; animation: none"
       ></button>
     </article>
-    <article style="margin-top: 25px;">
+    <article style="margin-top: 25px">
       <h2 style="color: #3b4cca; margin-bottom: 0">Evolutiepad</h2>
       <section
         style="
@@ -201,10 +200,15 @@
           margin-bottom: 0;
         "
       >
+        <% if (pokemonFind.evolutionChain) { %> <%
+        pokemonFind.evolutionChain.forEach(evolution => { %>
         <img
           style="width: 175px; height: 175px"
-          src="<%= pokemons[0].image%>"
+          src="<%= evolution.species.image %>"
         />
+        
+        <% if (evolution !==
+        pokemonFind.evolutionChain[pokemonFind.evolutionChain.length - 1]) { %>
         <i
           style="font-size: 50px; color: #3b4cca"
           class="fa fa-arrow-right"
@@ -215,25 +219,7 @@
           class="fa fa-arrow-down"
           aria-hidden="true"
         ></i>
-        <img
-          style="width: 175px; height: 175px"
-          src="<%= pokemons[1].image%>"
-        />
-        <i
-          style="font-size: 50px; color: #3b4cca"
-          class="fa fa-arrow-right"
-          x
-          aria-hidden="true"
-        ></i>
-        <i
-          style="font-size: 50px; color: #3b4cca"
-          class="fa fa-arrow-down"
-          aria-hidden="true"
-        ></i>
-        <img
-          style="width: 175px; height: 175px"
-          src="<%= pokemons[2].image%>"
-        />
+        <% } %> <% }); %> <% } %>
       </section>
     </article>
   </section>

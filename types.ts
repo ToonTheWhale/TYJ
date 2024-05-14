@@ -8,7 +8,7 @@ export interface User {
   password?: string;
   team: DetailedPokemon[];
   role: "ADMIN" | "USER";
-  currentPokemon : number | undefined
+  currentPokemon: number | undefined;
 }
 
 export interface NonDetailedPokemon {
@@ -28,6 +28,15 @@ export interface DetailedPokemon {
   defense: number;
   attack: number;
   nickname: string;
+  evolutionChain: Evolution[];
+}
+
+export interface Evolution {
+  species: {
+    name: string;
+    url: string;
+  };
+  evolutionDetails?: any;
 }
 
 export interface FlashMessage {

@@ -122,10 +122,10 @@ nav ul {
 }
 
 .menu li a{
-  background-color: #3b4cca;
-  border: 2px solid #3b4cca;
+  background-color: #ffde00;
+  border: 2px solid #000000;
   border-radius: 5px;
-  color: #f0f0f0;
+  color: #000000;
   height: 40px;
   width: 180px;
   font-size: large;
@@ -134,14 +134,12 @@ nav ul {
 .menu-buttons {
   margin: auto;
   margin-top: 10px;
-  border: 2px solid #3b4cca;
   border-radius: 5px;
-  background-color: #3b4cca;
   width: 200px;
 }
 
 .menu li a:hover {
-  color: #ffde00;
+  color: #000000;
 }
 
 .menu li:last-child {

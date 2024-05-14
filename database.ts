@@ -10,8 +10,8 @@ import { DetailedPeerCertificate } from "tls";
 const mongodbUsername = "Yazan";
 const mongodbPassword = "Yazanmax1";
 const mongodbDatabase = "cluster0";
-const uri = `mongodb+srv://${mongodbUsername}:${mongodbPassword}@${mongodbDatabase}.oaon2vd.mongodb.net/WebOntwikkeling?retryWrites=true&w=majority`;
-
+//const uri = `mongodb+srv://${mongodbUsername}:${mongodbPassword}@${mongodbDatabase}.oaon2vd.mongodb.net/WebOntwikkeling?retryWrites=true&w=majority`;
+const uri = `mongodb+srv://gilles5ecmt:easy@cluster0.q9yuckb.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0`
 export const MONGODB_URI = uri ?? "mongodb://localhost:27017";
 export const client = new MongoClient(MONGODB_URI);
 export const userCollection = client

@@ -103,6 +103,65 @@ function battlePokemon(
   }
 }
 
+async function fetchEvolutionChain(pokemonSpeciesUrl: any) {
+  try {
+    const speciesResponse = await fetch(pokemonSpeciesUrl);
+    const speciesData = await speciesResponse.json();
+    const evolutionChainUrl = speciesData.evolution_chain.url;
+    const evolutionChainResponse = await fetch(evolutionChainUrl);
+    const evolutionChainData = await evolutionChainResponse.json();
+    const evolutionChain = parseEvolutionChain(evolutionChainData);
+    return evolutionChain;
+  } catch (error) {
+    console.error("Error fetching evolution chain: ", error);
+  }
+}
+function parseEvolutionChain(evolutionChainData: any) {
+  const chain = evolutionChainData.chain;
+  let evolutionChain: any = [];
+
+  // parse evolution chain
+  function parseChain(chain: any) {
+    const evolutionDetails =
+      chain.evolution_details.length > 0 ? chain.evolution_details[0] : null;
+    const evolvesTo = chain.evolves_to;
+
+    const evolution = {
+      species: {
+        name: chain.species.name,
+        url: chain.species.url,
+      },
+      evolution_details: evolutionDetails,
+    };
+    evolutionChain.push(evolution);
+
+    if (evolvesTo.length > 0) {
+      for (const nextEvolution of evolvesTo) {
+        parseChain(nextEvolution);
+      }
+    }
+  }
+
+  parseChain(chain);
+  return evolutionChain;
+}
+
+async function populateEvolutionChains(pokemons: any) {
+  try {
+    for (const pokemon of pokemons) {
+      const evolutionChain = await fetchEvolutionChain(pokemon.species.url);
+      pokemon.evolutionChain = evolutionChain;
+      await pokemonCollection.updateOne(
+        { _id: pokemon._id },
+        { $set: { evolutionChain: evolutionChain } }
+      );
+    }
+    console.log("Evolution chains updated successfully in MongoDB.");
+  } catch (error) {
+    console.error("Error updating evolution chains in MongoDB:", error);
+  }
+}
+
 // # deze handler is enkel om testen
 app.get("/getDataAPI", (req, res) => {
   res.type("application/json");
@@ -133,7 +192,7 @@ app.post("/setCurrentPokemon", secureMiddleware, (req, res) => {
   );
   if (selectedPokemon && req.session.user) {
     currentPokemon = selectedPokemon;
-    updateCurrentPokemon(req.session.user,selectedPokemon.id)
+    updateCurrentPokemon(req.session.user, selectedPokemon.id);
     req.session.user.currentPokemon = selectedPokemon.id;
     console.log(req.session.currentPokemon);
   }
@@ -655,7 +714,7 @@ app.post("/improvePokemon", async (req, res) => {
   const selectedPokemon = req.session.user?.team.find(
     (pokemon) => pokemon.id === currentPokemon?.id
   );
-  console.log(selectedPokemon)
+  console.log(selectedPokemon);
   if (selectedPokemon && getTypeOfImprove === "defense" && req.session.user) {
     selectedPokemon.defense += 1;
     playerPokemons = req.session.user.team;
@@ -709,8 +768,11 @@ app.listen(app.get("port"), async () => {
           special_defense: singlePokemon.stats[4].base_stat,
           speed: singlePokemon.stats[5].base_stat,
           nickname: "",
+          species: singlePokemon.species,
+          evolutionChain: singlePokemon.evolutionChain,
         };
       });
+
       await pokemonCollection.insertMany(pokemons);
     }
     if ((await userCollection.countDocuments()) > 0) {
