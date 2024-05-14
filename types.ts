@@ -34,3 +34,16 @@ export interface FlashMessage {
   type: "error" | "success";
   message: string;
 }
+
+export interface PokemonSpecies {
+  name: string;
+  url: string;
+  image: string | undefined;
+  id: number | undefined;
+}
+export interface EvolutionChain {
+  evolution_details: any[];
+  evolves_to: EvolutionChain[];
+  is_baby: boolean;
+  species: PokemonSpecies;
+}
