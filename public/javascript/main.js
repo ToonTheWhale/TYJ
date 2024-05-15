@@ -67,6 +67,54 @@ function filterPokemonByName() {
   }
 }
 
+// function filterPokemonByNamePokedex() {
+//   var input,
+//     filter,
+//     imageContainer,
+//     articles,
+//     figure,
+//     figcaption,
+//     p,
+//     i,
+//     txtValue;
+
+//   input = document.getElementById("myInput");
+//   filter = input.value.toUpperCase();
+//   imageContainer = document.querySelector(".flex-container");
+//   articles = imageContainer.getElementsByTagName("article");
+
+//   for (i = 0; i < articles.length; i++) {
+//     article = articles[0];
+//     p = article.getElementsByTagName("p")[0];
+//     txtValue = p.textContent || p.innerText;
+
+//     if (txtValue.toUpperCase().indexOf(filter) > -1) {
+//       articles[i].style.display = "";
+//     } else {
+//       articles[i].style.display = "none";
+//     }
+//   }
+// }
+
+function filterPokemon() {
+  var input, filter, articles, p, i, txtValue;
+  input = document.getElementById('pokemonFilter');
+  filter = input.value.toUpperCase();
+  articles = document.querySelectorAll('.pokemon');
+  
+  articles.forEach(function(article) {
+    p = article.querySelector('p');
+    txtValue = p.textContent || p.innerText;
+    if (txtValue.toUpperCase().indexOf(filter) > -1) {
+      article.style.display = "";
+    } else {
+      article.style.display = "none";
+    }
+  });
+}
+
+
+
 // Functie om de pop-up te openen
 function openPopupVS(compare_item_number, pokeGroup) {
   if (pokeGroup === 1) {

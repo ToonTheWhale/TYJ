@@ -142,9 +142,11 @@ function getAllPokemonFromEvolutionChain(
   pokemonArray: PokemonSpecies[] = []
 ): PokemonSpecies[] {
   // Voeg de huidige soort toe aan de array
-  let addPokeImage = pokemons.find(poke => poke.name === evolutionChain.species.name)
-  evolutionChain.species.image = addPokeImage?.image
-  evolutionChain.species.id = addPokeImage?.id
+  let addPokeImage = pokemons.find(
+    (poke) => poke.name === evolutionChain.species.name
+  );
+  evolutionChain.species.image = addPokeImage?.image;
+  evolutionChain.species.id = addPokeImage?.id;
   pokemonArray.push(evolutionChain.species);
 
   // Recursief proces evolueert naar array
@@ -189,7 +191,7 @@ app.post("/setCurrentPokemon", secureMiddleware, (req, res) => {
     currentPokemon = selectedPokemon;
     updateCurrentPokemon(req.session.user, selectedPokemon.id);
     req.session.user.currentPokemon = selectedPokemon.id;
-    console.log(req.session.currentPokemon);
+    // console.log(req.session.currentPokemon);
   }
   req.session.save(() => res.redirect("/myPokemons"));
 
@@ -207,7 +209,11 @@ app.post("/setCurrentPokemon", secureMiddleware, (req, res) => {
 app.get("/pokedex", secureMiddleware, async (req, res) => {
   const sortField = req.query.sortField || "name";
   const sortDirection = req.query.sortDirection || "asc";
-
+  if (req.session.user) {
+    currentPokemon = req.session.user.team.find(
+      (pokemon) => pokemon.id === req.session.user?.currentPokemon
+    );
+  }
   let sortedPokemons = [...pokemons];
 
   sortedPokemons.sort((a, b) => {
@@ -390,12 +396,17 @@ app.get("/mypokemons", secureMiddleware, async (req, res) => {
   const toonPokemons = req.query.sortField || "mijnPokemons";
   let sortedPokemons = [...pokemons];
   let sortDirection: string;
+  if (req.session.user) {
+    currentPokemon = req.session.user.team.find(
+      (pokemon) => pokemon.id === req.session.user?.currentPokemon
+    );
+  }
 
   sortedPokemons.sort((a, b) => {
     return sortDirection === "asc" ? b.id - a.id : a.id - b.id;
   });
 
-  console.log(toonPokemons);
+  // console.log(toonPokemons);
 
   res.render("myPokemons", {
     playerPokemons: req.session.user?.team,
@@ -408,6 +419,11 @@ app.get("/mypokemons", secureMiddleware, async (req, res) => {
 app.get("/pokemon/info/:pokeId", secureMiddleware, async (req, res) => {
   const pokemonId = parseInt(req.params.pokeId);
   let pokemonFind;
+  if (req.session.user) {
+    currentPokemon = req.session.user.team.find(
+      (pokemon) => pokemon.id === req.session.user?.currentPokemon
+    );
+  }
   if (playerPokemons.find((pokemon) => pokemon.id === pokemonId)) {
     pokemonFind = playerPokemons.find(({ id }) => pokemonId === id);
   } else {
@@ -415,28 +431,34 @@ app.get("/pokemon/info/:pokeId", secureMiddleware, async (req, res) => {
   }
 
   getEvolutionChain(pokemonId)
-  .then((evolutionChain) => {
-    // console.log(evolutionChain.chain.evolves_to[0].evolves_to);
-    const evolutionChainPokemons = getAllPokemonFromEvolutionChain(evolutionChain.chain);
-    console.log(evolutionChainPokemons);
-    res.render("pokemoninfo", {
-      pokemonFind,
-      pokemons,
-      message: false,
-      currentPokemon,
-      playerPokemons: req.session.user?.team,
-      evolutionChainPokemons
+    .then((evolutionChain) => {
+      // console.log(evolutionChain.chain.evolves_to[0].evolves_to);
+      const evolutionChainPokemons = getAllPokemonFromEvolutionChain(
+        evolutionChain.chain
+      );
+      // console.log(evolutionChainPokemons);
+      res.render("pokemoninfo", {
+        pokemonFind,
+        pokemons,
+        message: false,
+        currentPokemon,
+        playerPokemons: req.session.user?.team,
+        evolutionChainPokemons,
+      });
+    })
+    .catch((error) => {
+      console.error("Error:", error);
     });
-  })
-  .catch((error) => {
-    console.error("Error:", error);
-  });
-
 
   // const pokemonFind = pokemons.find(({ id }) => pokemonId === id);
 });
 
 app.get("/catchPokemon", secureMiddleware, async (req, res) => {
+  if (req.session.user) {
+    currentPokemon = req.session.user.team.find(
+      (pokemon) => pokemon.id === req.session.user?.currentPokemon
+    );
+  }
   res.render("catchPokemon", {
     pokemons,
     currentPokemon,
@@ -498,20 +520,25 @@ app.post("/catch", async (req, res) => {
   } else if (
     playerPokemons.find((pokemon) => pokemon.id === targetPokemon.id)
   ) {
-    playerPokemons = playerPokemons.filter(
-      (pokemon) => pokemon.id !== targetPokemon.id
-    );
+    if (req.session.user) {
+      pullPokemon(targetPokemon, req.session.user);
+      req.session.user.team = req.session.user.team.filter(
+        (pokemon) => pokemon.id !== targetPokemon.id
+      );
+    }
     if (currentPokemon == targetPokemon) {
       currentPokemon = undefined;
     }
-    res.render("catchPokemon", {
-      pokemons,
-      currentPokemon,
-      playerPokemons,
-      pokemonToCatch: targetPokemon,
-      message: false,
-      pokemonCaught: false,
-    });
+    req.session.save(() =>
+      res.render("catchPokemon", {
+        pokemons,
+        currentPokemon,
+        playerPokemons: req.session.user?.team,
+        pokemonToCatch: targetPokemon,
+        message: false,
+        pokemonCaught: false,
+      })
+    );
   } else {
     // const catchChance = 100 - targetPokemon.defense + currentPokemon.attack;
     // const isCaught = Math.random() * 100 < catchChance;
@@ -569,9 +596,10 @@ app.post("/pokemonNickname", async (req, res) => {
     );
     if (playerPokemon) {
       playerPokemon.nickname = nicknamePokemon;
+      playerPokemons = req.session.user.team;
       addPokemonNickname(selectedPokemon, req.session.user, nicknamePokemon);
     }
-    res.redirect("/myPokemons");
+    req.session.save(() => res.redirect("/myPokemons"));
   } else {
     res.redirect("/home");
     // console.log(setpokemonNickname, nicknamePokemon);
@@ -583,6 +611,11 @@ let setMyPokemonToBattle: DetailedPokemon | undefined;
 app.get("/pokeBattler", secureMiddleware, async (req, res) => {
   setPokemonToBattle = undefined;
   setMyPokemonToBattle = undefined;
+  if (req.session.user) {
+    currentPokemon = req.session.user.team.find(
+      (pokemon) => pokemon.id === req.session.user?.currentPokemon
+    );
+  }
   res.render("pokeBattler", {
     pokemons,
     currentPokemon,
@@ -676,6 +709,7 @@ app.post("/battleAddPokemon", async (req, res) => {
     );
     if (selectedPokemon && req.session.user) {
       selectedPokemon.nickname = nicknamePokemon;
+      playerPokemons = req.session.user.team;
       addPokemonNickname(selectedPokemon, req.session.user, nicknamePokemon);
       res.redirect("/myPokemons");
     }
@@ -686,6 +720,11 @@ app.post("/battleAddPokemon", async (req, res) => {
 
 let randomPokemon: DetailedPokemon;
 app.get("/guessPokemon", secureMiddleware, async (req, res) => {
+  if (req.session.user) {
+    currentPokemon = req.session.user.team.find(
+      (pokemon) => pokemon.id === req.session.user?.currentPokemon
+    );
+  }
   randomPokemon = pokemons[randomIntFromInterval(1, 100)];
   res.render("guessPokemon", {
     pokemons,
@@ -739,7 +778,7 @@ app.post("/improvePokemon", async (req, res) => {
   const selectedPokemon = req.session.user?.team.find(
     (pokemon) => pokemon.id === currentPokemon?.id
   );
-  console.log(selectedPokemon);
+  // console.log(selectedPokemon);
   if (selectedPokemon && getTypeOfImprove === "defense" && req.session.user) {
     selectedPokemon.defense += 1;
     playerPokemons = req.session.user.team;

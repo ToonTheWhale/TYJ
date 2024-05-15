@@ -1,6 +1,7 @@
 <%- include('partials/header'); %>
 <main class="pokedex-main">
-  <section class="sort-pokemon">
+  <section class="sort-pokemon" >
+  <input type="text" id="pokemonFilter" placeholder="Zoek op naam..." oninput="filterPokemon()">
   <form action="/pokedex" method="get"> 
     <select class="sort-select" name="sortField">
         <option class="sort-option" value="name" <%= sortField === 'name' ? 'selected' : '' %>>Name</option>
