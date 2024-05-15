@@ -1,6 +1,6 @@
 <%- include('partials/header'); %>
 <main style="display: flex; flex-direction: column">
-  <h1> Pokemon Vechten <i class="bi bi-patch-question"></i></h1>
+  <h1 class="title"> Pokeon Vechten <button onclick="PopupInfo()"><h1><i class="bi bi-patch-question"></i></h1></button></h1>
   <section class="compare">
     <% if (pokemonToBattle === undefined) { %>
     <article class="compare-item" id="compare-item-1">
@@ -385,7 +385,16 @@
     </div>
     <% } %>
   
-
+    <div id="popupinfo" class="popup">
+      <h2>Pokemon vechten</h2>
+      <p>
+        hier kan je met je pokemons <strong>vechten</strong>. in de linkse kader kies je een pokemon dat je nog niet hebt gevangen.
+        en aan de rechter kant kies je een van jouw persoonlijke pokemon. als je wint dan heb je de <strong>gevangen</strong> en kan je hem een bijnaam geven!
+      </p>
+      <button  id="button" style="float: right;" onclick="closeinfo()">Close</button>
+    </div>
+    
+    <div id="overlay-message" class="overlay"></div>
   <!-- eind popup code  -->
 </main>
 <%- include('partials/footer'); %>

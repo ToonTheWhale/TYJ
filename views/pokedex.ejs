@@ -1,6 +1,6 @@
 <%- include('partials/header'); %>
 <main class="pokedex-main">
-  <h1> Pokedex <button onclick="PopupInfo()"><i class="bi bi-patch-question"></i></button></h1>
+  <h1 class="title"> Pokedex <button onclick="PopupInfo()"><h1><i class="bi bi-patch-question"></i></h1></button></h1>
   <section class="sort-pokemon" >
   <input type="text" id="pokemonFilter" placeholder="Zoek op naam..." oninput="filterPokemon()">
   <form action="/pokedex" method="get"> 
@@ -37,8 +37,11 @@
   </section>
 
   <div id="popupinfo" class="popup">
-    <h2>tekst</h2>
-    <button class="button" style="float: right;" onclick="closeinfo()">Close</button>
+    <h2>Pokedex</h2>
+    <p>Dit is de Pokedex pagina. hier vind je <strong>alle pokemons</strong> die je kunt vangen. je kunt ze ook sorteren op hun id of naam.
+      wil je <strong>meer info</strong> over een pokemon? dan kan je er op klikken.
+    </p>
+    <button  id="button" style="float: right;" onclick="closeinfo()">Close</button>
   </div>
   
   <div id="overlay-message" class="overlay"></div>

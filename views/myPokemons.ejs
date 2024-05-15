@@ -1,6 +1,6 @@
 <%- include('partials/header'); %>
 <main class="main-mypokemon" style="width: 100%; margin: auto">
-  <h1> Mijn Pokemon <i class="bi bi-patch-question"></i></h1>
+  <h1 class="title"> mijn pokemons <button onclick="PopupInfo()"><h1><i class="bi bi-patch-question"></i></h1></button></h1>
   <section class="sort-pokemon">
     <form action="/myPokemons" method="get" class="fromMypokemon"> 
       <select class="sort-select" name="sortField">
@@ -139,5 +139,17 @@
     </article>
     <% } %>
   </section>
+
+  <div id="popupinfo" class="popup">
+    <h2>mijn pokemon</h2>
+    <p>
+      hier kan je al je <strong>gevangen</strong> pokemon terug vinden. je kan ook kiezen om alle pokemons te zien maar de genen dat je nog niet gevangen hebt
+      staan in het grijs. je kan ook de <strong>bijnaam</strong> zien van je pokemon als je die hebt gegeven anders zal je niets zien. 
+    </p>
+    <button  id="button" style="float: right;" onclick="closeinfo()">Close</button>
+  </div>
+  
+  <div id="overlay-message" class="overlay"></div>
+
 </main>
 <%- include('partials/footer'); %>

@@ -1257,6 +1257,16 @@ type-fairy {
   color: #ffffff;
 }
 
+.title button{
+  background-color: rgb(255, 255, 255, 0.01);
+  border: none;
+  height: 30px;
+}
+
+.title button:hover{
+  color: #ffde00;
+}
+
 @media screen and (max-width: 768px) {
   html,
   body {
@@ -1354,7 +1364,7 @@ type-fairy {
     overflow-x: auto;
     overflow-y: auto;
   }
-  .layer-close-button button {
+  .layer-close-button button { 
     font-size: 13px;
     margin: 3.5px;
   }
