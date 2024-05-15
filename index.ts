@@ -207,7 +207,7 @@ app.post("/setCurrentPokemon", secureMiddleware, (req, res) => {
 });
 
 app.get("/pokedex", secureMiddleware, async (req, res) => {
-  const sortField = req.query.sortField || "name";
+  const sortField = req.query.sortField || "id";
   const sortDirection = req.query.sortDirection || "asc";
   if (req.session.user) {
     currentPokemon = req.session.user.team.find(
@@ -217,12 +217,12 @@ app.get("/pokedex", secureMiddleware, async (req, res) => {
   let sortedPokemons = [...pokemons];
 
   sortedPokemons.sort((a, b) => {
-    if (sortField == "name") {
+    if (sortField == "id") {
+        return sortDirection === "asc" ? a.id - b.id : b.id - a.id;
+    } else if (sortField == "name") {
       return sortDirection === "asc"
         ? a.name.localeCompare(b.name)
         : b.name.localeCompare(a.name);
-    } else if (sortField == "id") {
-      return sortDirection === "asc" ? a.id - b.id : b.id - a.id;
     } else {
       return 0;
     }
