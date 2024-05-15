@@ -79,7 +79,7 @@ nav ul {
 .menu-hamburger {
   border: none;
   background-color: rgba(255, 255, 255, 0.01);
-  color: #3b4cca;
+  color: #ffde00;
   margin-left: auto;
 }
 /* .menu-hamburger:checked {
@@ -121,11 +121,11 @@ nav ul {
   width: 200px;
 }
 
-.menu li a {
-  background-color: #3b4cca;
-  border: 2px solid #3b4cca;
+
+.menu li a{
+  border: 1px solid black;
   border-radius: 5px;
-  color: #f0f0f0;
+  color: black;
   height: 40px;
   width: 180px;
   font-size: large;
@@ -141,7 +141,8 @@ nav ul {
 }
 
 .menu li a:hover {
-  color: #ffde00;
+  color: #3b4cca;
+  width: 200px;
 }
 
 /* .menu li:last-child { */
@@ -183,14 +184,14 @@ nav ul {
   margin-left: auto;
   margin-right: auto;
   align-items: center;
-  margin-top: 25px;
+  margin-top: 50px;
 }
 
 .logoutbutt {
   text-decoration: none;
   bottom: 0;
-  background-color: #ffde00;
-  border: 2px solid black;
+  background-color: rgb(0, 255, 255);
+  border: 2px solid black;   
   border-radius: 5px;
   height: 50px;
   width: 100px;
@@ -429,10 +430,11 @@ footer .flex-container-sengle-item {
 
 .home-page-option a p {
   background-color: rgb(255, 255, 255, 0.6);
-  border: 2px solid #ffde00;
+  border: 1px solid black;
   border-radius: 5px;
   color: black;
   width: auto;
+  font-weight: bold;
 }
 
 .home-page-option:hover img {
@@ -776,7 +778,7 @@ button {
 /* Footer styling */
 
 footer {
-  color: #3b4cca;
+  color: #ffde00;
   font-family: Arial, Helvetica, sans-serif;
   font-size: 1rem;
   height: 90px;
@@ -805,11 +807,7 @@ footer {
   justify-content: center;
 }
 footer a {
-  color: #3b4cca;
-}
-
-footer a {
-  color: #3b4cca;
+  color: white;
 }
 
 .footer-1-landing,
@@ -946,11 +944,10 @@ h3 {
 
 .main-404 {
   margin: auto;
-  font-family: pokemon;
   display: flex;
   flex-direction: column;
   align-items: center;
-  color: #3b4cca;
+  color: white;
 }
 
 table {
