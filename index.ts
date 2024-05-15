@@ -796,6 +796,8 @@ app.listen(app.get("port"), async () => {
   } finally {
     await client.close();
   }
+
+  populateEvolutionChains(pokemons);
   console.log("[server] http://localhost:" + app.get("port"));
 });
 
