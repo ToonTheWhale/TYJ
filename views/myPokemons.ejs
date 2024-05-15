@@ -68,11 +68,16 @@
       </figure>
     </article>
     <% } else { %>
+    
     <article class="compare-item" style="margin-top: 0; margin-bottom: 0">
       <figure>
+        
         <img src="<%= currentPokemon.image %>" width="200" height="200" />
         <figcaption>
           <h2><%= currentPokemon.name %></h2>
+          <h3 style="background-color: #3b4cca;">(current pokemon)</h3>
+          
+          
           <div style="display: flex; justify-content: center; margin: auto">
             <p style="width: 75%">Defense:</p>
             <div
