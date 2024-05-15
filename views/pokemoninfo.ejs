@@ -171,6 +171,7 @@
     </article>
   </section>
   <section class="flex-container-pokemon-info">
+    <% if (playerPokemons.find(pokemon => pokemon.id === pokemonFind.id)) { %>
     <article
       style="
         display: flex;
@@ -182,16 +183,91 @@
         background-color: transparent;
       "
     >
-      <button
-        type="submit"
-        onclick="closePokeball()"
-        class="pokeball"
-        id="pokeball"
-        style="z-index: 1000;
-        animation: none;"
-      ></button>
+      <form action="/setPokemonToCatch" method="post">
+        <button
+          type="submit"
+          onclick="closePokeball()"
+          class="pokeball"
+          id="pokeball"
+          name="setPokemonToCatch"
+          value="<%= pokemonFind.id %>"
+          style="
+            z-index: 1000;
+            animation: none;
+            background: radial-gradient(
+                white 16px,
+                black 17px 18px,
+                white 19px 24px,
+                black 25px 32px,
+                transparent 33px
+              ),
+              linear-gradient(
+                to bottom,
+                green 0 80px,
+                black 81px 96px,
+                white 97px 100%
+              );
+          "
+        ></button>
+      </form>
     </article>
-    <article style="margin-top: 25px;">
+    <% } else { %>
+    <article
+      style="
+        display: flex;
+        flex-direction: column;
+        width: 49%;
+        margin-top: 25px;
+        margin-bottom: 0;
+        border: none;
+        background-color: transparent;
+      "
+    >
+      <form action="/setPokemonToCatch" method="post">
+        <button
+          type="submit"
+          class="pokeball"
+          id="pokeball"
+          style="z-index: 1000; animation: none"
+          name="setPokemonToCatch"
+          value="<%= pokemonFind.id %>"
+        ></button>
+      </form>
+    </article>
+    <% } %> <% if (evolutionChainPokemons) { %>
+    <article style="margin-top: 25px">
+      <h2 style="color: #3b4cca; margin-bottom: 0">Evolutiepad</h2>
+      <section
+        style="
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          margin-bottom: 0;
+        "
+      >
+        <% for(let i = 0; i < evolutionChainPokemons.length; i++) { %>
+          <a href="/pokemon/info/<%= evolutionChainPokemons[i].id %>">
+            <img
+            style="width: 175px; height: 175px"
+            src="<%= evolutionChainPokemons[i].image %>"
+          />
+          </a>
+        <% if (i < evolutionChainPokemons.length - 1) { %>
+        <i
+          style="font-size: 50px; color: #3b4cca"
+          class="fa fa-arrow-right"
+          aria-hidden="true"
+        ></i>
+        <i
+          style="font-size: 50px; color: #3b4cca"
+          class="fa fa-arrow-down"
+          aria-hidden="true"
+        ></i>
+        <% } %> <% } %>
+      </section>
+    </article>
+    <% } else { %>
+    <article style="margin-top: 25px">
       <h2 style="color: #3b4cca; margin-bottom: 0">Evolutiepad</h2>
       <section
         style="
@@ -236,6 +312,7 @@
         />
       </section>
     </article>
+    <% } %>
   </section>
 </main>
 <%- include('partials/footer'); %>

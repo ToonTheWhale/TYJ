@@ -17,7 +17,13 @@ import {
 } from "./database";
 import { login, signup } from "./database";
 import session from "./session";
-import { User, NonDetailedPokemon, DetailedPokemon } from "./types";
+import {
+  User,
+  NonDetailedPokemon,
+  DetailedPokemon,
+  EvolutionChain,
+  PokemonSpecies,
+} from "./types";
 import { secureMiddleware } from "./secureMiddleware";
 import { loginRouter } from "./routes/loginRouter";
 import { homeRouter } from "./routes/homeRouter";
@@ -103,6 +109,54 @@ function battlePokemon(
   }
 }
 
+async function getEvolutionChain(pokemonId: number): Promise<any> {
+  try {
+    // Haal Pokémon-details op
+    const pokemonUrl = `https://pokeapi.co/api/v2/pokemon/${pokemonId}`;
+    const pokemonResponse = await fetch(pokemonUrl);
+    const pokemonData = await pokemonResponse.json();
+
+    // Extract soort-URL
+    const speciesUrl = pokemonData.species.url;
+
+    // Soortdetails ophalen
+    const speciesResponse = await fetch(speciesUrl);
+    const speciesData = await speciesResponse.json();
+
+    // Extract de Evolution Chain-URL
+    const evolutionChainUrl = speciesData.evolution_chain.url;
+
+    // Evolutieketendetails ophalen
+    const evolutionChainResponse = await fetch(evolutionChainUrl);
+    const evolutionChainData = await evolutionChainResponse.json();
+
+    return evolutionChainData;
+  } catch (error) {
+    console.error("Error fetching evolution chain:", error);
+    throw error;
+  }
+}
+
+function getAllPokemonFromEvolutionChain(
+  evolutionChain: EvolutionChain,
+  pokemonArray: PokemonSpecies[] = []
+): PokemonSpecies[] {
+  // Voeg de huidige soort toe aan de array
+  let addPokeImage = pokemons.find(poke => poke.name === evolutionChain.species.name)
+  evolutionChain.species.image = addPokeImage?.image
+  evolutionChain.species.id = addPokeImage?.id
+  pokemonArray.push(evolutionChain.species);
+
+  // Recursief proces evolueert naar array
+  if (evolutionChain.evolves_to && evolutionChain.evolves_to.length > 0) {
+    for (const evolvesTo of evolutionChain.evolves_to) {
+      getAllPokemonFromEvolutionChain(evolvesTo, pokemonArray);
+    }
+  }
+
+  return pokemonArray;
+}
+
 // # deze handler is enkel om testen
 app.get("/getDataAPI", (req, res) => {
   res.type("application/json");
@@ -133,7 +187,7 @@ app.post("/setCurrentPokemon", secureMiddleware, (req, res) => {
   );
   if (selectedPokemon && req.session.user) {
     currentPokemon = selectedPokemon;
-    updateCurrentPokemon(req.session.user,selectedPokemon.id)
+    updateCurrentPokemon(req.session.user, selectedPokemon.id);
     req.session.user.currentPokemon = selectedPokemon.id;
     console.log(req.session.currentPokemon);
   }
@@ -333,23 +387,53 @@ app.post("/startCompare", async (req, res) => {
 });
 
 app.get("/mypokemons", secureMiddleware, async (req, res) => {
+  const toonPokemons = req.query.sortField || "mijnPokemons";
+  let sortedPokemons = [...pokemons];
+  let sortDirection: string;
+
+  sortedPokemons.sort((a, b) => {
+    return sortDirection === "asc" ? b.id - a.id : a.id - b.id;
+  });
+
+  console.log(toonPokemons);
+
   res.render("myPokemons", {
     playerPokemons: req.session.user?.team,
-    pokemons,
+    pokemons: sortedPokemons,
     currentPokemon,
+    toonPokemons,
   });
 });
 
 app.get("/pokemon/info/:pokeId", secureMiddleware, async (req, res) => {
   const pokemonId = parseInt(req.params.pokeId);
-  const pokemonFind = pokemons.find(({ id }) => pokemonId === id);
-  res.render("pokemoninfo", {
-    pokemonFind,
-    pokemons,
-    message: false,
-    currentPokemon,
-    playerPokemons: req.session.user?.team,
+  let pokemonFind;
+  if (playerPokemons.find((pokemon) => pokemon.id === pokemonId)) {
+    pokemonFind = playerPokemons.find(({ id }) => pokemonId === id);
+  } else {
+    pokemonFind = pokemons.find(({ id }) => pokemonId === id);
+  }
+
+  getEvolutionChain(pokemonId)
+  .then((evolutionChain) => {
+    // console.log(evolutionChain.chain.evolves_to[0].evolves_to);
+    const evolutionChainPokemons = getAllPokemonFromEvolutionChain(evolutionChain.chain);
+    console.log(evolutionChainPokemons);
+    res.render("pokemoninfo", {
+      pokemonFind,
+      pokemons,
+      message: false,
+      currentPokemon,
+      playerPokemons: req.session.user?.team,
+      evolutionChainPokemons
+    });
+  })
+  .catch((error) => {
+    console.error("Error:", error);
   });
+
+
+  // const pokemonFind = pokemons.find(({ id }) => pokemonId === id);
 });
 
 app.get("/catchPokemon", secureMiddleware, async (req, res) => {
@@ -655,10 +739,13 @@ app.post("/improvePokemon", async (req, res) => {
   const selectedPokemon = req.session.user?.team.find(
     (pokemon) => pokemon.id === currentPokemon?.id
   );
-  console.log(selectedPokemon)
+  console.log(selectedPokemon);
   if (selectedPokemon && getTypeOfImprove === "defense" && req.session.user) {
     selectedPokemon.defense += 1;
     playerPokemons = req.session.user.team;
+    currentPokemon = req.session.user.team.find(
+      (pokemon) => pokemon.id === req.session.user?.currentPokemon
+    );
     updatePokemon(req.session.user);
     req.session.save(() => res.redirect("/myPokemons"));
 
@@ -668,6 +755,10 @@ app.post("/improvePokemon", async (req, res) => {
   }
   if (selectedPokemon && getTypeOfImprove === "attack" && req.session.user) {
     selectedPokemon.attack += 1;
+    playerPokemons = req.session.user.team;
+    currentPokemon = req.session.user.team.find(
+      (pokemon) => pokemon.id === req.session.user?.currentPokemon
+    );
     updatePokemon(req.session.user);
     req.session.save(() => res.redirect("/myPokemons"));
 
