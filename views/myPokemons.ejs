@@ -1,8 +1,8 @@
 <%- include('partials/header'); %>
 <main class="main-mypokemon" style="width: 100%; margin: auto">
   <h1>Jouw pokemon</h1>
-  <section class="sort-pokemon" style="margin-right: auto; margin-left: 8rem; margin-bottom: 20px;">
-    <form action="/myPokemons" method="get"> 
+  <section class="sort-pokemon">
+    <form action="/myPokemons" method="get" class="fromMypokemon"> 
       <select class="sort-select" name="sortField">
           <option class="sort-option" value="mijnPokemons" <%= toonPokemons === 'mijnPokemons' ? 'selected' : '' %>>Mijn Pokémons</option>
           <option class="sort-option" value="allePokemons" <%= toonPokemons === 'allePokemons' ? 'selected' : '' %>>Alle Pokémons</option>
@@ -66,9 +66,6 @@
           <p>Max HP: ?</p>
         </figcaption>
       </figure>
-      <aside class="layer">
-        <button onclick="openPopup(`left`); " type="submit">kiezen</button>
-      </aside>
     </article>
     <% } else { %>
     <article class="compare-item" style="margin-top: 0; margin-bottom: 0">

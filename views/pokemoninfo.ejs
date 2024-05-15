@@ -2,7 +2,14 @@
 <main style="margin-bottom: 25px; display: flex; flex-direction: column">
   <section class="flex-container-pokemon-info">
     <article style="display: flex; flex-direction: column">
-      <h2 style="color: #3b4cca"><%= pokemonFind.name.toUpperCase() %></h2>
+      <h2 style="color: #3b4cca; margin-bottom: 0">
+        <%= pokemonFind.name.toUpperCase() %>
+      </h2>
+      <% if (pokemonFind.nickname) { %>
+      <p style="color: #3b4cca; margin-top: 0">
+        Bijname : <%= pokemonFind.nickname %>
+      </p>
+      <% } %>
       <img style="width: 250px; height: 250px" src="<%= pokemonFind.image%>" />
     </article>
     <article style="display: flex; flex-direction: column">
@@ -35,7 +42,9 @@
           <% } %>
         </div>
       </div>
-      <p>Max HP <%= pokemonFind.maxHP %></p>
+      <% if (pokemonFind.pokemonCaughtDate) { %>
+      <p>Pokemon gevangen op: <%= pokemonFind.pokemonCaughtDate %></p>
+      <% } %>
     </article>
     <article style="display: flex; flex-direction: column">
       <div
@@ -183,6 +192,7 @@
         background-color: transparent;
       "
     >
+      <h3 style="margin-top: 0; background-color: green">Catching situatie</h3>
       <form action="/setPokemonToCatch" method="post">
         <button
           type="submit"
@@ -223,6 +233,7 @@
         background-color: transparent;
       "
     >
+      <h3 style="margin-top: 0">Catching situatie</h3>
       <form action="/setPokemonToCatch" method="post">
         <button
           type="submit"
@@ -245,13 +256,34 @@
           margin-bottom: 0;
         "
       >
-        <% for(let i = 0; i < evolutionChainPokemons.length; i++) { %>
-          <a href="/pokemon/info/<%= evolutionChainPokemons[i].id %>">
-            <img
+        <% if (evolutionChainPokemons.length > 4) { %> <% for(let i = 0; i <
+        4; i++) { %>
+        <a href="/pokemon/info/<%= evolutionChainPokemons[i].id %>">
+          <img
             style="width: 175px; height: 175px"
             src="<%= evolutionChainPokemons[i].image %>"
           />
-          </a>
+        </a>
+        <% if (i < 4 - 1) { %>
+        <i
+          style="font-size: 50px; color: #3b4cca"
+          class="fa fa-arrow-right"
+          aria-hidden="true"
+        ></i>
+        <i
+          style="font-size: 50px; color: #3b4cca"
+          class="fa fa-arrow-down"
+          aria-hidden="true"
+        ></i>
+        <% } %> <% } %> <% } else { %> 
+          <% for(let i = 0; i <
+        evolutionChainPokemons.length; i++) { %>
+        <a href="/pokemon/info/<%= evolutionChainPokemons[i].id %>">
+          <img
+            style="width: 175px; height: 175px"
+            src="<%= evolutionChainPokemons[i].image %>"
+          />
+        </a>
         <% if (i < evolutionChainPokemons.length - 1) { %>
         <i
           style="font-size: 50px; color: #3b4cca"
@@ -263,7 +295,7 @@
           class="fa fa-arrow-down"
           aria-hidden="true"
         ></i>
-        <% } %> <% } %>
+        <% } %> <% } %> <% } %>
       </section>
     </article>
     <% } else { %>

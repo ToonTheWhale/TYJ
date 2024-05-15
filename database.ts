@@ -176,10 +176,11 @@ export async function pullPokemon(pokemon: DetailedPokemon, user: User) {
     throw new Error("pokemon required");
   }
   let selectedPokemon: DetailedPokemon = pokemon;
+  const updatedUser = { ...user, team: user.team.filter(p => p.id !== pokemon.id) };
   if (selectedPokemon) {
-    let updateUserTeam = await userCollection.updateOne(
+    const updateUserTeam = await userCollection.updateOne(
       { id: user.id },
-      { $pull: { team: selectedPokemon } }
+      { $set: { team: updatedUser.team } }
     );
   } else {
     throw new Error("Pokemon not found");
