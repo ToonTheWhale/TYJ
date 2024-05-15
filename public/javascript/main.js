@@ -98,12 +98,12 @@ function filterPokemonByName() {
 
 function filterPokemon() {
   var input, filter, articles, p, i, txtValue;
-  input = document.getElementById('pokemonFilter');
+  input = document.getElementById("pokemonFilter");
   filter = input.value.toUpperCase();
-  articles = document.querySelectorAll('.pokemon');
-  
-  articles.forEach(function(article) {
-    p = article.querySelector('p');
+  articles = document.querySelectorAll(".pokemon");
+
+  articles.forEach(function (article) {
+    p = article.querySelector("p");
     txtValue = p.textContent || p.innerText;
     if (txtValue.toUpperCase().indexOf(filter) > -1) {
       article.style.display = "";
@@ -112,8 +112,6 @@ function filterPokemon() {
     }
   });
 }
-
-
 
 // Functie om de pop-up te openen
 function openPopupVS(compare_item_number, pokeGroup) {
