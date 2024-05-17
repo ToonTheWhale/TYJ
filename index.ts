@@ -79,7 +79,7 @@ function catchPokemon(
 }
 
 // Functie voor het simuleren van een gevecht tussen twee Pokémons
-async function battlePokemon(
+function battlePokemon(
   yourPokemon: DetailedPokemon,
   opponentPokemon: DetailedPokemon
 ) {
@@ -325,6 +325,7 @@ app.get("/compareSelect", secureMiddleware, async (req, res) => {
     PokemonRightToCompare: setPokemonRightToCompare,
     message: false,
     compareResult: false,
+    style: false
   });
 });
 
@@ -344,6 +345,7 @@ app.post("/setPokemonLeftToCompare", async (req, res) => {
       PokemonRightToCompare: setPokemonRightToCompare,
       message: false,
       compareResult: false,
+      style: true
     });
   } else {
     res.redirect("/home");

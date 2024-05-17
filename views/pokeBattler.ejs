@@ -1,4 +1,11 @@
 <%- include('partials/header'); %>
+<style>
+  body {
+    background-image: url("https://pbs.twimg.com/media/DEMG3reVoAARf3H.jpg");
+    background-size: cover;
+    background-position: center;
+  }
+</style>
 <main style="display: flex; flex-direction: column">
   <section class="compare">
     <% if (pokemonToBattle === undefined) { %>
@@ -21,7 +28,14 @@
           <p>Max HP: ?</p>
         </figcaption>
       </figure>
-      <aside class="layer">
+      <aside
+        class="layer"
+        style="
+          background-image: url('/images/Question-mark-yallow.png');
+          background-size: cover;
+          background-position: center;
+        "
+      >
         <button onclick="openPopupVS(1,1); " type="submit">kiezen</button>
       </aside>
     </article>
@@ -103,7 +117,10 @@
       <form action="/battle" method="post">
         <% if (pokemonToBattle && myPokemonToBattle) { %>
         <button style="background: none; border: none" type="submit">
-          <img src="/images/image.png" style="scale: 0.5" />
+          <img
+            src="https://cdn-icons-png.flaticon.com/512/3943/3943622.png"
+            style="width: 225px; height: 225px"
+          />
         </button>
         <% } else { %>
         <button
@@ -111,7 +128,10 @@
           name="setPokemonToBattle"
           value="1"
         >
-          <img src="/images/image.png" style="scale: 0.5" />
+          <img
+            src="https://cdn-icons-png.flaticon.com/512/3943/3943622.png"
+            style="width: 225px; height: 225px"
+          />
         </button>
         <% } %>
       </form>
@@ -136,7 +156,13 @@
           <p>Max HP: ?</p>
         </figcaption>
       </figure>
-      <aside class="layer">
+      <aside
+        class="layer"
+        style="
+          background-image: url('https://i.pinimg.com/564x/9b/18/1b/9b181b17398e72f7b11d6511a0158064.jpg');
+          background-size: cover;
+        "
+      >
         <button onclick="openPopup(`MyPokemons`);" type="submit">kiezen</button>
       </aside>
     </article>
