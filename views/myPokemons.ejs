@@ -74,9 +74,13 @@
     cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
   animation: rotate-in-ver 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;">
       <figure>
+        
         <img src="<%= currentPokemon.image %>" width="200" height="200" />
         <figcaption>
-          <h2><%= currentPokemon.name %></h2>
+          <h2 style="font-family: Courier New, Courier, monospace; font-weight: bolder; text-transform: uppercase;"><%= currentPokemon.name %></h2>
+          <h3 style="background-color: #3b4cca; opacity: 40%;">(current pokemon)</h3>
+          
+          
           <div style="display: flex; justify-content: center; margin: auto">
             <p style="width: 75%">Defense:</p>
             <div
