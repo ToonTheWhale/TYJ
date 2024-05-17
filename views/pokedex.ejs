@@ -18,7 +18,8 @@
   width: 90%;
   height: 600px;
   overflow-x: hidden;
-  overflow-y: auto;">
+  overflow-y: auto;
+  -webkit-animation:slide-in-bck-center .7s cubic-bezier(.25,.46,.45,.94) both;animation:slide-in-bck-center .7s cubic-bezier(.25,.46,.45,.94) both">
     <% for(let pokemon of pokemons) { %>
     <article class="pokemon" >
       <p><%= pokemon.name %></p>

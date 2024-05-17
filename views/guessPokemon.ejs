@@ -1,6 +1,6 @@
 <%- include('partials/header'); %>
-<main style="margin-bottom: 25px; display: flex; flex-direction: column">
-  <section class="flex-container-sengle-item" style="position: relative">
+<main style="margin-bottom: 25px; display: flex; flex-direction: column; ">
+  <section class="flex-container-sengle-item" style="position: relative; -webkit-animation:slide-in-elliptic-top-fwd .7s cubic-bezier(.25,.46,.45,.94) both;animation:slide-in-elliptic-top-fwd .7s cubic-bezier(.25,.46,.45,.94) both">
     <article>
       <figure>
         <h2>????????</h2>
@@ -11,7 +11,7 @@
       </figure>
     </article>
   </section>
-  <form id="myForm" action="/guessPokemonResult" method="post">
+  <form id="myForm" action="/guessPokemonResult" method="post" style="-webkit-animation:slide-in-elliptic-top-fwd .7s cubic-bezier(.25,.46,.45,.94) both;animation:slide-in-elliptic-top-fwd .7s cubic-bezier(.25,.46,.45,.94) both">
     <input
       name="myCountry"
       class="input"
@@ -30,7 +30,7 @@
     />
   </form>
   <% if (message) { %>
-  <div id="overlay" style="display: block" class="overlay">
+  <div id="overlay" style="display: block; animation: none;  -webkit-animation: none" class="overlay">
     <dialog id="popup" style="display: block" class="popup">
       <h2><%= message %></h2>
       <button style="float: right" onclick="closePopup()" id="button">
@@ -39,7 +39,7 @@
     </dialog>
   </div>
   <% } %> <% if (guessResult) { %>
-  <div id="overlay" style="display: block" class="overlay">
+  <div id="overlay" style="display: block; animation: none; -webkit-animation: none" class="overlay">
     <dialog
       id="popup"
       style="
@@ -63,7 +63,7 @@
     </dialog>
   </div>
   <% } %> <% if (guessResult == randomPokemon) { %>
-  <div id="overlay" style="display: block" class="overlay">
+  <div id="overlay" style="display: block; animation: none;  -webkit-animation: none" class="overlay">
     <dialog
       id="popup"
       style="

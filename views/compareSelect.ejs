@@ -2,7 +2,15 @@
 <main style="display: flex; flex-direction: column">
   <section class="compare">
     <% if (PokemonLeftToCompare === undefined) { %>
-    <article class="compare-item" id="compare-item-1">
+    <article
+      class="compare-item"
+      id="compare-item-1"
+      style="
+        -webkit-animation: rotate-in-ver 0.5s
+          cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
+        animation: rotate-in-ver 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
+      "
+    >
       <figure>
         <img src="/images/Question-mark.png" width="200" height="200" />
         <figcaption>
@@ -19,7 +27,14 @@
       </aside>
     </article>
     <% } else { %>
-    <article class="compare-item">
+    <article
+      class="compare-item"
+      style="
+        -webkit-animation: rotate-in-ver 0.5s
+          cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
+        animation: rotate-in-ver 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
+      "
+    >
       <figure>
         <img src="<%= PokemonLeftToCompare.image %>" width="200" height="200" />
         <figcaption>
@@ -112,7 +127,15 @@
       </form>
     </article>
     <% if (PokemonRightToCompare === undefined) { %>
-    <article class="compare-item" id="compare-item-2">
+    <article
+      class="compare-item"
+      id="compare-item-2"
+      style="
+        -webkit-animation: rotate-in-ver 0.5s
+          cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
+        animation: rotate-in-ver 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
+      "
+    >
       <figure>
         <img src="/images/Question-mark.png" width="200" height="200" />
         <figcaption>
@@ -129,7 +152,14 @@
       </aside>
     </article>
     <% } else { %>
-    <article class="compare-item">
+    <article
+      class="compare-item"
+      style="
+        -webkit-animation: rotate-in-ver 0.5s
+          cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
+        animation: rotate-in-ver 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
+      "
+    >
       <figure>
         <img
           src="<%= PokemonRightToCompare.image %>"
@@ -309,7 +339,14 @@
       >
         <i class="fa fa-times" aria-hidden="true"></i>
       </button>
-      <h2 style="display: flex; align-items: center; justify-content: center; margin: 0;">
+      <h2
+        style="
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          margin: 0;
+        "
+      >
         Pokémon Vergelijking:
         <img
           style="height: 75px; height: 75px"
