@@ -155,17 +155,6 @@ nav ul {
   right: 25px; */
 /* margin-top: 100px; */
 /* } */
-.layer-close-button {
-  font-size: 25px;
-  background-color: #3b4cca;
-  position: relative;
-  float: right;
-  margin-right: 16px;
-  margin-top: 16px;
-  background-color: #ffde00;
-  border: 3px solid #000000;
-  border-radius: 50%;
-}
 
 .current-pokemon {
   background-color: white;
@@ -1359,27 +1348,12 @@ button {
   position: absolute;
   top: 0;
   right: 0;
-  z-index: 1; /* laag bovenop de inhoud */
 }
+
 .layer-close-button button {
-  color: #343434;
-  font-size: 18px;
-  background-color: transparent;
-  border: 2px solid #3b4cca;
-  padding: 5px 10px;
-  background-color: #3b4cca;
   border-radius: 50%;
-  font-weight: bolder;
 }
-.layer-close-button button:hover {
-  color: #343434;
-  font-size: 18px;
-  background-color: transparent;
-  border: 2px solid #3b4cca;
-  background-color: #ffde00;
-  border-radius: 50%;
-  padding: auto;
-}
+
 
 .close_button {
   float: right;
@@ -1933,6 +1907,16 @@ type-fairy {
   color: #ffffff;
 }
 
+.title button{
+  background-color: rgb(255, 255, 255, 0.01);
+  border: none;
+  height: 30px;
+}
+
+.title button:hover{
+  color: #ffde00;
+}
+
 @media screen and (max-width: 768px) {
   html,
   body {
@@ -2030,7 +2014,7 @@ type-fairy {
     overflow-x: auto;
     overflow-y: auto;
   }
-  .layer-close-button button {
+  .layer-close-button button { 
     font-size: 13px;
     margin: 3.5px;
   }
