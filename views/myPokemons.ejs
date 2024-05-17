@@ -54,7 +54,9 @@
       <% } %>
     </section>
     <% if (currentPokemon === undefined) { %>
-    <article class="compare-item" style="margin-top: 0; margin-bottom: 0" id="compare-item-1">
+    <article class="compare-item" style="margin-top: 0; margin-bottom: 0;         -webkit-animation: rotate-in-ver 0.5s
+    cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
+  animation: rotate-in-ver 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;" id="compare-item-1">
       <figure>
         <img src="/images/Question-mark.png" width="200" height="200" />
         <figcaption>
@@ -68,7 +70,9 @@
       </figure>
     </article>
     <% } else { %>
-    <article class="compare-item" style="margin-top: 0; margin-bottom: 0">
+    <article class="compare-item" style="margin-top: 0; margin-bottom: 0;         -webkit-animation: rotate-in-ver 0.5s
+    cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
+  animation: rotate-in-ver 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;">
       <figure>
         <img src="<%= currentPokemon.image %>" width="200" height="200" />
         <figcaption>

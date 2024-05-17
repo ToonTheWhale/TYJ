@@ -69,7 +69,7 @@ function catchPokemon(
 ): boolean {
   const catchPercentage = 100 - targetPokemon.defense + currentPokemon.attack;
   let caught = false;
-  const random = randomIntFromInterval(1, 100);
+  const random = randomIntFromInterval(50, 100);
   // console.log(random, catchPercentage);
   if (random <= catchPercentage) {
     caught = true;
@@ -145,9 +145,12 @@ function getAllPokemonFromEvolutionChain(
   let addPokeImage = pokemons.find(
     (poke) => poke.name === evolutionChain.species.name
   );
-  evolutionChain.species.image = addPokeImage?.image;
-  evolutionChain.species.id = addPokeImage?.id;
-  pokemonArray.push(evolutionChain.species);
+
+  if (addPokeImage) {
+    evolutionChain.species.image = addPokeImage?.image;
+    evolutionChain.species.id = addPokeImage?.id;
+    pokemonArray.push(evolutionChain.species);
+  }
 
   // Recursief proces evolueert naar array
   if (evolutionChain.evolves_to && evolutionChain.evolves_to.length > 0) {
@@ -322,6 +325,7 @@ app.get("/compareSelect", secureMiddleware, async (req, res) => {
     PokemonRightToCompare: setPokemonRightToCompare,
     message: false,
     compareResult: false,
+    style: false
   });
 });
 
@@ -341,6 +345,7 @@ app.post("/setPokemonLeftToCompare", async (req, res) => {
       PokemonRightToCompare: setPokemonRightToCompare,
       message: false,
       compareResult: false,
+      style: true
     });
   } else {
     res.redirect("/home");
@@ -530,14 +535,7 @@ app.post("/catch", async (req, res) => {
       currentPokemon = undefined;
     }
     req.session.save(() =>
-      res.render("catchPokemon", {
-        pokemons,
-        currentPokemon,
-        playerPokemons: req.session.user?.team,
-        pokemonToCatch: targetPokemon,
-        message: false,
-        pokemonCaught: false,
-      })
+      res.redirect("/catchPokemon")
     );
   } else {
     // const catchChance = 100 - targetPokemon.defense + currentPokemon.attack;
@@ -675,7 +673,7 @@ app.post("/battle", async (req, res) => {
     // console.log(setPokemonToBattle.name, setMyPokemonToBattle.name);
     const winner = battlePokemon(setMyPokemonToBattle, setPokemonToBattle);
     // console.log(winner);
-    if (winner == setMyPokemonToBattle && req.session.user) {
+    if (await winner == setMyPokemonToBattle && req.session.user) {
       pushPokemon(setPokemonToBattle, req.session.user);
       req.session.user?.team.push(setPokemonToBattle);
     }
