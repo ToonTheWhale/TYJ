@@ -1,6 +1,6 @@
 <%- include('partials/header'); %>
 <main class="main-mypokemon" style="width: 100%; margin: auto">
-  <h1>Jouw pokemon</h1>
+  <h1 class="title"> mijn pokemons <button onclick="PopupInfo()"><h1><i class="bi bi-patch-question"></i></h1></button></h1>
   <section class="sort-pokemon">
     <form action="/myPokemons" method="get" class="fromMypokemon"> 
       <select class="sort-select" name="sortField">
@@ -54,7 +54,9 @@
       <% } %>
     </section>
     <% if (currentPokemon === undefined) { %>
-    <article class="compare-item" style="margin-top: 0; margin-bottom: 0" id="compare-item-1">
+    <article class="compare-item" style="margin-top: 0; margin-bottom: 0;         -webkit-animation: rotate-in-ver 0.5s
+    cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
+  animation: rotate-in-ver 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;" id="compare-item-1">
       <figure>
         <img src="/images/Question-mark.png" width="200" height="200" />
         <figcaption>
@@ -68,8 +70,9 @@
       </figure>
     </article>
     <% } else { %>
-    
-    <article class="compare-item" style="margin-top: 0; margin-bottom: 0">
+    <article class="compare-item" style="margin-top: 0; margin-bottom: 0;         -webkit-animation: rotate-in-ver 0.5s
+    cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
+  animation: rotate-in-ver 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;">
       <figure>
         
         <img src="<%= currentPokemon.image %>" width="200" height="200" />
@@ -144,5 +147,17 @@
     </article>
     <% } %>
   </section>
+
+  <div id="popupinfo" class="popup">
+    <h2>mijn pokemon</h2>
+    <p>
+      hier kan je al je <strong>gevangen</strong> pokemon terug vinden. je kan ook kiezen om alle pokemons te zien maar de genen dat je nog niet gevangen hebt
+      staan in het grijs. je kan ook de <strong>bijnaam</strong> zien van je pokemon als je die hebt gegeven anders zal je niets zien. 
+    </p>
+    <button  id="button" style="float: right;" onclick="closeinfo()">Close</button>
+  </div>
+  
+  <div id="overlay-message" class="overlay"></div>
+
 </main>
 <%- include('partials/footer'); %>

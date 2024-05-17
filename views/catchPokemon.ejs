@@ -1,5 +1,6 @@
 <%- include('partials/header'); %>
-<main style="margin-bottom: 100px; justify-content: center">
+<main style="margin-bottom: 100px; justify-content: center; display: flex; flex-direction: column; margin-top: -1rem;">
+  <h1 class="title"> Pokeon vangen <button onclick="PopupInfo()"><h1><i class="bi bi-patch-question"></i></h1></button></h1>
   <section
     class="flex-container-sengle-item"
     id="flex-container-sengle-item"
@@ -7,7 +8,7 @@
   >
     <% if (!pokemonToCatch) { %>
     <article>
-      <figure>
+      <figure> 
         <h2>????????</h2>
         <img src="/images/Question-mark-yallow.png" />
       </figure>
@@ -24,6 +25,7 @@
         id="pokeball"
         style="
           animation: none;
+          -webkit-animation:roll-in-left .6s ease-out both;animation:roll-in-left .6s ease-out both;
           position: absolute;
           bottom: -25%;
           left: 25%;
@@ -56,6 +58,7 @@
         onclick="openPopupMessage()"
         style="
           animation: none;
+          -webkit-animation:bounce-in-top 1.1s both;animation:bounce-in-top 1.1s both;
           position: absolute;
           bottom: -25%;
           left: 25%;
@@ -115,6 +118,7 @@
           id="pokeball"
           style="
             animation: none;
+            -webkit-animation:bounce-in-top 1.1s both;animation:bounce-in-top 1.1s both;
             position: absolute;
             bottom: -25%;
             left: 25%;
@@ -239,5 +243,18 @@
     </dialog>
   </div>
   <% } %>
+
+  <div id="popupinfo" class="popup">
+    <h2>pokemon vangen</h2>
+    <p>
+      hier kan je pokemons <strong>vangen</strong>. je kan kiezen tussen zelf de pokemon kiezen die je wilt vangen of een willekeurige
+      pokemon vangen die je nog niet hebt. je krijgt <strong>3 kansen</strong> om de pokemon te vangen. als het niet lukt dan ontsnapt de pokemon!
+      lukt het je wel dan kan je de pokemon een bijnaam geven als je wilt en dan word hij toegevoegd aan je lijst van gevangen pokemon 
+    </p>
+    <button  id="button" style="float: right;" onclick="closeinfo()">Close</button>
+  </div>
+  
+  <div id="overlay-message" class="overlay"></div>
+
 </main>
 <%- include('partials/footer'); %>
