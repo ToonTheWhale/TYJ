@@ -28,6 +28,9 @@ export interface DetailedPokemon {
   defense: number;
   attack: number;
   nickname: string;
+  wins:number;
+  losses:number;
+  capturedPokemon?:string
 }
 
 export interface FlashMessage {

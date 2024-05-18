@@ -467,6 +467,8 @@ footer .flex-container-sengle-item {
     animation-timing-function: ease-out;
   }
 }
+@-webkit-keyframes fade-in{0%{opacity:0}100%{opacity:1}}@keyframes fade-in{0%{opacity:0}100%{opacity:1}}
+
 .pokemon:hover {
   border: 3px solid #ffde00;
   -webkit-animation: heartbeat 1.5s ease-in-out infinite both;
@@ -478,6 +480,21 @@ footer .flex-container-sengle-item {
     both;
   animation: rotate-in-ver 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
 }
+#compare-item-1 {
+  -webkit-animation: rotate-in-ver 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94)
+    both;
+  animation: rotate-in-ver 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
+}
+
+#battel-item-2 {
+  -webkit-animation: slit-in-diagonal-1 0.45s ease-out both;
+  animation: slit-in-diagonal-1 0.45s ease-out both;
+}
+#battel-item-1 {
+  -webkit-animation: slit-in-diagonal-2 0.45s ease-out both;
+  animation: slit-in-diagonal-2 0.45s ease-out both;
+}
+
 
 .pokemon button {
   padding: 5px 10px;

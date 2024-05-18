@@ -1,24 +1,39 @@
-<%- include('partials/header'); %> <% if (style) { %>
+<%- include('partials/header'); %> <% if (styleLeft) { %>
 <style>
   #compare-item-2 {
     -webkit-animation: none;
     animation: none;
   }
 </style>
-<%} %>
-<main style="display: flex; flex-direction: column; text-align: center;">
-  <h1 class="title"> Pokemon vergelijken <button onclick="PopupInfo()"><h1><i class="bi bi-patch-question"></i></h1></button></h1>
+<% } else if (styleRight) { %>
+<style>
+  #compare-item-1 {
+    -webkit-animation: none;
+    animation: none;
+  }
+</style>
+<% } else if (styleBoth) { %>
+<style>
+  #compare-item-1 {
+    -webkit-animation: none;
+    animation: none;
+  }
+  #compare-item-2 {
+    -webkit-animation: none;
+    animation: none;
+  }
+</style>
+<% } %>
+<main style="display: flex; flex-direction: column; text-align: center">
+  <h1 class="title">
+    Pokemon vergelijken
+    <button onclick="PopupInfo()">
+      <h1><i class="bi bi-patch-question"></i></h1>
+    </button>
+  </h1>
   <section class="compare">
     <% if (PokemonLeftToCompare === undefined) { %>
-    <article
-      class="compare-item"
-      id="compare-item-1"
-      style="
-        -webkit-animation: rotate-in-ver 0.5s
-          cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
-        animation: rotate-in-ver 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
-      "
-    >
+    <article class="compare-item" id="compare-item-1">
       <figure>
         <img src="/images/Question-mark.png" width="200" height="200" />
         <figcaption>
@@ -35,14 +50,7 @@
       </aside>
     </article>
     <% } else { %>
-    <article
-      class="compare-item"
-      style="
-        -webkit-animation: rotate-in-ver 0.5s
-          cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
-        animation: rotate-in-ver 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
-      "
-    >
+    <article class="compare-item" id="compare-item-1">
       <figure>
         <img src="<%= PokemonLeftToCompare.image %>" width="200" height="200" />
         <figcaption>
@@ -135,10 +143,7 @@
       </form>
     </article>
     <% if (PokemonRightToCompare === undefined) { %>
-    <article
-      class="compare-item"
-      id="compare-item-2"
-    >
+    <article class="compare-item" id="compare-item-2">
       <figure>
         <img src="/images/Question-mark.png" width="200" height="200" />
         <figcaption>
@@ -155,14 +160,7 @@
       </aside>
     </article>
     <% } else { %>
-    <article
-      class="compare-item"
-      style="
-        -webkit-animation: rotate-in-ver 0.5s
-          cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
-        animation: rotate-in-ver 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
-      "
-    >
+    <article class="compare-item" id="compare-item-2">
       <figure>
         <img
           src="<%= PokemonRightToCompare.image %>"
@@ -329,19 +327,20 @@
     </dialog>
   </div>
   <% } %> <% if (compareResult) { %>
-  <div id="overlay-compareResult" style="display: block" class="overlay">
+  <div
+    id="overlay-compareResult"
+    style="
+      display: block;
+      -webkit-animation: fade-in 1.2s cubic-bezier(0.39, 0.575, 0.565, 1) both;
+      animation: fade-in 1.2s cubic-bezier(0.39, 0.575, 0.565, 1) both;
+    "
+    class="overlay"
+  >
     <dialog
       class="popup"
       style="text-align: center; display: block"
       id="popup-compareResult"
     >
-      <button
-        class="close_button"
-        onclick="closePopup(`compareResult`)"
-        type="submit"
-      >
-        <i class="fa fa-times" aria-hidden="true"></i>
-      </button>
       <h2
         style="
           display: flex;
@@ -431,6 +430,16 @@
           </td>
         </tr>
       </table>
+      <form action="/compareSelect">
+        <button
+          id="button"
+          style="float: right"
+          formaction="/compareSelect"
+          formmethod="get"
+        >
+          Close
+        </button>
+      </form>
     </dialog>
   </div>
   <% } %>
@@ -438,13 +447,15 @@
   <div id="popupinfo" class="popup">
     <h2>pokemon vergelijken</h2>
     <p>
-      hier kan je je pokemon <strong>vergelijken</strong> met andere pokemons. zo kan je zien waar de ene pokemon beter in is als de andere
-      en <strong>hoeveel</strong> verschil er tussen de twee zit.
+      hier kan je je pokemon <strong>vergelijken</strong> met andere pokemons.
+      zo kan je zien waar de ene pokemon beter in is als de andere en
+      <strong>hoeveel</strong> verschil er tussen de twee zit.
     </p>
-    <button  id="button" style="float: right;" onclick="closeinfo()">Close</button>
+    <button id="button" style="float: right" onclick="closeinfo()">
+      Close
+    </button>
   </div>
-  
-  <div id="overlay-message" class="overlay"></div>
 
+  <div id="overlay-message" class="overlay"></div>
 </main>
 <%- include('partials/footer'); %>

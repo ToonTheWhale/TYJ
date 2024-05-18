@@ -11,18 +11,36 @@
       </p>
       <% } %>
       <img style="width: 250px; height: 250px" src="<%= pokemonFind.image%>" />
-      <section class="resultBattle">
-        <div class="wins">
-          <button><i class="bi bi-arrow-up-circle-fill"></i></button>
-          wins : 10
-          <button><i class="bi bi-arrow-down-circle-fill"></i></button>
-        </div>
-        <div class="losses">
-          <button><i class="bi bi-arrow-up-circle-fill"></i></button>
-          losses : 5
-          <button><i class="bi bi-arrow-down-circle-fill"></i></button>
-        </div>
-      </section>
+      <% if (playerPokemons.find(poke => poke.id === pokemonFind.id)) { %>
+      <form action="/" method="post">
+        <section class="resultBattle">
+          <input
+            type="text"
+            style="display: none"
+            name="pokemonFind"
+            value="<%= pokemonFind.id%>"
+          />
+          <div class="wins">
+            <button type="submit" formaction="/increaseWins">
+              <i class="bi bi-arrow-up-circle-fill"></i>
+            </button>
+            wins : <%= pokemonFind.wins %>
+            <button type="submit" formaction="/decreaseWins">
+              <i class="bi bi-arrow-down-circle-fill"></i>
+            </button>
+          </div>
+          <div class="losses">
+            <button type="submit" formaction="/increaseLosses">
+              <i class="bi bi-arrow-up-circle-fill"></i>
+            </button>
+            losses : <%= pokemonFind.losses %>
+            <button type="submit" formaction="/decreaseLosses">
+              <i class="bi bi-arrow-down-circle-fill"></i>
+            </button>
+          </div>
+        </section>
+      </form>
+      <% } %>
     </article>
     <article style="display: flex; flex-direction: column">
       <h2 style="color: #3b4cca">Pokemon Stats</h2>
@@ -54,8 +72,8 @@
           <% } %>
         </div>
       </div>
-      <% if (pokemonFind.pokemonCaughtDate) { %>
-      <p>Pokemon gevangen op: <%= pokemonFind.pokemonCaughtDate %></p>
+      <% if (pokemonFind.capturedPokemon) { %>
+      <p style="color: #3b4cca; ">Pokemon gevangen <br> op: <%= pokemonFind.capturedPokemon %></p>
       <% } %>
     </article>
     <article style="display: flex; flex-direction: column">
@@ -364,5 +382,19 @@
     </article>
     <% } %>
   </section>
+  <% if (message) { %>
+  <div id="overlay-battle-message" style="display: block" class="overlay">
+    <dialog id="popup-battle-message" style="display: block" class="popup">
+      <h2><%= message %></h2>
+      <button
+        style="float: right"
+        onclick="closePopupMessageBattle()"
+        id="button"
+      >
+        Close
+      </button>
+    </dialog>
+  </div>
+  <% } %>
 </main>
 <%- include('partials/footer'); %>
