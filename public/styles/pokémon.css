@@ -6,8 +6,6 @@
 html,
 body {
   margin: 0;
-  /* het is hier het beste als we met (min-height)  werken voor toekomstige veranderingen */
-  /* height: 100vh; */
   min-height: 100vh;
   font-family: Arial, Helvetica, sans-serif;
 }
@@ -22,8 +20,8 @@ body {
     "footer2 footer2 footer2";
   grid-template-rows: auto 1fr auto auto auto;
   background-image: url("/images/forest2.jpg");
-  background-size: cover; /* Breedte en hoogte in pixels */
-  background-position: center; /* Hiermee wordt de achtergrondafbeelding in het midden van het element geplaatst */
+  background-size: cover;
+  background-position: center;
 }
 
 /* Navigation styling */
@@ -32,11 +30,8 @@ nav {
   display: flex;
   align-items: center;
   grid-area: header;
-  /* background-color: #ffde00; */
   width: 100%;
-  /* padding: 8px; */
   margin: auto;
-  /* margin-bottom: 1rem; */
   align-content: center;
 }
 
@@ -56,41 +51,33 @@ nav {
 nav img {
   width: 100px;
 }
+
 nav a {
   width: 100px;
-}
-nav a {
-  /* font-family: pokemon; */
   text-decoration: none;
-  /* color: #3b4cca; */
   color: #000000;
   font-size: 2rem;
   padding: 8px;
   margin: auto;
 }
+
 .pfp-nav {
   border-radius: 50%;
   width: 50px;
   border: 2px solid black;
 }
+
 nav ul {
   list-style: none;
 }
+
 .menu-hamburger {
   border: none;
   background-color: rgba(255, 255, 255, 0.01);
   color: #ffde00;
   margin-left: auto;
 }
-/* .menu-hamburger:checked {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(0, 0, 0, 0.8);
-  z-index: 999;
-} */
+
 .overlay-Menu {
   display: none;
   position: fixed;
@@ -99,12 +86,12 @@ nav ul {
   width: 24%;
   height: 100%;
   background-image: url("/images/navbackground.jpg");
-  /* https://www.pinterest.com/pin/545357836123522035/*/
   background-size: cover;
   background-position: center;
   z-index: 1000;
   color: blue;
 }
+
 .menu {
   display: flex;
   flex-direction: column;
@@ -114,10 +101,9 @@ nav ul {
 
 .menu li {
   margin-top: 2rem;
-  margin-left: 1.5rem;
-  height: 40px;
   margin-left: auto;
   margin-right: auto;
+  height: 40px;
   width: 200px;
 }
 
@@ -144,18 +130,6 @@ nav ul {
   width: 200px;
 }
 
-/* .menu li:last-child { */
-/* display: flex; */
-/* flex-direction: row; */
-/* font-size: 25px;
-  color: #ffde00;
-  border: none; */
-/* position: absolute;
-  bottom: 10px;
-  right: 25px; */
-/* margin-top: 100px; */
-/* } */
-
 .current-pokemon {
   background-color: white;
   border: 3px solid #ffde00;
@@ -177,7 +151,6 @@ nav ul {
 
 .logoutbutt {
   text-decoration: none;
-  bottom: 0;
   background-color: rgb(0, 255, 255);
   border: 2px solid black;
   border-radius: 5px;
@@ -200,7 +173,7 @@ main {
   flex-direction: column;
 }
 
-/*styling voor sorting*/
+/* Styling for sorting */
 
 .sort-pokemon form select {
   border: none;
@@ -216,14 +189,9 @@ main {
   font-size: 1.5rem;
 }
 
-/* Flex container voor Pokemons */
-
 .sort-pokemon {
   display: flex;
   width: 100%;
-  /* margin-left: auto; */
-  /* padding-right: 8rem;  */
-  /* margin-left: 8rem;  */
 }
 
 .sort-pokemon input {
@@ -247,6 +215,7 @@ main {
   width: 90%;
   margin: auto;
 }
+
 footer .flex-container-sengle-item {
   display: flex;
   flex-direction: column;
@@ -254,17 +223,19 @@ footer .flex-container-sengle-item {
   align-items: center;
   align-content: center;
 }
+
 .flex-container-sengle-item figure {
   margin: auto;
   align-items: center;
   align-content: center;
 }
+
 .flex-container-sengle-item img {
   width: 350px;
   height: 350px;
 }
+
 .flex-container-sengle-item h2 {
-  /* display: flex; */
   margin: auto;
   align-items: center;
   align-content: center;
@@ -274,30 +245,34 @@ footer .flex-container-sengle-item {
   margin-top: 30px;
   font-size: 40px;
 }
+
 .flex-container-sengle-item a {
   text-decoration: none;
 }
+
 .flex-container-sengle-item article {
   border-radius: 10px;
   background-color: rgba(255, 255, 255, 0.6);
   border: 8px solid black;
 }
+
 .flex-container-pokemon-info {
   display: flex;
   flex-direction: row;
   margin: auto;
-  /* margin-top: 25px; */
   align-items: center;
   align-content: center;
   text-align: center;
   width: 75%;
 }
+
 .flex-container-pokemon-info-one-article {
   display: flex;
   flex-direction: row;
   justify-content: center;
   align-items: center;
 }
+
 .flex-container-pokemon-info article {
   border: 3px solid #3b4cca;
   border-radius: 25px;
@@ -319,65 +294,29 @@ footer .flex-container-sengle-item {
 .fa-arrow-down {
   display: none;
 }
-/* Styling voor individual Pokemon */
 
-@-webkit-keyframes jello-horizontal {
-  0% {
-    -webkit-transform: scale3d(1, 1, 1);
-    transform: scale3d(1, 1, 1);
-  }
-  30% {
-    -webkit-transform: scale3d(1.25, 0.75, 1);
-    transform: scale3d(1.25, 0.75, 1);
-  }
-  40% {
-    -webkit-transform: scale3d(0.75, 1.25, 1);
-    transform: scale3d(0.75, 1.25, 1);
-  }
-  50% {
-    -webkit-transform: scale3d(1.15, 0.85, 1);
-    transform: scale3d(1.15, 0.85, 1);
-  }
-  65% {
-    -webkit-transform: scale3d(0.95, 1.05, 1);
-    transform: scale3d(0.95, 1.05, 1);
-  }
-  75% {
-    -webkit-transform: scale3d(1.05, 0.95, 1);
-    transform: scale3d(1.05, 0.95, 1);
-  }
-  100% {
-    -webkit-transform: scale3d(1, 1, 1);
-    transform: scale3d(1, 1, 1);
-  }
-}
+/* Styling for individual Pokemon */
+
 @keyframes jello-horizontal {
   0% {
-    -webkit-transform: scale3d(1, 1, 1);
     transform: scale3d(1, 1, 1);
   }
   30% {
-    -webkit-transform: scale3d(1.25, 0.75, 1);
     transform: scale3d(1.25, 0.75, 1);
   }
   40% {
-    -webkit-transform: scale3d(0.75, 1.25, 1);
     transform: scale3d(0.75, 1.25, 1);
   }
   50% {
-    -webkit-transform: scale3d(1.15, 0.85, 1);
     transform: scale3d(1.15, 0.85, 1);
   }
   65% {
-    -webkit-transform: scale3d(0.95, 1.05, 1);
     transform: scale3d(0.95, 1.05, 1);
   }
   75% {
-    -webkit-transform: scale3d(1.05, 0.95, 1);
     transform: scale3d(1.05, 0.95, 1);
   }
   100% {
-    -webkit-transform: scale3d(1, 1, 1);
     transform: scale3d(1, 1, 1);
   }
 }
@@ -390,92 +329,41 @@ footer .flex-container-sengle-item {
   align-items: center;
   margin-top: 25px;
   border-radius: 10px;
-  background-color: rgba(
-    255,
-    255,
-    255,
-    0.6
-  ); /* Meer transparante witte achtergrondkleur */
+  background-color: rgba(255, 255, 255, 0.6);
   border: 3px solid #3b4cca;
   justify-content: space-between;
 }
-@-webkit-keyframes heartbeat {
-  from {
-    -webkit-transform: scale(1);
-    transform: scale(1);
-    -webkit-transform-origin: center center;
-    transform-origin: center center;
-    -webkit-animation-timing-function: ease-out;
-    animation-timing-function: ease-out;
-  }
-  10% {
-    -webkit-transform: scale(0.91);
-    transform: scale(0.91);
-    -webkit-animation-timing-function: ease-in;
-    animation-timing-function: ease-in;
-  }
-  17% {
-    -webkit-transform: scale(0.98);
-    transform: scale(0.98);
-    -webkit-animation-timing-function: ease-out;
-    animation-timing-function: ease-out;
-  }
-  33% {
-    -webkit-transform: scale(0.87);
-    transform: scale(0.87);
-    -webkit-animation-timing-function: ease-in;
-    animation-timing-function: ease-in;
-  }
-  45% {
-    -webkit-transform: scale(1);
-    transform: scale(1);
-    -webkit-animation-timing-function: ease-out;
-    animation-timing-function: ease-out;
-  }
-}
+
 @keyframes heartbeat {
   from {
-    -webkit-transform: scale(1);
     transform: scale(1);
-    -webkit-transform-origin: center center;
     transform-origin: center center;
-    -webkit-animation-timing-function: ease-out;
     animation-timing-function: ease-out;
   }
   10% {
-    -webkit-transform: scale(0.91);
     transform: scale(0.91);
-    -webkit-animation-timing-function: ease-in;
     animation-timing-function: ease-in;
   }
   17% {
-    -webkit-transform: scale(0.98);
     transform: scale(0.98);
-    -webkit-animation-timing-function: ease-out;
     animation-timing-function: ease-out;
   }
   33% {
-    -webkit-transform: scale(0.87);
     transform: scale(0.87);
-    -webkit-animation-timing-function: ease-in;
     animation-timing-function: ease-in;
   }
   45% {
-    -webkit-transform: scale(1);
     transform: scale(1);
-    -webkit-animation-timing-function: ease-out;
     animation-timing-function: ease-out;
   }
 }
+
 .pokemon:hover {
   border: 3px solid #ffde00;
-  -webkit-animation: heartbeat 1.5s ease-in-out infinite both;
   animation: heartbeat 1.5s ease-in-out infinite both;
 }
 
 #compare-item-2 {
-  -webkit-animation: rotate-in-ver 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94)
-    both;
   animation: rotate-in-ver 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
 }
 
@@ -503,7 +391,7 @@ footer .flex-container-sengle-item {
   text-transform: uppercase;
 }
 
-/* Styling voor choose-starter-pokemon */
+/* Styling for choose-starter-pokemon */
 
 .choose-starter-pokemon {
   display: none;
@@ -522,13 +410,16 @@ footer .flex-container-sengle-item {
   justify-content: center;
   align-items: center;
 }
+
 .choose-starter-pokemon h1 {
   font-size: 40px;
   text-transform: uppercase;
 }
+
 .choose-starter-pokemon a {
   text-decoration: none;
 }
+
 .choose-starter-pokemon h2 {
   color: #000000;
   text-transform: uppercase;
@@ -537,98 +428,49 @@ footer .flex-container-sengle-item {
 
 .home-page {
   display: flex;
-  flex-wrap: wrap; /* Veranderd van nowrap naar wrap */
+  flex-wrap: wrap;
   width: 90%;
   margin: auto;
   justify-content: space-around;
 }
 
-@-webkit-keyframes swirl-in-fwd {
-  0% {
-    -webkit-transform: rotate(-540deg) scale(0);
-    transform: rotate(-540deg) scale(0);
-    opacity: 0;
-  }
-  100% {
-    -webkit-transform: rotate(0) scale(1);
-    transform: rotate(0) scale(1);
-    opacity: 1;
-  }
-}
 @keyframes swirl-in-fwd {
   0% {
-    -webkit-transform: rotate(-540deg) scale(0);
     transform: rotate(-540deg) scale(0);
     opacity: 0;
   }
   100% {
-    -webkit-transform: rotate(0) scale(1);
     transform: rotate(0) scale(1);
     opacity: 1;
   }
 }
 
-@-webkit-keyframes wobble-hor-bottom {
-  0%,
-  100% {
-    -webkit-transform: translateX(0);
-    transform: translateX(0);
-    -webkit-transform-origin: 50% 50%;
-    transform-origin: 50% 50%;
-  }
-  15% {
-    -webkit-transform: translateX(-30px) rotate(-6deg);
-    transform: translateX(-30px) rotate(-6deg);
-  }
-  30% {
-    -webkit-transform: translateX(15px) rotate(6deg);
-    transform: translateX(15px) rotate(6deg);
-  }
-  45% {
-    -webkit-transform: translateX(-15px) rotate(-3.6deg);
-    transform: translateX(-15px) rotate(-3.6deg);
-  }
-  60% {
-    -webkit-transform: translateX(9px) rotate(2.4deg);
-    transform: translateX(9px) rotate(2.4deg);
-  }
-  75% {
-    -webkit-transform: translateX(-6px) rotate(-1.2deg);
-    transform: translateX(-6px) rotate(-1.2deg);
-  }
-}
 @keyframes wobble-hor-bottom {
   0%,
   100% {
-    -webkit-transform: translateX(0);
     transform: translateX(0);
-    -webkit-transform-origin: 50% 50%;
     transform-origin: 50% 50%;
   }
   15% {
-    -webkit-transform: translateX(-30px) rotate(-6deg);
     transform: translateX(-30px) rotate(-6deg);
   }
   30% {
-    -webkit-transform: translateX(15px) rotate(6deg);
     transform: translateX(15px) rotate(6deg);
   }
   45% {
-    -webkit-transform: translateX(-15px) rotate(-3.6deg);
     transform: translateX(-15px) rotate(-3.6deg);
   }
   60% {
-    -webkit-transform: translateX(9px) rotate(2.4deg);
     transform: translateX(9px) rotate(2.4deg);
   }
   75% {
-    -webkit-transform: translateX(-6px) rotate(-1.2deg);
     transform: translateX(-6px) rotate(-1.2deg);
   }
 }
+
 .home-page-option {
   width: 200px;
-  height: 150px; /* Gelijk gemaakt aan de breedte */
+  height: 150px;
   display: flex;
   text-align: center;
   align-items: center;
@@ -637,7 +479,7 @@ footer .flex-container-sengle-item {
 }
 
 .home-page-option a p {
-  background-color: rgb(255, 255, 255, 0.6);
+  background-color: rgba(255, 255, 255, 0.6);
   border: 1px solid black;
   border-radius: 5px;
   color: black;
@@ -648,7 +490,6 @@ footer .flex-container-sengle-item {
 .home-page-option:hover img {
   width: 160px;
   height: 160px;
-  -webkit-animation: wobble-hor-bottom 0.8s both;
   animation: wobble-hor-bottom 0.8s both;
 }
 
@@ -663,7 +504,6 @@ footer .flex-container-sengle-item {
 }
 
 .home-page-option a p {
-  font-size: large;
   font-size: x-large;
 }
 
@@ -671,7 +511,7 @@ footer .flex-container-sengle-item {
   margin: 0;
 }
 
-/* Styling voor starterPokemon */
+/* Styling for starterPokemon */
 
 .flex-container-Starter {
   align-items: center;
@@ -684,230 +524,104 @@ footer .flex-container-sengle-item {
   flex-basis: calc(100% / 3);
   overflow: hidden;
 }
+
 .flex-container-Starter article figure img {
   width: 100%;
   height: 100%;
 }
+
 .flex-container-Starter article figure {
   margin: 0;
 }
+
 .flex-container-Starter article {
   opacity: 0.5;
 }
+
 .flex-container-Starter article:hover {
   opacity: 1;
 }
 
-/* Styling voor pokeball */
+/* Styling for pokeball */
 
-@-webkit-keyframes bounce-in-top {
-  0% {
-    -webkit-transform: translateY(-500px);
-    transform: translateY(-500px);
-    -webkit-animation-timing-function: ease-in;
-    animation-timing-function: ease-in;
-    opacity: 0;
-  }
-  38% {
-    -webkit-transform: translateY(0);
-    transform: translateY(0);
-    -webkit-animation-timing-function: ease-out;
-    animation-timing-function: ease-out;
-    opacity: 1;
-  }
-  55% {
-    -webkit-transform: translateY(-65px);
-    transform: translateY(-65px);
-    -webkit-animation-timing-function: ease-in;
-    animation-timing-function: ease-in;
-  }
-  72% {
-    -webkit-transform: translateY(0);
-    transform: translateY(0);
-    -webkit-animation-timing-function: ease-out;
-    animation-timing-function: ease-out;
-  }
-  81% {
-    -webkit-transform: translateY(-28px);
-    transform: translateY(-28px);
-    -webkit-animation-timing-function: ease-in;
-    animation-timing-function: ease-in;
-  }
-  90% {
-    -webkit-transform: translateY(0);
-    transform: translateY(0);
-    -webkit-animation-timing-function: ease-out;
-    animation-timing-function: ease-out;
-  }
-  95% {
-    -webkit-transform: translateY(-8px);
-    transform: translateY(-8px);
-    -webkit-animation-timing-function: ease-in;
-    animation-timing-function: ease-in;
-  }
-  100% {
-    -webkit-transform: translateY(0);
-    transform: translateY(0);
-    -webkit-animation-timing-function: ease-out;
-    animation-timing-function: ease-out;
-  }
-}
 @keyframes bounce-in-top {
   0% {
-    -webkit-transform: translateY(-500px);
     transform: translateY(-500px);
-    -webkit-animation-timing-function: ease-in;
     animation-timing-function: ease-in;
     opacity: 0;
   }
   38% {
-    -webkit-transform: translateY(0);
     transform: translateY(0);
-    -webkit-animation-timing-function: ease-out;
     animation-timing-function: ease-out;
     opacity: 1;
   }
   55% {
-    -webkit-transform: translateY(-65px);
     transform: translateY(-65px);
-    -webkit-animation-timing-function: ease-in;
     animation-timing-function: ease-in;
   }
   72% {
-    -webkit-transform: translateY(0);
     transform: translateY(0);
-    -webkit-animation-timing-function: ease-out;
     animation-timing-function: ease-out;
   }
   81% {
-    -webkit-transform: translateY(-28px);
     transform: translateY(-28px);
-    -webkit-animation-timing-function: ease-in;
     animation-timing-function: ease-in;
   }
   90% {
-    -webkit-transform: translateY(0);
     transform: translateY(0);
-    -webkit-animation-timing-function: ease-out;
     animation-timing-function: ease-out;
   }
   95% {
-    -webkit-transform: translateY(-8px);
     transform: translateY(-8px);
-    -webkit-animation-timing-function: ease-in;
     animation-timing-function: ease-in;
   }
   100% {
-    -webkit-transform: translateY(0);
     transform: translateY(0);
-    -webkit-animation-timing-function: ease-out;
     animation-timing-function: ease-out;
   }
 }
 
-@-webkit-keyframes roll-in-left {
-  0% {
-    -webkit-transform: translateX(-800px) rotate(-540deg);
-    transform: translateX(-800px) rotate(-540deg);
-    opacity: 0;
-  }
-  100% {
-    -webkit-transform: translateX(0) rotate(0deg);
-    transform: translateX(0) rotate(0deg);
-    opacity: 1;
-  }
-}
 @keyframes roll-in-left {
   0% {
-    -webkit-transform: translateX(-800px) rotate(-540deg);
     transform: translateX(-800px) rotate(-540deg);
     opacity: 0;
   }
   100% {
-    -webkit-transform: translateX(0) rotate(0deg);
     transform: translateX(0) rotate(0deg);
     opacity: 1;
   }
 }
 
-@-webkit-keyframes slide-in-elliptic-top-fwd {
-  0% {
-    -webkit-transform: translateY(-600px) rotateX(-30deg) scale(0);
-    transform: translateY(-600px) rotateX(-30deg) scale(0);
-    -webkit-transform-origin: 50% 100%;
-    transform-origin: 50% 100%;
-    opacity: 0;
-  }
-  100% {
-    -webkit-transform: translateY(0) rotateX(0) scale(1);
-    transform: translateY(0) rotateX(0) scale(1);
-    -webkit-transform-origin: 50% 1400px;
-    transform-origin: 50% 1400px;
-    opacity: 1;
-  }
-}
 @keyframes slide-in-elliptic-top-fwd {
   0% {
-    -webkit-transform: translateY(-600px) rotateX(-30deg) scale(0);
     transform: translateY(-600px) rotateX(-30deg) scale(0);
-    -webkit-transform-origin: 50% 100%;
     transform-origin: 50% 100%;
     opacity: 0;
   }
   100% {
-    -webkit-transform: translateY(0) rotateX(0) scale(1);
     transform: translateY(0) rotateX(0) scale(1);
-    -webkit-transform-origin: 50% 1400px;
     transform-origin: 50% 1400px;
     opacity: 1;
   }
 }
 
-@-webkit-keyframes slide-in-bck-center {
-  0% {
-    -webkit-transform: translateZ(600px);
-    transform: translateZ(600px);
-    opacity: 0;
-  }
-  100% {
-    -webkit-transform: translateZ(0);
-    transform: translateZ(0);
-    opacity: 1;
-  }
-}
 @keyframes slide-in-bck-center {
   0% {
-    -webkit-transform: translateZ(600px);
     transform: translateZ(600px);
     opacity: 0;
   }
   100% {
-    -webkit-transform: translateZ(0);
     transform: translateZ(0);
     opacity: 1;
   }
 }
 
-@-webkit-keyframes swirl-in-bck {
-  0% {
-    -webkit-transform: rotate(540deg) scale(5);
-    transform: rotate(540deg) scale(5);
-    opacity: 0;
-  }
-  100% {
-    -webkit-transform: rotate(0) scale(1);
-    transform: rotate(0) scale(1);
-    opacity: 1;
-  }
-}
 @keyframes swirl-in-bck {
   0% {
-    -webkit-transform: rotate(540deg) scale(5);
     transform: rotate(540deg) scale(5);
     opacity: 0;
   }
   100% {
-    -webkit-transform: rotate(0) scale(1);
     transform: rotate(0) scale(1);
     opacity: 1;
   }
@@ -929,7 +643,6 @@ footer .flex-container-sengle-item {
     linear-gradient(to bottom, red 0 80px, black 81px 96px, white 97px 100%);
   border-radius: 50%;
   border: 8px solid black;
-  /* box-shadow: inset -16px -8px 0 0 rgba(0, 0, 0, 0.2); */
   animation: fall 0.5s ease-in-out 1s, rotate 0.5s linear infinite;
   z-index: 999;
 }
@@ -937,8 +650,6 @@ footer .flex-container-sengle-item {
 .pokeball:hover {
   animation: stop-rotate 0s forwards, scale 0.5s forwards;
 }
-
-/* Animation */
 
 @keyframes fall {
   0% {
@@ -954,23 +665,26 @@ footer .flex-container-sengle-item {
     transform: translateY(0);
   }
 }
+
 @keyframes scale {
   to {
     transform: scale(2);
   }
 }
+
 @keyframes rotate {
   to {
     transform: rotate(360deg);
   }
 }
+
 @keyframes stop-rotate {
   0% {
     transform: rotate(0deg);
   }
 }
 
-/* Styling voor vergelijken */
+/* Styling for comparing */
 
 .compare {
   display: flex;
@@ -982,247 +696,75 @@ footer .flex-container-sengle-item {
   height: auto;
 }
 
-@-webkit-keyframes slide-in-elliptic-top-fwd {
-  0% {
-    -webkit-transform: translateY(-600px) rotateX(-30deg) scale(0);
-    transform: translateY(-600px) rotateX(-30deg) scale(0);
-    -webkit-transform-origin: 50% 100%;
-    transform-origin: 50% 100%;
-    opacity: 0;
-  }
-  100% {
-    -webkit-transform: translateY(0) rotateX(0) scale(1);
-    transform: translateY(0) rotateX(0) scale(1);
-    -webkit-transform-origin: 50% 1400px;
-    transform-origin: 50% 1400px;
-    opacity: 1;
-  }
-}
-@keyframes slide-in-elliptic-top-fwd {
-  0% {
-    -webkit-transform: translateY(-600px) rotateX(-30deg) scale(0);
-    transform: translateY(-600px) rotateX(-30deg) scale(0);
-    -webkit-transform-origin: 50% 100%;
-    transform-origin: 50% 100%;
-    opacity: 0;
-  }
-  100% {
-    -webkit-transform: translateY(0) rotateX(0) scale(1);
-    transform: translateY(0) rotateX(0) scale(1);
-    -webkit-transform-origin: 50% 1400px;
-    transform-origin: 50% 1400px;
-    opacity: 1;
-  }
-}
-
-@-webkit-keyframes rotate-in-ver {
-  0% {
-    -webkit-transform: rotateY(-360deg);
-    transform: rotateY(-360deg);
-    opacity: 0;
-  }
-  100% {
-    -webkit-transform: rotateY(0deg);
-    transform: rotateY(0deg);
-    opacity: 1;
-  }
-}
 @keyframes rotate-in-ver {
   0% {
-    -webkit-transform: rotateY(-360deg);
     transform: rotateY(-360deg);
     opacity: 0;
   }
   100% {
-    -webkit-transform: rotateY(0deg);
     transform: rotateY(0deg);
     opacity: 1;
   }
 }
 
-@-webkit-keyframes slit-in-diagonal-2 {
-  0% {
-    -webkit-transform: translateZ(-800px) rotate3d(-1, 1, 0, -90deg);
-    transform: translateZ(-800px) rotate3d(-1, 1, 0, -90deg);
-    -webkit-animation-timing-function: ease-in;
-    animation-timing-function: ease-in;
-    opacity: 0;
-  }
-  54% {
-    -webkit-transform: translateZ(-160px) rotate3d(-1, 1, 0, -87deg);
-    transform: translateZ(-160px) rotate3d(-1, 1, 0, -87deg);
-    -webkit-animation-timing-function: ease-in-out;
-    animation-timing-function: ease-in-out;
-    opacity: 1;
-  }
-  100% {
-    -webkit-transform: translateZ(0) rotate3d(-1, 1, 0, 0);
-    transform: translateZ(0) rotate3d(-1, 1, 0, 0);
-    -webkit-animation-timing-function: ease-out;
-    animation-timing-function: ease-out;
-  }
-}
 @keyframes slit-in-diagonal-2 {
   0% {
-    -webkit-transform: translateZ(-800px) rotate3d(-1, 1, 0, -90deg);
     transform: translateZ(-800px) rotate3d(-1, 1, 0, -90deg);
-    -webkit-animation-timing-function: ease-in;
     animation-timing-function: ease-in;
     opacity: 0;
   }
   54% {
-    -webkit-transform: translateZ(-160px) rotate3d(-1, 1, 0, -87deg);
     transform: translateZ(-160px) rotate3d(-1, 1, 0, -87deg);
-    -webkit-animation-timing-function: ease-in-out;
     animation-timing-function: ease-in-out;
     opacity: 1;
   }
   100% {
-    -webkit-transform: translateZ(0) rotate3d(-1, 1, 0, 0);
     transform: translateZ(0) rotate3d(-1, 1, 0, 0);
-    -webkit-animation-timing-function: ease-out;
     animation-timing-function: ease-out;
   }
 }
 
-@-webkit-keyframes slit-in-diagonal-1 {
-  0% {
-    -webkit-transform: translateZ(-800px) rotate3d(1, 1, 0, 90deg);
-    transform: translateZ(-800px) rotate3d(1, 1, 0, 90deg);
-    -webkit-animation-timing-function: ease-in;
-    animation-timing-function: ease-in;
-    opacity: 0;
-  }
-  54% {
-    -webkit-transform: translateZ(-160px) rotate3d(1, 1, 0, 87deg);
-    transform: translateZ(-160px) rotate3d(1, 1, 0, 87deg);
-    -webkit-animation-timing-function: ease-in-out;
-    animation-timing-function: ease-in-out;
-    opacity: 1;
-  }
-  100% {
-    -webkit-transform: translateZ(0) rotate3d(1, 1, 0, 0);
-    transform: translateZ(0) rotate3d(1, 1, 0, 0);
-    -webkit-animation-timing-function: ease-out;
-    animation-timing-function: ease-out;
-  }
-}
 @keyframes slit-in-diagonal-1 {
   0% {
-    -webkit-transform: translateZ(-800px) rotate3d(1, 1, 0, 90deg);
     transform: translateZ(-800px) rotate3d(1, 1, 0, 90deg);
-    -webkit-animation-timing-function: ease-in;
     animation-timing-function: ease-in;
     opacity: 0;
   }
   54% {
-    -webkit-transform: translateZ(-160px) rotate3d(1, 1, 0, 87deg);
     transform: translateZ(-160px) rotate3d(1, 1, 0, 87deg);
-    -webkit-animation-timing-function: ease-in-out;
     animation-timing-function: ease-in-out;
     opacity: 1;
   }
   100% {
-    -webkit-transform: translateZ(0) rotate3d(1, 1, 0, 0);
     transform: translateZ(0) rotate3d(1, 1, 0, 0);
-    -webkit-animation-timing-function: ease-out;
     animation-timing-function: ease-out;
   }
 }
 
-@-webkit-keyframes swing-in-top-fwd {
-  0% {
-    -webkit-transform: rotateX(-100deg);
-    transform: rotateX(-100deg);
-    -webkit-transform-origin: top;
-    transform-origin: top;
-    opacity: 0;
-  }
-  100% {
-    -webkit-transform: rotateX(0deg);
-    transform: rotateX(0deg);
-    -webkit-transform-origin: top;
-    transform-origin: top;
-    opacity: 1;
-  }
-}
 @keyframes swing-in-top-fwd {
   0% {
-    -webkit-transform: rotateX(-100deg);
     transform: rotateX(-100deg);
-    -webkit-transform-origin: top;
     transform-origin: top;
     opacity: 0;
   }
   100% {
-    -webkit-transform: rotateX(0deg);
     transform: rotateX(0deg);
-    -webkit-transform-origin: top;
     transform-origin: top;
     opacity: 1;
   }
 }
 
-@-webkit-keyframes flicker-1 {
-  0%,
-  100% {
-    opacity: 1;
-  }
-  41.99% {
-    opacity: 1;
-  }
-  42% {
-    opacity: 0;
-  }
-  43% {
-    opacity: 0;
-  }
-  43.01% {
-    opacity: 1;
-  }
-  47.99% {
-    opacity: 1;
-  }
-  48% {
-    opacity: 0;
-  }
-  49% {
-    opacity: 0;
-  }
-  49.01% {
-    opacity: 1;
-  }
-}
 @keyframes flicker-1 {
   0%,
   100% {
     opacity: 1;
   }
-  41.99% {
-    opacity: 1;
-  }
-  42% {
-    opacity: 0;
-  }
-  43% {
-    opacity: 0;
-  }
-  43.01% {
-    opacity: 1;
-  }
-  47.99% {
-    opacity: 1;
-  }
+  42%,
   48% {
     opacity: 0;
   }
-  49% {
-    opacity: 0;
-  }
-  49.01% {
-    opacity: 1;
-  }
 }
+
 .compare-item {
   position: relative;
   display: flex;
@@ -1230,28 +772,27 @@ footer .flex-container-sengle-item {
   flex-basis: 27%;
   align-items: center;
   border-radius: 10px;
-  background-color: rgba(
-    255,
-    255,
-    255,
-    0.6
-  ); /* Meer transparante witte achtergrondkleur */
+  background-color: rgba(255, 255, 255, 0.6);
   border: 3px solid #3b4cca;
   justify-content: space-between;
   margin: auto;
   margin-top: 4rem;
   margin-bottom: 4rem;
 }
+
 .compare-item a {
   display: flex;
 }
+
 .compare-item img {
   background-color: #ffffff;
   border-radius: 10px;
 }
+
 .compare-item figure {
   width: 100%;
 }
+
 .compare button,
 #button,
 aside button {
@@ -1284,6 +825,7 @@ aside button {
   background-color: #ff0000;
   border-color: #3b4cca;
 }
+
 .layer {
   display: flex;
   position: absolute;
@@ -1292,7 +834,7 @@ aside button {
   width: 100%;
   height: 100%;
   border-radius: 7.5px;
-  z-index: 1; /* laag bovenop de inhoud */
+  z-index: 1;
   text-align: center;
   justify-content: center;
   align-items: center;
@@ -1314,6 +856,7 @@ aside button {
   margin-top: 0;
   box-shadow: rgb(38, 57, 77) 0px 20px 30px -10px;
 }
+
 button {
   cursor: pointer;
 }
@@ -1342,7 +885,7 @@ button {
   width: 280px;
 }
 
-/* Styling voor vergelijken close-button */
+/* Styling for compare close-button */
 
 .layer-close-button {
   position: absolute;
@@ -1354,7 +897,6 @@ button {
   border-radius: 50%;
 }
 
-
 .close_button {
   float: right;
   color: #3b4cca;
@@ -1363,15 +905,15 @@ button {
   border-radius: 50%;
   background-color: transparent;
 }
+
 .close_button:hover {
   color: #000000;
-  /* font-size: 20px; */
   border: 2px solid #000000;
   border-radius: 50%;
   background-color: #3b4cca;
 }
 
-/* Style voor de (popup) */
+/* Style for popup */
 
 .popup {
   display: none;
@@ -1401,7 +943,8 @@ button {
   z-index: 999;
 }
 
-/* Style voor images (popup) */
+/* Style for images (popup) */
+
 .popup .image-container {
   display: flex;
   flex-wrap: wrap;
@@ -1415,11 +958,13 @@ button {
   text-align: justify;
   margin: auto;
 }
+
 .image-container img {
   height: auto;
   cursor: pointer;
   margin-right: 5px;
 }
+
 .image-container p {
   text-align: center;
   font-weight: bolder;
@@ -1436,11 +981,12 @@ footer {
   align-items: center;
   justify-content: space-between;
   text-align: center;
-  /* background-color: rgba(0, 0, 0, 0.5); */
 }
+
 .footer-logo {
   width: 100px;
 }
+
 .footer-1,
 .footer-1-landing {
   margin-top: 1rem;
@@ -1449,6 +995,7 @@ footer {
   border-top-right-radius: 50px;
   border-top-left-radius: 50px;
 }
+
 .footer-2,
 .footer-2-landing {
   font-size: 1rem;
@@ -1456,6 +1003,7 @@ footer {
   grid-area: footer2;
   justify-content: center;
 }
+
 footer a {
   color: white;
 }
@@ -1474,6 +1022,7 @@ footer a {
 .footer-icon {
   height: 1rem;
 }
+
 footer article {
   padding: 8px;
 }
@@ -1512,32 +1061,32 @@ footer article {
 }
 
 .fifa {
-  background-image: url("/images/football-stadium-night-generative-ai_260559-480.avif"); /*bron: https://commons.wikimedia.org/wiki/File:Thimiane.jpg*/
+  background-image: url("/images/football-stadium-night-generative-ai_260559-480.avif");
   background-size: cover;
 }
 
 .lotr {
-  background-image: url("/images/den7ba0-d24fac90-f6a6-44b9-b020-f0f15e8272c4.png"); /*bron: https://www.deviantart.com/thedemonicmaster/art/The-One-Ring-885498840*/
+  background-image: url("/images/den7ba0-d24fac90-f6a6-44b9-b020-f0f15e8272c4.png");
   background-size: contain;
 }
 
 .fortnite {
-  background-image: url("/images/Fortnite_F_lettermark_logo.png"); /*bron: https://commons.wikimedia.org/wiki/File:Fortnite_F_lettermark_logo.png*/
+  background-image: url("/images/Fortnite_F_lettermark_logo.png");
   background-size: contain;
 }
 
 .pokemon-landing {
-  background-image: url("/images/dexythf-a001be4d-d27b-47e8-b296-7b03bc9add93.png"); /*bron: https://www.deviantart.com/invisibleinkdoodles/art/Pikachu-903578307*/
+  background-image: url("/images/dexythf-a001be4d-d27b-47e8-b296-7b03bc9add93.png");
   background-size: contain;
 }
 
 .lm {
-  background-image: url("/images/3005-brick-1x1-rood.png"); /*bron: https://haanderik.nl/wp-content/uploads/2020/06/3005-brick-1x1-rood.png*/
+  background-image: url("/images/3005-brick-1x1-rood.png");
   background-size: contain;
 }
 
 .mtg {
-  background-image: url("/images/images.png"); /*bron: https://www.goodfon.com/games/wallpaper-hugh-pindur-magic-the-gathering-krylia-peria-sirena.html*/
+  background-image: url("/images/images.png");
   background-size: contain;
 }
 
@@ -1552,7 +1101,6 @@ footer article {
 .login {
   display: flex;
   flex-direction: column;
-  /* text-align: center; */
   align-items: center;
 }
 
@@ -1604,18 +1152,22 @@ table {
   width: 100%;
   border-collapse: collapse;
 }
+
 th,
 td {
   padding: 8px;
   text-align: left;
   border-bottom: 1px solid #ddd;
 }
+
 th {
   background-color: #f2f2f2;
 }
+
 .positive {
   color: green;
 }
+
 .negative {
   color: red;
 }
@@ -1625,11 +1177,13 @@ th {
   flex-direction: column;
   width: 100%;
 }
+
 .section-mypokemon {
   display: flex;
   flex-wrap: wrap;
   width: 100%;
 }
+
 .pokemon-mypokemon {
   display: flex;
   flex-direction: column;
@@ -1638,35 +1192,27 @@ th {
   align-items: center;
   margin-top: 25px;
   border-radius: 10px;
-  background-color: rgba(
-    255,
-    255,
-    255,
-    0.6
-  ); /* Meer transparante witte achtergrondkleur */
+  background-color: rgba(255, 255, 255, 0.6);
   border: 3px solid #3b4cca;
   justify-content: space-between;
   min-height: 325.33px;
 }
+
 .button-mypokemon {
   background-color: transparent;
   border: none;
 }
-.green-ball,
-.red-ball {
-  height: 32px;
-}
 
 .meter {
   box-sizing: content-box;
-  height: 20px; /* Can be anything */
+  height: 20px;
   position: relative;
-  margin: 30px 0 10px 0; /* Just for demo spacing */
+  margin: 30px 0 10px 0;
   background: #555;
   border-radius: 25px;
-  /* padding: 10px; */
   box-shadow: inset 0 -1px 1px rgba(255, 255, 255, 0.3);
 }
+
 .meter > span {
   display: block;
   height: 100%;
@@ -1685,6 +1231,7 @@ th {
   position: relative;
   overflow: hidden;
 }
+
 .meter > span:after,
 .animate > span > span {
   content: "";
@@ -1718,14 +1265,10 @@ th {
 }
 
 #pokemonFilter {
-  /* width: 100%; */
-  /* padding: 10px; */
-  /* margin-bottom: 20px; */
   border: 2px solid #ccc;
   border-radius: 5px;
   font-size: 16px;
   outline: none;
-  /* background-color: rgba( 255, 255, 255, 0.7 ); */
 }
 
 #pokemonFilter:focus {
@@ -1764,6 +1307,7 @@ th {
 .purple > span {
   background-image: linear-gradient(#d7a3f0, #7523f4);
 }
+
 .nostripes > span > span,
 .nostripes > span::after {
   background-image: none;
@@ -1798,10 +1342,8 @@ th {
   background: #dbdbdb;
   border: 1px solid #a3a3a3;
   border-radius: 4px;
-  border: 1px solid rgba(0, 0, 0, 0.2);
   color: #fff;
   font-size: 0.75rem;
-  font-weight: normal;
   line-height: 1.5rem;
   text-align: center;
   text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.7);
@@ -1814,55 +1356,72 @@ th {
 .type-grass {
   background-color: #7c5;
 }
+
 .type-poison {
   background-color: #a59;
 }
+
 .type-normal {
   background-color: #aa9;
 }
+
 .type-fire {
   background-color: #f42;
 }
+
 .type-water {
   background-color: #39f;
 }
+
 .type-electric {
   background-color: #fc3;
 }
+
 .type-ice {
   background-color: #6cf;
 }
+
 .type-fighting {
   background-color: #b54;
 }
+
 .type-ground {
   background-color: #db5;
 }
+
 .type-flying {
   background-color: #89f;
 }
+
 .type-psychic {
   background-color: #f59;
 }
+
 .type-bug {
   background-color: #ab2;
 }
+
 .type-rock {
   background-color: #ba6;
 }
+
 .type-ghost {
   background-color: #66b;
 }
+
 .type-dragon {
   background-color: #76e;
 }
+
 .type-dark {
   background-color: #754;
 }
+
 .type-steel {
   background-color: #aab;
 }
-type-fairy {
+
+.type-fairy {
   background-color: #e9e;
 }
 
@@ -1872,8 +1431,6 @@ type-fairy {
 }
 
 .autocomplete-items {
-  /* position: fixed; */
-  /* width: 90%; */
   height: 150px;
   overflow-x: hidden;
   overflow-y: auto;
@@ -1883,7 +1440,6 @@ type-fairy {
   border-top-right-radius: 0;
   border: 1px solid rgba(255, 255, 255, 0.6);
   z-index: 99;
-  /*position the autocomplete items to be the same width as the container:*/
   top: 100%;
   left: 0;
   right: 0;
@@ -1896,24 +1452,22 @@ type-fairy {
   border-bottom: 1px solid #d4d4d4;
 }
 
-/*when hovering an item:*/
 .autocomplete-items div:hover {
   background-color: #e9e9e9;
 }
 
-/*when navigating through the items using the arrow keys:*/
 .autocomplete-active {
   background-color: DodgerBlue !important;
   color: #ffffff;
 }
 
-.title button{
-  background-color: rgb(255, 255, 255, 0.01);
+.title button {
+  background-color: rgba(255, 255, 255, 0.01);
   border: none;
   height: 30px;
 }
 
-.title button:hover{
+.title button:hover {
   color: #ffde00;
 }
 
@@ -1948,23 +1502,11 @@ type-fairy {
   .dropdown {
     display: none;
   }
+
   .dropdown.open {
     display: flex;
     flex-direction: column;
   }
-
-  /* .hamburger {
-    display: flex;
-    margin-right: auto;
-    padding: 0;
-    background-color: transparent;
-    border: none;
-  } */
-
-  /* .hamburger-icon {
-    width: 32px;
-    height: 32px;
-  } */
 
   .main-landing section {
     display: flex;
@@ -2000,21 +1542,24 @@ type-fairy {
     flex-direction: column;
     flex-basis: 100%;
   }
+
   .compare {
     flex-direction: column;
     flex-basis: 100%;
     width: 100%;
   }
+
   .popup {
     width: 375px;
   }
+
   .popup .image-container {
     width: 375px;
-    /* height: auto; */
     overflow-x: auto;
     overflow-y: auto;
   }
-  .layer-close-button button { 
+
+  .layer-close-button button {
     font-size: 13px;
     margin: 3.5px;
   }
@@ -2034,6 +1579,7 @@ type-fairy {
   .home-page {
     flex-flow: column;
   }
+
   .home-page-option {
     flex-basis: 100%;
   }
@@ -2055,9 +1601,11 @@ type-fairy {
     justify-content: center;
     border: 2px solid #3b4cca;
   }
+
   .fa-arrow-right {
     display: none;
   }
+
   .fa-arrow-down {
     display: contents;
   }
@@ -2093,14 +1641,10 @@ type-fairy {
   }
 
   .sort-pokemon input {
-    margin-right: 0;
-    margin-left: 0;
     margin: auto;
   }
 
   .sort-pokemon form {
-    margin-right: 0;
-    margin-left: 0;
     margin: auto;
     margin-top: 10px;
   }
@@ -2119,10 +1663,10 @@ type-fairy {
   align-items: center;
   margin-bottom: 5px;
 }
+
 .resultBattle div {
   margin: 5px;
   justify-content: center;
-  /* padding: 5px; */
   border-radius: 25px;
   font-size: 17.5px;
   font-weight: 600;
@@ -2145,6 +1689,7 @@ type-fairy {
   display: flex;
   align-items: center;
 }
+
 .losses {
   background-color: red;
   opacity: 0.5;
