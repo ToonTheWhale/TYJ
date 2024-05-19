@@ -1,6 +1,6 @@
 <%- include('partials/header'); %>
 <main class="main-mypokemon" style="width: 100%; margin: auto">
-  <h1 class="title"> mijn pokemons <button onclick="PopupInfo()"><h1><i class="bi bi-patch-question"></i></h1></button></h1>
+  <h1 id="noMarginTop" class="title"> mijn pokemons <button onclick="PopupInfo()"><h1 id="noMarginTop"><i class="bi bi-patch-question"></i></h1></button></h1>
   <section class="sort-pokemon">
     <form action="/myPokemons" method="get" class="fromMypokemon"> 
       <select class="sort-select" name="sortField">
@@ -78,6 +78,7 @@
         <img src="<%= currentPokemon.image %>" width="200" height="200" />
         <figcaption>
           <h2 style="font-family: Courier New, Courier, monospace; font-weight: bolder; text-transform: uppercase;"><%= currentPokemon.name %></h2>
+          <h3 style="background-color: #3b4cca; opacity: 40%;">(Huidige Pokémon)</h3>
           <div style="display: flex; justify-content: center; margin: auto">
             <p style="width: 75%">Defense:</p>
             <div

@@ -1,6 +1,6 @@
 <%- include('partials/header'); %>
 <main class="pokedex-main">
-  <h1 class="title"> Pokedex <button onclick="PopupInfo()"><h1><i class="bi bi-patch-question"></i></h1></button></h1>
+  <h1 id="noMarginTop" class="title"> Pokedex <button onclick="PopupInfo()"><h1 id="noMarginTop" ><i class="bi bi-patch-question"></i></h1></button></h1>
   <section class="sort-pokemon" >
   <input type="text" id="pokemonFilter" placeholder="Zoek op naam..." oninput="filterPokemon()">
   <form action="/pokedex" method="get"> 

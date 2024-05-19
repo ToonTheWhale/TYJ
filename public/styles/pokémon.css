@@ -2177,3 +2177,16 @@ type-fairy {
 .resultBattle i {
   font-size: 24px;
 }
+
+
+.capturedPokemon {
+  opacity: 0.5;
+}
+
+.capturedPokemon:hover {
+  opacity: 1;
+}
+
+#noMarginTop {
+  margin-top: 0;
+}

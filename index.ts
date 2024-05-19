@@ -85,29 +85,27 @@ function battlePokemon(
 ) {
   let yourHP = yourPokemon.maxHP;
   let opponentHP = opponentPokemon.maxHP;
-
   while (yourHP > 0 && opponentHP > 0) {
-    const yourDamage = Math.max(
-      yourPokemon.attack - opponentPokemon.defense,
-      0
-    );
+    const yourDamage = Math.max(yourPokemon.attack - opponentPokemon.defense, 1);
     opponentHP = Math.max(opponentHP - yourDamage, 0);
-    // console.log(opponentHP, yourHP);
-    if (opponentHP <= 0 && yourHP <= 0) {
-      return null;
-    } else if (opponentHP <= 0) {
-      return yourPokemon;
+    if (opponentHP <= 0) {
+      break;
     }
-    const opponentDamage = Math.max(
-      opponentPokemon.attack - yourPokemon.defense,
-      0
-    );
+    const opponentDamage = Math.max(opponentPokemon.attack - yourPokemon.defense, 1);
     yourHP = Math.max(yourHP - opponentDamage, 0);
     if (yourHP <= 0) {
-      return opponentPokemon;
+      break;
     }
   }
+  if (yourHP <= 0 && opponentHP <= 0) {
+    return null;
+  } else if (opponentHP <= 0) {
+    return yourPokemon;
+  } else if (yourHP <= 0) {
+    return opponentPokemon;
+  }
 }
+
 
 async function getEvolutionChain(pokemonId: number): Promise<any> {
   try {
@@ -915,15 +913,15 @@ app.post("/setMyPokemonToBattle", async (req, res) => {
   }
 });
 
-app.post("/battle", async (req, res) => {
+app.post("/battle", (req, res) => {
   if (setPokemonToBattle && setMyPokemonToBattle) {
-    // console.log(setPokemonToBattle.name, setMyPokemonToBattle.name);
     const winner = battlePokemon(setMyPokemonToBattle, setPokemonToBattle);
-    // console.log(winner);
-    if ((await winner) == setMyPokemonToBattle && req.session.user) {
+
+    if (winner && winner.name === setMyPokemonToBattle.name && req.session.user) {
       pushPokemon(setPokemonToBattle, req.session.user);
-      req.session.user?.team.push(setPokemonToBattle);
+      req.session.user.team.push(setPokemonToBattle);
     }
+
     res.render("pokeBattler", {
       pokemons,
       currentPokemon,
