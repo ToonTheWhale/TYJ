@@ -1,6 +1,6 @@
 <%- include('partials/header'); %>
 <main class="main-mypokemon" style="width: 100%; margin: auto">
-  <h1 id="noMarginTop" class="title"> mijn pokemons <button onclick="PopupInfo()"><h1 id="noMarginTop"><i class="bi bi-patch-question"></i></h1></button></h1>
+  <h1 id="noMarginTop" class="title"> Mijn Pokémons <button onclick="PopupInfo()"><h1 id="noMarginTop"><i class="bi bi-patch-question"></i></h1></button></h1>
   <section class="sort-pokemon">
     <form action="/myPokemons" method="get" class="fromMypokemon"> 
       <select class="sort-select" name="sortField">
@@ -13,11 +13,11 @@
   <section class="compare">
     <section
       class="flex-container"
-      style="width: 66%; height: 544px; overflow-x: hidden; overflow-y: auto"
+      id="flex-container-myPokemons"
     >
       <% if (toonPokemons === 'mijnPokemons') { %>
         <% for(let pokemon of playerPokemons) { %>
-          <article class="pokemon" style="flex-basis: 25%">
+          <article class="pokemon" id="pokemon-flex-basis-25" >
             <p><%= pokemon.name %></p>
             <p>id: <%= pokemon.id %></p>
             <section>
@@ -30,7 +30,7 @@
       <% } else { %>
         <% for(let pokemon of pokemons) { %>
           <% if (playerPokemons.find(poke => poke.id === pokemon.id )) { %>
-            <article class="pokemon" style="flex-basis: 25%;">
+            <article class="pokemon" id="pokemon-flex-basis-25" >
               <p><%= pokemon.name %></p>
               <p>id: <%= pokemon.id %></p>
               <section>
@@ -40,7 +40,7 @@
               </section>
             </article>
           <% } else { %>
-            <article class="pokemon" style="flex-basis: 25%; filter: grayscale(1);">
+            <article class="pokemon" id="pokemon-flex-basis-25" style="filter: grayscale(1);">
               <p><%= pokemon.name %></p>
               <p>id: <%= pokemon.id %></p>
               <section>
@@ -88,7 +88,7 @@
               <span id="Poke-1-defense"><%= currentPokemon.defense %></span>
               <script>
                 document.getElementById("Poke-1-defense").style.width =
-                  "<%= currentPokemon.defense %>%";
+                  "<%= currentPokemon.defense/2 %>%";
               </script>
             </div>
           </div>
@@ -103,7 +103,7 @@
               >
               <script>
                 document.getElementById("Poke-1-attack").style.width =
-                  "<%= currentPokemon.attack %>%";
+                  "<%= currentPokemon.attack/2 %>%";
               </script>
             </div>
           </div>
@@ -118,7 +118,7 @@
               >
               <script>
                 document.getElementById("Poke-1-maxHP").style.width =
-                  "<%= currentPokemon.maxHP %>%";
+                  "<%= currentPokemon.maxHP/2 %>%";
               </script>
             </div>
           </div>

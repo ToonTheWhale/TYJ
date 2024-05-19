@@ -94,40 +94,38 @@ nav ul {
 .overlay-Menu {
   display: none;
   position: fixed;
+  flex-direction: column;
   top: 0;
   right: 0;
   width: 24%;
   height: 100%;
-  background-image: url("/images/navbackground.jpg");
+  background-color: rgb(0, 0, 0, 0.9);
+  border-left: 2px solid #3b4cca;
+  /* background-image: url("https://i.pinimg.com/564x/49/61/9c/49619c26dbe077a3b1b5e76831c8ac64.jpg"); */
   /* https://www.pinterest.com/pin/545357836123522035/*/
   background-size: cover;
   background-position: center;
   z-index: 1000;
   color: blue;
+  border-top-left-radius: 50%;
+  border-bottom-left-radius: 50%;
 }
 .menu {
   display: flex;
   flex-direction: column;
-  width: 500px;
-  margin-top: 23%;
+  height: 100%;
+  justify-content: center;
+  text-align: center;
+  padding-right: 40px;
 }
 
 .menu li {
-  margin-top: 2rem;
-  margin-left: 1.5rem;
-  height: 40px;
-  margin-left: auto;
-  margin-right: auto;
-  width: 200px;
-}
-
-.menu li a {
-  border: 1px solid black;
+  border: 2px solid black;
   border-radius: 5px;
   color: black;
-  height: 40px;
-  width: 180px;
   font-size: large;
+  background-color: rgb(255, 255, 255, 0.6);
+  margin: 5px;
 }
 
 .menu-buttons {
@@ -142,6 +140,9 @@ nav ul {
 .menu li a:hover {
   color: #3b4cca;
   width: 200px;
+}
+.menu li:hover {
+  border-color: #ffde00;
 }
 
 /* .menu li:last-child { */
@@ -178,12 +179,29 @@ nav ul {
 .logoutbutt {
   text-decoration: none;
   bottom: 0;
-  background-color: rgb(0, 255, 255);
+  background-color: rgb(255, 255, 255, 0.6);
   border: 2px solid black;
   border-radius: 5px;
   height: 50px;
   width: 100px;
   font-size: large;
+}
+
+.logoutbutt:hover {
+  background-color: #3b4cca;
+  color: #ffde00;
+}
+
+.menu-close-button {
+  margin: 15px;
+  margin-left: auto;
+  font-size: xx-large;
+  background-color: transparent;
+  border: none;
+  color: #3b4cca;
+}
+.menu-close-button:hover {
+  color: #ffde00;
 }
 
 /* Main content area */
@@ -467,7 +485,22 @@ footer .flex-container-sengle-item {
     animation-timing-function: ease-out;
   }
 }
-@-webkit-keyframes fade-in{0%{opacity:0}100%{opacity:1}}@keyframes fade-in{0%{opacity:0}100%{opacity:1}}
+@-webkit-keyframes fade-in {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+@keyframes fade-in {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
 
 .pokemon:hover {
   border: 3px solid #ffde00;
@@ -494,7 +527,6 @@ footer .flex-container-sengle-item {
   -webkit-animation: slit-in-diagonal-2 0.45s ease-out both;
   animation: slit-in-diagonal-2 0.45s ease-out both;
 }
-
 
 .pokemon button {
   padding: 5px 10px;
@@ -1327,7 +1359,7 @@ aside button {
   margin: auto;
   background-color: #c1cad3;
   padding: 20px;
-  height: 80%;
+  height: 500px;
   margin-top: 0;
   box-shadow: rgb(38, 57, 77) 0px 20px 30px -10px;
 }
@@ -1370,7 +1402,6 @@ button {
 .layer-close-button button {
   border-radius: 50%;
 }
-
 
 .close_button {
   float: right;
@@ -1924,14 +1955,110 @@ type-fairy {
   color: #ffffff;
 }
 
-.title button{
+.title button {
   background-color: rgb(255, 255, 255, 0.01);
   border: none;
   height: 30px;
 }
 
-.title button:hover{
+.title button:hover {
   color: #ffde00;
+}
+
+#noMarginTop {
+  margin-top: 0;
+}
+
+.resultBattle {
+  display: flex;
+  flex-direction: row;
+  margin: auto;
+  justify-content: center;
+  text-align: center;
+  align-items: center;
+  margin-bottom: 5px;
+}
+.resultBattle div {
+  margin: 5px;
+  justify-content: center;
+  /* padding: 5px; */
+  border-radius: 25px;
+  font-size: 17.5px;
+  font-weight: 600;
+}
+
+.resultBattle button {
+  background-color: transparent;
+  border-style: none;
+  font-size: 15px;
+  font-weight: 900;
+}
+
+.resultBattle button:hover {
+  color: #ffde00;
+}
+
+.wins {
+  background-color: green;
+  opacity: 0.5;
+  display: flex;
+  align-items: center;
+}
+.losses {
+  background-color: red;
+  opacity: 0.5;
+  display: flex;
+  align-items: center;
+}
+
+.wins:hover,
+.losses:hover {
+  opacity: 1;
+}
+
+.resultBattle i {
+  font-size: 24px;
+}
+
+.capturedPokemon {
+  opacity: 0.5;
+}
+
+.capturedPokemon:hover {
+  opacity: 1;
+}
+
+#flex-container-sengle-item-guess {
+  -webkit-animation: slide-in-elliptic-top-fwd 0.7s
+    cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
+  animation: slide-in-elliptic-top-fwd 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94)
+    both;
+}
+
+#flex-container-myPokemons {
+  width: 66%;
+  height: 544px;
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+#pokemon-flex-basis-25 {
+  flex-basis: 25%;
+}
+
+#myForm-guessPoke {
+  -webkit-animation: slide-in-elliptic-top-fwd 0.7s
+    cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
+  animation: slide-in-elliptic-top-fwd 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94)
+    both;
+}
+
+#myInput-guessPoke {
+  margin-top: 22px;
+  width: 350px;
+  text-align: center;
+  font-size: 22px;
+  height: 25px;
+  border: 3px solid black;
 }
 
 @media screen and (max-width: 768px) {
@@ -2023,15 +2150,20 @@ type-fairy {
     width: 100%;
   }
   .popup {
-    width: 375px;
+    width: 325px;
   }
   .popup .image-container {
-    width: 375px;
+    width: 355px;
     /* height: auto; */
     overflow-x: auto;
     overflow-y: auto;
   }
-  .layer-close-button button { 
+
+  .image-container figure {
+    margin: 0;
+  }
+
+  .layer-close-button button {
     font-size: 13px;
     margin: 3.5px;
   }
@@ -2040,7 +2172,7 @@ type-fairy {
     margin-bottom: 25px;
   }
 
-  .flex-container-sengle-item {
+  #flex-container-sengle-item {
     scale: 0.7;
   }
 
@@ -2049,10 +2181,12 @@ type-fairy {
   }
 
   .home-page {
+    margin-top: 25px;
     flex-flow: column;
   }
   .home-page-option {
     flex-basis: 100%;
+    justify-content: center;
   }
 
   .flex-container-pokemon-info {
@@ -2125,68 +2259,36 @@ type-fairy {
   .fromMypokemon {
     margin-left: 0;
   }
-}
 
-.resultBattle {
-  display: flex;
-  flex-direction: row;
-  margin: auto;
-  justify-content: center;
-  text-align: center;
-  align-items: center;
-  margin-bottom: 5px;
-}
-.resultBattle div {
-  margin: 5px;
-  justify-content: center;
-  /* padding: 5px; */
-  border-radius: 25px;
-  font-size: 17.5px;
-  font-weight: 600;
-}
+  #noMarginTop {
+    margin-top: 15px;
+  }
 
-.resultBattle button {
-  background-color: transparent;
-  border-style: none;
-  font-size: 15px;
-  font-weight: 900;
-}
+  #flex-container-sengle-item-guess {
+    -webkit-animation: none;
+    animation: none;
+    scale: 0.7;
+  }
 
-.resultBattle button:hover {
-  color: #ffde00;
-}
+  #flex-container-myPokemons {
+    width: 80%;
+    height: 544px;
+    overflow-x: hidden;
+    overflow-y: auto;
+  }
 
-.wins {
-  background-color: green;
-  opacity: 0.5;
-  display: flex;
-  align-items: center;
-}
-.losses {
-  background-color: red;
-  opacity: 0.5;
-  display: flex;
-  align-items: center;
-}
+  #pokemon-flex-basis-25 {
+    flex-basis: 44%;
+  }
 
-.wins:hover,
-.losses:hover {
-  opacity: 1;
-}
+  .sort-pokemon {
+    margin-bottom: 10px;
+  }
 
-.resultBattle i {
-  font-size: 24px;
-}
-
-
-.capturedPokemon {
-  opacity: 0.5;
-}
-
-.capturedPokemon:hover {
-  opacity: 1;
-}
-
-#noMarginTop {
-  margin-top: 0;
+  #myForm-guessPoke {
+    -webkit-animation: none;
+    animation: none;
+    /* scale: 0.7; */
+    /* margin-bottom: 111px; */
+  }
 }

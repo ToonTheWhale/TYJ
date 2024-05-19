@@ -33,7 +33,7 @@ function openPopupCurrentPokemon() {
 
 // script dient voor de sidepdown nav
 function openMenu() {
-  document.getElementById("overlay-Menu").style.display = "block";
+  document.getElementById("overlay-Menu").style.display = "flex";
 }
 function closeMenu() {
   document.getElementById("overlay-Menu").style.display = "none";

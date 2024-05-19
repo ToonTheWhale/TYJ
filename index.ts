@@ -86,12 +86,18 @@ function battlePokemon(
   let yourHP = yourPokemon.maxHP;
   let opponentHP = opponentPokemon.maxHP;
   while (yourHP > 0 && opponentHP > 0) {
-    const yourDamage = Math.max(yourPokemon.attack - opponentPokemon.defense, 1);
+    const yourDamage = Math.max(
+      yourPokemon.attack - opponentPokemon.defense,
+      1
+    );
     opponentHP = Math.max(opponentHP - yourDamage, 0);
     if (opponentHP <= 0) {
       break;
     }
-    const opponentDamage = Math.max(opponentPokemon.attack - yourPokemon.defense, 1);
+    const opponentDamage = Math.max(
+      opponentPokemon.attack - yourPokemon.defense,
+      1
+    );
     yourHP = Math.max(yourHP - opponentDamage, 0);
     if (yourHP <= 0) {
       break;
@@ -105,7 +111,6 @@ function battlePokemon(
     return opponentPokemon;
   }
 }
-
 
 async function getEvolutionChain(pokemonId: number): Promise<any> {
   try {
@@ -162,14 +167,14 @@ function getAllPokemonFromEvolutionChain(
 
 function getFormattedCaptureTime(captureTime: Date): string {
   const options: Intl.DateTimeFormatOptions = {
-      year: 'numeric',
-      month: '2-digit',
-      day: '2-digit',
-      hour: '2-digit',
-      minute: '2-digit',
-      second: '2-digit'
+    year: "numeric",
+    month: "2-digit",
+    day: "2-digit",
+    hour: "2-digit",
+    minute: "2-digit",
+    second: "2-digit",
   };
-  return captureTime.toLocaleDateString('nl-NL', options);
+  return captureTime.toLocaleDateString("nl-NL", options);
 }
 
 // # deze handler is enkel om testen
@@ -320,7 +325,7 @@ app.get("/addStarterPokemon/:pokeId", secureMiddleware, async (req, res) => {
     targetPokemon.wins = 0;
     targetPokemon.losses = 0;
     const captureTime = new Date();
-    targetPokemon.capturedPokemon = getFormattedCaptureTime(captureTime)  
+    targetPokemon.capturedPokemon = getFormattedCaptureTime(captureTime);
     await addStarterPokemon(pokemonId, req.session.user);
     req.session.user.team.push(targetPokemon);
     res.redirect("/home");
@@ -513,9 +518,9 @@ app.post("/increaseWins", secureMiddleware, async (req, res) => {
       }
       res.render("pokemoninfo", {
         pokemonFind: selectedPokemon,
-        pokemons, 
+        pokemons,
         message: false,
-        currentPokemon, 
+        currentPokemon,
         playerPokemons: req.session.user.team,
         evolutionChainPokemons,
       });
@@ -546,9 +551,9 @@ app.post("/decreaseWins", secureMiddleware, async (req, res) => {
         }
         res.render("pokemoninfo", {
           pokemonFind: selectedPokemon,
-          pokemons, 
+          pokemons,
           message: `Waarde kan niet onder 0 gaan!`,
-          currentPokemon, 
+          currentPokemon,
           playerPokemons: req.session.user.team,
           evolutionChainPokemons,
         });
@@ -572,9 +577,9 @@ app.post("/decreaseWins", secureMiddleware, async (req, res) => {
         }
         res.render("pokemoninfo", {
           pokemonFind: selectedPokemon,
-          pokemons, 
+          pokemons,
           message: false,
-          currentPokemon, 
+          currentPokemon,
           playerPokemons: req.session.user.team,
           evolutionChainPokemons,
         });
@@ -613,9 +618,9 @@ app.post("/increaseLosses", secureMiddleware, async (req, res) => {
       }
       res.render("pokemoninfo", {
         pokemonFind: selectedPokemon,
-        pokemons, 
+        pokemons,
         message: false,
-        currentPokemon, 
+        currentPokemon,
         playerPokemons: req.session.user.team,
         evolutionChainPokemons,
       });
@@ -646,9 +651,9 @@ app.post("/decreaseLosses", secureMiddleware, async (req, res) => {
         }
         res.render("pokemoninfo", {
           pokemonFind: selectedPokemon,
-          pokemons, 
+          pokemons,
           message: `Waarde kan niet onder 0 gaan!`,
-          currentPokemon, 
+          currentPokemon,
           playerPokemons: req.session.user.team,
           evolutionChainPokemons,
         });
@@ -672,9 +677,9 @@ app.post("/decreaseLosses", secureMiddleware, async (req, res) => {
         }
         res.render("pokemoninfo", {
           pokemonFind: selectedPokemon,
-          pokemons, 
+          pokemons,
           message: false,
-          currentPokemon, 
+          currentPokemon,
           playerPokemons: req.session.user.team,
           evolutionChainPokemons,
         });
@@ -693,6 +698,7 @@ app.get("/catchPokemon", secureMiddleware, async (req, res) => {
     currentPokemon = req.session.user.team.find(
       (pokemon) => pokemon.id === req.session.user?.currentPokemon
     );
+    playerPokemons = req.session.user.team;
   }
   res.render("catchPokemon", {
     pokemons,
@@ -737,8 +743,6 @@ app.post("/setRandomPokemonToCatch", secureMiddleware, async (req, res) => {
   }
 });
 
-
-
 let attemptsLeft = 3;
 app.post("/catch", async (req, res) => {
   const targetPokemon = pokemons.find(
@@ -778,7 +782,7 @@ app.post("/catch", async (req, res) => {
         targetPokemon.losses = 0;
         // console.log(getFormattedCaptureTime(captureTime))
         const captureTime = new Date();
-        targetPokemon.capturedPokemon = getFormattedCaptureTime(captureTime)
+        targetPokemon.capturedPokemon = getFormattedCaptureTime(captureTime);
         req.session.user.team.push(targetPokemon);
         req.session.save(() =>
           res.render("catchPokemon", {
@@ -850,18 +854,20 @@ app.get("/pokeBattler", secureMiddleware, async (req, res) => {
       (pokemon) => pokemon.id === req.session.user?.currentPokemon
     );
   }
-  res.render("pokeBattler", {
-    pokemons,
-    currentPokemon,
-    playerPokemons: req.session.user?.team,
-    myPokemonToBattle: undefined,
-    pokemonToBattle: undefined,
-    message: false,
-    battleResult: false,
-    styleLeft: false,
-    styleRight: false,
-    styleBoth: false,
-  });
+  req.session.save(() =>
+    res.render("pokeBattler", {
+      pokemons,
+      currentPokemon,
+      playerPokemons: req.session.user?.team,
+      myPokemonToBattle: undefined,
+      pokemonToBattle: undefined,
+      message: false,
+      battleResult: false,
+      styleLeft: false,
+      styleRight: false,
+      styleBoth: false,
+    })
+  );
 });
 
 app.post("/setPokemonToBattle", async (req, res) => {
@@ -917,24 +923,36 @@ app.post("/battle", (req, res) => {
   if (setPokemonToBattle && setMyPokemonToBattle) {
     const winner = battlePokemon(setMyPokemonToBattle, setPokemonToBattle);
 
-    if (winner && winner.name === setMyPokemonToBattle.name && req.session.user) {
+    if (
+      winner &&
+      winner.name === setMyPokemonToBattle.name &&
+      req.session.user
+    ) {
+      setMyPokemonToBattle.wins = 0;
+      setMyPokemonToBattle.losses = 0;
+      // console.log(getFormattedCaptureTime(captureTime))
+      const captureTime = new Date();
+      setMyPokemonToBattle.capturedPokemon =
+        getFormattedCaptureTime(captureTime);
       pushPokemon(setPokemonToBattle, req.session.user);
       req.session.user.team.push(setPokemonToBattle);
     }
-
-    res.render("pokeBattler", {
-      pokemons,
-      currentPokemon,
-      playerPokemons: req.session.user?.team,
-      myPokemonToBattle: setMyPokemonToBattle,
-      pokemonToBattle: setPokemonToBattle,
-      message: false,
-      battleResult: winner,
-      styleLeft: false,
-      styleRight: false,
-      styleBoth: true,
-    });
+    req.session.save(() =>
+      res.render("pokeBattler", {
+        pokemons,
+        currentPokemon,
+        playerPokemons: req.session.user?.team,
+        myPokemonToBattle: setMyPokemonToBattle,
+        pokemonToBattle: setPokemonToBattle,
+        message: false,
+        battleResult: winner,
+        styleLeft: false,
+        styleRight: false,
+        styleBoth: true,
+      })
+    );
   } else {
+    req.session.save(() =>
     res.render("pokeBattler", {
       pokemons,
       currentPokemon,
@@ -946,7 +964,7 @@ app.post("/battle", (req, res) => {
       styleLeft: false,
       styleRight: false,
       styleBoth: true,
-    });
+    }));
   }
 });
 
@@ -959,17 +977,17 @@ app.post("/battleAddPokemon", async (req, res) => {
     selectedPokemon.wins = 0;
     selectedPokemon.losses = 0;
     const captureTime = new Date();
-    selectedPokemon.capturedPokemon = getFormattedCaptureTime(captureTime)  
+    selectedPokemon.capturedPokemon = getFormattedCaptureTime(captureTime);
   }
   if (nicknamePokemon) {
     if (selectedPokemon && req.session.user) {
       selectedPokemon.nickname = nicknamePokemon;
       playerPokemons = req.session.user.team;
       addPokemonNickname(selectedPokemon, req.session.user, nicknamePokemon);
-      res.redirect("/myPokemons");
+      req.session.save(() =>res.redirect("/myPokemons"));
     }
   } else {
-    res.redirect("/myPokemons");
+    req.session.save(() =>res.redirect("/myPokemons"));
   }
 });
 
@@ -1005,24 +1023,24 @@ app.post("/guessPokemonResult", async (req, res) => {
   } else {
     const guessedPokemonName: string = req.body.myCountry.toLowerCase();
     if (guessedPokemonName === randomPokemon.name) {
-      res.render("guessPokemon", {
+      req.session.save(() =>res.render("guessPokemon", {
         pokemons,
         currentPokemon,
         playerPokemons,
         randomPokemon,
         message: false,
         guessResult: randomPokemon,
-      });
+      }));
     } else {
       // console.log(guessedPokemonName);
-      res.render("guessPokemon", {
+      req.session.save(() =>res.render("guessPokemon", {
         pokemons,
         currentPokemon,
         playerPokemons,
         randomPokemon,
         message: false,
         guessResult: true,
-      });
+      }));
     }
   }
 });
