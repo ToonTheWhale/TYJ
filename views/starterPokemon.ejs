@@ -4,7 +4,7 @@
     type="submit"
     onclick="closePokeball()"
     class="pokeball"
-    id="pokeball"
+    id="pokeball-starter"
     style="z-index: 1000"
   ></button>
   <section class="choose-starter-pokemon" id="choose-starter-pokemon">
@@ -59,7 +59,7 @@
 <script>
   function closePokeball() {
     document.getElementById("overlay").style.display = "none";
-    document.getElementById("pokeball").style.display = "none";
+    document.getElementById("pokeball-starter").style.display = "none";
     document.getElementById("choose-starter-pokemon").style.display = "flex";
   }
 </script>
