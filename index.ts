@@ -445,6 +445,10 @@ app.get("/mypokemons", secureMiddleware, async (req, res) => {
     return sortDirection === "asc" ? b.id - a.id : a.id - b.id;
   });
 
+  req.session.user?.team.sort((a, b) => {
+    return sortDirection === "asc" ? b.id - a.id : a.id - b.id;
+  });
+
   // console.log(toonPokemons);
 
   res.render("myPokemons", {

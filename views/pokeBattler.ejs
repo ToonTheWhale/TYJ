@@ -25,7 +25,7 @@
 </style>
 <% } %>
 
-<main style="display: flex; flex-direction: column">
+<main style="display: flex; flex-direction: column; text-align: center">
   <h1 id="noMarginTop" class="title">
     Pokemon Vechten
     <button onclick="PopupInfo()">
@@ -291,11 +291,11 @@
     <h2>Selecteer een Pokémon</h2>
     <input
       type="text"
-      id="myInput"
-      onkeyup="filterPokemonByName()"
+      id="myInputTwo"
+      onkeyup="filterPokemonByNameTwo()"
       placeholder="Pokemon zoeken ..."
     />
-    <section class="image-container">
+    <section class="image-container" id="image-container-two">
       <form
         style="display: flex; flex-wrap: wrap"
         action="/setMyPokemonToBattle"
