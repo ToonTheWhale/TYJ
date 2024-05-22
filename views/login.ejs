@@ -1,8 +1,8 @@
 <%- include('partials/headerLogin'); %>
 <body>
-  <main>
+  <main style="margin: auto;">
     <section class="main_login">
-      <h2>Login</h2>
+      <h2>Inloggen</h2>
       <br />
       <form action="/login" method="post" class="login">
         <label for="username:"> Gebruikers E-mail</label>
@@ -28,7 +28,7 @@
         <input class="submit" type="submit" value="Login" />
       </form>
       <br />
-      <div>Heeft u geen account?<a href="/signup">Sign Up </a></div>
+      <div>Heeft u geen account?<a href="/signup"> Aanmelden</a></div>
     </section>
   </main>
   <% if (message) { %>

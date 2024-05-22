@@ -1,11 +1,12 @@
 <%- include('partials/header'); %>
 <main class="pokedex-main">
+  <h1 id="noMarginTop" class="title"> Pokedex <button onclick="PopupInfo()"><h1 id="noMarginTop" ><i class="bi bi-patch-question"></i></h1></button></h1>
   <section class="sort-pokemon" >
   <input type="text" id="pokemonFilter" placeholder="Zoek op naam..." oninput="filterPokemon()">
   <form action="/pokedex" method="get"> 
     <select class="sort-select" name="sortField">
-        <option class="sort-option" value="name" <%= sortField === 'name' ? 'selected' : '' %>>Naam</option>
-        <option class="sort-option" value="id" <%= sortField === 'id' ? 'selected' : '' %>>id</option>
+      <option class="sort-option" value="id" <%= sortField === 'id' ? 'selected' : '' %>>id</option>
+      <option class="sort-option" value="name" <%= sortField === 'name' ? 'selected' : '' %>>Naam</option>
     </select>
     <select class="sort-select" name="sortDirection">
         <option class="sort-option" value="asc" <%= sortDirection === 'asc' ? 'selected' : '' %>>oplopend</option>
@@ -18,7 +19,8 @@
   width: 90%;
   height: 600px;
   overflow-x: hidden;
-  overflow-y: auto;">
+  overflow-y: auto;
+  -webkit-animation:slide-in-bck-center .7s cubic-bezier(.25,.46,.45,.94) both;animation:slide-in-bck-center .7s cubic-bezier(.25,.46,.45,.94) both">
     <% for(let pokemon of pokemons) { %>
     <article class="pokemon" >
       <p><%= pokemon.name %></p>
@@ -34,5 +36,16 @@
     </article>
     <% } %>
   </section>
+
+  <div id="popupinfo" class="popup">
+    <h2>Pokédex</h2>
+    <p>Dit is de Pokedex pagina. hier vind je <strong>alle pokemons</strong> die je kunt vangen. je kunt ze ook sorteren op hun id of naam.
+      wil je <strong>meer info</strong> over een pokemon? dan kan je er op klikken.
+    </p>
+    <button  id="button" style="float: right;" onclick="closeinfo()">Close</button>
+  </div>
+  
+  <div id="overlay-message" class="overlay"></div>
+
 </main>
 <%- include('partials/footer'); %>

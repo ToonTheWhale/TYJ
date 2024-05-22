@@ -24,20 +24,18 @@
         <i class="fa fa-bars" style="font-size: 40px"></i>
       </button>
       <section id="overlay-Menu" class="overlay-Menu">
-        <ul class="menu" style="padding: 0">
-          <li style="margin: 0; border: none">
-            <button class="layer-close-button" onclick="closeMenu()">
-              <i class="fa fa-times" aria-hidden="true"></i>
-            </button>
-            <a href="/"><img src="/images/Logo.png" alt="" /></a>
-          </li>
-          <li><a href="/home">Home</a></li>
-          <li><a href="/pokedex">PokéDex</a></li>
-          <li><a href="/myPokemons">Mijn Pokemons</a></li>
-          <li><a href="/pokeBattler">Pokemon Battler</a></li>
-          <li><a href="/catchPokemon">Pokemon vangen</a></li>
-          <li><a href="/compareSelect">Pokemon vergelijken</a></li>
-          <li><a href="/guessPokemon">Who’s that pokemon</a></li>
+        <button class="menu-close-button" onclick="closeMenu()">
+          <i class="fa fa-times" aria-hidden="true"></i>
+        </button>
+        <ul class="menu">
+          <li><a href="/">Landingspagina</a></li>
+          <li><a href="https://github.com/ToonTheWhale/TYJ">Github repository</a></li>
+          <li><a href="/signup">Aanmelden</a></li>
+          <article class="logout-article">
+            <img src="/images/logout.gif" alt="" />
+            <!--https://www.deviantart.com/drakesycamore/art/Pikachu-Waving-801906126-->
+            <a href="/login"><button class="logoutbutt">Inloggen </button></a>
+          </article>
         </ul>
       </section>
     </nav>

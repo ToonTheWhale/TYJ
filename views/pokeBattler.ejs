@@ -1,119 +1,40 @@
-<%- include('partials/header'); %>
-<main style="display: flex; flex-direction: column">
+<%- include('partials/header'); %> <% if (styleLeft) { %>
+<style>
+  #battel-item-1 {
+    -webkit-animation: none;
+    animation: none;
+  }
+</style>
+<% } else if (styleRight) { %>
+<style>
+  #battel-item-2 {
+    -webkit-animation: none;
+    animation: none;
+  }
+</style>
+<% } else if (styleBoth) { %>
+<style>
+  #battel-item-1 {
+    -webkit-animation: none;
+    animation: none;
+  }
+  #battel-item-2 {
+    -webkit-animation: none;
+    animation: none;
+  }
+</style>
+<% } %>
+
+<main style="display: flex; flex-direction: column; text-align: center">
+  <h1 id="noMarginTop" class="title">
+    Pokemon Vechten
+    <button onclick="PopupInfo()">
+      <h1 id="noMarginTop"><i class="bi bi-patch-question"></i></h1>
+    </button>
+  </h1>
   <section class="compare">
-    <% if (pokemonToBattle === undefined) { %>
-    <article class="compare-item" id="compare-item-1">
-      <figure>
-        <img src="/images/Question-mark.png" width="200" height="200" />
-        <figcaption>
-          <h2 style="color: transparent">?????</h2>
-          <p>ID: ?</p>
-          <p>verdedeging: ?</p>
-          <p>aanval: ?</p>
-          <p>Types: ?</p>
-          <p>Max HP: ?</p>
-        </figcaption>
-      </figure>
-      <aside class="layer">
-        <button onclick="openPopupVS(1,1); " type="submit">kiezen</button>
-      </aside>
-    </article>
-    <% } else { %>
-    <article class="compare-item">
-      <figure>
-        <img src="<%= pokemonToBattle.image %>" width="200" height="200" />
-        <figcaption>
-          <h2><%= pokemonToBattle.name %></h2>
-          <div style="display: flex; justify-content: center; margin: auto">
-            <p style="width: 75%">verdedeging:</p>
-            <div
-              class="meter orange"
-              style="width: 100%; margin: auto; margin-right: 10px"
-            >
-              <span id="Poke-1-defense"><%= pokemonToBattle.defense %></span>
-              <script>
-                document.getElementById("Poke-1-defense").style.width =
-                  "<%= pokemonToBattle.defense %>%";
-              </script>
-            </div>
-          </div>
-          <div style="display: flex; justify-content: center; margin: auto">
-            <p style="width: 75%">aanval:</p>
-            <div
-              class="meter"
-              style="width: 100%; margin: auto; margin-right: 10px"
-            >
-              <span id="Poke-1-attack" style="width: 100%">
-                <%= pokemonToBattle.attack %></span
-              >
-              <script>
-                document.getElementById("Poke-1-attack").style.width =
-                  "<%= pokemonToBattle.attack %>%";
-              </script>
-            </div>
-          </div>
-          <div style="display: flex; justify-content: center; margin: auto">
-            <p style="width: 75%">Max HP:</p>
-            <div
-              class="meter red"
-              style="width: 100%; margin: auto; margin-right: 10px"
-            >
-              <span id="Poke-1-maxHP" style="width: 100%">
-                <%= pokemonToBattle.maxHP %></span
-              >
-              <script>
-                document.getElementById("Poke-1-maxHP").style.width =
-                  "<%= pokemonToBattle.maxHP %>%";
-              </script>
-            </div>
-          </div>
-          <div style="display: flex; justify-content: center; margin: auto">
-            <p style="width: 75%">Types:</p>
-            <div
-              style="
-                width: 100%;
-                margin: auto;
-                margin-right: 10px;
-                display: flex;
-                justify-content: space-around;
-              "
-            >
-              <% for (let element of pokemonToBattle.types) { %>
-              <div class="type-icon type-<%= element %>" href="">
-                <%= element %>
-              </div>
-              <% } %>
-            </div>
-          </div>
-        </figcaption>
-        <aside class="layer-close-button">
-          <button onclick="openPopupVS(1,1); " type="submit">X</button>
-        </aside>
-      </figure>
-    </article>
-    <% } %>
-    <article class="compare-item-centr">
-      <form action="/battle" method="post">
-        <% if (pokemonToBattle && myPokemonToBattle) { %>
-        <button
-          style="background: none; border: none"
-          type="submit"
-        >
-          <i class="bi bi-arrow-left-right"></i>
-        </button>
-        <% } else { %>
-        <button
-          style="background: none; border: none"
-          name="setPokemonToBattle"
-          value="1"
-        >
-          <i class="bi bi-arrow-left-right"></i>
-        </button>
-        <% } %>
-      </form>
-    </article>
     <% if (myPokemonToBattle === undefined) { %>
-    <article class="compare-item" id="compare-item-2">
+    <article class="compare-item" id="battel-item-2">
       <figure>
         <img src="/images/Question-mark.png" width="200" height="200" />
         <figcaption>
@@ -125,12 +46,18 @@
           <p>Max HP: ?</p>
         </figcaption>
       </figure>
-      <aside class="layer">
+      <aside
+        class="layer"
+        style="
+          background-image: url('https://i.pinimg.com/564x/9b/18/1b/9b181b17398e72f7b11d6511a0158064.jpg');
+          background-size: cover;
+        "
+      >
         <button onclick="openPopup(`MyPokemons`);" type="submit">kiezen</button>
       </aside>
     </article>
     <% } else { %>
-    <article class="compare-item">
+    <article class="compare-item" id="battel-item-2">
       <figure>
         <img src="<%= myPokemonToBattle.image %>" width="200" height="200" />
         <figcaption>
@@ -146,7 +73,7 @@
               >
               <script>
                 document.getElementById("Poke-2-defense").style.width =
-                  "<%= myPokemonToBattle.defense %>%";
+                  "<%= myPokemonToBattle.defense/2 %>%";
               </script>
             </div>
           </div>
@@ -161,7 +88,7 @@
               >
               <script>
                 document.getElementById("Poke-2-attack").style.width =
-                  "<%= myPokemonToBattle.attack %>%";
+                  "<%= myPokemonToBattle.attack/2 %>%";
               </script>
             </div>
           </div>
@@ -176,7 +103,7 @@
               >
               <script>
                 document.getElementById("Poke-2-maxHP").style.width =
-                  "<%= myPokemonToBattle.maxHP %>%";
+                  "<%= myPokemonToBattle.maxHP/2 %>%";
               </script>
             </div>
           </div>
@@ -205,6 +132,114 @@
       </aside>
     </article>
     <% } %>
+    <article class="compare-item-centr">
+      <form action="/battle" method="post">
+        <% if (pokemonToBattle && myPokemonToBattle) { %>
+        <button style="background: none; border: none" type="submit">
+          <img src="/images/Swords-icon.png" style="width: 225px; height: 225px" />
+        </button>
+        <% } else { %>
+        <button
+          style="background: none; border: none"
+          name="setPokemonToBattle"
+          value="1"
+        >
+          <img src="/images/Swords-icon.png" style="width: 225px; height: 225px" />
+        </button>
+        <% } %>
+      </form>
+    </article>
+    <% if (pokemonToBattle === undefined) { %>
+    <article class="compare-item" id="battel-item-1">
+      <figure>
+        <img src="/images/Question-mark.png" width="200" height="200" />
+        <figcaption>
+          <h2 style="color: transparent">?????</h2>
+          <p>ID: ?</p>
+          <p>verdedeging: ?</p>
+          <p>aanval: ?</p>
+          <p>Types: ?</p>
+          <p>Max HP: ?</p>
+        </figcaption>
+      </figure>
+      <aside class="layer">
+        <button onclick="openPopupVS(1,1); " type="submit">kiezen</button>
+      </aside>
+    </article>
+    <% } else { %>
+    <article class="compare-item" id="battel-item-1">
+      <figure>
+        <img src="<%= pokemonToBattle.image %>" width="200" height="200" />
+        <figcaption>
+          <h2><%= pokemonToBattle.name %></h2>
+          <div style="display: flex; justify-content: center; margin: auto">
+            <p style="width: 75%">verdedeging:</p>
+            <div
+              class="meter orange"
+              style="width: 100%; margin: auto; margin-right: 10px"
+            >
+              <span id="Poke-1-defense"><%= pokemonToBattle.defense %></span>
+              <script>
+                document.getElementById("Poke-1-defense").style.width =
+                  "<%= pokemonToBattle.defense/2 %>%";
+              </script>
+            </div>
+          </div>
+          <div style="display: flex; justify-content: center; margin: auto">
+            <p style="width: 75%">aanval:</p>
+            <div
+              class="meter"
+              style="width: 100%; margin: auto; margin-right: 10px"
+            >
+              <span id="Poke-1-attack" style="width: 100%">
+                <%= pokemonToBattle.attack %></span
+              >
+              <script>
+                document.getElementById("Poke-1-attack").style.width =
+                  "<%= pokemonToBattle.attack/2 %>%";
+              </script>
+            </div>
+          </div>
+          <div style="display: flex; justify-content: center; margin: auto">
+            <p style="width: 75%">Max HP:</p>
+            <div
+              class="meter red"
+              style="width: 100%; margin: auto; margin-right: 10px"
+            >
+              <span id="Poke-1-maxHP" style="width: 100%">
+                <%= pokemonToBattle.maxHP %></span
+              >
+              <script>
+                document.getElementById("Poke-1-maxHP").style.width =
+                  "<%= pokemonToBattle.maxHP/2 %>%";
+              </script>
+            </div>
+          </div>
+          <div style="display: flex; justify-content: center; margin: auto">
+            <p style="width: 75%">Types:</p>
+            <div
+              style="
+                width: 100%;
+                margin: auto;
+                margin-right: 10px;
+                display: flex;
+                justify-content: space-around;
+              "
+            >
+              <% for (let element of pokemonToBattle.types) { %>
+              <div class="type-icon type-<%= element %>" href="">
+                <%= element %>
+              </div>
+              <% } %>
+            </div>
+          </div>
+        </figcaption>
+        <aside class="layer-close-button">
+          <button onclick="openPopupVS(1,1); " type="submit">X</button>
+        </aside>
+      </figure>
+    </article>
+    <% } %>
   </section>
   <dialog
     class="popup"
@@ -228,25 +263,25 @@
         action="/setPokemonToBattle"
         method="post"
       >
-        <% for(let pokemon of pokemons) { %>
-          <% if (!playerPokemons.find(playerPokemon => playerPokemon.id === pokemon.id)) { %>
-            <article>
-              <figure>
-                <button
-                  style="border: none; background-color: white"
-                  value="<%= pokemon.id %>"
-                  type="submit"
-                  name="setPokemonToBattle"
-                >
-                  <img src="<%= pokemon.image %>" />
-                </button>
-                <figcaption>
-                  <p><%= pokemon.name %></p>
-                </figcaption>
-              </figure>
-            </article>
-          <% } %>
-        <% } %>
+        <% for(let pokemon of pokemons) { %> <% if
+        (!playerPokemons.find(playerPokemon => playerPokemon.id === pokemon.id))
+        { %>
+        <article>
+          <figure>
+            <button
+              style="border: none; background-color: white"
+              value="<%= pokemon.id %>"
+              type="submit"
+              name="setPokemonToBattle"
+            >
+              <img src="<%= pokemon.image %>" />
+            </button>
+            <figcaption>
+              <p><%= pokemon.name %></p>
+            </figcaption>
+          </figure>
+        </article>
+        <% } %> <% } %>
       </form>
     </section>
     <button onclick="closePopup()" id="button">Close</button>
@@ -256,11 +291,11 @@
     <h2>Selecteer een Pokémon</h2>
     <input
       type="text"
-      id="myInput"
-      onkeyup="filterPokemonByName()"
+      id="myInputTwo"
+      onkeyup="filterPokemonByNameTwo()"
       placeholder="Pokemon zoeken ..."
     />
-    <section class="image-container">
+    <section class="image-container" id="image-container-two">
       <form
         style="display: flex; flex-wrap: wrap"
         action="/setMyPokemonToBattle"
@@ -303,8 +338,7 @@
       </button>
     </dialog>
   </div>
-  <% } %> 
-  <% if (battleResult == myPokemonToBattle ) { %>
+  <% } %> <% if (battleResult == myPokemonToBattle ) { %>
   <div id="overlay-battle-message" style="display: block" class="overlay">
     <dialog
       id="popup-battle-message"
@@ -344,47 +378,57 @@
       </form>
     </dialog>
   </div>
-  <% } %>
-  <% if (battleResult == pokemonToBattle ) { %>
-    <div id="overlay-battle-message" style="display: block" class="overlay">
-      <dialog
-        id="popup-battle-message"
-        style="
-          display: block;
-          text-align: center;
-          justify-content: center;
-          align-items: center;
-        "
-        class="popup"
-      >
-        <form action="/pokeBattler" method="get">
-          <h1><%= pokemonToBattle.name %> heeft het gevecht gewonnen!</h1>
-          <img
-            style="width: 200px; height: 200px"
-            src="<%= pokemonToBattle.image %>"
-            alt=""
-          />
-          <img
-            style="width: 200px; height: 200px; filter: grayscale(100%)"
-            src="<%= myPokemonToBattle.image %>"
-            alt=""
-          />
-          <h2>
-            Blijf trainen en probeer het opnieuw! 
-          </h2>
-          <button
-            style="float: right"
-            onclick="closePopupMessageBattle()"
-            id="button"
-          >
+  <% } %> <% if (battleResult == pokemonToBattle ) { %>
+  <div id="overlay-battle-message" style="display: block" class="overlay">
+    <dialog
+      id="popup-battle-message"
+      style="
+        display: block;
+        text-align: center;
+        justify-content: center;
+        align-items: center;
+      "
+      class="popup"
+    >
+      <form action="/pokeBattler" method="get">
+        <h1><%= pokemonToBattle.name %> heeft het gevecht gewonnen!</h1>
+        <img
+          style="width: 200px; height: 200px"
+          src="<%= pokemonToBattle.image %>"
+          alt=""
+        />
+        <img
+          style="width: 200px; height: 200px; filter: grayscale(100%)"
+          src="<%= myPokemonToBattle.image %>"
+          alt=""
+        />
+        <h2>Blijf trainen en probeer het opnieuw!</h2>
+        <button
+          style="float: right"
+          onclick="closePopupMessageBattle()"
+          id="button"
+        >
           sluiten
-          </button>
-        </form>
-      </dialog>
-    </div>
-    <% } %>
-  
+        </button>
+      </form>
+    </dialog>
+  </div>
+  <% } %>
 
+  <div id="popupinfo" class="popup">
+    <h2>Pokemon vechten</h2>
+    <p>
+      hier kan je met je pokemons <strong>vechten</strong>. in de rechter kader
+      kies je een pokemon dat je nog niet hebt gevangen. en aan de linkse kant
+      kies je een van jouw persoonlijke pokemon. als je wint dan heb je de
+      <strong>gevangen</strong> en kan je hem een bijnaam geven!
+    </p>
+    <button id="button" style="float: right" onclick="closeinfo()">
+      Close
+    </button>
+  </div>
+
+  <div id="overlay-message" class="overlay"></div>
   <!-- eind popup code  -->
 </main>
 <%- include('partials/footer'); %>

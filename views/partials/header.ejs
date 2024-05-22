@@ -35,45 +35,25 @@
         style="margin-right: auto"
       />
       <% } %>
-      <a href="/home"><img src="/images/Logo.png" style="scale: 1.5;" /></a>
+      <a href="/home"><img src="/images/Logo.png" style="scale: 1.5" /></a>
       <button onclick="openMenu()" class="menu-hamburger">
         <i class="fa fa-bars" style="font-size: 40px"></i>
       </button>
       <section id="overlay-Menu" class="overlay-Menu">
-        
-          <button class="layer-close-button" onclick="closeMenu()">
-            <i class="fa fa-times" aria-hidden="true"></i>
-          </button>
-          
-             <% if (currentPokemon === undefined || currentPokemon === null) { %>
-              <img style="background-color: rgb(255, 255, 255, 0); border: none; width: 80px; height: 80px; margin-left: -5px; margin-top: 30px;"
-              onclick="openPopupCurrentPokemon()"
-              src="/images/Question-mark.png"
-              id="current-pokemon"
-              class="current-pokemon"
-              style="margin-right: auto"
-            />
-            <% } else { %>
-              <img style="background-color: rgb(255, 255, 255, 0); border: none; width: 120px; height: 120px; margin-left: 0px; margin-top: 30px;"
-              onclick="openPopupCurrentPokemon()"
-              src="<%= currentPokemon.image %>"
-              id="current-pokemon"
-              class="current-pokemon"
-              style="margin-right: auto"
-            />
-            <% } %>
-          
-        <ul class="menu" style="padding: 0">
+        <button class="menu-close-button" onclick="closeMenu()">
+          <i class="fa fa-times" aria-hidden="true"></i>
+        </button>
+        <ul class="menu">
           <li><a href="/home">Home</a></li>
           <li><a href="/pokedex">PokéDex</a></li>
-          <li><a href="/myPokemons">profiel</a></li>
-          <li><a href="/landingpage">land pagina</a></li>
+          <li><a href="/myPokemons">Profiel</a></li>
+          <li><a href="/">Landingspagina</a></li>
+          <article class="logout-article">
+            <img src="/images/logout.gif" alt="" />
+            <!--https://www.deviantart.com/drakesycamore/art/Pikachu-Waving-801906126-->
+            <a href="/logout"><button class="logoutbutt">Uitloggen</button></a>
+          </article>
         </ul>
-        <article class="logout-article">
-        <img src="/images/logout.gif" alt="">
-        <!--https://www.deviantart.com/drakesycamore/art/Pikachu-Waving-801906126-->
-        <a href="/logout"><button class="logoutbutt">uitloggen</button></a>
-        </article>
       </section>
     </nav>
   </body>

@@ -19,7 +19,7 @@ function autocomplete(inp, arr) {
             b.addEventListener("click", function(e) {
                 inp.value = this.getElementsByTagName("input")[0].value;
                 // submit the form
-                document.getElementById("myForm").submit();
+                document.getElementById("myForm-guessPoke").submit();
                 closeAllLists();
             });
             a.appendChild(b);
@@ -89,4 +89,4 @@ var countries =
   'cloyster',   'gastly',     'haunter',    'gengar',     'onix',
   'drowzee',    'hypno',      'krabby',     'kingler',    'voltorb'];
   
-autocomplete(document.getElementById("myInput"), countries);
+autocomplete(document.getElementById("myInput-guessPoke"), countries);

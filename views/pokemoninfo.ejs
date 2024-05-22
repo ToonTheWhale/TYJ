@@ -6,11 +6,41 @@
         <%= pokemonFind.name.toUpperCase() %>
       </h2>
       <% if (pokemonFind.nickname) { %>
-      <p style="color: #3b4cca; margin-top: 0">
-        Bijnaam : <%= pokemonFind.nickname %>
+      <p style="color: #3b4cca; margin-top: 0; margin-bottom: 0">
+        Bijname : <%= pokemonFind.nickname %>
       </p>
       <% } %>
       <img style="width: 250px; height: 250px" src="<%= pokemonFind.image%>" />
+      <% if (playerPokemons.find(poke => poke.id === pokemonFind.id)) { %>
+      <form action="/" method="post">
+        <section class="resultBattle">
+          <input
+            type="text"
+            style="display: none"
+            name="pokemonFind"
+            value="<%= pokemonFind.id%>"
+          />
+          <div class="wins">
+            <button type="submit" formaction="/increaseWins">
+              <i class="bi bi-arrow-up-circle-fill"></i>
+            </button>
+            wins : <%= pokemonFind.wins %>
+            <button type="submit" formaction="/decreaseWins">
+              <i class="bi bi-arrow-down-circle-fill"></i>
+            </button>
+          </div>
+          <div class="losses">
+            <button type="submit" formaction="/increaseLosses">
+              <i class="bi bi-arrow-up-circle-fill"></i>
+            </button>
+            losses : <%= pokemonFind.losses %>
+            <button type="submit" formaction="/decreaseLosses">
+              <i class="bi bi-arrow-down-circle-fill"></i>
+            </button>
+          </div>
+        </section>
+      </form>
+      <% } %>
     </article>
     <article style="display: flex; flex-direction: column">
       <h2 style="color: #3b4cca">Pokemon Stats</h2>
@@ -42,8 +72,8 @@
           <% } %>
         </div>
       </div>
-      <% if (pokemonFind.pokemonCaughtDate) { %>
-      <p>Pokemon gevangen op: <%= pokemonFind.pokemonCaughtDate %></p>
+      <% if (pokemonFind.capturedPokemon) { %>
+      <p class="capturedPokemon" style="color: #3b4cca; ">Pokemon gevangen <br> op: <%= pokemonFind.capturedPokemon %></p>
       <% } %>
     </article>
     <article style="display: flex; flex-direction: column">
@@ -63,7 +93,7 @@
           <span id="Poke-1-defense"><%= pokemonFind.defense %></span>
           <script>
             document.getElementById("Poke-1-defense").style.width =
-              "<%= pokemonFind.defense %>%";
+              "<%= pokemonFind.defense/2 %>%";
           </script>
         </div>
       </div>
@@ -85,7 +115,7 @@
           >
           <script>
             document.getElementById("Poke-1-attack").style.width =
-              "<%= pokemonFind.attack %>%";
+              "<%= pokemonFind.attack/2 %>%";
           </script>
         </div>
       </div>
@@ -107,7 +137,7 @@
           >
           <script>
             document.getElementById("Poke-1-maxHP").style.width =
-              "<%= pokemonFind.maxHP %>%";
+              "<%= pokemonFind.maxHP/2 %>%";
           </script>
         </div>
       </div>
@@ -129,7 +159,7 @@
           >
           <script>
             document.getElementById("Poke-1-special-attack").style.width =
-              "<%= pokemonFind.special_attack %>%";
+              "<%= pokemonFind.special_attack/2 %>%";
           </script>
         </div>
       </div>
@@ -151,7 +181,7 @@
           >
           <script>
             document.getElementById("Poke-1-special-defense").style.width =
-              "<%= pokemonFind.special_defense %>%";
+              "<%= pokemonFind.special_defense/2 %>%";
           </script>
         </div>
       </div>
@@ -173,7 +203,7 @@
           >
           <script>
             document.getElementById("Poke-1-speed").style.width =
-              "<%= pokemonFind.speed %>%";
+              "<%= pokemonFind.speed/2 %>%";
           </script>
         </div>
       </div>
@@ -192,18 +222,19 @@
         background-color: transparent;
       "
     >
-      <h3 style="margin-top: 0; background-color: green">Catching situatie</h3>
+      <h3 style="margin-top: 0; background-color: green">Gevangen</h3>
       <form action="/setPokemonToCatch" method="post">
         <button
           type="submit"
           onclick="closePokeball()"
           class="pokeball"
-          id="pokeball"
           name="setPokemonToCatch"
           value="<%= pokemonFind.id %>"
           style="
             z-index: 1000;
             animation: none;
+            -webkit-animation: bounce-in-top 1.1s both;
+            animation: bounce-in-top 1.1s both;
             background: radial-gradient(
                 white 16px,
                 black 17px 18px,
@@ -233,13 +264,17 @@
         background-color: transparent;
       "
     >
-      <h3 style="margin-top: 0">Catching situatie</h3>
+      <h3 style="margin-top: 0">Niet gevangen</h3>
       <form action="/setPokemonToCatch" method="post">
         <button
           type="submit"
           class="pokeball"
-          id="pokeball"
-          style="z-index: 1000; animation: none"
+          style="
+            z-index: 1000;
+            animation: none;
+            -webkit-animation: bounce-in-top 1.1s both;
+            animation: bounce-in-top 1.1s both;
+          "
           name="setPokemonToCatch"
           value="<%= pokemonFind.id %>"
         ></button>
@@ -256,8 +291,8 @@
           margin-bottom: 0;
         "
       >
-        <% if (evolutionChainPokemons.length > 4) { %> <% for(let i = 0; i <
-        4; i++) { %>
+        <% if (evolutionChainPokemons.length > 4) { %> <% for(let i = 0; i < 4;
+        i++) { %>
         <a href="/pokemon/info/<%= evolutionChainPokemons[i].id %>">
           <img
             style="width: 175px; height: 175px"
@@ -275,8 +310,7 @@
           class="fa fa-arrow-down"
           aria-hidden="true"
         ></i>
-        <% } %> <% } %> <% } else { %> 
-          <% for(let i = 0; i <
+        <% } %> <% } %> <% } else { %> <% for(let i = 0; i <
         evolutionChainPokemons.length; i++) { %>
         <a href="/pokemon/info/<%= evolutionChainPokemons[i].id %>">
           <img
@@ -346,5 +380,19 @@
     </article>
     <% } %>
   </section>
+  <% if (message) { %>
+  <div id="overlay-battle-message" style="display: block" class="overlay">
+    <dialog id="popup-battle-message" style="display: block" class="popup">
+      <h2><%= message %></h2>
+      <button
+        style="float: right"
+        onclick="closePopupMessageBattle()"
+        id="button"
+      >
+        Close
+      </button>
+    </dialog>
+  </div>
+  <% } %>
 </main>
 <%- include('partials/footer'); %>

@@ -1,3 +1,5 @@
+// const { info } = require("console");
+
 // Functie om de pop-up te sluiten
 function closePopup(side) {
   if (side) {
@@ -31,7 +33,7 @@ function openPopupCurrentPokemon() {
 
 // script dient voor de sidepdown nav
 function openMenu() {
-  document.getElementById("overlay-Menu").style.display = "block";
+  document.getElementById("overlay-Menu").style.display = "flex";
 }
 function closeMenu() {
   document.getElementById("overlay-Menu").style.display = "none";
@@ -52,6 +54,35 @@ function filterPokemonByName() {
   input = document.getElementById("myInput");
   filter = input.value.toUpperCase();
   imageContainer = document.querySelector(".image-container");
+  articles = imageContainer.getElementsByTagName("article");
+
+  for (i = 0; i < articles.length; i++) {
+    figure = articles[i].getElementsByTagName("figure")[0];
+    p = figure.getElementsByTagName("p")[0];
+    txtValue = p.textContent || p.innerText;
+
+    if (txtValue.toUpperCase().indexOf(filter) > -1) {
+      articles[i].style.display = "";
+    } else {
+      articles[i].style.display = "none";
+    }
+  }
+}
+
+function filterPokemonByNameTwo() {
+  var input,
+    filter,
+    imageContainer,
+    articles,
+    figure,
+    figcaption,
+    p,
+    i,
+    txtValue;
+
+  input = document.getElementById("myInputTwo");
+  filter = input.value.toUpperCase();
+  imageContainer = document.getElementById("image-container-two");
   articles = imageContainer.getElementsByTagName("article");
 
   for (i = 0; i < articles.length; i++) {
@@ -147,6 +178,7 @@ function closePopupMessageBattle(pokeGroup) {
 function openPopupMessage() {
   document.getElementById("popup-message").style.display = "block";
   document.getElementById("overlay-message").style.display = "block";
+
 }
 
 function closePopupMessage() {
@@ -159,4 +191,14 @@ function closePopupMessageCurrentPokemon() {
     "none";
   document.getElementById("overlay-message-CurrentPokemon").style.display =
     "none";
+}
+
+function PopupInfo() {
+  document.getElementById("popupinfo").style.display = "block";
+  document.getElementById("overlay-message").style.display = "block";
+}
+
+function closeinfo(){
+  document.getElementById("popupinfo").style.display = "none";
+  document.getElementById("overlay-message").style.display = "none";
 }

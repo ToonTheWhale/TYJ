@@ -1,5 +1,36 @@
-<%- include('partials/header'); %>
-<main style="display: flex; flex-direction: column">
+<%- include('partials/header'); %> <% if (styleLeft) { %>
+<style>
+  #compare-item-2 {
+    -webkit-animation: none;
+    animation: none;
+  }
+</style>
+<% } else if (styleRight) { %>
+<style>
+  #compare-item-1 {
+    -webkit-animation: none;
+    animation: none;
+  }
+</style>
+<% } else if (styleBoth) { %>
+<style>
+  #compare-item-1 {
+    -webkit-animation: none;
+    animation: none;
+  }
+  #compare-item-2 {
+    -webkit-animation: none;
+    animation: none;
+  }
+</style>
+<% } %>
+<main style="display: flex; flex-direction: column; text-align: center">
+  <h1 id="noMarginTop" class="title">
+    Pokemon vergelijken
+    <button onclick="PopupInfo()">
+      <h1 id="noMarginTop"><i class="bi bi-patch-question"></i></h1>
+    </button>
+  </h1>
   <section class="compare">
     <% if (PokemonLeftToCompare === undefined) { %>
     <article class="compare-item" id="compare-item-1">
@@ -19,7 +50,7 @@
       </aside>
     </article>
     <% } else { %>
-    <article class="compare-item">
+    <article class="compare-item" id="compare-item-1">
       <figure>
         <img src="<%= PokemonLeftToCompare.image %>" width="200" height="200" />
         <figcaption>
@@ -35,7 +66,7 @@
               >
               <script>
                 document.getElementById("Poke-1-defense").style.width =
-                  "<%= PokemonLeftToCompare.defense %>%";
+                  "<%= PokemonLeftToCompare.defense/2 %>%";
               </script>
             </div>
           </div>
@@ -50,7 +81,7 @@
               >
               <script>
                 document.getElementById("Poke-1-attack").style.width =
-                  "<%= PokemonLeftToCompare.attack %>%";
+                  "<%= PokemonLeftToCompare.attack/2 %>%";
               </script>
             </div>
           </div>
@@ -65,7 +96,7 @@
               >
               <script>
                 document.getElementById("Poke-1-maxHP").style.width =
-                  "<%= PokemonLeftToCompare.maxHP %>%";
+                  "<%= PokemonLeftToCompare.maxHP/2 %>%";
               </script>
             </div>
           </div>
@@ -129,7 +160,7 @@
       </aside>
     </article>
     <% } else { %>
-    <article class="compare-item">
+    <article class="compare-item" id="compare-item-2">
       <figure>
         <img
           src="<%= PokemonRightToCompare.image %>"
@@ -149,7 +180,7 @@
               >
               <script>
                 document.getElementById("Poke-2-defense").style.width =
-                  "<%= PokemonRightToCompare.defense %>%";
+                  "<%= PokemonRightToCompare.defense/2 %>%";
               </script>
             </div>
           </div>
@@ -164,7 +195,7 @@
               >
               <script>
                 document.getElementById("Poke-2-attack").style.width =
-                  "<%= PokemonRightToCompare.attack %>%";
+                  "<%= PokemonRightToCompare.attack/2 %>%";
               </script>
             </div>
           </div>
@@ -179,7 +210,7 @@
               >
               <script>
                 document.getElementById("Poke-2-maxHP").style.width =
-                  "<%= PokemonRightToCompare.maxHP %>%";
+                  "<%= PokemonRightToCompare.maxHP/2 %>%";
               </script>
             </div>
           </div>
@@ -252,11 +283,11 @@
     <h2>Selecteer een Pokémon</h2>
     <input
       type="text"
-      id="myInput"
-      onkeyup="filterPokemonByName()"
+      id="myInputTwo"
+      onkeyup="filterPokemonByNameTwo()"
       placeholder="Pokemon zoeken ..."
     />
-    <section class="image-container">
+    <section class="image-container" id="image-container-two">
       <form
         style="display: flex; flex-wrap: wrap"
         action="/setPokemonRightToCompare"
@@ -296,20 +327,28 @@
     </dialog>
   </div>
   <% } %> <% if (compareResult) { %>
-  <div id="overlay-compareResult" style="display: block" class="overlay">
+  <div
+    id="overlay-compareResult"
+    style="
+      display: block;
+      -webkit-animation: fade-in 1.2s cubic-bezier(0.39, 0.575, 0.565, 1) both;
+      animation: fade-in 1.2s cubic-bezier(0.39, 0.575, 0.565, 1) both;
+    "
+    class="overlay"
+  >
     <dialog
       class="popup"
       style="text-align: center; display: block"
       id="popup-compareResult"
     >
-      <button
-        class="close_button"
-        onclick="closePopup(`compareResult`)"
-        type="submit"
+      <h2
+        style="
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          margin: 0;
+        "
       >
-        <i class="fa fa-times" aria-hidden="true"></i>
-      </button>
-      <h2 style="display: flex; align-items: center; justify-content: center; margin: 0;">
         Pokémon Vergelijking:
         <img
           style="height: 75px; height: 75px"
@@ -391,8 +430,32 @@
           </td>
         </tr>
       </table>
+      <form action="/compareSelect">
+        <button
+          id="button"
+          style="float: right"
+          formaction="/compareSelect"
+          formmethod="get"
+        >
+          Close
+        </button>
+      </form>
     </dialog>
   </div>
   <% } %>
+
+  <div id="popupinfo" class="popup">
+    <h2>pokemon vergelijken</h2>
+    <p>
+      hier kan je je pokemon <strong>vergelijken</strong> met andere pokemons.
+      zo kan je zien waar de ene pokemon beter in is als de andere en
+      <strong>hoeveel</strong> verschil er tussen de twee zit.
+    </p>
+    <button id="button" style="float: right" onclick="closeinfo()">
+      Close
+    </button>
+  </div>
+
+  <div id="overlay-message" class="overlay"></div>
 </main>
 <%- include('partials/footer'); %>

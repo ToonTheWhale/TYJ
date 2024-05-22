@@ -1,6 +1,6 @@
 <%- include('partials/header'); %>
 <main class="main-mypokemon" style="width: 100%; margin: auto">
-  <h1>Jouw pokemon</h1>
+  <h1 id="noMarginTop" class="title"> Mijn Pokémons <button onclick="PopupInfo()"><h1 id="noMarginTop"><i class="bi bi-patch-question"></i></h1></button></h1>
   <section class="sort-pokemon">
     <form action="/myPokemons" method="get" class="fromMypokemon"> 
       <select class="sort-select" name="sortField">
@@ -13,11 +13,11 @@
   <section class="compare">
     <section
       class="flex-container"
-      style="width: 66%; height: 544px; overflow-x: hidden; overflow-y: auto"
+      id="flex-container-myPokemons"
     >
       <% if (toonPokemons === 'mijnPokemons') { %>
         <% for(let pokemon of playerPokemons) { %>
-          <article class="pokemon" style="flex-basis: 25%">
+          <article class="pokemon" id="pokemon-flex-basis-25" >
             <p><%= pokemon.name %></p>
             <p>id: <%= pokemon.id %></p>
             <section>
@@ -30,7 +30,7 @@
       <% } else { %>
         <% for(let pokemon of pokemons) { %>
           <% if (playerPokemons.find(poke => poke.id === pokemon.id )) { %>
-            <article class="pokemon" style="flex-basis: 25%;">
+            <article class="pokemon" id="pokemon-flex-basis-25" >
               <p><%= pokemon.name %></p>
               <p>id: <%= pokemon.id %></p>
               <section>
@@ -40,7 +40,7 @@
               </section>
             </article>
           <% } else { %>
-            <article class="pokemon" style="flex-basis: 25%; filter: grayscale(1);">
+            <article class="pokemon" id="pokemon-flex-basis-25" style="filter: grayscale(1);">
               <p><%= pokemon.name %></p>
               <p>id: <%= pokemon.id %></p>
               <section>
@@ -54,9 +54,12 @@
       <% } %>
     </section>
     <% if (currentPokemon === undefined) { %>
-    <article class="compare-item" style="margin-top: 0; margin-bottom: 0" id="compare-item-1">
+    <article class="compare-item" style="margin-top: 0; margin-bottom: 0;         -webkit-animation: rotate-in-ver 0.5s
+    cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
+  animation: rotate-in-ver 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;" id="compare-item-1">
       <figure>
         <img src="/images/Question-mark.png" width="200" height="200" />
+        <h3 style="background-color: #3b4cca; opacity: 40%;">(Huidige Pokémon)</h3>
         <figcaption>
           <h2 style="color: transparent">?????</h2>
           <p>ID: ?</p>
@@ -68,11 +71,15 @@
       </figure>
     </article>
     <% } else { %>
-    <article class="compare-item" style="margin-top: 0; margin-bottom: 0">
+    <article class="compare-item" style="margin-top: 0; margin-bottom: 0;         -webkit-animation: rotate-in-ver 0.5s
+    cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
+  animation: rotate-in-ver 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;">
       <figure>
+        
         <img src="<%= currentPokemon.image %>" width="200" height="200" />
         <figcaption>
-          <h2><%= currentPokemon.name %></h2>
+          <h2 style="font-family: Courier New, Courier, monospace; font-weight: bolder; text-transform: uppercase;"><%= currentPokemon.name %></h2>
+          <h3 style="background-color: #3b4cca; opacity: 40%;">(Huidige Pokémon)</h3>
           <div style="display: flex; justify-content: center; margin: auto">
             <p style="width: 75%">Defense:</p>
             <div
@@ -82,7 +89,7 @@
               <span id="Poke-1-defense"><%= currentPokemon.defense %></span>
               <script>
                 document.getElementById("Poke-1-defense").style.width =
-                  "<%= currentPokemon.defense %>%";
+                  "<%= currentPokemon.defense/2 %>%";
               </script>
             </div>
           </div>
@@ -97,7 +104,7 @@
               >
               <script>
                 document.getElementById("Poke-1-attack").style.width =
-                  "<%= currentPokemon.attack %>%";
+                  "<%= currentPokemon.attack/2 %>%";
               </script>
             </div>
           </div>
@@ -112,7 +119,7 @@
               >
               <script>
                 document.getElementById("Poke-1-maxHP").style.width =
-                  "<%= currentPokemon.maxHP %>%";
+                  "<%= currentPokemon.maxHP/2 %>%";
               </script>
             </div>
           </div>
@@ -139,5 +146,17 @@
     </article>
     <% } %>
   </section>
+
+  <div id="popupinfo" class="popup">
+    <h2>mijn pokemon</h2>
+    <p>
+      hier kan je al je <strong>gevangen</strong> pokemon terug vinden. je kan ook kiezen om alle pokemons te zien maar de genen dat je nog niet gevangen hebt
+      staan in het grijs. je kan ook de <strong>bijnaam</strong> zien van je pokemon als je die hebt gegeven anders zal je niets zien. 
+    </p>
+    <button  id="button" style="float: right;" onclick="closeinfo()">Close</button>
+  </div>
+  
+  <div id="overlay-message" class="overlay"></div>
+
 </main>
 <%- include('partials/footer'); %>
