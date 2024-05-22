@@ -328,8 +328,7 @@ app.get("/addStarterPokemon/:pokeId", secureMiddleware, async (req, res) => {
     const captureTime = new Date();
     targetPokemon.capturedPokemon = getFormattedCaptureTime(captureTime);
     req.session.user.team.push(targetPokemon);
-    req.session.save(() =>
-      res.redirect("/home"));
+    req.session.save(() => res.redirect("/home"));
   } else {
     res.redirect("/");
   }
@@ -844,7 +843,7 @@ app.post("/pokemonNickname", async (req, res) => {
     }
     req.session.save(() => res.redirect("/myPokemons"));
   } else {
-    res.redirect("/home");
+    res.redirect("/myPokemons");
     // console.log(setpokemonNickname, nicknamePokemon);
   }
 });
@@ -941,38 +940,38 @@ app.post("/battle", (req, res) => {
       targetPokemon.losses = 0;
       // console.log(getFormattedCaptureTime(captureTime))
       const captureTime = new Date();
-      targetPokemon.capturedPokemon =
-        getFormattedCaptureTime(captureTime);
+      targetPokemon.capturedPokemon = getFormattedCaptureTime(captureTime);
       req.session.user.team.push(targetPokemon);
-      req.session.save(() =>
-        res.render("pokeBattler", {
-          pokemons,
-          currentPokemon,
-          playerPokemons: req.session.user?.team,
-          myPokemonToBattle: setMyPokemonToBattle,
-          pokemonToBattle: setPokemonToBattle,
-          message: false,
-          battleResult: winner,
-          styleLeft: false,
-          styleRight: false,
-          styleBoth: true,
-        })
-      );
     }
+    req.session.save(() =>
+      res.render("pokeBattler", {
+        pokemons,
+        currentPokemon,
+        playerPokemons: req.session.user?.team,
+        myPokemonToBattle: setMyPokemonToBattle,
+        pokemonToBattle: setPokemonToBattle,
+        message: false,
+        battleResult: winner,
+        styleLeft: false,
+        styleRight: false,
+        styleBoth: true,
+      })
+    );
   } else {
     req.session.save(() =>
-    res.render("pokeBattler", {
-      pokemons,
-      currentPokemon,
-      playerPokemons: req.session.user?.team,
-      myPokemonToBattle: setMyPokemonToBattle,
-      pokemonToBattle: setPokemonToBattle,
-      message: "Je moet zowel je Pokémon als de tegenstander opgeven.",
-      battleResult: false,
-      styleLeft: false,
-      styleRight: false,
-      styleBoth: true,
-    }));
+      res.render("pokeBattler", {
+        pokemons,
+        currentPokemon,
+        playerPokemons: req.session.user?.team,
+        myPokemonToBattle: setMyPokemonToBattle,
+        pokemonToBattle: setPokemonToBattle,
+        message: "Je moet zowel je Pokémon als de tegenstander opgeven.",
+        battleResult: false,
+        styleLeft: false,
+        styleRight: false,
+        styleBoth: true,
+      })
+    );
   }
 });
 
@@ -992,10 +991,10 @@ app.post("/battleAddPokemon", async (req, res) => {
       selectedPokemon.nickname = nicknamePokemon;
       playerPokemons = req.session.user.team;
       addPokemonNickname(selectedPokemon, req.session.user, nicknamePokemon);
-      req.session.save(() =>res.redirect("/myPokemons"));
+      req.session.save(() => res.redirect("/myPokemons"));
     }
   } else {
-    req.session.save(() =>res.redirect("/myPokemons"));
+    req.session.save(() => res.redirect("/myPokemons"));
   }
 });
 
@@ -1031,24 +1030,28 @@ app.post("/guessPokemonResult", async (req, res) => {
   } else {
     const guessedPokemonName: string = req.body.myCountry.toLowerCase();
     if (guessedPokemonName === randomPokemon.name) {
-      req.session.save(() =>res.render("guessPokemon", {
-        pokemons,
-        currentPokemon,
-        playerPokemons,
-        randomPokemon,
-        message: false,
-        guessResult: randomPokemon,
-      }));
+      req.session.save(() =>
+        res.render("guessPokemon", {
+          pokemons,
+          currentPokemon,
+          playerPokemons,
+          randomPokemon,
+          message: false,
+          guessResult: randomPokemon,
+        })
+      );
     } else {
       // console.log(guessedPokemonName);
-      req.session.save(() =>res.render("guessPokemon", {
-        pokemons,
-        currentPokemon,
-        playerPokemons,
-        randomPokemon,
-        message: false,
-        guessResult: true,
-      }));
+      req.session.save(() =>
+        res.render("guessPokemon", {
+          pokemons,
+          currentPokemon,
+          playerPokemons,
+          randomPokemon,
+          message: false,
+          guessResult: true,
+        })
+      );
     }
   }
 });
