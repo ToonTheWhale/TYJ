@@ -322,13 +322,14 @@ app.get("/addStarterPokemon/:pokeId", secureMiddleware, async (req, res) => {
     (x) => x.id == pokemonId
   ) as DetailedPokemon;
   if (req.session.user && req.session.user.team.length === 0) {
+    pushPokemon(targetPokemon, req.session.user);
     targetPokemon.wins = 0;
     targetPokemon.losses = 0;
     const captureTime = new Date();
     targetPokemon.capturedPokemon = getFormattedCaptureTime(captureTime);
-    await addStarterPokemon(pokemonId, req.session.user);
     req.session.user.team.push(targetPokemon);
-    res.redirect("/home");
+    req.session.save(() =>
+      res.redirect("/home"));
   } else {
     res.redirect("/");
   }
@@ -932,29 +933,32 @@ app.post("/battle", (req, res) => {
       winner.name === setMyPokemonToBattle.name &&
       req.session.user
     ) {
-      setMyPokemonToBattle.wins = 0;
-      setMyPokemonToBattle.losses = 0;
+      const targetPokemon = pokemons.find(
+        (x) => x.id == setPokemonToBattle?.id
+      ) as DetailedPokemon;
+      pushPokemon(targetPokemon, req.session.user);
+      targetPokemon.wins = 0;
+      targetPokemon.losses = 0;
       // console.log(getFormattedCaptureTime(captureTime))
       const captureTime = new Date();
-      setMyPokemonToBattle.capturedPokemon =
+      targetPokemon.capturedPokemon =
         getFormattedCaptureTime(captureTime);
-      pushPokemon(setPokemonToBattle, req.session.user);
-      req.session.user.team.push(setPokemonToBattle);
+      req.session.user.team.push(targetPokemon);
+      req.session.save(() =>
+        res.render("pokeBattler", {
+          pokemons,
+          currentPokemon,
+          playerPokemons: req.session.user?.team,
+          myPokemonToBattle: setMyPokemonToBattle,
+          pokemonToBattle: setPokemonToBattle,
+          message: false,
+          battleResult: winner,
+          styleLeft: false,
+          styleRight: false,
+          styleBoth: true,
+        })
+      );
     }
-    req.session.save(() =>
-      res.render("pokeBattler", {
-        pokemons,
-        currentPokemon,
-        playerPokemons: req.session.user?.team,
-        myPokemonToBattle: setMyPokemonToBattle,
-        pokemonToBattle: setPokemonToBattle,
-        message: false,
-        battleResult: winner,
-        styleLeft: false,
-        styleRight: false,
-        styleBoth: true,
-      })
-    );
   } else {
     req.session.save(() =>
     res.render("pokeBattler", {
