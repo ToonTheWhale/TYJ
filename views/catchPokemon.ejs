@@ -87,35 +87,37 @@
         "
       ></button>
       <form action="/catch" method="post">
-        <div id="overlay-message" class="overlay">
-          <dialog id="popup-message" style="display: block" class="popup">
-            <h2>
-              Weet je zeker dat je de Pokémon: <%= pokemonToCatch.name %> wilt
-              vrij laten ?
-            </h2>
+  <div id="overlay-message" class="overlay">
+    <dialog id="popup-message" style="display: block;" class="popup">
+      <h2 style="font-size: x-large; text-align: center;">
+        Weet je zeker dat je <%= pokemonToCatch.name %> wilt
+        vrij laten?
+      </h2>
+      <div style="display: flex; justify-content: center; gap: 10px; margin-top: 20px;">
+        <button
+          value="<%= pokemonToCatch.id %>"
+          name="targetPokemon"
+          style="background-color: red; text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;"
+          onclick="closePopup(`message-noPoke`)"
+          id="button"
+        >
+          vrijlaten
+        </button>
+        <button
+          name="targetPokemon"
+          style="background-color: green; text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;"
+          onclick="closePopup()"
+          formaction="/catchPokemon"
+          formmethod="get"
+          id="button"
+        >
+          houden
+        </button>
+      </div>
+    </dialog>
+  </div>
+</form>
 
-            <button
-              value="<%= pokemonToCatch.id %>"
-              name="targetPokemon"
-              style="float: right"
-              onclick="closePopup(`message-noPoke`)"
-              id="button"
-            >
-              vrijlaten
-            </button>
-            <button
-              name="targetPokemon"
-              style="float: right"
-              onclick="closePopup()"
-              formaction="/catchPokemon"
-              formmethod="get"
-              id="button"
-            >
-              houden
-            </button>
-          </dialog>
-        </div>
-      </form>
       <% } else { %>
       <form action="/catch" method="post">
         <button
