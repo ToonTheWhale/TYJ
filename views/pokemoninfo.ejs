@@ -7,7 +7,7 @@
       </h2>
       <% if (pokemonFind.nickname) { %>
 <<<<<<< HEAD
-      <p style="color: #3b4cca; margin-top: 0">
+      <p style="color: #3b4cca; margin-top: 0; margin-bottom: 0">
         Bijnaam : <%= pokemonFind.nickname %>
 =======
       <p style="color: #3b4cca; margin-top: 0; margin-bottom: 0">
@@ -16,6 +16,18 @@
       </p>
       <% } %>
       <img style="width: 250px; height: 250px" src="<%= pokemonFind.image%>" />
+      <section class="resultBattle">
+        <div class="wins">
+          <button><i class="bi bi-arrow-up-circle-fill"></i></button>
+          wins : 10
+          <button><i class="bi bi-arrow-down-circle-fill"></i></button>
+        </div>
+        <div class="losses">
+          <button><i class="bi bi-arrow-up-circle-fill"></i></button>
+          losses : 5
+          <button><i class="bi bi-arrow-down-circle-fill"></i></button>
+        </div>
+      </section>
       <section class="resultBattle">
         <div class="wins">
           <button><i class="bi bi-arrow-up-circle-fill"></i></button>
