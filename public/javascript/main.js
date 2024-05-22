@@ -1,4 +1,4 @@
-const { info } = require("console");
+// const { info } = require("console");
 
 // Functie om de pop-up te sluiten
 function closePopup(side) {
@@ -54,6 +54,35 @@ function filterPokemonByName() {
   input = document.getElementById("myInput");
   filter = input.value.toUpperCase();
   imageContainer = document.querySelector(".image-container");
+  articles = imageContainer.getElementsByTagName("article");
+
+  for (i = 0; i < articles.length; i++) {
+    figure = articles[i].getElementsByTagName("figure")[0];
+    p = figure.getElementsByTagName("p")[0];
+    txtValue = p.textContent || p.innerText;
+
+    if (txtValue.toUpperCase().indexOf(filter) > -1) {
+      articles[i].style.display = "";
+    } else {
+      articles[i].style.display = "none";
+    }
+  }
+}
+
+function filterPokemonByNameTwo() {
+  var input,
+    filter,
+    imageContainer,
+    articles,
+    figure,
+    figcaption,
+    p,
+    i,
+    txtValue;
+
+  input = document.getElementById("myInputTwo");
+  filter = input.value.toUpperCase();
+  imageContainer = document.getElementById("image-container-two");
   articles = imageContainer.getElementsByTagName("article");
 
   for (i = 0; i < articles.length; i++) {

@@ -992,6 +992,46 @@ footer .flex-container-sengle-item {
   z-index: 999;
 }
 
+#pokeball {
+  animation: none;
+  -webkit-animation: roll-in-left 0.6s ease-out both;
+  animation: roll-in-left 0.6s ease-out both;
+  position: absolute;
+  bottom: -25%;
+  left: 22%;
+  background: linear-gradient(
+    to bottom,
+    rgb(62, 59, 59) 0 80px,
+    black 81px 96px,
+    white 97px 100%
+  );
+}
+
+#button-catch-choose {
+  margin: auto;
+  margin-bottom: 25px;
+  background-color: transparent;
+  border: none;
+  font-size: 25px;
+  font-weight: 900;
+}
+
+#button-catch-random {
+  margin: auto;
+  margin-top: 15px;
+  background-color: transparent;
+  border: none;
+  font-size: 25px;
+  font-weight: 900;
+  color: #3e3b3b;
+}
+
+#button-catch-choose:hover, #button-catch-random:hover  {
+  color: #ffde00;
+  font-size: 30px;
+}
+
+
 .pokeball:hover {
   animation: stop-rotate 0s forwards, scale 0.5s forwards;
 }

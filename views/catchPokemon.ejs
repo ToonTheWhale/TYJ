@@ -1,5 +1,5 @@
 <%- include('partials/header'); %>
-<main style="margin-bottom: 100px; display: flex; flex-direction: column">
+<main style="margin-bottom: 100px; display: flex; flex-direction: column; text-align: center">
   <h1 id="noMarginTop" class="title">
     Pokemon vangen
     <button onclick="PopupInfo()">
@@ -17,32 +17,34 @@
         <h2>????????</h2>
         <img src="/images/Question-mark-yellow.png" />
       </figure>
-      <aside class="layer" id="#button" style="flex-direction: column">
-        <button onclick="openPopup()" type="submit">Kiezen</button>
+      <!-- <aside class="layer" id="#button" style="flex-direction: column">
+        <button onclick="openPopup()" type="submit">kiezen</button>
         <p style="color: white; font-size: 35px">of</p>
         <form action="/setRandomPokemonToCatch" method="post">
           <button type="submit">Random</button>
         </form>
-      </aside>
-      <button
-        type="submit"
-        class="pokeball"
-        id="pokeball"
-        style="
-          animation: none;
-          -webkit-animation: roll-in-left 0.6s ease-out both;
-          animation: roll-in-left 0.6s ease-out both;
-          position: absolute;
-          bottom: -25%;
-          left: 25%;
-          background: linear-gradient(
-            to bottom,
-            rgb(62, 59, 59) 0 80px,
-            black 81px 96px,
-            white 97px 100%
-          );
-        "
-      ></button>
+      </aside> -->
+      <div type="submit" class="pokeball" id="pokeball">
+        <aside
+          class="layer"
+          id="#button"
+          style="flex-direction: column; height: 100%"
+        >
+          <!-- <form style="height: 50%"> -->
+          <button onclick="openPopup()" type="submit" id="button-catch-choose">
+            kiezen
+          </button>
+          <!-- </form> -->
+          <!-- <p style="color: white; font-size: 35px">of</p> -->
+          <form
+            style="height: 50%"
+            action="/setRandomPokemonToCatch"
+            method="post"
+          >
+            <button id="button-catch-random" type="submit">Random</button>
+          </form>
+        </aside>
+      </div>
     </article>
     <% } else { %>
     <article>
@@ -124,6 +126,7 @@
           </dialog>
         </div>
       </form>
+
       <% } else { %>
       <form action="/catch" method="post">
         <button
