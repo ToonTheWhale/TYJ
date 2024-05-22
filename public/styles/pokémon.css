@@ -1978,6 +1978,10 @@ type-fairy {
   margin-top: 0;
 }
 
+#battle-button:hover{
+  -webkit-animation:wobble-hor-bottom .8s both;animation:wobble-hor-bottom .8s both
+}
+
 .resultBattle {
   display: flex;
   flex-direction: row;

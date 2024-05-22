@@ -49,11 +49,11 @@
       <aside
         class="layer"
         style="
-          background-image: url('https://i.pinimg.com/564x/9b/18/1b/9b181b17398e72f7b11d6511a0158064.jpg');
+          background-image: url('/images/battlebackground.webp');
           background-size: cover;
         "
       >
-        <button onclick="openPopup(`MyPokemons`);" type="submit">kiezen</button>
+        <button onclick="openPopup(`MyPokemons`);" type="submit" style="border-color: #ffde00; font-weight: bolder;">Mijn pokemon</button>
       </aside>
     </article>
     <% } else { %>
@@ -135,12 +135,13 @@
     <article class="compare-item-centr">
       <form action="/battle" method="post">
         <% if (pokemonToBattle && myPokemonToBattle) { %>
-        <button style="background: none; border: none" type="submit">
-          <img src="/images/Swords-icon.png" style="width: 225px; height: 225px" />
+        <button id="battle-button" style="background: none; border: none" type="submit">
+          <img src="/images/Swords-icon.png" style="width: 225px; height: 225px;" />
         </button>
         <% } else { %>
         <button
-          style="background: none; border: none"
+        id="battle-button"
+          style="background: none; border: none;"
           name="setPokemonToBattle"
           value="1"
         >
@@ -162,8 +163,13 @@
           <p>Max HP: ?</p>
         </figcaption>
       </figure>
-      <aside class="layer">
-        <button onclick="openPopupVS(1,1); " type="submit">kiezen</button>
+      <aside class="layer" 
+      style="
+      background-image: url('/images/battlebackground.webp');
+      background-size: cover;
+    ">
+        
+        <button onclick="openPopupVS(1,1); " type="submit" style="border-color: #ffde00; font-weight: bolder;">Tegenstander</button>
       </aside>
     </article>
     <% } else { %>
@@ -235,7 +241,7 @@
           </div>
         </figcaption>
         <aside class="layer-close-button">
-          <button onclick="openPopupVS(1,1); " type="submit">X</button>
+          <button onclick="openPopupVS(1,1); " type="submit" ">X</button>
         </aside>
       </figure>
     </article>
@@ -364,7 +370,7 @@
         />
         <h2>
           Geef een bijnaam voor je nieuwe pokémon :
-          <input style="width: 200px" type="text" name="pokemonNickname" />
+          <input style="width: 200px" type="text" name="pokemonNickname" maxlength="15"/>
         </h2>
         <button
           style="float: right"
