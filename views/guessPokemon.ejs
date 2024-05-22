@@ -25,7 +25,9 @@
   </form>
   <% if (message) { %>
   <div id="overlay" style="display: block; animation: none;  -webkit-animation: none" class="overlay">
-    <dialog id="popup" style="display: block" class="popup">
+    <dialog id="popup" style="display: block" class="popup" 
+    
+    >
       <h2><%= message %></h2>
       <button style="float: right" onclick="closePopup()" id="button">
         Close
@@ -37,11 +39,14 @@
     <dialog
       id="popup"
       style="
-        display: block;
-        text-align: center;
-        justify-content: center;
-        align-items: center;
-      "
+          display: block;
+          text-align: center;
+          justify-content: center;
+          align-items: center;
+          background-image: url('https://img.freepik.com/free-vector/gradient-zoom-effect-background_23-2149751055.jpg?w=996&t=st=1716370631~exp=1716371231~hmac=acf9f25cd3a3c56cc1b5bbd421db511b04e10c915c85b5a529968a674b930991');
+          background-size: cover; /* Optioneel: Zorgt ervoor dat de afbeelding de hele achtergrond bedekt */
+          background-position: center; /* Optioneel: Centreert de achtergrondafbeelding */
+        "
       class="popup"
     >
       <form action="/guessPokemon" method="get">
@@ -61,11 +66,14 @@
     <dialog
       id="popup"
       style="
-        display: block;
-        text-align: center;
-        justify-content: center;
-        align-items: center;
-      "
+          display: block;
+          text-align: center;
+          justify-content: center;
+          align-items: center;
+          background-image: url('https://img.freepik.com/free-vector/comic-style-background_23-2148827392.jpg?w=996&t=st=1716370950~exp=1716371550~hmac=28473cb4d064636d2b83294ef4025af993346013cd79e93ec24556f03b36bd11');
+          background-size: cover; /* Optioneel: Zorgt ervoor dat de afbeelding de hele achtergrond bedekt */
+          background-position: center; /* Optioneel: Centreert de achtergrondafbeelding */
+        "
       class="popup"
     >
       <form action="/improvePokemon" method="post">
@@ -88,6 +96,7 @@
               border: 0;
               color: #3b4cca;
               font-weight: bolder;
+              background-color: rgb(255, 255, 255, 0.01);
             "
             class="sort-select"
             name="typeOfImprove"

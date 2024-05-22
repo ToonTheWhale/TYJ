@@ -15,7 +15,7 @@
     <article>
       <figure>
         <h2>????????</h2>
-        <img src="/images/Question-mark-yallow.png" />
+        <img src="/images/Question-mark-yellow.png" />
       </figure>
       <!-- <aside class="layer" id="#button" style="flex-direction: column">
         <button onclick="openPopup()" type="submit">kiezen</button>
@@ -87,36 +87,45 @@
         "
       ></button>
       <form action="/catch" method="post">
-  <div id="overlay-message" class="overlay">
-    <dialog id="popup-message" style="display: block;" class="popup">
-      <h2 style="font-size: x-large; text-align: center;">
-        Weet je zeker dat je <%= pokemonToCatch.name %> wilt
-        vrij laten?
-      </h2>
-      <div style="display: flex; justify-content: center; gap: 10px; margin-top: 20px;">
-        <button
-          value="<%= pokemonToCatch.id %>"
-          name="targetPokemon"
-          style="background-color: red; text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;"
-          onclick="closePopup(`message-noPoke`)"
-          id="button"
-        >
-          vrijlaten
-        </button>
-        <button
-          name="targetPokemon"
-          style="background-color: green; text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;"
-          onclick="closePopup()"
-          formaction="/catchPokemon"
-          formmethod="get"
-          id="button"
-        >
-          houden
-        </button>
-      </div>
-    </dialog>
-  </div>
-</form>
+        <div id="overlay-message" class="overlay">
+          <dialog id="popup-message" style="display: block" class="popup">
+            <h2>
+              Weet je zeker dat je de Pokémon: <%= pokemonToCatch.name %> wilt
+              vrijlaten?
+            </h2>
+
+            <button
+              value="<%= pokemonToCatch.id %>"
+              name="targetPokemon"
+              style="
+                float: right;
+                background-color: red;
+                text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000,
+                  1px 1px 0 #000;
+              "
+              onclick="closePopup(`message-noPoke`)"
+              id="button"
+            >
+              Vrijlaten
+            </button>
+            <button
+              name="targetPokemon"
+              style="
+                float: right;
+                background-color: green;
+                text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000,
+                  1px 1px 0 #000;
+              "
+              onclick="closePopup()"
+              formaction="/catchPokemon"
+              formmethod="get"
+              id="button"
+            >
+              Houden
+            </button>
+          </dialog>
+        </div>
+      </form>
 
       <% } else { %>
       <form action="/catch" method="post">
@@ -162,7 +171,7 @@
       type="text"
       id="myInput"
       onkeyup="filterPokemonByName()"
-      placeholder="Pokemon zoeken ..."
+      placeholder="Pokémon zoeken ..."
     />
     <section class="image-container">
       <form
@@ -223,11 +232,15 @@
     <dialog
       id="popup-message-CurrentPokemon"
       style="
-        display: block;
-        text-align: center;
-        justify-content: center;
-        align-items: center;
-      "
+          display: block;
+          text-align: center;
+          justify-content: center;
+          align-items: center;
+          background-image: url('/images/backgroundall.png');
+          background-size: cover; /* Optioneel: Zorgt ervoor dat de afbeelding de hele achtergrond bedekt */
+          background-position: center; /* Optioneel: Centreert de achtergrondafbeelding */
+        "
+
       class="popup"
     >
       <form action="/pokemonNickname" method="post">
@@ -239,7 +252,12 @@
         />
         <h2>
           Geef een bijnaam voor je nieuwe pokémon :
-          <input style="width: 200px" type="text" name="pokemonNickname" maxlength="15" />
+          <input
+            style="width: 200px"
+            type="text"
+            name="pokemonNickname"
+            maxlength="15"
+          />
         </h2>
         <button
           style="float: right"
@@ -256,7 +274,7 @@
   <% } %>
 
   <div id="popupinfo" class="popup">
-    <h2>pokemon vangen</h2>
+    <h2>Pokémon vangen</h2>
     <p>
       hier kan je pokemons <strong>vangen</strong>. je kan kiezen tussen zelf de
       pokemon kiezen die je wilt vangen of een willekeurige pokemon vangen die

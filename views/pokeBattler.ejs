@@ -346,16 +346,20 @@
   </div>
   <% } %> <% if (battleResult == myPokemonToBattle ) { %>
   <div id="overlay-battle-message" style="display: block" class="overlay">
-    <dialog
-      id="popup-battle-message"
-      style="
-        display: block;
-        text-align: center;
-        justify-content: center;
-        align-items: center;
-      "
-      class="popup"
-    >
+    <div id="overlay-battle-message" style="display: block" class="overlay">
+      <dialog
+        id="popup-battle-message"
+        style="
+          display: block;
+          text-align: center;
+          justify-content: center;
+          align-items: center;
+          background-image: url('/images/backgroundall.png');
+          background-size: cover; /* Optioneel: Zorgt ervoor dat de afbeelding de hele achtergrond bedekt */
+          background-position: center; /* Optioneel: Centreert de achtergrondafbeelding */
+        "
+        class="popup"
+      >
       <form action="/battleAddPokemon" method="post">
         <h1><%= myPokemonToBattle.name %> heeft het gevecht gewonnen!</h1>
         <img
@@ -363,13 +367,9 @@
           src="<%= myPokemonToBattle.image %>"
           alt=""
         />
-        <img
-          style="width: 200px; height: 200px; filter: grayscale(100%)"
-          src="<%= pokemonToBattle.image %>"
-          alt=""
-        />
+        <h2 style="display: flex; align-items: center; justify-content: center; "><img src="<%= pokemonToBattle.image %>" style="height: 75px; width: 75px; " alt=""><%= pokemonToBattle.img %> is gevangen!</h2>
         <h2>
-          Geef een bijnaam voor je nieuwe pokémon :
+          Geef een bijnaam voor je nieuwe pokémon (optioneel) :
           <input style="width: 200px" type="text" name="pokemonNickname" maxlength="15"/>
         </h2>
         <button
@@ -385,27 +385,25 @@
     </dialog>
   </div>
   <% } %> <% if (battleResult == pokemonToBattle ) { %>
-  <div id="overlay-battle-message" style="display: block" class="overlay">
-    <dialog
-      id="popup-battle-message"
-      style="
-        display: block;
-        text-align: center;
-        justify-content: center;
-        align-items: center;
-      "
-      class="popup"
-    >
+    <div id="overlay-battle-message" style="display: block" class="overlay">
+      <dialog
+        id="popup-battle-message"
+        style="
+          display: block;
+          text-align: center;
+          justify-content: center;
+          align-items: center;
+          background-image: url('https://img.freepik.com/free-vector/flat-design-yellow-comics-wallpaper_23-2148801759.jpg?w=996&t=st=1716370446~exp=1716371046~hmac=69233f68d26e9c7dc27e40f78444da7d41014c9cd8e5ad90aa1584e0ee667018');
+          background-size: cover; /* Optioneel: Zorgt ervoor dat de afbeelding de hele achtergrond bedekt */
+          background-position: center; /* Optioneel: Centreert de achtergrondafbeelding */
+        "
+        class="popup"
+      >
       <form action="/pokeBattler" method="get">
         <h1><%= pokemonToBattle.name %> heeft het gevecht gewonnen!</h1>
         <img
           style="width: 200px; height: 200px"
           src="<%= pokemonToBattle.image %>"
-          alt=""
-        />
-        <img
-          style="width: 200px; height: 200px; filter: grayscale(100%)"
-          src="<%= myPokemonToBattle.image %>"
           alt=""
         />
         <h2>Blijf trainen en probeer het opnieuw!</h2>
