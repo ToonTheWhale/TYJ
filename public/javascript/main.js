@@ -1,3 +1,5 @@
+const { info } = require("console");
+
 // Functie om de pop-up te sluiten
 function closePopup(side) {
   if (side) {
@@ -145,6 +147,7 @@ function closePopupMessageBattle(pokeGroup) {
 function openPopupMessage() {
   document.getElementById("popup-message").style.display = "block";
   document.getElementById("overlay-message").style.display = "block";
+
 }
 
 function closePopupMessage() {
@@ -158,3 +161,16 @@ function closePopupMessageCurrentPokemon() {
   document.getElementById("overlay-message-CurrentPokemon").style.display =
     "none";
 }
+<<<<<<< HEAD
+=======
+
+function PopupInfo() {
+  document.getElementById("popupinfo").style.display = "block";
+  document.getElementById("overlay-message").style.display = "block";
+}
+
+function closeinfo(){
+  document.getElementById("popupinfo").style.display = "none";
+  document.getElementById("overlay-message").style.display = "none";
+}
+>>>>>>> f9197e03bcfb5dfd420d3baba476f052b12e4fa4

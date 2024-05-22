@@ -1,6 +1,8 @@
 <%- include('partials/header'); %>
 <main style="margin-bottom: 25px; display: flex; flex-direction: column">
-  <section class="flex-container-sengle-item" style="position: relative">
+  <h1 class="title"> Pokeon raden <button onclick="PopupInfo()"><h1><i class="bi bi-patch-question"></i></h1></button></h1>
+  <section class="flex-container-sengle-item" style="position: relative; -webkit-animation:slide-in-elliptic-top-fwd .7s cubic-bezier(.25,.46,.45,.94) both;animation:slide-in-elliptic-top-fwd .7s cubic-bezier(.25,.46,.45,.94) both">
+
     <article>
       <figure>
         <h2>????????</h2>
@@ -11,7 +13,7 @@
       </figure>
     </article>
   </section>
-  <form id="myForm" action="/guessPokemonResult" method="post">
+  <form id="myForm" action="/guessPokemonResult" method="post" style="-webkit-animation:slide-in-elliptic-top-fwd .7s cubic-bezier(.25,.46,.45,.94) both;animation:slide-in-elliptic-top-fwd .7s cubic-bezier(.25,.46,.45,.94) both">
     <input
       name="myCountry"
       class="input"
@@ -30,7 +32,7 @@
     />
   </form>
   <% if (message) { %>
-  <div id="overlay" style="display: block" class="overlay">
+  <div id="overlay" style="display: block; animation: none;  -webkit-animation: none" class="overlay">
     <dialog id="popup" style="display: block" class="popup">
       <h2><%= message %></h2>
       <button style="float: right" onclick="closePopup()" id="button">
@@ -39,7 +41,7 @@
     </dialog>
   </div>
   <% } %> <% if (guessResult) { %>
-  <div id="overlay" style="display: block" class="overlay">
+  <div id="overlay" style="display: block; animation: none; -webkit-animation: none" class="overlay">
     <dialog
       id="popup"
       style="
@@ -63,7 +65,7 @@
     </dialog>
   </div>
   <% } %> <% if (guessResult == randomPokemon) { %>
-  <div id="overlay" style="display: block" class="overlay">
+  <div id="overlay" style="display: block; animation: none;  -webkit-animation: none" class="overlay">
     <dialog
       id="popup"
       style="
@@ -110,6 +112,18 @@
     </dialog>
   </div>
   <% } %>
+
+  <div id="popupinfo" class="popup">
+    <h2>pokemon raden</h2>
+    <p>
+      Pokemon raden is een <strong>klein spelletje</strong> waar je de naam van de pokemon moet raden. het leuke aan dit spelletje is 
+      als je de pokemon juist raad kan je je buddy zijn <strong>statistieken verhogen</strong> met 1 punt. je kan kiezen waar je het punt in steekt, aanval of verdedeging. veel succes!
+    </p>
+    <button  id="button" style="float: right;" onclick="closeinfo()">Close</button>
+  </div>
+  
+  <div id="overlay-message" class="overlay"></div>
+
 </main>
 <script src="/javascript/guessPokemon.js" defer></script>
 <%- include('partials/footer'); %>
