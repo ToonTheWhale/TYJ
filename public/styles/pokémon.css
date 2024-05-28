@@ -1818,10 +1818,11 @@ th {
   /* width: 100%; */
   /* padding: 10px; */
   /* margin-bottom: 20px; */
-  border: 2px solid #ccc;
+  border: 2px solid #3b4cca;
   border-radius: 5px;
   font-size: 16px;
   outline: none;
+  text-align: center;
   /* background-color: rgba( 255, 255, 255, 0.7 ); */
 }
 
@@ -2344,4 +2345,13 @@ type-fairy {
     /* scale: 0.7; */
     /* margin-bottom: 111px; */
   }
+
+  .footer-1-landing p {
+    margin: 0;
+  }
+
+  th {
+    padding: 5px;
+  }
+
 }

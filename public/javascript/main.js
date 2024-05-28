@@ -98,6 +98,35 @@ function filterPokemonByNameTwo() {
   }
 }
 
+function filterPokemonByNameCurrentPokemon() {
+  var input,
+    filter,
+    imageContainer,
+    articles,
+    figure,
+    figcaption,
+    p,
+    i,
+    txtValue;
+
+  input = document.getElementById("myInputCurrentPokemon");
+  filter = input.value.toUpperCase();
+  imageContainer = document.getElementById("image-container-CurrentPokemon");
+  articles = imageContainer.getElementsByTagName("article");
+
+  for (i = 0; i < articles.length; i++) {
+    figure = articles[i].getElementsByTagName("figure")[0];
+    p = figure.getElementsByTagName("p")[0];
+    txtValue = p.textContent || p.innerText;
+
+    if (txtValue.toUpperCase().indexOf(filter) > -1) {
+      articles[i].style.display = "";
+    } else {
+      articles[i].style.display = "none";
+    }
+  }
+}
+
 // function filterPokemonByNamePokedex() {
 //   var input,
 //     filter,
