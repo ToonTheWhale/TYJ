@@ -46,6 +46,7 @@ TYJ is een project ontwikkeld voor de WPL (Web Programming Languages) cursus. De
 Dit project is gelicenseerd onder de MIT License - zie het [LICENSE](LICENSE) bestand voor details.
 
 ### Bijdragers
+- [Yazan Dukhan](https://github.com/user462138)
 - [ToonTheWhale](https://github.com/ToonTheWhale)
 - [jef350](https://github.com/jef350)
 - [GillesDBie](https://github.com/GillesDBie)
