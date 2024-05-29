@@ -1,5 +1,12 @@
 <%- include('partials/header'); %>
-<main style="margin-bottom: 100px; display: flex; flex-direction: column; text-align: center">
+<main
+  style="
+    margin-bottom: 100px;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+  "
+>
   <h1 id="noMarginTop" class="title">
     Pokemon vangen
     <button onclick="PopupInfo()">
@@ -232,15 +239,14 @@
     <dialog
       id="popup-message-CurrentPokemon"
       style="
-          display: block;
-          text-align: center;
-          justify-content: center;
-          align-items: center;
-          background-image: url('/images/backgroundall.png');
-          background-size: cover; /* Optioneel: Zorgt ervoor dat de afbeelding de hele achtergrond bedekt */
-          background-position: center; /* Optioneel: Centreert de achtergrondafbeelding */
-        "
-
+        display: block;
+        text-align: center;
+        justify-content: center;
+        align-items: center;
+        background-image: url('/images/backgroundall.png');
+        background-size: cover; /* Optioneel: Zorgt ervoor dat de afbeelding de hele achtergrond bedekt */
+        background-position: center; /* Optioneel: Centreert de achtergrondafbeelding */
+      "
       class="popup"
     >
       <form action="/pokemonNickname" method="post">
@@ -276,12 +282,10 @@
   <div id="popupinfo" class="popup">
     <h2>Pokémon vangen</h2>
     <p>
-      hier kan je pokemons <strong>vangen</strong>. je kan kiezen tussen zelf de
-      pokemon kiezen die je wilt vangen of een willekeurige pokemon vangen die
-      je nog niet hebt. je krijgt <strong>3 kansen</strong> om de pokemon te
-      vangen. als het niet lukt dan ontsnapt de pokemon! lukt het je wel dan kan
-      je de pokemon een bijnaam geven als je wilt en dan word hij toegevoegd aan
-      je lijst van gevangen pokemon
+      hier kan je pokémon <strong>vangen</strong>.Je kiest zelf een pokémon die
+      je wilt vangen of laat een random pokémon verschijnen. je krijgt
+      <strong>3 kansen</strong> om de pokémon te vangen en als het niet lukt dan
+      ontsnapt de pokémon! lukt het je wel dan wordt de pokémon aan je team toegevoegd.
     </p>
     <button id="button" style="float: right" onclick="closeinfo()">
       Close
