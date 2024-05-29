@@ -1,5 +1,3 @@
-Hier is een README-bestand voor de "TYJ" GitHub-repository in het Nederlands:
-
 ---
 
 # TYJ
@@ -54,4 +52,3 @@ Dit project is gelicenseerd onder de MIT License - zie het [LICENSE](LICENSE) be
 
 ---
 
-Pas deze template gerust aan volgens de specifieke details en vereisten van jouw project.
