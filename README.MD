@@ -47,7 +47,6 @@ Dit project is gelicenseerd onder de MIT License - zie het [LICENSE](LICENSE) be
 
 ### Bijdragers
 - [ToonTheWhale](https://github.com/ToonTheWhale)
-- [user462138](https://github.com/user462138)
 - [jef350](https://github.com/jef350)
 - [GillesDBie](https://github.com/GillesDBie)
 
